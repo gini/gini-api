@@ -1,0 +1,930 @@
+Documents
+=========
+
+As the key aspect of the Gini API is to provide information extraction for
+analyzing documents, the API is mainly build around the concept of documents.
+A document can be any written representation of information, usually invoices,
+reminders, contracts and so on.
+
+The main idea is that you submit a document in form of an electronic file to
+Gini. After the document has been analyzed by Gini you can get the information
+that is extracted from the document by querying the API.
+
+The following documentation explains those actions in detail.
+
+.. note::
+
+   Most example requests show the usage of `cURL`_, a command-line
+   tool to perform HTTP requests.
+
+.. _cURL: http://curl.haxx.se/
+
+
+.. _submitting-documents:
+
+Submitting files
+----------------
+
+In order to analyze a document, the document source file must be first
+submitted to Gini.
+
+You can submit documents by using the file of the document and calling a
+POST request on the ``/documents`` path. After successful creation of a
+document, the location of the new document is returned in the
+``Location`` header.
+
+
+Supported file formats
+~~~~~~~~~~~~~~~~~~~~~~
+
+Gini currently supports input files in the formats PDF, GIF
+(non-animated), PNG, JPEG, and TIFF. You can use native documents (PDF
+only) as well as scanned document (all formats). Note that there are
+certain limitation on a document that the Gini API accepts:
+
+  * Document file size must be less than 10 MiB
+  * PDF files **must not** have any security restrictions such as
+    password protection. 
+  * Scanned documents should have a resolution of at least
+    300dpi in order for the OCR to return optimal results
+  * Only the first ten pages of a document are processed
+  * Only documents in German are supported for now
+
+
+Request
+~~~~~~~
+
+Documents can be submitted by doing a ``POST`` request on the
+``/documents`` resource.
+
+::
+
+    POST /documents
+
+Headers
+^^^^^^^
+
++--------------------+-----------------------------------+
+| Header             | Value                             |
++====================+===================================+
+| ``Content-Type``   | ``multipart/form-data``           |
++--------------------+-----------------------------------+
+| ``Accept``         | ``application/vnd.gini.v1+json``  |
++--------------------+-----------------------------------+
+
+Body
+^^^^
+
++---------------------------+---------------------------+
+| Key                       | Description               |
++===========================+===========================+
+| ``Content-Disposition``   | ``form-data``             |
++---------------------------+---------------------------+
+| ``file``                  | File contents of document |
++---------------------------+---------------------------+
+
+Example
+^^^^^^^
+
+.. code:: bash
+
+    curl -H 'Authorization: BEARER <token>' --form "file=@file.pdf" -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents
+
+Response
+~~~~~~~~
+
+Headers
+^^^^^^^
+
++--------------------+---------------------------------------------------+
+| Header             | Value                                             |
++====================+===================================================+
+| Status Code        | 201 (Created)                                     |
++--------------------+---------------------------------------------------+
+| ``Content-Type``   | ``application/vnd.gini.v1+json``                  |
++--------------------+---------------------------------------------------+
+| ``Location``       | Absolute URL of created document (document URI)   |
++--------------------+---------------------------------------------------+
+
+Errors
+^^^^^^
+
++---------------------+-----------------------------------------------------+
+| Status Code         | Description                                         |
++=====================+=====================================================+
+| 400 (Bad Request)   | Returned when a file in an invalid format is sent   |
++---------------------+-----------------------------------------------------+
+
+Checking processing status and getting document information
+-----------------------------------------------------------
+
+After submission the document is processed. You can check the
+processing status of a single document by examining the document
+information. It can be retrieved by a ``GET`` request to the document
+URI. When the document has been processed you can retrieve the extractions
+from it and additional information such as the document layout.
+
+Request
+~~~~~~~
+
+Document information can be retrieved by doing a ``GET`` request on the
+document URI.
+
+::
+
+    GET /documents/{id}
+
+Headers
+^^^^^^^
+
++--------------+-----------------------------------+
+| Header       | Value                             |
++==============+===================================+
+| ``Accept``   | ``application/vnd.gini.v1+json``  |
++--------------+-----------------------------------+
+
+Example
+^^^^^^^
+
+.. code:: bash
+
+    curl -H 'Authorization: BEARER <token>' -X GET -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
+
+Response
+~~~~~~~~
+
+Headers
+^^^^^^^
+
++--------------------+-----------------------------------+
+| Header             | Value                             |
++====================+===================================+
+| Status Code        | 200                               |
++--------------------+-----------------------------------+
+| ``Content-Type``   | ``application/vnd.gini.v1+.json`` |
++--------------------+-----------------------------------+
+
+Body (application/vnd.gini.v1+json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++--------------------+-------------------+---------------------------------------------------------------------------------------+
+| Key                | Child Key         | Description                                                                           |
++====================+===================+=======================================================================================+
+| ``id``             |                   | Unique identifier of document as UUID Version 1                                       |
++--------------------+-------------------+---------------------------------------------------------------------------------------+
+| ``name``           |                   | Document name (as stated on upload)                                                   |
++--------------------+-------------------+---------------------------------------------------------------------------------------+
+| ``pageCount``      |                   | Number of pages                                                                       |
++--------------------+-------------------+---------------------------------------------------------------------------------------+
+| ``creationDate``   |                   | Unix timestamp of document creation date in milliseconds                              |
++--------------------+-------------------+---------------------------------------------------------------------------------------+
+| ``status``         |                   | Processing status of the document, one of ``PENDING``, ``PROCESSED``, and ``ERROR``   |
++--------------------+-------------------+---------------------------------------------------------------------------------------+
+| ``_links``         | ``extractions``   | URI to extractions of the document (extractions URI)                                  |
++--------------------+-------------------+---------------------------------------------------------------------------------------+
+|                    | ``layout``        | URI to the layout of the document (layout URI)                                        |
++--------------------+-------------------+---------------------------------------------------------------------------------------+
+|                    | ``source``        | URI to the source file of the document (source URI)                                   |
++--------------------+-------------------+---------------------------------------------------------------------------------------+
+|                    | ``document``      | URI to the of the document, meaning the current resource (document URI)               |
++--------------------+-------------------+---------------------------------------------------------------------------------------+
+
+Example
+^^^^^^^
+
+.. code:: json
+
+    {
+      "id": "626626a0-749f-11e2-bfd6-000000000000",
+      "creationDate": 1360623867402,
+      "status": "PROCESSED",
+      "_links": {
+        "extractions": "https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/extractions",
+        "layout": "https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/layout",
+        "document": "https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000",
+        "source": "https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/source"
+      }
+    }
+
+Errors
+^^^^^^
+
++-------------------+-----------------------------------------------------------------+
+| Status Code       | Description                                                     |
++===================+=================================================================+
+| 404 (Not Found)   | Returned when no document can be found under the specific URI   |
++-------------------+-----------------------------------------------------------------+
+
+
+Retrieving a document's pages
+-----------------------------
+
+The Gini API renders preview images of a document's pages. To retrieve
+the list of pages of a document, issue a ``GET`` request to the
+``pages`` subresource of a document::
+
+  GET /documents/{id}/pages
+
+The response is a paginated list of pages.
+
+Request
+~~~~~~~
+
+Path parameters
+^^^^^^^^^^^^^^^
+
++--------------------+------------------------------+
+| Name               | Value                        |
++====================+==============================+
+| id                 | Document ID                  |
++--------------------+------------------------------+
+
+Headers
+^^^^^^^
+
++--------------+-------------------------------------+
+| Header       | Value                               |
++==============+=====================================+
+| ``Accept``   | ``application/vnd.gini.v1+json``    |
++--------------+-------------------------------------+
+
+Example
+^^^^^^^
+
+.. code-block:: bash
+
+    curl -H 'Authorization: BEARER <token>' -X GET -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages
+
+Response
+~~~~~~~~
+
+Status codes
+^^^^^^^^^^^^
+
++-------------------+----------------------------------------+
+| Status Code       | Description                            |
++===================+========================================+
+| 200 (Ok)          | The request was successful.            |
++-------------------+----------------------------------------+
+| 404 (Not Found)   | The requested document does not exist. |
++-------------------+----------------------------------------+
+
+Body
+~~~~
+
+A pagination entity with the following fields:
+
++------------+-----------------------+--------------------------------------------------+
+| Name       | Type                  | Description                                      |
++============+=======================+==================================================+
+| totalCount | int                   | Total number of document pages                   |
++------------+-----------------------+--------------------------------------------------+
+| next       | string or ``null``    | The first page of the next result page or        |
+|            |                       | ``null`` if there is no next result page         |
++------------+-----------------------+--------------------------------------------------+
+| pages      | array of :ref:`pages  | All pages of the current result page             |
+|            | <entity-page>`        |                                                  |
++------------+-----------------------+--------------------------------------------------+
+
+A page is an entity with the following fields:
+
+.. _entity-page:
+
++------------+-------------------------+--------+--------------------------------------------------+
+| Key        | Child key               | Type   | Description                                      |
++============+=========================+========+==================================================+
+| documentId |                         | string | Document to which the page belongs               |
++------------+-------------------------+--------+--------------------------------------------------+
+| pagenum    |                         | number | Page number                                      |
++------------+-------------------------+--------+--------------------------------------------------+
+| _links     | document                | string | Link to the document to which the page belongs   |
++------------+-------------------------+--------+--------------------------------------------------+
+|            | next                    | string | Link to the next page                            |
++------------+-------------------------+--------+--------------------------------------------------+
+|            | pages                   | string | Link to the pages of the document                |
++------------+-------------------------+--------+--------------------------------------------------+
+| _images    | *dimensions in pixels*  |        | Link to a preview image of the page              |
++------------+-------------------------+--------+--------------------------------------------------+
+
+Example
+^^^^^^^
+
+.. code-block:: json
+
+   {
+     "totalCount": 1,
+     "next": null,
+     "pages": [{
+       "documentId": "c292af40-d06a-11e2-9a2f-000000000000",
+       "pagenum":1,
+       "_links": {
+         "next": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/2",
+         "document": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000",
+         "pages": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages",
+       },
+         "_images": {
+           "360x520": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/360x520",
+           "146x146": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/146x146",
+           "750x900": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/750x900",
+           "1280x1810": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/1280x1810"
+         }
+       }
+     ]
+   }
+
+
+Retrieving the layout of a document
+-----------------------------------
+
+The layout of the document describes the textual content of a document
+with positional information.
+
+Coordinate system
+~~~~~~~~~~~~~~~~~
+
+The origin of the coordinate system is adjusted to the upper left corner
+of the page. The coordinate system uses the DTP point as unit: 1 pt = 1
+inch / 72 = 25.4 mm / 72 = 0.3528 mm
+
+Request
+~~~~~~~
+
+The layout of a document can be retrieved by a ``GET`` request to the
+layout URI:
+
+::
+
+    GET /documents/{id}/layout
+
+Headers
+^^^^^^^
+
++--------------+----------------------------------+
+| Header       | Value                            |
++==============+==================================+
+| ``Accept``   | ``application/vnd.gini.v1+json`` |
++--------------+----------------------------------+
+
+Example
+^^^^^^^
+
+.. code:: bash
+
+    curl -H 'Authorization: BEARER <token>' -X GET -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/layout
+
+Response
+~~~~~~~~
+
+Headers
+^^^^^^^
+
++--------------------+----------------------------------+
+| Header             | Value                            |
++====================+==================================+
+| Status Code        | 200 (OK)                         |
++--------------------+----------------------------------+
+| ``Content-Type``   | ``application/vnd.gini.v1+json`` |
++--------------------+----------------------------------+
+
+Body (application/vnd.gini.v1+json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++-------------+---------+-----------------------------+
+| Key         | Type    | Description                 |
++=============+=========+=============================+
+| ``pages``   | Array   | Array of **page objects**   |
++-------------+---------+-----------------------------+
+
+Page Object
+'''''''''''
+
++------------------+--------------+--------------------------------------+
+| Key              | Type         | Description                          |
++==================+==============+======================================+
+| ``number``       | ``int``      | Number of the page starting with 1   |
++------------------+--------------+--------------------------------------+
+| ``sizeX``        | ``number``   | Width of the page                    |
++------------------+--------------+--------------------------------------+
+| ``sizeY``        | ``number``   | Height of the page                   |
++------------------+--------------+--------------------------------------+
+| ``paragraphs``   | Array        | Array of **paragraph objects**       |
++------------------+--------------+--------------------------------------+
+
+Paragraph Object
+''''''''''''''''
+
++-----------+--------------+-------------------------------------------------------------+
+| Key       | Type         | Description                                                 |
++===========+==============+=============================================================+
+| ``h``     | ``number``   | Height of the paragraph                                     |
++-----------+--------------+-------------------------------------------------------------+
+| ``w``     | ``number``   | Width of the paragraph                                      |
++-----------+--------------+-------------------------------------------------------------+
+| ``l``     | ``number``   | Distance of the paragraph from the left edge of the page    |
++-----------+--------------+-------------------------------------------------------------+
+| ``t``     | ``number``   | Distance of the paragraph from the upper edge of the page   |
++-----------+--------------+-------------------------------------------------------------+
+| ``wds``   | Array        | Array of **word objects**                                   |
++-----------+--------------+-------------------------------------------------------------+
+
+Word Object
+'''''''''''
+
++------------+--------------+--------------------------------------------------------+
+| Key        | Type         | Description                                            |
++============+==============+========================================================+
+| ``h``      | ``number``   | Height of the word                                     |
++------------+--------------+--------------------------------------------------------+
+| ``w``      | ``number``   | Width of the word                                      |
++------------+--------------+--------------------------------------------------------+
+| ``l``      | ``number``   | Distance of the word from the left edge of the page    |
++------------+--------------+--------------------------------------------------------+
+| ``t``      | ``number``   | Distance of the word from the upper edge of the page   |
++------------+--------------+--------------------------------------------------------+
+| ``text``   | ``string``   | Text of word                                           |
++------------+--------------+--------------------------------------------------------+
+
+Example
+^^^^^^^
+
+.. code:: json
+
+     {
+        "pages": [
+            {
+                "number": 1,
+                "paragraphs": [
+                    {
+                        "h": 32.64,
+                        "l": 8.4,
+                        "t": 2.16,
+                        "w": 534.11,
+                        "wds": [
+                            {
+                                "h": 32.64,
+                                "l": 8.4,
+                                "t": 2.16,
+                                "text": "==================================",
+                                "w": 580.01
+                            },
+                            {
+                                "h": 32.64,
+                                "l": 530.88,
+                                "t": 2.16,
+                                "text": "\"",
+                                "w": 11.629999999999995
+                            }
+                        ]
+                    },
+                    {
+                        "h": 7.8999999999999915,
+                        "l": 90.72,
+                        "t": 86.9,
+                        "w": 121.50999999999999,
+                        "wds": [
+                            {
+                                "h": 7.8999999999999915,
+                                "l": 90.72,
+                                "t": 86.9,
+                                "text": "Telekom",
+                                "w": 24.909999999999997
+                            },
+                            {
+                                "h": 7.8999999999999915,
+                                "l": 117.12,
+                                "t": 86.9,
+                                "text": "Deutschland",
+                                "w": 35.97999999999999
+                            },
+                            {
+                                "h": 7.8999999999999915,
+                                "l": 154.56,
+                                "t": 86.9,
+                                "text": "GmbH",
+                                "w": 18.819999999999993
+                            },
+                            {
+                                "h": 7.8999999999999915,
+                                "l": 173.28,
+                                "t": 86.9,
+                                "text": ",",
+                                "w": 1.5800000000000125
+                            },
+                            {
+                                "h": 7.8999999999999915,
+                                "l": 176.4,
+                                "t": 86.9,
+                                "text": "53171",
+                                "w": 19.109999999999985
+                            },
+                            {
+                                "h": 7.8999999999999915,
+                                "l": 197.04,
+                                "t": 86.9,
+                                "text": "Bonn",
+                                "w": 15.189999999999998
+                            }
+                        ]
+                    },
+                    ...
+                ],
+                "sizeX": 595.2,
+                "sizeY": 841.92
+            }
+        ]
+    }
+
+Errors
+^^^^^^
+
++-------------------+-------------------------------------------------+
+| Status Code       | Description                                     |
++===================+=================================================+
+| 404 (Not Found)   | Returned when the requested layout is invalid   |
++-------------------+-------------------------------------------------+
+
+Retrieving a document's source file
+-----------------------------------
+
+Request
+~~~~~~~
+
+The source file of a document can be retrieved by a ``GET`` request:
+
+::
+
+    GET /documents/{id}/source
+
+Path parameters
+^^^^^^^^^^^^^^^
+
++--------------------+------------------------------+
+| Name               | Value                        |
++====================+==============================+
+| id                 | Document ID                  |
++--------------------+------------------------------+
+
+
+Response
+~~~~~~~~
+
+Headers
+^^^^^^^
+
++--------------------+------------------------------+
+| Header             | Value                        |
++====================+==============================+
+| Status Code        | 200                          |
++--------------------+------------------------------+
+
+Body
+^^^^
+
+The uploaded source document.
+
+Errors
+^^^^^^
+
++-------------------+----------------------------------------+
+| Status Code       | Description                            |
++===================+========================================+
+| 404 (Not Found)   | The requested document does not exist. |
++-------------------+----------------------------------------+
+
+
+Retrieving extractions
+----------------------
+
+After a document is processed the extractions from the document
+analysis can be retrieved. See :ref:`extractions_information` for
+details about extractions.
+
+Request
+~~~~~~~
+
+Extractions can be retrieved by doing a ``GET`` request on the
+extractions URI:
+
+::
+
+    GET /documents/{id}/extractions
+
+Headers
+^^^^^^^
+
++--------------+----------------------------------+
+| Header       | Value                            |
++==============+==================================+
+| ``Accept``   | ``application/vnd.gini.v1+json`` |
++--------------+----------------------------------+
+
+Example
+^^^^^^^
+
+.. code-block:: bash
+
+    curl -H 'Authorization: BEARER <token>' -X GET -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/extractions
+
+Response
+~~~~~~~~
+
+Headers
+^^^^^^^
+
++--------------------+----------------------------------+
+| Header             | Value                            |
++====================+==================================+
+| Status Code        | 200 (OK)                         |
++--------------------+----------------------------------+
+| ``Content-Type``   | ``application/vnd.gini.v1+json`` |
++--------------------+----------------------------------+
+
+Body (application/vnd.gini.v1+json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The body of the response is described under :ref:`extractions_information`.
+
+Example
+^^^^^^^
+
+.. code:: json
+
+     {
+        "extractions": {
+            "amountToPay": {
+                "box": {
+                    "height": 9,
+                    "left": 516,
+                    "page": 1,
+                    "top": 588,
+                    "width": 42
+                },
+                "entity": "amount",
+                "value": "24.99:EUR",
+                "candidates": "amounts"
+            },
+          },
+          "candidates": {
+            "amounts": [
+              {
+                  "box": {
+                      "height": 9,
+                      "left": 517,
+                      "page": 1,
+                      "top": 574,
+                      "width": 42
+                  },
+                  "entity": "amount",
+                  "value": "24.99:EUR"
+              },
+              {
+                  "box": {
+                      "height": 9,
+                      "left": 241,
+                      "page": 1,
+                      "top": 588,
+                      "width": 42
+                  },
+                  "entity": "amount",
+                  "value": "21.0:EUR"
+              }
+            ]
+            ...
+        }
+    }
+
+Errors
+^^^^^^
+
++---------------------+-------------------------------------------------------------+
+| Status Code         | Description                                                 |
++=====================+=============================================================+
+| 400 (Bad Request)   | Return when a file in an invalid format is sent             |
++---------------------+-------------------------------------------------------------+
+| 404 (Not Found)     | Response status if the requested entity couldn't be found   |
++---------------------+-------------------------------------------------------------+
+
+Submitting feedback on extractions
+----------------------------------
+
+Submitting feedback on incorrect extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Request
+^^^^^^^
+
+Give feedback and correct or verify a specific labeled extraction
+pattern by a ``PUT`` request to the documents extractions URI:
+
+::
+
+    PUT /documents/{id}/extractions/{label}
+
+The label must correspond to the name of the extraction type (e. g.
+``amountToPay``. See :ref:`available-specific-extractions` for a list
+of names).
+
+Headers
+'''''''
+
++--------------------+----------------------------------+
+| Header             | Value                            |
++====================+==================================+
+| ``Content-Type``   | ``application/vnd.gini.v1+json`` |
++--------------------+----------------------------------+
+
+Body
+''''
+
++--------------+----------------+------------------------------------------------------------+
+| Key          | Type           | Description                                                |
++==============+================+============================================================+
+| ``value``    | ``string``     | New value of extraction                                    |
++--------------+----------------+------------------------------------------------------------+
+| ``box``      | bounding box   | Optional: Bounding box where the extraction can be found   |
++--------------+----------------+------------------------------------------------------------+
+| ``page``     | ``int``        | Page where the box can be found starting with 1            |
++--------------+----------------+------------------------------------------------------------+
+| ``left``     | ``number``     | Distance of box from the left edge of the page             |
++--------------+----------------+------------------------------------------------------------+
+| ``top``      | ``number``     | Distance of box from the top edge of the page              |
++--------------+----------------+------------------------------------------------------------+
+| ``width``    | ``number``     | Width of box                                               |
++--------------+----------------+------------------------------------------------------------+
+| ``height``   | ``number``     | Height of box                                              |
++--------------+----------------+------------------------------------------------------------+
+
+Example
+'''''''
+
+.. code:: json
+
+    {
+        "box": {
+            "height": 14,
+            "left": 405,
+            "page": 1,
+            "top": 421,
+            "width": 36
+        },
+        "value": "new value"
+    }
+
+Response
+^^^^^^^^
+
++--------------------+-----------------------------------------------+
+| Status Code        | Description                                   |
++====================+===============================================+
+| 204 (No Content)   | The feedback was successfully processed       |
++--------------------+-----------------------------------------------+
+| 404 (Not Found)    | The document or label couldn't not be found   |
++--------------------+-----------------------------------------------+
+
+
+Submitting feedback for invalid extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Request
+^^^^^^^
+
+In case an extraction was found erroneously (i.e. is not present in
+the source document), you can delete it by issuing a ``DELETE``
+request to the extraction URI::
+
+    DELETE /documents/{id}/extractions/{label}
+
+Response
+^^^^^^^^
+
++--------------------+--------------------------------------------------------+
+| Status Code        | Description                                            |
++====================+========================================================+
+| 204 (No Content)   | Removal of the label was successful                    |
++--------------------+--------------------------------------------------------+
+| 404 (Not Found)    | Returned when the document or label can not be found   |
++--------------------+--------------------------------------------------------+
+
+
+Deleting documents
+------------------
+
+If you want to delete a document you can do this by doing a
+DELETE request on the document URI. When the document is deleted all
+associated resources (extractions, layout) will be deleted as well.
+
+Request
+~~~~~~~
+
+Documents can be deleted by doing a ``DELETE`` request on the document
+URI.
+
+::
+
+    DELETE /documents/{id}
+
+Example
+^^^^^^^
+
+::
+
+    curl -H 'Authorization: BEARER <token>' -X DELETE -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
+
+Response
+~~~~~~~~
+
+Headers
+^^^^^^^
+
++---------------+--------------------+
+| Header        | Value              |
++===============+====================+
+| Status Code   | 204 (No Content)   |
++---------------+--------------------+
+
+Errors
+^^^^^^
+
++-------------------+-----------------------------------------------------------------+
+| Status Code       | Description                                                     |
++===================+=================================================================+
+| 404 (Not Found)   | Returned when no document can be found under the specific URI   |
++-------------------+-----------------------------------------------------------------+
+
+
+Getting a list of all documents
+-------------------------------
+
+To get a list of all documents, issue a ``GET`` request on the
+``/documents`` resource. The response will be a paginated list of all
+documents.
+
+::
+
+   GET /documents
+
+Request query parameters
+~~~~~~~~~~~~~~~~~~~~~~~~
+
++-------------------------+--------+--------------------------------------------------+
+| Name                    | Type   | Description                                      |
++=========================+========+==================================================+
+| limit                   | int    | *(Optional)* Maximum number of documents to      |
+|                         |        | return. Defaults to *20*.                        |
++-------------------------+--------+--------------------------------------------------+
+| next                    | string | *(Optional)* Start document                      |
++-------------------------+--------+--------------------------------------------------+
+
+Example request
+~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+   curl -H 'Authorization: BEARER <token>' -H 'Accept: application/vnd.gini.v1+json' -X GET -i https://api.gini.net/documents?limit=50
+
+
+Response
+~~~~~~~~
+
+The response is a paginated list of documents.
+
+Headers
+^^^^^^^
+
++---------------+--------------------+
+| Header        | Value              |
++===============+====================+
+| Status Code   | 200 (OK)           |
++---------------+--------------------+
+
+Body
+^^^^
+
+The response entity has the following fields:
+
++-------------------------+--------------------+--------------------------------------------------+
+| Name                    | Type               | Description                                      |
++=========================+====================+==================================================+
+| totalCount              | int                | Total number of documents                        |
++-------------------------+--------------------+--------------------------------------------------+
+| next                    | string or ``null`` | The first document of the next result page or    |
+|                         |                    | ``null`` if there is no next page                |
++-------------------------+--------------------+--------------------------------------------------+
+| documents               | array of documents | All documents of the current page                |
+|                         |                    |                                                  |
++-------------------------+--------------------+--------------------------------------------------+
+
+
+Example
+^^^^^^^
+
+.. code-block:: json
+
+   {
+     "totalCount": 118,
+     "next": "aa7f3e80-93c6-11e3-b247-8851fb5148ed",
+     "documents": [
+       {…}, {…}, …
+     ]
+   }
+   

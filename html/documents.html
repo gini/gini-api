@@ -1,0 +1,1743 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Documents &mdash; Gini API v1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic,600italic|Source+Code+Pro|Roboto+Slab:400,700" rel="stylesheet" type="text/css" />
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'v1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+    <script type="text/javascript">
+        jQuery(function () {
+            SphinxRtdTheme.StickyNav.enable();
+        });
+    </script>
+  
+
+  
+    <link rel="top" title="Gini API v1 documentation" href="index.html"/>
+        <link rel="next" title="Finding documents" href="finding_documents.html"/>
+        <link rel="prev" title="Overview" href="overview.html"/> 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" id="gini-logo">gini API</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#v1">v1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#client-errors">Client Errors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#http-response-codes">HTTP response codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#error-entity">Error entity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submitting-files">Submitting files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#supported-file-formats">Supported file formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#checking-processing-status-and-getting-document-information">Checking processing status and getting document information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#retrieving-a-document-s-pages">Retrieving a document&#8217;s pages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Body</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#retrieving-the-layout-of-a-document">Retrieving the layout of a document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#coordinate-system">Coordinate system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#retrieving-a-document-s-source-file">Retrieving a document&#8217;s source file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#retrieving-extractions">Retrieving extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id32">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submitting-feedback-on-extractions">Submitting feedback on extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submitting-feedback-on-incorrect-extractions">Submitting feedback on incorrect extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submitting-feedback-for-invalid-extractions">Submitting feedback for invalid extractions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#deleting-documents">Deleting documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id44">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id46">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#request-query-parameters">Request query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-request">Example request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id49">Response</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="finding_documents.html">Finding documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="finding_documents.html#basic-search">Basic search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finding_documents.html#query-parameters">Query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finding_documents.html#response">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finding_documents.html#example">Example:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extractions_information.html">Information on extractions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extractions_information.html#extraction-response">Extraction Response</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extractions_information.html#extractions">Extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#id2">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#specific-extractions">Specific extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#available-specific-extractions">Available Specific Extractions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extractions_information.html#extraction-candidates">Extraction Candidates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#id7">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#available-extraction-candidates">Available Extraction Candidates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extractions_information.html#extraction-entities">Extraction Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extractions_information.html#bounding-box">Bounding Box</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#id10">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#coordinate-system">Coordinate system</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extraction_entities.html">Extraction entities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#amount">amount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#bankaccount">bankaccount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id1">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id2">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#banknumber">banknumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id3">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id4">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#bic">bic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id5">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id6">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#city">city</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id7">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id8">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#companyname">companyname</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id9">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id10">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#companynameaddition">companynameaddition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id11">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id12">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#currency">currency</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id13">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id14">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#customerid">customerid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id15">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id16">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#date">date</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id17">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id18">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#doctype">doctype</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id19">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id20">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#documentdomain">documentdomain</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id21">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id22">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#domain">domain</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id23">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id24">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#email">email</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id25">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id26">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#hregnumber">hregnumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id27">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id28">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#iban">iban</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id29">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id30">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#invoiceid">invoiceid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id31">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id32">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#language">language</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id33">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id34">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#paymentstate">paymentstate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id35">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id36">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#poboxnumber">poboxnumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id37">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id38">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#reference">reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id39">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id40">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#sender">sender</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id41">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id42">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#street">street</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id43">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id44">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#subject">subject</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id45">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id46">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#taxnumber">taxnumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id47">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id48">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#timeperiod">timeperiod</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id49">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id50">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#url">url</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id51">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id52">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#vat">vat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id53">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id54">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#zipcode">zipcode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id55">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id56">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guides/oauth2.html">Authorization Implementation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#the-redirect-uri">The redirect URI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#implement-an-authentication-flow">Implement an authentication flow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#server-side-flow">Server-Side Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#client-side-flow">Client-Side Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#making-api-requests">Making API requests</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Gini API</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Documents</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="documents">
+<h1>Documents<a class="headerlink" href="#documents" title="Permalink to this headline">¶</a></h1>
+<p>As the key aspect of the Gini API is to provide information extraction for
+analyzing documents, the API is mainly build around the concept of documents.
+A document can be any written representation of information, usually invoices,
+reminders, contracts and so on.</p>
+<p>The main idea is that you submit a document in form of an electronic file to
+Gini. After the document has been analyzed by Gini you can get the information
+that is extracted from the document by querying the API.</p>
+<p>The following documentation explains those actions in detail.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Most example requests show the usage of <a class="reference external" href="http://curl.haxx.se/">cURL</a>, a command-line
+tool to perform HTTP requests.</p>
+</div>
+<div class="section" id="submitting-files">
+<span id="submitting-documents"></span><h2>Submitting files<a class="headerlink" href="#submitting-files" title="Permalink to this headline">¶</a></h2>
+<p>In order to analyze a document, the document source file must be first
+submitted to Gini.</p>
+<p>You can submit documents by using the file of the document and calling a
+POST request on the <tt class="docutils literal"><span class="pre">/documents</span></tt> path. After successful creation of a
+document, the location of the new document is returned in the
+<tt class="docutils literal"><span class="pre">Location</span></tt> header.</p>
+<div class="section" id="supported-file-formats">
+<h3>Supported file formats<a class="headerlink" href="#supported-file-formats" title="Permalink to this headline">¶</a></h3>
+<p>Gini currently supports input files in the formats PDF, GIF
+(non-animated), PNG, JPEG, and TIFF. You can use native documents (PDF
+only) as well as scanned document (all formats). Note that there are
+certain limitation on a document that the Gini API accepts:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Document file size must be less than 10 MiB</li>
+<li>PDF files <strong>must not</strong> have any security restrictions such as
+password protection.</li>
+<li>Scanned documents should have a resolution of at least
+300dpi in order for the OCR to return optimal results</li>
+<li>Only the first ten pages of a document are processed</li>
+<li>Only documents in German are supported for now</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="request">
+<h3>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h3>
+<p>Documents can be submitted by doing a <tt class="docutils literal"><span class="pre">POST</span></tt> request on the
+<tt class="docutils literal"><span class="pre">/documents</span></tt> resource.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">documents</span>
+</pre></div>
+</div>
+<div class="section" id="headers">
+<h4>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">multipart/form-data</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="body">
+<h4>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Content-Disposition</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">form-data</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">file</span></tt></td>
+<td>File contents of document</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; --form &quot;file=@file.pdf&quot; -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="response">
+<h3>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>Headers<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Status Code</td>
+<td>201 (Created)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Location</span></tt></td>
+<td>Absolute URL of created document (document URI)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="errors">
+<h4>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>400 (Bad Request)</td>
+<td>Returned when a file in an invalid format is sent</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="checking-processing-status-and-getting-document-information">
+<h2>Checking processing status and getting document information<a class="headerlink" href="#checking-processing-status-and-getting-document-information" title="Permalink to this headline">¶</a></h2>
+<p>After submission the document is processed. You can check the
+processing status of a single document by examining the document
+information. It can be retrieved by a <tt class="docutils literal"><span class="pre">GET</span></tt> request to the document
+URI. When the document has been processed you can retrieve the extractions
+from it and additional information such as the document layout.</p>
+<div class="section" id="id2">
+<h3>Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Document information can be retrieved by doing a <tt class="docutils literal"><span class="pre">GET</span></tt> request on the
+document URI.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h4>Headers<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h4>Example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; -X GET -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>Response<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h4>Headers<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Status Code</td>
+<td>200</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+.json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="body-application-vnd-gini-v1-json">
+<h4>Body (application/vnd.gini.v1+json)<a class="headerlink" href="#body-application-vnd-gini-v1-json" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="15%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Child Key</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">id</span></tt></td>
+<td>&nbsp;</td>
+<td>Unique identifier of document as UUID Version 1</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">name</span></tt></td>
+<td>&nbsp;</td>
+<td>Document name (as stated on upload)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">pageCount</span></tt></td>
+<td>&nbsp;</td>
+<td>Number of pages</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">creationDate</span></tt></td>
+<td>&nbsp;</td>
+<td>Unix timestamp of document creation date in milliseconds</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">status</span></tt></td>
+<td>&nbsp;</td>
+<td>Processing status of the document, one of <tt class="docutils literal"><span class="pre">PENDING</span></tt>, <tt class="docutils literal"><span class="pre">PROCESSED</span></tt>, and <tt class="docutils literal"><span class="pre">ERROR</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">_links</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">extractions</span></tt></td>
+<td>URI to extractions of the document (extractions URI)</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><tt class="docutils literal"><span class="pre">layout</span></tt></td>
+<td>URI to the layout of the document (layout URI)</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><tt class="docutils literal"><span class="pre">source</span></tt></td>
+<td>URI to the source file of the document (source URI)</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td><tt class="docutils literal"><span class="pre">document</span></tt></td>
+<td>URI to the of the document, meaning the current resource (document URI)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id7">
+<h4>Example<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;626626a0-749f-11e2-bfd6-000000000000&quot;</span><span class="p">,</span>
+  <span class="s">&quot;creationDate&quot;</span><span class="p">:</span> <span class="mi">1360623867402</span><span class="p">,</span>
+  <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="s">&quot;PROCESSED&quot;</span><span class="p">,</span>
+  <span class="s">&quot;_links&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;extractions&quot;</span><span class="p">:</span> <span class="s">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/extractions&quot;</span><span class="p">,</span>
+    <span class="s">&quot;layout&quot;</span><span class="p">:</span> <span class="s">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/layout&quot;</span><span class="p">,</span>
+    <span class="s">&quot;document&quot;</span><span class="p">:</span> <span class="s">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000&quot;</span><span class="p">,</span>
+    <span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/source&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h4>Errors<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>404 (Not Found)</td>
+<td>Returned when no document can be found under the specific URI</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="retrieving-a-document-s-pages">
+<h2>Retrieving a document&#8217;s pages<a class="headerlink" href="#retrieving-a-document-s-pages" title="Permalink to this headline">¶</a></h2>
+<p>The Gini API renders preview images of a document&#8217;s pages. To retrieve
+the list of pages of a document, issue a <tt class="docutils literal"><span class="pre">GET</span></tt> request to the
+<tt class="docutils literal"><span class="pre">pages</span></tt> subresource of a document:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">pages</span>
+</pre></div>
+</div>
+<p>The response is a paginated list of pages.</p>
+<div class="section" id="id9">
+<h3>Request<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="path-parameters">
+<h4>Path parameters<a class="headerlink" href="#path-parameters" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>id</td>
+<td>Document ID</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id10">
+<h4>Headers<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id11">
+<h4>Example<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X GET -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>Response<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="status-codes">
+<h4>Status codes<a class="headerlink" href="#status-codes" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>200 (Ok)</td>
+<td>The request was successful.</td>
+</tr>
+<tr class="row-odd"><td>404 (Not Found)</td>
+<td>The requested document does not exist.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>Body<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p>A pagination entity with the following fields:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="27%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>totalCount</td>
+<td>int</td>
+<td>Total number of document pages</td>
+</tr>
+<tr class="row-odd"><td>next</td>
+<td>string or <tt class="docutils literal"><span class="pre">null</span></tt></td>
+<td>The first page of the next result page or
+<tt class="docutils literal"><span class="pre">null</span></tt> if there is no next result page</td>
+</tr>
+<tr class="row-even"><td>pages</td>
+<td>array of <a class="reference internal" href="#entity-page"><em>pages</em></a></td>
+<td>All pages of the current result page</td>
+</tr>
+</tbody>
+</table>
+<p>A page is an entity with the following fields:</p>
+<table border="1" class="docutils" id="entity-page">
+<colgroup>
+<col width="13%" />
+<col width="26%" />
+<col width="8%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Child key</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>documentId</td>
+<td>&nbsp;</td>
+<td>string</td>
+<td>Document to which the page belongs</td>
+</tr>
+<tr class="row-odd"><td>pagenum</td>
+<td>&nbsp;</td>
+<td>number</td>
+<td>Page number</td>
+</tr>
+<tr class="row-even"><td>_links</td>
+<td>document</td>
+<td>string</td>
+<td>Link to the document to which the page belongs</td>
+</tr>
+<tr class="row-odd"><td>&nbsp;</td>
+<td>next</td>
+<td>string</td>
+<td>Link to the next page</td>
+</tr>
+<tr class="row-even"><td>&nbsp;</td>
+<td>pages</td>
+<td>string</td>
+<td>Link to the pages of the document</td>
+</tr>
+<tr class="row-odd"><td>_images</td>
+<td><em>dimensions in pixels</em></td>
+<td>&nbsp;</td>
+<td>Link to a preview image of the page</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id14">
+<h4>Example<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;totalCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;next&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;pages&quot;</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="nt">&quot;documentId&quot;</span><span class="p">:</span> <span class="s2">&quot;c292af40-d06a-11e2-9a2f-000000000000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;pagenum&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;_links&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;next&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/2&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;document&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;pages&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages&quot;</span><span class="p">,</span>
+    <span class="p">},</span>
+      <span class="nt">&quot;_images&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;360x520&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/360x520&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;146x146&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/146x146&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;750x900&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/750x900&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;1280x1810&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/1280x1810&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="retrieving-the-layout-of-a-document">
+<h2>Retrieving the layout of a document<a class="headerlink" href="#retrieving-the-layout-of-a-document" title="Permalink to this headline">¶</a></h2>
+<p>The layout of the document describes the textual content of a document
+with positional information.</p>
+<div class="section" id="coordinate-system">
+<h3>Coordinate system<a class="headerlink" href="#coordinate-system" title="Permalink to this headline">¶</a></h3>
+<p>The origin of the coordinate system is adjusted to the upper left corner
+of the page. The coordinate system uses the DTP point as unit: 1 pt = 1
+inch / 72 = 25.4 mm / 72 = 0.3528 mm</p>
+</div>
+<div class="section" id="id15">
+<h3>Request<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p>The layout of a document can be retrieved by a <tt class="docutils literal"><span class="pre">GET</span></tt> request to the
+layout URI:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">layout</span>
+</pre></div>
+</div>
+<div class="section" id="id16">
+<h4>Headers<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id17">
+<h4>Example<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
+<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; -X GET -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/layout
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>Response<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h4>Headers<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Status Code</td>
+<td>200 (OK)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id20">
+<h4>Body (application/vnd.gini.v1+json)<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="18%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">pages</span></tt></td>
+<td>Array</td>
+<td>Array of <strong>page objects</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="page-object">
+<h5>Page Object<a class="headerlink" href="#page-object" title="Permalink to this headline">¶</a></h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="20%" />
+<col width="54%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">int</span></tt></td>
+<td>Number of the page starting with 1</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">sizeX</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Width of the page</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">sizeY</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Height of the page</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">paragraphs</span></tt></td>
+<td>Array</td>
+<td>Array of <strong>paragraph objects</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="paragraph-object">
+<h5>Paragraph Object<a class="headerlink" href="#paragraph-object" title="Permalink to this headline">¶</a></h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="16%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">h</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Height of the paragraph</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">w</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Width of the paragraph</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">l</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Distance of the paragraph from the left edge of the page</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">t</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Distance of the paragraph from the upper edge of the page</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">wds</span></tt></td>
+<td>Array</td>
+<td>Array of <strong>word objects</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="word-object">
+<h5>Word Object<a class="headerlink" href="#word-object" title="Permalink to this headline">¶</a></h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="17%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">h</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Height of the word</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">w</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Width of the word</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">l</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Distance of the word from the left edge of the page</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">t</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Distance of the word from the upper edge of the page</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">text</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td>Text of word</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id21">
+<h4>Example<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<div class="code json highlight-python"><div class="highlight"><pre> {
+    &quot;pages&quot;: [
+        {
+            &quot;number&quot;: 1,
+            &quot;paragraphs&quot;: [
+                {
+                    &quot;h&quot;: 32.64,
+                    &quot;l&quot;: 8.4,
+                    &quot;t&quot;: 2.16,
+                    &quot;w&quot;: 534.11,
+                    &quot;wds&quot;: [
+                        {
+                            &quot;h&quot;: 32.64,
+                            &quot;l&quot;: 8.4,
+                            &quot;t&quot;: 2.16,
+                            &quot;text&quot;: &quot;==================================&quot;,
+                            &quot;w&quot;: 580.01
+                        },
+                        {
+                            &quot;h&quot;: 32.64,
+                            &quot;l&quot;: 530.88,
+                            &quot;t&quot;: 2.16,
+                            &quot;text&quot;: &quot;\&quot;&quot;,
+                            &quot;w&quot;: 11.629999999999995
+                        }
+                    ]
+                },
+                {
+                    &quot;h&quot;: 7.8999999999999915,
+                    &quot;l&quot;: 90.72,
+                    &quot;t&quot;: 86.9,
+                    &quot;w&quot;: 121.50999999999999,
+                    &quot;wds&quot;: [
+                        {
+                            &quot;h&quot;: 7.8999999999999915,
+                            &quot;l&quot;: 90.72,
+                            &quot;t&quot;: 86.9,
+                            &quot;text&quot;: &quot;Telekom&quot;,
+                            &quot;w&quot;: 24.909999999999997
+                        },
+                        {
+                            &quot;h&quot;: 7.8999999999999915,
+                            &quot;l&quot;: 117.12,
+                            &quot;t&quot;: 86.9,
+                            &quot;text&quot;: &quot;Deutschland&quot;,
+                            &quot;w&quot;: 35.97999999999999
+                        },
+                        {
+                            &quot;h&quot;: 7.8999999999999915,
+                            &quot;l&quot;: 154.56,
+                            &quot;t&quot;: 86.9,
+                            &quot;text&quot;: &quot;GmbH&quot;,
+                            &quot;w&quot;: 18.819999999999993
+                        },
+                        {
+                            &quot;h&quot;: 7.8999999999999915,
+                            &quot;l&quot;: 173.28,
+                            &quot;t&quot;: 86.9,
+                            &quot;text&quot;: &quot;,&quot;,
+                            &quot;w&quot;: 1.5800000000000125
+                        },
+                        {
+                            &quot;h&quot;: 7.8999999999999915,
+                            &quot;l&quot;: 176.4,
+                            &quot;t&quot;: 86.9,
+                            &quot;text&quot;: &quot;53171&quot;,
+                            &quot;w&quot;: 19.109999999999985
+                        },
+                        {
+                            &quot;h&quot;: 7.8999999999999915,
+                            &quot;l&quot;: 197.04,
+                            &quot;t&quot;: 86.9,
+                            &quot;text&quot;: &quot;Bonn&quot;,
+                            &quot;w&quot;: 15.189999999999998
+                        }
+                    ]
+                },
+                ...
+            ],
+            &quot;sizeX&quot;: 595.2,
+            &quot;sizeY&quot;: 841.92
+        }
+    ]
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="id22">
+<h4>Errors<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>404 (Not Found)</td>
+<td>Returned when the requested layout is invalid</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="retrieving-a-document-s-source-file">
+<h2>Retrieving a document&#8217;s source file<a class="headerlink" href="#retrieving-a-document-s-source-file" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id23">
+<h3>Request<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<p>The source file of a document can be retrieved by a <tt class="docutils literal"><span class="pre">GET</span></tt> request:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">source</span>
+</pre></div>
+</div>
+<div class="section" id="id24">
+<h4>Path parameters<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>id</td>
+<td>Document ID</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id25">
+<h3>Response<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id26">
+<h4>Headers<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="40%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Status Code</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id27">
+<h4>Body<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
+<p>The uploaded source document.</p>
+</div>
+<div class="section" id="id28">
+<h4>Errors<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="32%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>404 (Not Found)</td>
+<td>The requested document does not exist.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="retrieving-extractions">
+<h2>Retrieving extractions<a class="headerlink" href="#retrieving-extractions" title="Permalink to this headline">¶</a></h2>
+<p>After a document is processed the extractions from the document
+analysis can be retrieved. See <a class="reference internal" href="extractions_information.html#extractions-information"><em>Information on extractions</em></a> for
+details about extractions.</p>
+<div class="section" id="id29">
+<h3>Request<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<p>Extractions can be retrieved by doing a <tt class="docutils literal"><span class="pre">GET</span></tt> request on the
+extractions URI:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">extractions</span>
+</pre></div>
+</div>
+<div class="section" id="id30">
+<h4>Headers<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id31">
+<h4>Example<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X GET -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/extractions
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id32">
+<h3>Response<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id33">
+<h4>Headers<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Status Code</td>
+<td>200 (OK)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id34">
+<h4>Body (application/vnd.gini.v1+json)<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h4>
+<p>The body of the response is described under <a class="reference internal" href="extractions_information.html#extractions-information"><em>Information on extractions</em></a>.</p>
+</div>
+<div class="section" id="id35">
+<h4>Example<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
+<div class="code json highlight-python"><div class="highlight"><pre> {
+    &quot;extractions&quot;: {
+        &quot;amountToPay&quot;: {
+            &quot;box&quot;: {
+                &quot;height&quot;: 9,
+                &quot;left&quot;: 516,
+                &quot;page&quot;: 1,
+                &quot;top&quot;: 588,
+                &quot;width&quot;: 42
+            },
+            &quot;entity&quot;: &quot;amount&quot;,
+            &quot;value&quot;: &quot;24.99:EUR&quot;,
+            &quot;candidates&quot;: &quot;amounts&quot;
+        },
+      },
+      &quot;candidates&quot;: {
+        &quot;amounts&quot;: [
+          {
+              &quot;box&quot;: {
+                  &quot;height&quot;: 9,
+                  &quot;left&quot;: 517,
+                  &quot;page&quot;: 1,
+                  &quot;top&quot;: 574,
+                  &quot;width&quot;: 42
+              },
+              &quot;entity&quot;: &quot;amount&quot;,
+              &quot;value&quot;: &quot;24.99:EUR&quot;
+          },
+          {
+              &quot;box&quot;: {
+                  &quot;height&quot;: 9,
+                  &quot;left&quot;: 241,
+                  &quot;page&quot;: 1,
+                  &quot;top&quot;: 588,
+                  &quot;width&quot;: 42
+              },
+              &quot;entity&quot;: &quot;amount&quot;,
+              &quot;value&quot;: &quot;21.0:EUR&quot;
+          }
+        ]
+        ...
+    }
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="id36">
+<h4>Errors<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>400 (Bad Request)</td>
+<td>Return when a file in an invalid format is sent</td>
+</tr>
+<tr class="row-odd"><td>404 (Not Found)</td>
+<td>Response status if the requested entity couldn&#8217;t be found</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="submitting-feedback-on-extractions">
+<h2>Submitting feedback on extractions<a class="headerlink" href="#submitting-feedback-on-extractions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="submitting-feedback-on-incorrect-extractions">
+<h3>Submitting feedback on incorrect extractions<a class="headerlink" href="#submitting-feedback-on-incorrect-extractions" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id37">
+<h4>Request<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h4>
+<p>Give feedback and correct or verify a specific labeled extraction
+pattern by a <tt class="docutils literal"><span class="pre">PUT</span></tt> request to the documents extractions URI:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">PUT</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">extractions</span><span class="o">/</span><span class="p">{</span><span class="n">label</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The label must correspond to the name of the extraction type (e. g.
+<tt class="docutils literal"><span class="pre">amountToPay</span></tt>. See <a class="reference internal" href="extractions_information.html#available-specific-extractions"><em>Available Specific Extractions</em></a> for a list
+of names).</p>
+<div class="section" id="id38">
+<h5>Headers<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id39">
+<h5>Body<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="18%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">value</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td>New value of extraction</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">box</span></tt></td>
+<td>bounding box</td>
+<td>Optional: Bounding box where the extraction can be found</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">page</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">int</span></tt></td>
+<td>Page where the box can be found starting with 1</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">left</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Distance of box from the left edge of the page</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">top</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Distance of box from the top edge of the page</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">width</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Width of box</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">height</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Height of box</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id40">
+<h5>Example<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h5>
+<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">405</span><span class="p">,</span>
+        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">421</span><span class="p">,</span>
+        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">36</span>
+    <span class="p">},</span>
+    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;new value&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id41">
+<h4>Response<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>204 (No Content)</td>
+<td>The feedback was successfully processed</td>
+</tr>
+<tr class="row-odd"><td>404 (Not Found)</td>
+<td>The document or label couldn&#8217;t not be found</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="submitting-feedback-for-invalid-extractions">
+<h3>Submitting feedback for invalid extractions<a class="headerlink" href="#submitting-feedback-for-invalid-extractions" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id42">
+<h4>Request<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h4>
+<p>In case an extraction was found erroneously (i.e. is not present in
+the source document), you can delete it by issuing a <tt class="docutils literal"><span class="pre">DELETE</span></tt>
+request to the extraction URI:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">DELETE</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">extractions</span><span class="o">/</span><span class="p">{</span><span class="n">label</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id43">
+<h4>Response<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>204 (No Content)</td>
+<td>Removal of the label was successful</td>
+</tr>
+<tr class="row-odd"><td>404 (Not Found)</td>
+<td>Returned when the document or label can not be found</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="deleting-documents">
+<h2>Deleting documents<a class="headerlink" href="#deleting-documents" title="Permalink to this headline">¶</a></h2>
+<p>If you want to delete a document you can do this by doing a
+DELETE request on the document URI. When the document is deleted all
+associated resources (extractions, layout) will be deleted as well.</p>
+<div class="section" id="id44">
+<h3>Request<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
+<p>Documents can be deleted by doing a <tt class="docutils literal"><span class="pre">DELETE</span></tt> request on the document
+URI.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">DELETE</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="id45">
+<h4>Example<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; -X DELETE -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id46">
+<h3>Response<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id47">
+<h4>Headers<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Status Code</td>
+<td>204 (No Content)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id48">
+<h4>Errors<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>404 (Not Found)</td>
+<td>Returned when no document can be found under the specific URI</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section" id="getting-a-list-of-all-documents">
+<h2>Getting a list of all documents<a class="headerlink" href="#getting-a-list-of-all-documents" title="Permalink to this headline">¶</a></h2>
+<p>To get a list of all documents, issue a <tt class="docutils literal"><span class="pre">GET</span></tt> request on the
+<tt class="docutils literal"><span class="pre">/documents</span></tt> resource. The response will be a paginated list of all
+documents.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span>
+</pre></div>
+</div>
+<div class="section" id="request-query-parameters">
+<h3>Request query parameters<a class="headerlink" href="#request-query-parameters" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="10%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>limit</td>
+<td>int</td>
+<td><em>(Optional)</em> Maximum number of documents to
+return. Defaults to <em>20</em>.</td>
+</tr>
+<tr class="row-odd"><td>next</td>
+<td>string</td>
+<td><em>(Optional)</em> Start document</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="example-request">
+<h3>Example request<a class="headerlink" href="#example-request" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -X GET -i https://api.gini.net/documents?limit<span class="o">=</span>50
+</pre></div>
+</div>
+</div>
+<div class="section" id="id49">
+<h3>Response<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h3>
+<p>The response is a paginated list of documents.</p>
+<div class="section" id="id50">
+<h4>Headers<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Status Code</td>
+<td>200 (OK)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id51">
+<h4>Body<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h4>
+<p>The response entity has the following fields:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="21%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>totalCount</td>
+<td>int</td>
+<td>Total number of documents</td>
+</tr>
+<tr class="row-odd"><td>next</td>
+<td>string or <tt class="docutils literal"><span class="pre">null</span></tt></td>
+<td>The first document of the next result page or
+<tt class="docutils literal"><span class="pre">null</span></tt> if there is no next page</td>
+</tr>
+<tr class="row-even"><td>documents</td>
+<td>array of documents</td>
+<td>All documents of the current page</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id52">
+<h4>Example<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-json"><div class="highlight"><pre>{
+  &quot;totalCount&quot;: 118,
+  &quot;next&quot;: &quot;aa7f3e80-93c6-11e3-b247-8851fb5148ed&quot;,
+  &quot;documents&quot;: [
+    {…}, {…}, …
+  ]
+}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="finding_documents.html" class="btn btn-neutral float-right" title="Finding documents"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="overview.html" class="btn btn-neutral" title="Overview"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Gini GmbH.
+    </p>
+  </div>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

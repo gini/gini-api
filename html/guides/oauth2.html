@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Authorization Implementation Guide &mdash; Gini API v1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic,600italic|Source+Code+Pro|Roboto+Slab:400,700" rel="stylesheet" type="text/css" />
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'../',
+        VERSION:'v1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+    <script type="text/javascript">
+        jQuery(function () {
+            SphinxRtdTheme.StickyNav.enable();
+        });
+    </script>
+  
+
+  
+    <link rel="top" title="Gini API v1 documentation" href="../index.html"/>
+        <link rel="prev" title="Extraction entities" href="../extraction_entities.html"/> 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" id="gini-logo">gini API</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#media-types">Media Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#versions">Versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#v1">v1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview.html#client-errors">Client Errors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#http-response-codes">HTTP response codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../overview.html#error-entity">Error entity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../documents.html">Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documents.html#submitting-files">Submitting files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#supported-file-formats">Supported file formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../documents.html#checking-processing-status-and-getting-document-information">Checking processing status and getting document information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id2">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id5">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../documents.html#retrieving-a-document-s-pages">Retrieving a document&#8217;s pages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id9">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id12">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id13">Body</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../documents.html#retrieving-the-layout-of-a-document">Retrieving the layout of a document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#coordinate-system">Coordinate system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id15">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id18">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../documents.html#retrieving-a-document-s-source-file">Retrieving a document&#8217;s source file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id23">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id25">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../documents.html#retrieving-extractions">Retrieving extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id29">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id32">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../documents.html#submitting-feedback-on-extractions">Submitting feedback on extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#submitting-feedback-on-incorrect-extractions">Submitting feedback on incorrect extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#submitting-feedback-for-invalid-extractions">Submitting feedback for invalid extractions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../documents.html#deleting-documents">Deleting documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id44">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id46">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../documents.html#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#request-query-parameters">Request query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#example-request">Example request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id49">Response</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../finding_documents.html">Finding documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../finding_documents.html#basic-search">Basic search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../finding_documents.html#query-parameters">Query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../finding_documents.html#response">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../finding_documents.html#example">Example:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extractions_information.html">Information on extractions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extractions_information.html#extraction-response">Extraction Response</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extractions_information.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extractions_information.html#extractions">Extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extractions_information.html#id2">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extractions_information.html#specific-extractions">Specific extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extractions_information.html#available-specific-extractions">Available Specific Extractions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extractions_information.html#extraction-candidates">Extraction Candidates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extractions_information.html#id7">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extractions_information.html#available-extraction-candidates">Available Extraction Candidates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extractions_information.html#extraction-entities">Extraction Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../extractions_information.html#bounding-box">Bounding Box</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extractions_information.html#id10">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extractions_information.html#coordinate-system">Coordinate system</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extraction_entities.html">Extraction entities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#amount">amount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#bankaccount">bankaccount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id1">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id2">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#banknumber">banknumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id3">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id4">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#bic">bic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id5">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id6">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#city">city</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id7">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id8">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#companyname">companyname</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id9">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id10">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#companynameaddition">companynameaddition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id11">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id12">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#currency">currency</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id13">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id14">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#customerid">customerid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id15">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id16">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#date">date</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id17">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id18">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#doctype">doctype</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id19">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id20">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#documentdomain">documentdomain</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id21">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id22">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#domain">domain</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id23">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id24">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#email">email</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id25">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id26">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#hregnumber">hregnumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id27">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id28">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#iban">iban</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id29">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id30">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#invoiceid">invoiceid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id31">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id32">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#language">language</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id33">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id34">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#paymentstate">paymentstate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id35">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id36">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#poboxnumber">poboxnumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id37">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id38">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#reference">reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id39">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id40">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#sender">sender</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id41">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id42">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#street">street</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id43">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id44">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#subject">subject</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id45">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id46">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#taxnumber">taxnumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id47">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id48">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#timeperiod">timeperiod</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id49">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id50">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#url">url</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id51">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id52">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#vat">vat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id53">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id54">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction_entities.html#zipcode">zipcode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id55">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction_entities.html#id56">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Authorization Implementation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-redirect-uri">The redirect URI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#implement-an-authentication-flow">Implement an authentication flow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#server-side-flow">Server-Side Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client-side-flow">Client-Side Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#making-api-requests">Making API requests</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">Gini API</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Authorization Implementation Guide</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="authorization-implementation-guide">
+<span id="guide-oauth2"></span><h1>Authorization Implementation Guide<a class="headerlink" href="#authorization-implementation-guide" title="Permalink to this headline">¶</a></h1>
+<p>All API requests require an authenticated Gini user. You can authorize
+against the API using <a class="reference external" href="http://tools.ietf.org/html/rfc6749.html">OAuth 2.0</a>.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><span class="target" id="index-0"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6749.html"><strong>RFC 6749</strong></a></dt>
+<dd>The OAuth 2.0 Authorization Framework</dd>
+<dt><span class="target" id="index-1"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6750.html"><strong>RFC 6750</strong></a></dt>
+<dd>The OAuth 2.0 Authorization Framework: Bearer Token Usage</dd>
+</dl>
+</div>
+<div class="section" id="first-of-all-register-your-application-with-gini">
+<span id="guide-oauth2-app-registration"></span><h2>First of all: Register your application with Gini<a class="headerlink" href="#first-of-all-register-your-application-with-gini" title="Permalink to this headline">¶</a></h2>
+<p>Before you can use the Gini API within your application, you first have to
+register your application with Gini. To register your app with Gini, write an
+email to <a class="reference external" href="mailto:api&#37;&#52;&#48;gini&#46;net">api<span>&#64;</span>gini<span>&#46;</span>net</a> containing the following information:</p>
+<ul class="simple">
+<li>Name of your application</li>
+<li>A (short) description of your application (will not be exposed to end users)</li>
+<li>One or multiple redirect URIs (see <a class="reference internal" href="#guide-oauth2-redirect-uri"><em>The redirect URI</em></a>
+for details)</li>
+</ul>
+<p>You will then receive a client ID and a client secret from Gini.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Your client secret <em>must</em> be kept confidential. Do not share it with
+others (e. g. in a public repository).</p>
+</div>
+<div class="section" id="the-redirect-uri">
+<span id="guide-oauth2-redirect-uri"></span><h3>The redirect URI<a class="headerlink" href="#the-redirect-uri" title="Permalink to this headline">¶</a></h3>
+<p>In short, the redirect URI is your application&#8217;s starting point. After
+the Gini Authorization Server finished the authorization interaction
+with your application&#8217;s user, it will redirect them back to your
+application at the given redirect URI.</p>
+<p>Requirements for a redirect URI:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Must be an absolute URI</li>
+<li>Must <em>not</em> include a fragment component (see <span class="target" id="index-2"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc3986.html#section-3.5"><strong>RFC 3986</strong></a>)</li>
+<li>May include a query component (see <span class="target" id="index-3"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc3986.html#section-3.4"><strong>RFC 3986</strong></a>)
+(<tt class="docutils literal"><span class="pre">application/x-www-form-urlencoded</span></tt> formatted)</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="implement-an-authentication-flow">
+<h2>Implement an authentication flow<a class="headerlink" href="#implement-an-authentication-flow" title="Permalink to this headline">¶</a></h2>
+<p>Gini currently supports two OAuth 2.0 authentication flows:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#guide-oauth2-server-side-flow"><em>Server-Side Flow</em></a> (called <em>Authorization Code
+Grant</em> in <span class="target" id="index-4"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6749.html#section-4.1"><strong>RFC 6749</strong></a>): Should be used when you make calls to the
+Gini API from a (web application) server.</li>
+<li><a class="reference internal" href="#guide-oauth2-client-side-flow"><em>Client-Side Flow</em></a> (called <em>Implicit Grant</em> in
+<span class="target" id="index-5"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6749.html#section-4.2"><strong>RFC 6749</strong></a>): Should be used when you make calls to the Gini API
+from a client, such as a browser application or a native mobile
+application.</li>
+</ul>
+<div class="section" id="server-side-flow">
+<span id="guide-oauth2-server-side-flow"></span><h3>Server-Side Flow<a class="headerlink" href="#server-side-flow" title="Permalink to this headline">¶</a></h3>
+<p>The authentication flow begins with your application redirecting
+the user to the Gini Authorization Server:</p>
+<div class="highlight-python"><div class="highlight"><pre>https://user.gini.net/authorize?response_type=code&amp;client_id={clientId}&amp;redirect_uri={redirectUri}&amp;state={state}
+</pre></div>
+</div>
+<p>The URI takes the following parameters:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>client_id</td>
+<td>The client ID you received from Gini.</td>
+</tr>
+<tr class="row-odd"><td>redirect_uri</td>
+<td>Where to redirect after the user completed the authorization.
+Must be one of the values that you provided when you
+<a class="reference internal" href="#guide-oauth2-app-registration"><em>registered your application</em></a>.</td>
+</tr>
+<tr class="row-even"><td>state <em>(optional)</em></td>
+<td>Some random string (should be unguessable) to protect against
+cross-site request forgery attacks.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="example-request">
+<h4>Example request<a class="headerlink" href="#example-request" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/authorize?response_type=code&amp;client_id=example-clientid&amp;state=uiaeo&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2F</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
+</pre></div>
+</div>
+<p>After the Gini user successfully finished the authorization process,
+the Gini Authorization Server will redirect them back to your
+application using <tt class="docutils literal"><span class="pre">redirect_uri</span></tt>. The following query parameters are added
+to <tt class="docutils literal"><span class="pre">redirect_uri</span></tt>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>code</td>
+<td>A temporary authorization code</td>
+</tr>
+<tr class="row-odd"><td>state</td>
+<td>The state your application provided in the previous step.</td>
+</tr>
+</tbody>
+</table>
+<p>If the value of <tt class="docutils literal"><span class="pre">state</span></tt> doesn&#8217;t match with the value that your application
+has provided in the previous step, the request has been created by
+some third party application, hence the authentication process should be
+aborted.</p>
+</div>
+<div class="section" id="example-response">
+<h4>Example response<a class="headerlink" href="#example-response" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">303</span> <span class="ne">See Other</span>
+<span class="na">Location</span><span class="o">:</span> <span class="l">http://example.com/?code=117587e6-4ea5-49ce-a90b-a66d232dfa26&amp;state=uiaeo</span>
+</pre></div>
+</div>
+<p>Your application then exchanges the received authorization code for an
+access token:</p>
+<div class="highlight-python"><div class="highlight"><pre>POST https://user.gini.net/token
+</pre></div>
+</div>
+<p>The request takes the following parameters, encoded using the
+<tt class="docutils literal"><span class="pre">application/x-www-form-urlencoded</span></tt> format:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>client_id</td>
+<td>The client ID you received from Gini.</td>
+</tr>
+<tr class="row-odd"><td>client_secret</td>
+<td>The client secret you received from Gini.</td>
+</tr>
+<tr class="row-even"><td>grant_type</td>
+<td>Must be set to <tt class="docutils literal"><span class="pre">authorization_code</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td>code</td>
+<td>The authorization code received from the Gini Authorization
+Server.</td>
+</tr>
+<tr class="row-even"><td>redirect_uri</td>
+<td>Only required if the <tt class="docutils literal"><span class="pre">redirect_uri</span></tt> parameter was included in
+the authorization request (and then the values <strong>must</strong> be
+identical).</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id1">
+<h4>Example request<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
+
+client_id=example-clientid&amp;client_secret=secret&amp;code=117587e6-4ea5-49ce-a90b-a66d232dfa26&amp;grant_type=authorization_code&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2F
+</pre></div>
+</div>
+</div>
+<div class="section" id="token-response">
+<span id="guide-oauth2-token-response"></span><h4>Token response<a class="headerlink" href="#token-response" title="Permalink to this headline">¶</a></h4>
+<p>If the access token request is valid and authorized, the response will
+be a JSON-encoded object with the following fields:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>access_token</td>
+<td>string</td>
+<td>The access token that can be used for API requests.</td>
+</tr>
+<tr class="row-odd"><td>token_type</td>
+<td>string</td>
+<td>The type of the access token. Will be <tt class="docutils literal"><span class="pre">bearer</span></tt>.</td>
+</tr>
+<tr class="row-even"><td>expires_in</td>
+<td>integer</td>
+<td>How long the access token is valid (in seconds). Defaults to
+<strong>300</strong>.</td>
+</tr>
+<tr class="row-odd"><td>refresh_token</td>
+<td>string</td>
+<td>Refresh token that can be used to get a new access token.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="example-token-response">
+<h4>Example token response<a class="headerlink" href="#example-token-response" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="s2">&quot;760822cb-2dec-4275-8da8-fa8f5680e8d4&quot;</span><span class="p">,</span><span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="s2">&quot;bearer&quot;</span><span class="p">,</span><span class="nt">&quot;expires_in&quot;</span><span class="p">:</span><span class="mi">300</span><span class="p">,</span><span class="nt">&quot;refresh_token&quot;</span><span class="p">:</span><span class="s2">&quot;46463dd6-cdbb-440d-88fc-b10a34f68b26&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="error-response">
+<h4>Error response<a class="headerlink" href="#error-response" title="Permalink to this headline">¶</a></h4>
+<p>In case there was a problem when verifying the token request
+(e.g. invalid authorization code), the authorization server responds
+with an HTTP 400 (Bad Request) status code and returns a JSON-encoded
+object with the following fields:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="11%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>error</td>
+<td>string</td>
+<td>An error code. See <span class="target" id="index-6"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6749.html#section-5.2"><strong>RFC 6749</strong></a> for a list.</td>
+</tr>
+<tr class="row-odd"><td>error_description</td>
+<td>string</td>
+<td>Human-readable error description.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="refreshing-an-access-token">
+<h4>Refreshing an access token<a class="headerlink" href="#refreshing-an-access-token" title="Permalink to this headline">¶</a></h4>
+<p>Once an access token has expired (see the <tt class="docutils literal"><span class="pre">expires_in</span></tt> field of a
+<a class="reference internal" href="#guide-oauth2-token-response"><em>token response</em></a>), your application
+can request a new access token using the refresh token:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
+
+grant_type=refresh_token&amp;refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26
+</pre></div>
+</div>
+<p>The response is a new token. See <a class="reference internal" href="#guide-oauth2-token-response"><em>Token response</em></a> for details.</p>
+</div>
+</div>
+<div class="section" id="client-side-flow">
+<span id="guide-oauth2-client-side-flow"></span><h3>Client-Side Flow<a class="headerlink" href="#client-side-flow" title="Permalink to this headline">¶</a></h3>
+<p>Like the <a class="reference internal" href="#guide-oauth2-server-side-flow"><em>Server-Side Flow</em></a>, the authentication flow
+begins with your application redirecting the user to the Gini
+Authorization Server:</p>
+<div class="highlight-python"><div class="highlight"><pre>https://user.gini.net/authorize?response_type=token&amp;client_id={clientId}&amp;state={state}
+</pre></div>
+</div>
+<p>The URI takes the following parameters:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>client_id</td>
+<td>The client ID you received from Gini.</td>
+</tr>
+<tr class="row-odd"><td>state <em>(optional)</em></td>
+<td>Some random string (should be unguessable) to protect against
+cross-site request forgery attacks.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id2">
+<h4>Example request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/authorize?response_type=token&amp;client_id=example-clientid&amp;state=uiaeo</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
+</pre></div>
+</div>
+<p>After the Gini user successfully finished the authorization process,
+the Gini Authorization Server will redirect them to your application
+(using the redirection URI you provided when you registered your
+application). The following parameters are passed in the fragment
+component of the redirection URI, encoded using the
+<tt class="docutils literal"><span class="pre">application/x-www-form-urlencoded</span></tt> format:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="10%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>access_token</td>
+<td>string</td>
+<td>The access token that can be used for API requests.</td>
+</tr>
+<tr class="row-odd"><td>token_type</td>
+<td>string</td>
+<td>The type of the access token. Will be <tt class="docutils literal"><span class="pre">bearer</span></tt>.</td>
+</tr>
+<tr class="row-even"><td>expires_in</td>
+<td>integer</td>
+<td>Unix timestamp (in milliseconds) when the token will expire.</td>
+</tr>
+<tr class="row-odd"><td>state</td>
+<td>string</td>
+<td>The state your application provided in the previous step.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h4>Example response<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">303</span> <span class="ne">See Other</span>
+<span class="na">Location</span><span class="o">:</span> <span class="l">http://example.com/#access_token=760822cb-2dec-4275-8da8-fa8f5680e8d4&amp;token_type=bearer&amp;expires_in=1391519957867&amp;scope=read,write&amp;state=uiaeo</span>
+</pre></div>
+</div>
+<p>If the value of <tt class="docutils literal"><span class="pre">state</span></tt> doesn&#8217;t match with the value that your
+application has provided in the previous step, the request has been
+created by some third party application. Your application should not
+use the received access token to make any API requests.</p>
+</div>
+</div>
+</div>
+<div class="section" id="making-api-requests">
+<h2>Making API requests<a class="headerlink" href="#making-api-requests" title="Permalink to this headline">¶</a></h2>
+<p>Use the access token you obtained to make requests to the API, by
+sending the access token as a bearer token in the <tt class="docutils literal"><span class="pre">Authorization</span></tt>
+request header:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/documents</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.gini.net</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">BEARER 760822cb-2dec-4275-8da8-fa8f5680e8d4</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/vnd.gini.v1+json</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
+</pre></div>
+</div>
+<p>There is also the possibility to pass the authorization token via the
+query parameter <tt class="docutils literal"><span class="pre">token</span></tt>:</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/documents?token=760822cb-2dec-4275-8da8-fa8f5680e8d4</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.gini.net</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/vnd.gini.v1+json</span>
+<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../extraction_entities.html" class="btn btn-neutral" title="Extraction entities"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Gini GmbH.
+    </p>
+  </div>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

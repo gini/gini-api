@@ -1,0 +1,113 @@
+Overview
+========
+
+Media Types
+-----------
+
+Custom media types are used in the API to let consumers choose the
+version of the data format they wish to receive. This is done by adding one or
+more of the following types to the ``Accept`` header when you make a request.
+Media types are specific to resources, allowing them to change independently
+and supporting formats that other resources don't.
+
+The media types consumed and produced by the Gini API look like this::
+
+    application/vnd.gini[.version][+json]
+
+.. warning::
+
+   If you don't specify a version in your requests, the API's
+   responses might change without further notice. It is strongly
+   recommended to always specify a specific API version.
+
+.. todo:: This section sounds an awful lot like http://developer.github.com/v3/media/
+
+.. _overview-versions:
+
+
+Versions
+--------
+
+Currently there is one stable version of the Gini API. Future versions can be
+requested using a specific ``Accept`` header.
+
+v1
+~~
+
+Gini API v1 is stable and will not be changed in an incompatible way. Please
+contact us via api@gini.net if you have any problems.
+
+By default all requests receive data in version 1 of the API. Developers are
+strongly encouraged to explicitly specify the required version of the Gini API
+using the HTTP/1.1 ``Accept`` header:
+
+::
+
+    Accept: application/vnd.gini.v1+json
+
+
+Authentication
+--------------
+
+Only authenticated users are allowed to make API requests. The Gini
+API uses the `OAuth 2.0 protocol
+<http://tools.ietf.org/html/rfc6749.html>`_ with `bearer tokens
+<http://tools.ietf.org/html/rfc6750.html>`_ for authentication. To use
+the Gini API within your application, you first have to register your
+application with Gini. Then your application requests an access token
+from the Gini Authorization Server and uses that token to access the
+Gini API.
+
+See :ref:`guide-oauth2` for a detailed overview about the
+authorization process and how to implement it in your application.
+
+
+Security
+--------
+
+The Gini API is only accessible over HTTPS. Please make sure that your
+application does proper certificate validation.
+
+.. todo:: Maybe add the current fingerprint of our X.509 certificate(s)?
+
+
+Client Errors
+-------------
+
+HTTP response codes
+~~~~~~~~~~~~~~~~~~~
+
+The API uses idiomatic HTTP status codes to indicate if a request was
+successful, and if not, whether it should be retried.
+
++--------+-----------------------------------------------------------------------+
+| Code   | Description                                                           |
++========+=======================================================================+
+| 2xx    | The request was successful.                                           |
++--------+-----------------------------------------------------------------------+
+| 4xx    | The request was not successful. See the response body for details.    |
+|        | Retrying with the same arguments will not work.                       |
++--------+-----------------------------------------------------------------------+
+| 5xx    | Some error occurred while processing the request. Please try again.   |
++--------+-----------------------------------------------------------------------+
+
+Error entity
+~~~~~~~~~~~~
+
+The Gini API always returns a JSON object further describing the error which 
+occurred. The JSON object consists of the following properties:
+
++-----------+---------+--------------------------------------------------+
+| Name      | Type    | Description                                      |
++===========+=========+==================================================+
+| message   | string  | Human consumable error description (**not**      |
+|           |         | intended for application end-users)              |
++-----------+---------+--------------------------------------------------+
+| requestId | string  | Unique ID identifying the request. Please        |
+|           |         | provide this when contacting the support.        |
++-----------+---------+--------------------------------------------------+
+
+Example
+^^^^^^^
+
+.. todo:: add json example here

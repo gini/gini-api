@@ -1,0 +1,327 @@
+.. _guide-oauth2:
+
+Authorization Implementation Guide
+==================================
+
+All API requests require an authenticated Gini user. You can authorize
+against the API using `OAuth 2.0
+<http://tools.ietf.org/html/rfc6749.html>`_.
+
+.. seealso::
+
+   :rfc:`6749`
+      The OAuth 2.0 Authorization Framework
+
+   :rfc:`6750`
+      The OAuth 2.0 Authorization Framework: Bearer Token Usage
+
+
+.. _guide-oauth2-app-registration:
+
+First of all: Register your application with Gini
+-------------------------------------------------
+
+Before you can use the Gini API within your application, you first have to
+register your application with Gini. To register your app with Gini, write an
+email to api@gini.net containing the following information:
+
+* Name of your application
+* A (short) description of your application (will not be exposed to end users)
+* One or multiple redirect URIs (see :ref:`guide-oauth2-redirect-uri`
+  for details)
+
+You will then receive a client ID and a client secret from Gini.
+
+
+.. warning::
+
+   Your client secret *must* be kept confidential. Do not share it with
+   others (e. g. in a public repository).
+
+
+.. _guide-oauth2-redirect-uri:
+
+The redirect URI
+^^^^^^^^^^^^^^^^
+
+In short, the redirect URI is your application's starting point. After
+the Gini Authorization Server finished the authorization interaction
+with your application's user, it will redirect them back to your
+application at the given redirect URI.
+
+Requirements for a redirect URI:
+
+   * Must be an absolute URI
+   * Must *not* include a fragment component (see :rfc:`3986#section-3.5`)
+   * May include a query component (see :rfc:`3986#section-3.4`)
+     (``application/x-www-form-urlencoded`` formatted)
+
+
+Implement an authentication flow
+--------------------------------
+
+Gini currently supports two OAuth 2.0 authentication flows:
+
+* :ref:`guide-oauth2-server-side-flow` (called *Authorization Code
+  Grant* in :rfc:`6749#section-4.1`): Should be used when you make calls to the
+  Gini API from a (web application) server.
+* :ref:`guide-oauth2-client-side-flow` (called *Implicit Grant* in
+  :rfc:`6749#section-4.2`): Should be used when you make calls to the Gini API
+  from a client, such as a browser application or a native mobile
+  application.
+
+
+.. _guide-oauth2-server-side-flow:
+
+Server-Side Flow
+^^^^^^^^^^^^^^^^
+
+The authentication flow begins with your application redirecting
+the user to the Gini Authorization Server::
+
+   https://user.gini.net/authorize?response_type=code&client_id={clientId}&redirect_uri={redirectUri}&state={state}
+
+The URI takes the following parameters:
+
++--------------------+-----------------------------------------------------------------+
+| Name               | Description                                                     |
++====================+=================================================================+
+| client_id          | The client ID you received from Gini.                           |
++--------------------+-----------------------------------------------------------------+
+| redirect_uri       | Where to redirect after the user completed the authorization.   |
+|                    | Must be one of the values that you provided when you            |
+|                    | :ref:`registered your application                               |
+|                    | <guide-oauth2-app-registration>`.                               |
++--------------------+-----------------------------------------------------------------+
+| state *(optional)* | Some random string (should be unguessable) to protect against   |
+|                    | cross-site request forgery attacks.                             |
++--------------------+-----------------------------------------------------------------+
+
+Example request
+"""""""""""""""
+
+.. code-block:: http
+
+   GET /authorize?response_type=code&client_id=example-clientid&state=uiaeo&redirect_uri=https%3A%2F%2Fapp.example.com%2F HTTP/1.1
+   Host: user.gini.net
+   Connection: close
+
+After the Gini user successfully finished the authorization process,
+the Gini Authorization Server will redirect them back to your
+application using ``redirect_uri``. The following query parameters are added
+to ``redirect_uri``:
+
++-------+-----------------------------------------------------------------+
+| Name  | Description                                                     |
++=======+=================================================================+
+| code  | A temporary authorization code                                  |
++-------+-----------------------------------------------------------------+
+| state | The state your application provided in the previous step.       |
++-------+-----------------------------------------------------------------+
+
+If the value of ``state`` doesn't match with the value that your application
+has provided in the previous step, the request has been created by
+some third party application, hence the authentication process should be
+aborted.
+
+Example response
+""""""""""""""""
+
+.. code-block:: http
+
+   HTTP/1.1 303 See Other
+   Location: http://example.com/?code=117587e6-4ea5-49ce-a90b-a66d232dfa26&state=uiaeo
+
+
+Your application then exchanges the received authorization code for an
+access token::
+
+  POST https://user.gini.net/token
+
+The request takes the following parameters, encoded using the
+``application/x-www-form-urlencoded`` format:
+
++-------------------+-----------------------------------------------------------------+
+| Name              | Description                                                     |
++===================+=================================================================+
+| client_id         | The client ID you received from Gini.                           |
++-------------------+-----------------------------------------------------------------+
+| client_secret     | The client secret you received from Gini.                       |
++-------------------+-----------------------------------------------------------------+
+| grant_type        | Must be set to ``authorization_code``.                          |
++-------------------+-----------------------------------------------------------------+
+| code              | The authorization code received from the Gini Authorization     |
+|                   | Server.                                                         |
++-------------------+-----------------------------------------------------------------+
+| redirect_uri      | Only required if the ``redirect_uri`` parameter was included in |
+|                   | the authorization request (and then the values **must** be      |
+|                   | identical).                                                     |
++-------------------+-----------------------------------------------------------------+
+
+Example request
+"""""""""""""""
+
+.. code-block:: http
+
+   POST /token HTTP/1.1
+   Host: user.gini.net
+   Content-Type: application/x-www-form-urlencoded
+   Connection: close
+
+   client_id=example-clientid&client_secret=secret&code=117587e6-4ea5-49ce-a90b-a66d232dfa26&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fapp.example.com%2F
+
+
+.. _guide-oauth2-token-response:
+
+Token response
+""""""""""""""
+
+If the access token request is valid and authorized, the response will
+be a JSON-encoded object with the following fields:
+
++---------------+---------+-----------------------------------------------------------------+
+| Name          | Type    | Description                                                     |
++===============+=========+=================================================================+
+| access_token  | string  | The access token that can be used for API requests.             |
++---------------+---------+-----------------------------------------------------------------+
+| token_type    | string  | The type of the access token. Will be ``bearer``.               |
++---------------+---------+-----------------------------------------------------------------+
+| expires_in    | integer | How long the access token is valid (in seconds). Defaults to    |
+|               |         | **300**.                                                        |
++---------------+---------+-----------------------------------------------------------------+
+| refresh_token | string  | Refresh token that can be used to get a new access token.       |
++---------------+---------+-----------------------------------------------------------------+
+
+Example token response
+""""""""""""""""""""""
+
+.. code-block:: json
+
+   {"access_token":"760822cb-2dec-4275-8da8-fa8f5680e8d4","token_type":"bearer","expires_in":300,"refresh_token":"46463dd6-cdbb-440d-88fc-b10a34f68b26"}
+
+
+Error response
+""""""""""""""
+
+In case there was a problem when verifying the token request
+(e.g. invalid authorization code), the authorization server responds
+with an HTTP 400 (Bad Request) status code and returns a JSON-encoded
+object with the following fields:
+
++-------------------+---------+--------------------------------------------------------+
+| Name              | Type    | Description                                            |
++===================+=========+========================================================+
+| error             | string  | An error code. See :RFC:`6749#section-5.2` for a list. |
++-------------------+---------+--------------------------------------------------------+
+| error_description | string  | Human-readable error description.                      |
++-------------------+---------+--------------------------------------------------------+
+
+
+Refreshing an access token
+""""""""""""""""""""""""""
+
+Once an access token has expired (see the ``expires_in`` field of a
+:ref:`token response <guide-oauth2-token-response>`), your application
+can request a new access token using the refresh token:
+
+.. code-block:: http
+
+   POST /token HTTP/1.1
+   Host: user.gini.net
+   Content-Type: application/x-www-form-urlencoded
+   Connection: close
+
+   grant_type=refresh_token&refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26
+
+The response is a new token. See :ref:`guide-oauth2-token-response` for details.
+
+
+.. _guide-oauth2-client-side-flow:
+
+Client-Side Flow
+^^^^^^^^^^^^^^^^
+
+Like the :ref:`guide-oauth2-server-side-flow`, the authentication flow
+begins with your application redirecting the user to the Gini
+Authorization Server::
+
+   https://user.gini.net/authorize?response_type=token&client_id={clientId}&state={state}
+
+The URI takes the following parameters:
+
++--------------------+-----------------------------------------------------------------+
+| Name               | Description                                                     |
++====================+=================================================================+
+| client_id          | The client ID you received from Gini.                           |
++--------------------+-----------------------------------------------------------------+
+| state *(optional)* | Some random string (should be unguessable) to protect against   |
+|                    | cross-site request forgery attacks.                             |
++--------------------+-----------------------------------------------------------------+
+
+Example request
+"""""""""""""""
+
+.. code-block:: http
+
+   GET /authorize?response_type=token&client_id=example-clientid&state=uiaeo HTTP/1.1
+   Host: user.gini.net
+   Connection: close
+
+After the Gini user successfully finished the authorization process,
+the Gini Authorization Server will redirect them to your application
+(using the redirection URI you provided when you registered your
+application). The following parameters are passed in the fragment
+component of the redirection URI, encoded using the
+``application/x-www-form-urlencoded`` format:
+
++---------------+---------+-----------------------------------------------------------------+
+| Name          | Type    | Description                                                     |
++===============+=========+=================================================================+
+| access_token  | string  | The access token that can be used for API requests.             |
++---------------+---------+-----------------------------------------------------------------+
+| token_type    | string  | The type of the access token. Will be ``bearer``.               |
++---------------+---------+-----------------------------------------------------------------+
+| expires_in    | integer | Unix timestamp (in milliseconds) when the token will expire.    |
++---------------+---------+-----------------------------------------------------------------+
+| state         | string  | The state your application provided in the previous step.       |
++---------------+---------+-----------------------------------------------------------------+
+
+Example response
+""""""""""""""""
+
+.. code-block:: http
+
+   HTTP/1.1 303 See Other
+   Location: http://example.com/#access_token=760822cb-2dec-4275-8da8-fa8f5680e8d4&token_type=bearer&expires_in=1391519957867&scope=read,write&state=uiaeo
+
+If the value of ``state`` doesn't match with the value that your
+application has provided in the previous step, the request has been
+created by some third party application. Your application should not
+use the received access token to make any API requests.
+
+
+Making API requests
+-------------------
+
+Use the access token you obtained to make requests to the API, by
+sending the access token as a bearer token in the ``Authorization``
+request header:
+
+.. code-block:: http
+
+   GET /documents HTTP/1.1
+   Host: api.gini.net
+   Authorization: BEARER 760822cb-2dec-4275-8da8-fa8f5680e8d4
+   Accept: application/vnd.gini.v1+json
+   Connection: close
+
+
+There is also the possibility to pass the authorization token via the
+query parameter ``token``:
+
+.. code-block:: http
+
+   GET /documents?token=760822cb-2dec-4275-8da8-fa8f5680e8d4 HTTP/1.1
+   Host: api.gini.net
+   Accept: application/vnd.gini.v1+json
+   Connection: close

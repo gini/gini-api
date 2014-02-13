@@ -1,0 +1,889 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Information on extractions &mdash; Gini API v1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic,600italic|Source+Code+Pro|Roboto+Slab:400,700" rel="stylesheet" type="text/css" />
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'v1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+    <script type="text/javascript">
+        jQuery(function () {
+            SphinxRtdTheme.StickyNav.enable();
+        });
+    </script>
+  
+
+  
+    <link rel="top" title="Gini API v1 documentation" href="index.html"/>
+        <link rel="next" title="Extraction entities" href="extraction_entities.html"/>
+        <link rel="prev" title="Finding documents" href="finding_documents.html"/> 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" id="gini-logo">gini API</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#v1">v1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#client-errors">Client Errors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#http-response-codes">HTTP response codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#error-entity">Error entity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="documents.html">Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-files">Submitting files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#supported-file-formats">Supported file formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#response">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#checking-processing-status-and-getting-document-information">Checking processing status and getting document information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id2">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id5">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-a-document-s-pages">Retrieving a document&#8217;s pages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id9">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id12">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id13">Body</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-the-layout-of-a-document">Retrieving the layout of a document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#coordinate-system">Coordinate system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id15">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id18">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-a-document-s-source-file">Retrieving a document&#8217;s source file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id23">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id25">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-extractions">Retrieving extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id29">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id32">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-feedback-on-extractions">Submitting feedback on extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#submitting-feedback-on-incorrect-extractions">Submitting feedback on incorrect extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#submitting-feedback-for-invalid-extractions">Submitting feedback for invalid extractions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#deleting-documents">Deleting documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id44">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id46">Response</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#request-query-parameters">Request query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#example-request">Example request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id49">Response</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="finding_documents.html">Finding documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="finding_documents.html#basic-search">Basic search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="finding_documents.html#query-parameters">Query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finding_documents.html#response">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finding_documents.html#example">Example:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Information on extractions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#extraction-response">Extraction Response</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#extractions">Extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specific-extractions">Specific extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#available-specific-extractions">Available Specific Extractions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#extraction-candidates">Extraction Candidates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#available-extraction-candidates">Available Extraction Candidates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#extraction-entities">Extraction Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bounding-box">Bounding Box</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coordinate-system">Coordinate system</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extraction_entities.html">Extraction entities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#amount">amount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#bankaccount">bankaccount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id1">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id2">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#banknumber">banknumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id3">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id4">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#bic">bic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id5">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id6">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#city">city</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id7">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id8">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#companyname">companyname</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id9">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id10">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#companynameaddition">companynameaddition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id11">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id12">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#currency">currency</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id13">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id14">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#customerid">customerid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id15">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id16">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#date">date</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id17">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id18">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#doctype">doctype</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id19">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id20">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#documentdomain">documentdomain</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id21">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id22">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#domain">domain</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id23">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id24">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#email">email</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id25">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id26">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#hregnumber">hregnumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id27">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id28">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#iban">iban</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id29">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id30">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#invoiceid">invoiceid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id31">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id32">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#language">language</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id33">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id34">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#paymentstate">paymentstate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id35">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id36">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#poboxnumber">poboxnumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id37">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id38">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#reference">reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id39">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id40">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#sender">sender</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id41">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id42">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#street">street</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id43">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id44">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#subject">subject</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id45">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id46">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#taxnumber">taxnumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id47">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id48">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#timeperiod">timeperiod</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id49">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id50">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#url">url</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id51">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id52">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#vat">vat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id53">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id54">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#zipcode">zipcode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id55">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id56">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guides/oauth2.html">Authorization Implementation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#the-redirect-uri">The redirect URI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#implement-an-authentication-flow">Implement an authentication flow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#server-side-flow">Server-Side Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#client-side-flow">Client-Side Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#making-api-requests">Making API requests</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Gini API</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Information on extractions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="information-on-extractions">
+<span id="extractions-information"></span><h1>Information on extractions<a class="headerlink" href="#information-on-extractions" title="Permalink to this headline">¶</a></h1>
+<p>Documents are full of information. For instance, invoices contain an
+amount to pay and additional information such as a bank account and a
+due date. The Gini API is able to extract those information and
+provide them in a structured way. In the following, that extracted
+information will be called <em>extractions</em>. Examples for extractions
+are, as already mentioned, amounts and bank accounts, but also
+addresses, tax numbers, links to websites etc.</p>
+<p>Additionally, Gini also maps a semantic property to an extraction. In
+other words, Gini not only extracts a date from a given document, but
+also infers that the date is the due date of an invoice. In the
+following, that will be called a <em>specific extraction</em>.</p>
+<div class="section" id="extraction-response">
+<h2>Extraction Response<a class="headerlink" href="#extraction-response" title="Permalink to this headline">¶</a></h2>
+<p>The extractions are returned encoded as JSON.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="11%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">extractions</span></tt></td>
+<td>Object</td>
+<td>A mapping of labels to <a class="reference internal" href="#extractions"><em>Extractions</em></a> (i.e.
+<a class="reference internal" href="#specific-extractions"><em>Specific extractions</em></a>)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">candidates</span></tt></td>
+<td>Object</td>
+<td>A mapping of labels to a list of <a class="reference internal" href="#extraction-candidates"><em>Extraction Candidates</em></a></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="code json highlight-python"><div class="highlight"><pre>{
+  &quot;extractions&quot;: {
+    &quot;paymentDueDate&quot;: {
+      &quot;entity&quot;: &quot;date&quot;,
+      &quot;value&quot;: &quot;2012-06-20&quot;,
+      &quot;box&quot;: { ... },
+      &quot;candidates&quot;: &quot;dates&quot;
+    },
+    ...
+  },
+  &quot;candidates&quot;: {
+    &quot;dates&quot;: [
+      {&quot;entity&quot;: &quot;date&quot;,&quot;value&quot;: &quot;2012-06-20&quot;,&quot;box&quot;: { ... } },
+      {&quot;entity&quot;: &quot;date&quot;,&quot;value&quot;: &quot;2012-05-10&quot;,&quot;box&quot;: { ... } },
+        ...
+    ],
+    ...
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="extractions">
+<span id="id1"></span><h2>Extractions<a class="headerlink" href="#extractions" title="Permalink to this headline">¶</a></h2>
+<p>An <em>extraction</em> contains an <tt class="docutils literal"><span class="pre">entity</span></tt> describing the general semantic
+type of the extraction (e.g. a date), which also determines the format
+of the <tt class="docutils literal"><span class="pre">value</span></tt> containing the information as text.  Optionally there
+may be a <tt class="docutils literal"><span class="pre">box</span></tt> describing the position of the extraction value on
+the document. In most instances, extractions without a bounding box
+are meta information (e.g. <tt class="docutils literal"><span class="pre">doctype</span></tt>).</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="20%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">entity</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td>Key (primary identification) of an entity type
+(e. g. <tt class="docutils literal"><span class="pre">banknumber</span></tt>). See <a class="reference internal" href="#available-extraction-entities"><em>Extraction Entities</em></a>
+for a full list.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">value</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td>A normalized textual representation of the Text/Information
+provided by the extraction value (e. g. bank number without
+spaces between the digits)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">box</span></tt></td>
+<td><a class="reference internal" href="#bounding-box"><em>Bounding Box</em></a></td>
+<td><em>(Optional)</em> bounding box containing the position of the
+extraction value on the document</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id2">
+<h3>Example<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json"><div class="highlight"><pre>{
+  &quot;entity&quot;: &quot;date&quot;,
+  &quot;value&quot;: &quot;2012-06-20&quot;,
+  &quot;box&quot;: { ... }
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="specific-extractions">
+<span id="id3"></span><h3>Specific extractions<a class="headerlink" href="#specific-extractions" title="Permalink to this headline">¶</a></h3>
+<p>A <em>specific extraction</em> assigns a semantic property to an
+extraction. It also has an additional field <tt class="docutils literal"><span class="pre">candidates</span></tt>:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="14%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">candidates</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td><em>(Optional)</em> A reference to a extraction candidates. See
+<a class="reference internal" href="#available-extraction-candidates"><em>Available Extraction Candidates</em></a> for a list.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id4">
+<h4>Example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="code json highlight-python"><div class="highlight"><pre>&quot;payDate&quot;: {
+  &quot;entity&quot;: &quot;date&quot;,
+  &quot;value&quot;: &quot;2012-06-20&quot;,
+  &quot;box&quot;: { ... },
+  &quot;candidates&quot;: &quot;dates&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="available-specific-extractions">
+<span id="id5"></span><h3>Available Specific Extractions<a class="headerlink" href="#available-specific-extractions" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="45%" />
+<col width="26%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">Entity</th>
+<th class="head">Candidates</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">amountToPay</span></tt></td>
+<td>The amount which has to be paid.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-amount"><em>amount</em></a></td>
+<td><tt class="docutils literal"><span class="pre">amounts</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">bankAccountNumber</span></tt></td>
+<td>The account number of a payment recipient.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-bankaccount"><em>bankaccount</em></a></td>
+<td><tt class="docutils literal"><span class="pre">bankAccountNumbers</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">bankNumber</span></tt></td>
+<td>The bank number of a payment recipient.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-banknumber"><em>banknumber</em></a></td>
+<td><tt class="docutils literal"><span class="pre">bankNumbers</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">bic</span></tt></td>
+<td>The bic of a payment recipient.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-bic"><em>bic</em></a></td>
+<td><tt class="docutils literal"><span class="pre">bics</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">companyRegisterId</span></tt></td>
+<td>The Commercial Registry number of a document sender.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-hregnumber"><em>hregnumber</em></a></td>
+<td><tt class="docutils literal"><span class="pre">companyRegisterIds</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">customerId</span></tt></td>
+<td>The customer Id of a document recipient.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-customerid"><em>customerid</em></a></td>
+<td><tt class="docutils literal"><span class="pre">customerIds</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">docType</span></tt></td>
+<td>The document type of a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-doctype"><em>doctype</em></a></td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">documentDate</span></tt></td>
+<td>The document date.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-date"><em>date</em></a></td>
+<td><tt class="docutils literal"><span class="pre">dates</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">documentDomain</span></tt></td>
+<td>The domain of a current document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-documentdomain"><em>documentdomain</em></a></td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">iban</span></tt></td>
+<td>The IBAN of a document sender.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-iban"><em>iban</em></a></td>
+<td><tt class="docutils literal"><span class="pre">ibans</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">invoiceDate</span></tt></td>
+<td>The invoice date</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-date"><em>date</em></a></td>
+<td><tt class="docutils literal"><span class="pre">dates</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">invoiceId</span></tt></td>
+<td>The invoice Id of a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-invoiceid"><em>invoiceid</em></a></td>
+<td><tt class="docutils literal"><span class="pre">invoiceIds</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">paymentDueDate</span></tt></td>
+<td>The calculated payment due date (e.g. of an invoice).</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-date"><em>date</em></a></td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">paymentReference</span></tt></td>
+<td>The payment reference.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-reference"><em>reference</em></a></td>
+<td>n/a</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">paymentState</span></tt></td>
+<td>If a document has yet to be paid or is paid already.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-paymentstate"><em>paymentstate</em></a></td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">sender</span></tt></td>
+<td>The sender of a document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-sender"><em>sender</em></a></td>
+<td>n/a</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderCity</span></tt></td>
+<td>The sender city.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-city"><em>city</em></a></td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderName</span></tt></td>
+<td>The sender name.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-companyname"><em>companyname</em></a></td>
+<td>n/a</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderNameAddition</span></tt></td>
+<td>The sender name addition.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-companynameaddition"><em>companynameaddition</em></a></td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderPoBox</span></tt></td>
+<td>The sender post-office box.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-poboxnumber"><em>poboxnumber</em></a></td>
+<td>n/a</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderPostalCode</span></tt></td>
+<td>The sender&#8217;s postal code.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-zipcode"><em>zipcode</em></a></td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderStreet</span></tt></td>
+<td>The sender&#8217;s street with house number.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-street"><em>street</em></a></td>
+<td>n/a</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">taxNumber</span></tt></td>
+<td>The tax number of a document sender.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-taxnumber"><em>taxnumber</em></a></td>
+<td><tt class="docutils literal"><span class="pre">taxnumbers</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">vatRegNumber</span></tt></td>
+<td>The VAT number of a document sender.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-vat"><em>vat</em></a></td>
+<td><tt class="docutils literal"><span class="pre">vatRegNumbers</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">website</span></tt></td>
+<td>The most probable web address of a sender.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-url"><em>url</em></a></td>
+<td><tt class="docutils literal"><span class="pre">websites</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="extraction-candidates">
+<span id="id6"></span><h2>Extraction Candidates<a class="headerlink" href="#extraction-candidates" title="Permalink to this headline">¶</a></h2>
+<p><em>Extraction candidates</em> are a list of suggestions for an appropriate
+<a class="reference internal" href="#extractions"><em>extraction</em></a>, in no specific order.</p>
+<div class="section" id="id7">
+<h3>Example<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json"><div class="highlight"><pre>&quot;dates&quot;: [
+  {&quot;entity&quot;: &quot;date&quot;,&quot;value&quot;: &quot;2012-06-20&quot;,&quot;box&quot;: { ... } },
+  {&quot;entity&quot;: &quot;date&quot;,&quot;value&quot;: &quot;2012-05-10&quot;,&quot;box&quot;: { ... } },
+  ...
+]
+</pre></div>
+</div>
+</div>
+<div class="section" id="available-extraction-candidates">
+<span id="id8"></span><h3>Available Extraction Candidates<a class="headerlink" href="#available-extraction-candidates" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="59%" />
+<col width="24%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">Entity</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">amounts</span></tt></td>
+<td>All amounts of a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-amount"><em>amount</em></a></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">bankAccountNumbers</span></tt></td>
+<td>All account numbers of a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-bankaccount"><em>bankaccount</em></a></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">bankNumbers</span></tt></td>
+<td>All bank numbers of a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-banknumber"><em>banknumber</em></a></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">bics</span></tt></td>
+<td>All bics of a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-bic"><em>bic</em></a></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">companyRegisterIds</span></tt></td>
+<td>All alphanumeric strings (of a similiar structure as a German company register id) of a
+given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-hregnumber"><em>hregnumber</em></a></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">customerIds</span></tt></td>
+<td>All alphanumeric strings (of a similiar structure as an identifier) of a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-customerid"><em>customerid</em></a></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">dates</span></tt></td>
+<td>All dates of a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-date"><em>date</em></a></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">ibans</span></tt></td>
+<td>All IBANs of a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-iban"><em>iban</em></a></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">invoiceIds</span></tt></td>
+<td>All alphanumeric strings (of similiar structure as an identifier) of a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-invoiceid"><em>invoiceid</em></a></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">taxNumbers</span></tt></td>
+<td>All strings of digits (of a similiar structure as a German tax number) of a given
+document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-taxnumber"><em>taxnumber</em></a></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">taxRegNumbers</span></tt></td>
+<td>All tax numbers of a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-taxnumber"><em>taxnumber</em></a></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">vatRegNumbers</span></tt></td>
+<td>All alphanumeric strings (of a similiar structure as an identifier) of a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-vat"><em>vat</em></a></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">websites</span></tt></td>
+<td>All links found in a given document.</td>
+<td><a class="reference internal" href="extraction_entities.html#extraction-entity-url"><em>url</em></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="extraction-entities">
+<span id="available-extraction-entities"></span><h2>Extraction Entities<a class="headerlink" href="#extraction-entities" title="Permalink to this headline">¶</a></h2>
+<p>The available extraction entities are (follow each link for a detailed
+description):</p>
+<ul class="simple">
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-amount"><em>amount</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-bankaccount"><em>bankaccount</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-banknumber"><em>banknumber</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-bic"><em>bic</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-city"><em>city</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-companyname"><em>companyname</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-companynameaddition"><em>companynameaddition</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-currency"><em>currency</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-customerid"><em>customerid</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-date"><em>date</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-doctype"><em>doctype</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-documentdomain"><em>documentdomain</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-domain"><em>domain</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-email"><em>email</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-hregnumber"><em>hregnumber</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-iban"><em>iban</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-invoiceid"><em>invoiceid</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-language"><em>language</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-paymentstate"><em>paymentstate</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-poboxnumber"><em>poboxnumber</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-reference"><em>reference</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-sender"><em>sender</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-street"><em>street</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-subject"><em>subject</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-taxnumber"><em>taxnumber</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-timeperiod"><em>timeperiod</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-url"><em>url</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-vat"><em>vat</em></a></li>
+<li><a class="reference internal" href="extraction_entities.html#extraction-entity-zipcode"><em>zipcode</em></a></li>
+</ul>
+</div>
+<div class="section" id="bounding-box">
+<span id="id9"></span><h2>Bounding Box<a class="headerlink" href="#bounding-box" title="Permalink to this headline">¶</a></h2>
+<p>A bounding box creates a direct relation between an extraction and a
+document. The box describes the page and the position where the
+extraction originates.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="14%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">left</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>The distance from the left edge of the page</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">top</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>The distance from the top edge of the page</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">width</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>The horizontal dimension of a box</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">height</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>The vertical dimension of a box</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">page</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">int</span></tt></td>
+<td>The page on which the box can be found, starting with 1</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id10">
+<h3>Example<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="code json highlight-python"><div class="highlight"><pre>&quot;box&quot;: {
+  &quot;page&quot;: 2,
+  &quot;left&quot;: 483.0,
+  &quot;top&quot;: 450.0,
+  &quot;width&quot;: 51.0,
+  &quot;height&quot;: 9.0
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="coordinate-system">
+<h3>Coordinate system<a class="headerlink" href="#coordinate-system" title="Permalink to this headline">¶</a></h3>
+<p>The origin of the coordinate system is adjusted to the upper left corner
+of the page. The coordinate system uses the DTP point as unit: 1 pt = 1
+inch / 72 = 25.4 mm / 72 = 0.3528 mm</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="extraction_entities.html" class="btn btn-neutral float-right" title="Extraction entities"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="finding_documents.html" class="btn btn-neutral" title="Finding documents"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Gini GmbH.
+    </p>
+  </div>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

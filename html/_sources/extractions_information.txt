@@ -1,0 +1,324 @@
+.. _extractions_information:
+
+Information on extractions
+==========================
+
+Documents are full of information. For instance, invoices contain an
+amount to pay and additional information such as a bank account and a
+due date. The Gini API is able to extract those information and
+provide them in a structured way. In the following, that extracted
+information will be called *extractions*. Examples for extractions
+are, as already mentioned, amounts and bank accounts, but also
+addresses, tax numbers, links to websites etc.
+
+Additionally, Gini also maps a semantic property to an extraction. In
+other words, Gini not only extracts a date from a given document, but
+also infers that the date is the due date of an invoice. In the
+following, that will be called a *specific extraction*.
+
+
+Extraction Response
+-------------------
+
+The extractions are returned encoded as JSON.
+
++-----------------+----------+---------------------------------------------------------------+
+| Name            | Type     | Description                                                   |
++=================+==========+===============================================================+
+| ``extractions`` | Object   | A mapping of labels to :ref:`extractions` (i.e.               |
+|                 |          | :ref:`specific-extractions`)                                  |
++-----------------+----------+---------------------------------------------------------------+
+| ``candidates``  | Object   | A mapping of labels to a list of :ref:`extraction-candidates` |
++-----------------+----------+---------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+   {
+     "extractions": {
+       "paymentDueDate": {
+         "entity": "date",
+         "value": "2012-06-20",
+         "box": { ... },
+         "candidates": "dates"
+       },  
+       ...
+     },
+     "candidates": {
+       "dates": [
+         {"entity": "date","value": "2012-06-20","box": { ... } },
+         {"entity": "date","value": "2012-05-10","box": { ... } },
+           ...
+       ],
+       ...
+     }
+   }
+
+
+.. _extractions:
+  
+Extractions
+-----------
+
+An *extraction* contains an ``entity`` describing the general semantic
+type of the extraction (e.g. a date), which also determines the format
+of the ``value`` containing the information as text.  Optionally there
+may be a ``box`` describing the position of the extraction value on
+the document. In most instances, extractions without a bounding box
+are meta information (e.g. ``doctype``).
+
++----------------+---------------------+------------------------------------------------------------------+
+| Name           | Type                | Description                                                      |
++================+=====================+==================================================================+
+| ``entity``     | ``string``          | Key (primary identification) of an entity type                   |
+|                |                     | (e. g. ``banknumber``). See :ref:`available-extraction-entities` |
+|                |                     | for a full list.                                                 |
++----------------+---------------------+------------------------------------------------------------------+
+| ``value``      | ``string``          | A normalized textual representation of the Text/Information      |
+|                |                     | provided by the extraction value (e. g. bank number without      |
+|                |                     | spaces between the digits)                                       |
++----------------+---------------------+------------------------------------------------------------------+
+| ``box``        | :ref:`bounding-box` | *(Optional)* bounding box containing the position of the         |
+|                |                     | extraction value on the document                                 |
++----------------+---------------------+------------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code-block:: json
+
+   {
+     "entity": "date",
+     "value": "2012-06-20",
+     "box": { ... }
+   }  
+
+
+.. _specific-extractions:
+
+Specific extractions
+~~~~~~~~~~~~~~~~~~~~
+
+A *specific extraction* assigns a semantic property to an
+extraction. It also has an additional field ``candidates``:
+
++----------------+------------+-----------------------------------------------------------+
+| Name           | Type       | Description                                               |
++================+============+===========================================================+
+| ``candidates`` | ``string`` | *(Optional)* A reference to a extraction candidates. See  |
+|                |            | :ref:`available-extraction-candidates` for a list.        |
++----------------+------------+-----------------------------------------------------------+
+
+Example
+"""""""
+
+.. code:: json
+
+   "payDate": {
+     "entity": "date",
+     "value": "2012-06-20",
+     "box": { ... },
+     "candidates": "dates"
+   }  
+
+
+.. _available-specific-extractions:
+
+Available Specific Extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| Name                     | Description                                                                    | Entity                                       | Candidates               |
++==========================+================================================================================+==============================================+==========================+
+| ``amountToPay``          | The amount which has to be paid.                                               | :ref:`extraction-entity-amount`              | ``amounts``              |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``bankAccountNumber``    | The account number of a payment recipient.                                     | :ref:`extraction-entity-bankaccount`         | ``bankAccountNumbers``   |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``bankNumber``           | The bank number of a payment recipient.                                        | :ref:`extraction-entity-banknumber`          | ``bankNumbers``          |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``bic``                  | The bic of a payment recipient.                                                | :ref:`extraction-entity-bic`                 | ``bics``                 |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``companyRegisterId``    | The Commercial Registry number of a document sender.                           | :ref:`extraction-entity-hregnumber`          | ``companyRegisterIds``   |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``customerId``           | The customer Id of a document recipient.                                       | :ref:`extraction-entity-customerid`          | ``customerIds``          |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``docType``              | The document type of a given document.                                         | :ref:`extraction-entity-doctype`             | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``documentDate``         | The document date.                                                             | :ref:`extraction-entity-date`                | ``dates``                |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``documentDomain``       | The domain of a current document.                                              | :ref:`extraction-entity-documentdomain`      | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``iban``                 | The IBAN of a document sender.                                                 | :ref:`extraction-entity-iban`                | ``ibans``                |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``invoiceDate``          | The invoice date                                                               | :ref:`extraction-entity-date`                | ``dates``                |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``invoiceId``            | The invoice Id of a given document.                                            | :ref:`extraction-entity-invoiceid`           | ``invoiceIds``           |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``paymentDueDate``       | The calculated payment due date (e.g. of an invoice).                          | :ref:`extraction-entity-date`                | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``paymentReference``     | The payment reference.                                                         | :ref:`extraction-entity-reference`           | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``paymentState``         | If a document has yet to be paid or is paid already.                           | :ref:`extraction-entity-paymentstate`        | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``sender``               | The sender of a document.                                                      | :ref:`extraction-entity-sender`              | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``senderCity``           | The sender city.                                                               | :ref:`extraction-entity-city`                | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``senderName``           | The sender name.                                                               | :ref:`extraction-entity-companyname`         | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``senderNameAddition``   | The sender name addition.                                                      | :ref:`extraction-entity-companynameaddition` | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``senderPoBox``          | The sender post-office box.                                                    | :ref:`extraction-entity-poboxnumber`         | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``senderPostalCode``     | The sender's postal code.                                                      | :ref:`extraction-entity-zipcode`             | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``senderStreet``         | The sender's street with house number.                                         | :ref:`extraction-entity-street`              | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``taxNumber``            | The tax number of a document sender.                                           | :ref:`extraction-entity-taxnumber`           | ``taxnumbers``           |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``vatRegNumber``         | The VAT number of a document sender.                                           | :ref:`extraction-entity-vat`                 | ``vatRegNumbers``        |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``website``              | The most probable web address of a sender.                                     | :ref:`extraction-entity-url`                 | ``websites``             |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+
+
+.. _extraction-candidates:
+
+Extraction Candidates
+---------------------
+
+*Extraction candidates* are a list of suggestions for an appropriate
+:ref:`extraction <extractions>`, in no specific order.
+
+Example
+~~~~~~~
+
+.. code-block:: json
+
+   "dates": [
+     {"entity": "date","value": "2012-06-20","box": { ... } },
+     {"entity": "date","value": "2012-05-10","box": { ... } },
+     ...
+   ]
+
+.. _available-extraction-candidates:
+
+Available Extraction Candidates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| Name                     | Description                                                                                | Entity                               |
++==========================+============================================================================================+======================================+
+| ``amounts``              | All amounts of a given document.                                                           | :ref:`extraction-entity-amount`      |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| ``bankAccountNumbers``   | All account numbers of a given document.                                                   | :ref:`extraction-entity-bankaccount` |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| ``bankNumbers``          | All bank numbers of a given document.                                                      | :ref:`extraction-entity-banknumber`  |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| ``bics``                 | All bics of a given document.                                                              | :ref:`extraction-entity-bic`         |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| ``companyRegisterIds``   | All alphanumeric strings (of a similiar structure as a German company register id) of a    | :ref:`extraction-entity-hregnumber`  |
+|                          | given document.                                                                            |                                      |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| ``customerIds``          | All alphanumeric strings (of a similiar structure as an identifier) of a given document.   | :ref:`extraction-entity-customerid`  |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| ``dates``                | All dates of a given document.                                                             | :ref:`extraction-entity-date`        |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| ``ibans``                | All IBANs of a given document.                                                             | :ref:`extraction-entity-iban`        |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| ``invoiceIds``           | All alphanumeric strings (of similiar structure as an identifier) of a given document.     | :ref:`extraction-entity-invoiceid`   |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| ``taxNumbers``           | All strings of digits (of a similiar structure as a German tax number) of a given          | :ref:`extraction-entity-taxnumber`   |
+|                          | document.                                                                                  |                                      |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| ``taxRegNumbers``        | All tax numbers of a given document.                                                       | :ref:`extraction-entity-taxnumber`   |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| ``vatRegNumbers``        | All alphanumeric strings (of a similiar structure as an identifier) of a given document.   | :ref:`extraction-entity-vat`         |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+| ``websites``             | All links found in a given document.                                                       | :ref:`extraction-entity-url`         |
++--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
+
+
+.. _available-extraction-entities:
+
+Extraction Entities
+-------------------
+
+The available extraction entities are (follow each link for a detailed
+description):
+
+* :ref:`extraction-entity-amount`
+* :ref:`extraction-entity-bankaccount`
+* :ref:`extraction-entity-banknumber`
+* :ref:`extraction-entity-bic`
+* :ref:`extraction-entity-city`
+* :ref:`extraction-entity-companyname`
+* :ref:`extraction-entity-companynameaddition`
+* :ref:`extraction-entity-currency`
+* :ref:`extraction-entity-customerid`
+* :ref:`extraction-entity-date`
+* :ref:`extraction-entity-doctype`
+* :ref:`extraction-entity-documentdomain`
+* :ref:`extraction-entity-domain`
+* :ref:`extraction-entity-email`
+* :ref:`extraction-entity-hregnumber`
+* :ref:`extraction-entity-iban`
+* :ref:`extraction-entity-invoiceid`
+* :ref:`extraction-entity-language`
+* :ref:`extraction-entity-paymentstate`
+* :ref:`extraction-entity-poboxnumber`
+* :ref:`extraction-entity-reference`
+* :ref:`extraction-entity-sender`
+* :ref:`extraction-entity-street`
+* :ref:`extraction-entity-subject`
+* :ref:`extraction-entity-taxnumber`
+* :ref:`extraction-entity-timeperiod`
+* :ref:`extraction-entity-url`
+* :ref:`extraction-entity-vat`
+* :ref:`extraction-entity-zipcode`
+
+
+.. _bounding-box:
+  
+Bounding Box
+------------
+
+A bounding box creates a direct relation between an extraction and a
+document. The box describes the page and the position where the
+extraction originates.
+
++--------------+------------+----------------------------------------------------------+
+| Name         | Type       | Description                                              |
++==============+============+==========================================================+
+| ``left``     | ``number`` | The distance from the left edge of the page              |
++--------------+------------+----------------------------------------------------------+
+| ``top``      | ``number`` | The distance from the top edge of the page               |
++--------------+------------+----------------------------------------------------------+
+| ``width``    | ``number`` | The horizontal dimension of a box                        |
++--------------+------------+----------------------------------------------------------+
+| ``height``   | ``number`` | The vertical dimension of a box                          |
++--------------+------------+----------------------------------------------------------+
+| ``page``     | ``int``    | The page on which the box can be found, starting with 1  |
++--------------+------------+----------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    "box": {
+      "page": 2,
+      "left": 483.0,
+      "top": 450.0,
+      "width": 51.0,
+      "height": 9.0
+    }
+
+Coordinate system
+~~~~~~~~~~~~~~~~~
+
+The origin of the coordinate system is adjusted to the upper left corner
+of the page. The coordinate system uses the DTP point as unit: 1 pt = 1
+inch / 72 = 25.4 mm / 72 = 0.3528 mm

@@ -1,0 +1,53 @@
+Gini API documentation
+======================
+
+Introduction
+------------
+
+Gini provides an information extraction system for analyzing documents
+(e. g. invoices or contracts), specifically information such as the
+document sender or the amount to pay in an invoice.
+
+The API supports documents in the formats **PDF**, **GIF**, **JPEG**, **PNG**,
+and **TIFF**.
+
+Furthermore there's the distinction between **native PDF** files (i. e. files
+digitally created from Microsoft Word documents and containing textual
+information) and **scanned PDF** files, created by scanning paper documents.
+
+After a file has been submitted and validated, Gini first extracts the textual
+contents of the document. Native PDF files already contain this information and
+are analyzed accordingly. Scanned documents like the aforementioned image files
+do not provide easily processable information directly so Gini has to preprocess
+these files using Optical Character Recognition (OCR) and other methods to
+obtain their content.
+
+Once the layout and textual information is available for the uploaded document,
+Gini starts extracting semantic information from within and meta information
+about the document, such as the document sender (e. g. name, address) or the
+document type (e. g. invoice, contract).
+
+In the unlikely case Gini was unable to infer the information correctly, it is
+possible to correct the extractions manually (e. g. by selecting the correct
+amount to pay on the document) and submit it back to the API which also helps
+to improve the learning extraction system over time.
+
+If you have any questions about the Gini API and the functionality it provides,
+please contact us via api@gini.net.
+
+
+Table of contents
+-----------------
+
+.. toctree::
+   :maxdepth: 2
+
+   overview
+   documents
+   finding_documents
+   extractions_information
+   extraction_entities
+   guides/oauth2
+
+
+.. todolist::
