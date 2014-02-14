@@ -43,7 +43,7 @@ Example
          "value": "2012-06-20",
          "box": { ... },
          "candidates": "dates"
-       },  
+       },
        ...
      },
      "candidates": {
@@ -58,7 +58,7 @@ Example
 
 
 .. _extractions:
-  
+
 Extractions
 -----------
 
@@ -93,7 +93,7 @@ Example
      "entity": "date",
      "value": "2012-06-20",
      "box": { ... }
-   }  
+   }
 
 
 .. _specific-extractions:
@@ -116,12 +116,12 @@ Example
 
 .. code:: json
 
-   "payDate": {
+   "paymentDueDate": {
      "entity": "date",
      "value": "2012-06-20",
      "box": { ... },
      "candidates": "dates"
-   }  
+   }
 
 
 .. _available-specific-extractions:
@@ -281,7 +281,7 @@ description):
 
 
 .. _bounding-box:
-  
+
 Bounding Box
 ------------
 
