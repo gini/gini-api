@@ -1,0 +1,932 @@
+Entity reference
+================
+
+.. index::
+   pair: amount; extraction entity
+.. _extraction-entity-amount:
+
+amount
+------
+
+Describes an amount of money with a specific currency in the format
+``<Amount>:<Currency Code>``, where ``<Amount>`` is a decimal number
+with "." as decimal separator and ":" as delimiter between ``<Amount>``
+and ``<Currency Code>``.
+
+The currency code must be given according to the list specified in `ISO
+4217 <http://en.wikipedia.org/wiki/ISO_4217>`__.
+
+Format
+~~~~~~
+
++--------------+---------------------+----------------------------------------------------------+
+| Name         | Type                | Description                                              |
++==============+=====================+==========================================================+
+| ``entity``   | ``string``          | **Must** be ``amount``                                   |
++--------------+---------------------+----------------------------------------------------------+
+| ``value``    | ``string``          | Amount in the defined format                             |
++--------------+---------------------+----------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number |
++--------------+---------------------+----------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "amount",
+        "value": "33.78:EUR",
+        "box": {
+            "page": 1,
+            "left": 535,
+            "top": 395,
+            "width": 25,
+            "height": 10
+        }
+    }
+
+
+.. index::
+   pair: bankaccount; extraction entity
+.. _extraction-entity-bankaccount:
+
+bankaccount
+-----------
+
+Describes a bank account number.
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------------------------+
+| Name         | Type                | Description                                                                  |
++==============+=====================+==============================================================================+
+| ``entity``   | ``string``          | **Must** be ``bankaccount``                                                  |
++--------------+---------------------+------------------------------------------------------------------------------+
+| ``value``    | ``string``          | Bank account number in the normalized form (without spaces between digits)   |
++--------------+---------------------+------------------------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number                     |
++--------------+---------------------+------------------------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "bankaccount",
+        "value": "1597880",
+        "box": {
+            "page": 1,
+            "left": 506,
+            "top": 777,
+            "width": 53,
+            "height": 6
+        }
+    }
+
+
+.. index::
+   pair: banknumber; extraction entity
+.. _extraction-entity-banknumber:
+
+banknumber
+----------
+
+Describes a bank number.
+
+Format
+~~~~~~
+
++--------------+---------------------+----------------------------------------------------------------------+
+| Name         | Type                | Description                                                          |
++==============+=====================+======================================================================+
+| ``entity``   | ``string``          | **Must** be ``banknumber``                                           |
++--------------+---------------------+----------------------------------------------------------------------+
+| ``value``    | ``string``          | Bank number in the normalized form (without spaces between digits)   |
++--------------+---------------------+----------------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number             |
++--------------+---------------------+----------------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "banknumber",
+        "value": "70250150",
+        "box": {
+            "page": 1,
+            "left": 147,
+            "top": 427,
+            "width": 52,
+            "height": 8
+        }
+    }
+
+
+.. index::
+   pair: bic; extraction entity
+.. _extraction-entity-bic:
+
+bic
+---
+
+Describes a `BIC <http://en.wikipedia.org/wiki/ISO_9362>`__ number.
+
+Format
+~~~~~~
+
++--------------+---------------------+---------------------------------------------------------------------------------+
+| Name         | Type                | Description                                                                     |
++==============+=====================+=================================================================================+
+| ``entity``   | ``string``          | **Must** be ``bic``                                                             |
++--------------+---------------------+---------------------------------------------------------------------------------+
+| ``value``    | ``string``          | BIC number in the normalized form (without spaces between digits and letters)   |
++--------------+---------------------+---------------------------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number                        |
++--------------+---------------------+---------------------------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "bic",
+        "value": "GENODEF1HH2",
+        "box": {
+            "page": 1,
+            "left": 506,
+            "top": 777,
+            "width": 53,
+            "height": 6
+        }
+    }
+
+
+.. index::
+   pair: city; extraction entity
+.. _extraction-entity-city:
+
+city
+----
+
+Describes a sender city.
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------+
+| Name         | Type                | Description                                                |
++==============+=====================+============================================================+
+| ``entity``   | ``string``          | **Must** be ``city``                                       |
++--------------+---------------------+------------------------------------------------------------+
+| ``value``    | ``string``          | The city name                                              |
++--------------+---------------------+------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
++--------------+---------------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "city",
+        "value": "München",
+        "box": {
+            "page": 1,
+            "left": 535,
+            "top": 395,
+            "width": 25,
+            "height": 10
+        }
+    }
+
+
+.. index::
+   pair: companyname; extraction entity
+.. _extraction-entity-companyname:
+
+companyname
+-----------
+
+Describes a (sender) company name.
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------+
+| Name         | Type                | Description                                                |
++==============+=====================+============================================================+
+| ``entity``   | ``string``          | **Must** be ``companyname``                                |
++--------------+---------------------+------------------------------------------------------------+
+| ``value``    | ``string``          | The company name                                           |
++--------------+---------------------+------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
++--------------+---------------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "companyname",
+        "value": "Weinquelle Lühmann",
+        "box": {
+            "page": 1,
+            "left": 535,
+            "top": 395,
+            "width": 25,
+            "height": 10
+        }
+    }
+
+
+.. index::
+   pair: companynameaddition; extraction entity
+.. _extraction-entity-companynameaddition:
+
+companynameaddition
+-------------------
+
+Describes a (sender) company name addition (e.g. *Kundenservice*).
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------+
+| Name         | Type                | Description                                                |
++==============+=====================+============================================================+
+| ``entity``   | ``string``          | **Must** be ``companynameaddition``                        |
++--------------+---------------------+------------------------------------------------------------+
+| ``value``    | ``string``          | The company name addition                                  |
++--------------+---------------------+------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
++--------------+---------------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "companynameaddition",
+        "value": "Kundenservice",
+        "box": {
+            "page": 1,
+            "left": 535,
+            "top": 395,
+            "width": 25,
+            "height": 10
+        }
+    }
+
+
+.. index::
+   pair: currency; extraction entity
+.. _extraction-entity-currency:
+
+currency
+--------
+
+Describes the currency of the document.
+
+The currency code must be given according to the list specified in `ISO
+4217 <http://en.wikipedia.org/wiki/ISO_4217>`__.
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------+
+| Name         | Type                | Description                                                |
++==============+=====================+============================================================+
+| ``entity``   | ``string``          | **Must** be ``currency``                                   |
++--------------+---------------------+------------------------------------------------------------+
+| ``value``    | ``string``          | Currency in the defined format                             |
++--------------+---------------------+------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
++--------------+---------------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "currency",
+        "value": "EUR",
+        "box": {
+            "page": 1,
+            "left": 535,
+            "top": 395,
+            "width": 25,
+            "height": 10
+        }
+    }
+
+
+.. index::
+   pair: customerid; extraction entity
+.. _extraction-entity-customerid:
+
+customerid
+----------
+
+Describes a customer ID.
+
+Format
+~~~~~~
+
++--------------+---------------------+----------------------------------------------------------------------------------+
+| Name         | Type                | Description                                                                      |
++==============+=====================+==================================================================================+
+| ``entity``   | ``string``          | **Must** be ``customerid``                                                       |
++--------------+---------------------+----------------------------------------------------------------------------------+
+| ``value``    | ``string``          | Customer ID in the normalized form (without spaces between digits and letters)   |
++--------------+---------------------+----------------------------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number                         |
++--------------+---------------------+----------------------------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "customerid",
+        "value": "M500721563",
+        "box": {
+            "page": 1,
+            "left": 317,
+            "top": 123,
+            "width": 158,
+            "height": 8
+        }
+    }
+
+
+.. index::
+   pair: date; extraction entity
+.. _extraction-entity-date:
+
+date
+----
+
+Describes a date in the format ``<Year>-<Month>-<Day>`` with "-" as
+delimiter between date components.
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------+
+| Name         | Type                | Description                                                |
++==============+=====================+============================================================+
+| ``entity``   | ``string``          | **Must** be ``date``                                       |
++--------------+---------------------+------------------------------------------------------------+
+| ``value``    | ``string``          | Date in the defined format                                 |
++--------------+---------------------+------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
++--------------+---------------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "date",
+        "value": "2012-11-16",
+        "box": {
+            "page": 1,
+            "left": 429,
+            "top": 143,
+            "width": 40,
+            "height": 8
+        }
+    }
+
+
+.. index::
+   pair: doctype; extraction entity
+.. _extraction-entity-doctype:
+
+doctype
+-------
+
+Describes a document type as one of the following values:
+
+- ``BankStatement``
+- ``Contract``
+- ``Invoice``
+- ``Reminder``
+- ``TravelExpenseReport``
+- ``Other``
+
+Format
+~~~~~~
+
++--------------+--------------+-------------------------+
+| Name         | Type         | Description             |
++==============+==============+=========================+
+| ``entity``   | ``string``   | **Must** be ``doctype`` |
++--------------+--------------+-------------------------+
+| ``value``    | ``string``   | The document type       |
++--------------+--------------+-------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "doctype",
+        "value": "Invoice"
+    }
+
+
+.. index::
+   pair: documentdomain; extraction entity
+.. _extraction-entity-documentdomain:
+
+documentdomain
+--------------
+
+Describes a document domain as one of the following values:
+
+- ``TeleCommunication``
+- ``Other``
+- ``HealthInsurance``
+- ``Energy``
+- ``Travel``
+
+Format
+~~~~~~
+
++--------------+--------------+--------------------------------+
+| Name         | Type         | Description                    |
++==============+==============+================================+
+| ``entity``   | ``string``   | **Must** be ``documentdomain`` |
++--------------+--------------+--------------------------------+
+| ``value``    | ``string``   | The document domain            |
++--------------+--------------+--------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "documentdomain",
+        "value": "TeleCommunication"
+    }
+
+
+.. index::
+   pair: hregnumber; extraction entity
+.. _extraction-entity-hregnumber:
+
+
+hregnumber
+----------
+
+Describes a German Register number in the format
+``<Area of the Commercial Registry>:<Number>:<Office of the Registry>``
+with ":" as delimiter between components.
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------+
+| Name         | Type                | Description                                                |
++==============+=====================+============================================================+
+| ``entity``   | ``string``          | **Must** be ``hregnumber``                                 |
++--------------+---------------------+------------------------------------------------------------+
+| ``value``    | ``string``          | Register number in the defined format                      |
++--------------+---------------------+------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
++--------------+---------------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "hregnumber",
+        "value": "HRB:108514:München",
+        "box": {
+            "page": 1,
+            "left": 525,
+            "top": 805,
+            "width": 34,
+            "height": 6
+        }
+    }
+
+
+.. index::
+   pair: iban; extraction entity
+.. _extraction-entity-iban:
+
+iban
+----
+
+Describes an
+`IBAN <http://de.wikipedia.org/wiki/International_Bank_Account_Number>`__.
+
+Format
+~~~~~~
+
++--------------+---------------------+---------------------------------------------------------------------------+
+| Name         | Type                | Description                                                               |
++==============+=====================+===========================================================================+
+| ``entity``   | ``string``          | **Must** be ``iban``                                                      |
++--------------+---------------------+---------------------------------------------------------------------------+
+| ``value``    | ``string``          | IBAN in the normalized form (without spaces between digits and letters)   |
++--------------+---------------------+---------------------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number                  |
++--------------+---------------------+---------------------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "iban",
+        "value": "DE74700500000000028273",
+        "box": {
+            "page": 1,
+            "left": 425,
+            "top": 770,
+            "width": 83,
+            "height": 6
+        }
+    }
+
+
+
+.. index::
+   pair: invoiceid; extraction entity
+.. _extraction-entity-invoiceid:
+
+invoiceid
+---------
+
+Describes an invoice ID as identifier.
+
+Format
+~~~~~~
+
++--------------+---------------------+---------------------------------------------------------------------------------+
+| Name         | Type                | Description                                                                     |
++==============+=====================+=================================================================================+
+| ``entity``   | ``string``          | **Must** be ``invoiceId``                                                       |
++--------------+---------------------+---------------------------------------------------------------------------------+
+| ``value``    | ``string``          | Invoice ID in the normalized form (without spaces between digits and letters)   |
++--------------+---------------------+---------------------------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number                        |
++--------------+---------------------+---------------------------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "invoiceid",
+        "value": "201210124056",
+        "box": {
+            "page": 1,
+            "left": 429,
+            "top": 133,
+            "width": 53,
+            "height": 8
+        }
+    }
+
+
+.. index::
+   pair: paymentstate; extraction entity
+.. _extraction-entity-paymentstate:
+
+paymentstate
+------------
+
+Describes a payment state as one of the following values:
+
+-  ``Paid``
+-  ``ToBePaid``
+
+Format
+~~~~~~
+
++--------------+--------------+------------------------------+
+| Name         | Type         | Description                  |
++==============+==============+==============================+
+| ``entity``   | ``string``   | **Must** be ``paymentState`` |
++--------------+--------------+------------------------------+
+| ``value``    | ``string``   | The payment state            |
++--------------+--------------+------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "paymentState",
+        "value": "Paid"
+    }
+
+
+.. index::
+   pair: poboxnumber; extraction entity
+.. _extraction-entity-poboxnumber:
+
+poboxnumber
+-----------
+
+Describes a post-office box of sender.
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------+
+| Name         | Type                | Description                                                |
++==============+=====================+============================================================+
+| ``entity``   | ``string``          | **Must** be ``poboxnumber``                                |
++--------------+---------------------+------------------------------------------------------------+
+| ``value``    | ``string``          | The post-office box number                                 |
++--------------+---------------------+------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
++--------------+---------------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "poboxnumber",
+        "value": "22087",
+        "box": {
+            "page": 1,
+            "left": 223,
+            "top": 125,
+            "width": 16,
+            "height": 6
+        }
+    }
+
+
+.. index::
+   pair: reference; extraction entity
+.. _extraction-entity-reference:
+
+reference
+---------
+
+Describes a payment reference.
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------+
+| Name         | Type                | Description                                                |
++==============+=====================+============================================================+
+| ``entity``   | ``string``          | **Must** be ``reference``                                  |
++--------------+---------------------+------------------------------------------------------------+
+| ``value``    | ``string``          | The payment reference                                      |
++--------------+---------------------+------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
++--------------+---------------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "reference",
+        "value": "K19218331",
+        "box": {
+            "page": 1,
+            "left": 535,
+            "top": 395,
+            "width": 25,
+            "height": 10
+        }
+    }
+
+
+.. index::
+   pair: street; extraction entity
+.. _extraction-entity-street:
+
+street
+------
+
+Describes a street in the format ``<Street name>:<House number>`` with
+":" as a delimiter between components. All abbreviations (e.g. "str.")
+are replaced with the German word "Straße".
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------+
+| Name         | Type                | Description                                                |
++==============+=====================+============================================================+
+| ``entity``   | ``string``          | **Must** be ``street``                                     |
++--------------+---------------------+------------------------------------------------------------+
+| ``value``    | ``string``          | Street in the defined format                               |
++--------------+---------------------+------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
++--------------+---------------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "street",
+        "value": "Emmy-Noether-Straße:2a",
+        "box": {
+            "page": 1,
+            "left": 162,
+            "top": 125,
+            "width": 55,
+            "height": 6
+        }
+    }
+
+
+.. index::
+   pair: taxnumber; extraction entity
+.. _extraction-entity-taxnumber:
+
+taxnumber
+---------
+
+Describes a Geman tax number in the format
+``<3 digits>/<3 digits>/<4 digits>/<1 digit>`` with "/" as delimiter
+between components.
+
+Format
+~~~~~~
+
++--------------+----------------+------------------------------------------------------------+
+| Name         | Type           | Description                                                |
++==============+================+============================================================+
+| ``entity``   | ``string``     | **Must** be ``taxnumber``                                  |
++--------------+----------------+------------------------------------------------------------+
+| ``value``    | ``string``     | Tax number in the defined format                           |
++--------------+----------------+------------------------------------------------------------+
+| ``box``      | bounding box   | Bounding box of the occurrence including the page number   |
++--------------+----------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "taxnumber",
+        "value": "143/163/4028/9",
+        "box": {
+            "page": 1,
+            "left": 501,
+            "top": 812,
+            "width": 58,
+            "height": 6
+        }
+    }
+
+
+.. index::
+   pair: url; extraction entity
+.. _extraction-entity-url:
+
+url
+---
+
+Describes the host part of an URI as defined in
+:rfc:`3986`. ``http://`` is implicitly assumed as URI scheme.
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------+
+| Name         | Type                | Description                                                |
++==============+=====================+============================================================+
+| ``entity``   | ``string``          | **Must** be ``url``                                        |
++--------------+---------------------+------------------------------------------------------------+
+| ``value``    | ``string``          | The host part of a URI                                     |
++--------------+---------------------+------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
++--------------+---------------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "url",
+        "value": "www.m-net.de",
+        "box": {
+            "page": 1,
+            "left": 444,
+            "top": 553,
+            "width": 50,
+            "height": 8
+        }
+    }
+
+
+.. index::
+   pair: vat; extraction entity
+.. _extraction-entity-vat:
+
+vat
+---
+
+Describes a German VAT number.
+
+Format
+~~~~~~
+
++--------------+---------------------+--------------------------------------------------------------------------------------------+
+| Name         | Type                | Description                                                                                |
++==============+=====================+============================================================================================+
+| ``entity``   | ``string``          | **Must** be ``vat``                                                                        |
++--------------+---------------------+--------------------------------------------------------------------------------------------+
+| ``value``    | ``string``          | German VAT number in the normalized form (without spaces between the digits and letters)   |
++--------------+---------------------+--------------------------------------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number                                   |
++--------------+---------------------+--------------------------------------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "vat",
+        "value": "DE188796931",
+        "box": {
+            "page": 1,
+            "left": 453,
+            "top": 812,
+            "width": 43,
+            "height": 6
+        }
+    }
+
+
+.. index::
+   pair: zipcode; extraction entity
+.. _extraction-entity-zipcode:
+
+zipcode
+-------
+
+Describes a ZIP code.
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------+
+| Name         | Type                | Description                                                |
++==============+=====================+============================================================+
+| ``entity``   | ``string``          | **Must** be ``zipCode``                                    |
++--------------+---------------------+------------------------------------------------------------+
+| ``value``    | ``string``          | The ZIP code                                               |
++--------------+---------------------+------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
+|              |                     |                                                            |
++--------------+---------------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "zipCode",
+        "value": "18337",
+        "box": {
+            "page": 1,
+            "left": 62,
+            "top": 25,
+            "width": 55,
+            "height": 6
+        }
+    }
+

@@ -1,0 +1,64 @@
+Search
+======
+
+The Gini API provides fulltext search over a user's documents.
+
+
+Basic search
+------------
+
+Searches for documents containing the given words. The search results
+are paginated.
+
+::
+
+   GET /search?q={searchTerm}
+
+
+Query parameters
+^^^^^^^^^^^^^^^^
+
++---------+--------+--------------------------------------------------------------+
+| Name    | Type   | Description                                                  |
++=========+========+==============================================================+
+| q       | string | The search term(s), separated by space. Multiple terms are   |
+|         |        | combined using an *AND* operator.                            |
++---------+--------+--------------------------------------------------------------+
+| limit   | int    | *(Optional)* Number of results per page. **Must** be between |
+|         |        | *1* and *250*. Defaults to *20*.                             |
++---------+--------+--------------------------------------------------------------+
+| offset  | int    | *(Optional)* Start offset. Defaults to *0*.                  |
++---------+--------+--------------------------------------------------------------+
+| docType | string | *(Optional)* Only include documents with the given doctype   |
+|         |        | in search results. See :ref:`extraction-entity-doctype` for  |
+|         |        | a list of possible values.                                   |
++---------+--------+--------------------------------------------------------------+
+
+
+Response
+^^^^^^^^
+
++------------+-------------------+------------------------------------------------+
+| Name       | Type              | Description                                    |
++============+===================+================================================+
+| documents  | List of documents | List of documents matching the query.          |
++------------+-------------------+------------------------------------------------+
+| totalCount | int               | Total number of documents matching the query.  |
++------------+-------------------+------------------------------------------------+
+
+
+Example:
+^^^^^^^^
+
+.. todo:: add documents
+
+.. code-block:: json
+
+   {
+     "documents": [
+       {...},
+       {...},
+       {...}
+     ],
+     "totalCount": 3
+   }

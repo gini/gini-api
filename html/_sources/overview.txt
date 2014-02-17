@@ -110,4 +110,9 @@ occurred. The JSON object consists of the following properties:
 Example
 ^^^^^^^
 
-.. todo:: add json example here
+.. code-block:: json
+
+   {
+     "message": "Validation of the request entity failed",
+     "requestId": "8896f9dc-260d-4133-9848-c54e5715270f"
+   }

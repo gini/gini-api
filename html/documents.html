@@ -53,8 +53,8 @@
 
   
     <link rel="top" title="Gini API v1 documentation" href="index.html"/>
-        <link rel="next" title="Finding documents" href="finding_documents.html"/>
-        <link rel="prev" title="Overview" href="overview.html"/> 
+        <link rel="next" title="Document Extractions" href="document_extractions.html"/>
+        <link rel="prev" title="Authorization Implementation Guide" href="guides/oauth2.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -94,6 +94,19 @@
 <li class="toctree-l3"><a class="reference internal" href="overview.html#error-entity">Error entity</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guides/oauth2.html">Authorization Implementation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#the-redirect-uri">The redirect URI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#implement-an-authentication-flow">Implement an authentication flow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#server-side-flow">Server-Side Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#client-side-flow">Client-Side Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#making-api-requests">Making API requests</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Documents</a><ul>
@@ -148,198 +161,151 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="finding_documents.html">Finding documents</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="finding_documents.html#basic-search">Basic search</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="finding_documents.html#query-parameters">Query parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="finding_documents.html#response">Response</a></li>
-<li class="toctree-l3"><a class="reference internal" href="finding_documents.html#example">Example:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document_extractions.html">Document Extractions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="document_extractions.html#extractions">Extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="document_extractions.html#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="document_extractions.html#specific-extractions">Specific extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="document_extractions.html#available-specific-extractions">Available Specific Extractions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="document_extractions.html#extraction-candidates">Extraction Candidates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="document_extractions.html#id7">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="document_extractions.html#available-extraction-candidates">Available Extraction Candidates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="document_extractions.html#extraction-entities">Extraction Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document_extractions.html#bounding-box">Bounding Box</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="document_extractions.html#id10">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="document_extractions.html#coordinate-system">Coordinate system</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="extractions_information.html">Information on extractions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="extractions_information.html#extraction-response">Extraction Response</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#example">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entity_reference.html">Entity reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#amount">amount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#format">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#example">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extractions_information.html#extractions">Extractions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#id2">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#specific-extractions">Specific extractions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#available-specific-extractions">Available Specific Extractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#bankaccount">bankaccount</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id1">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id2">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extractions_information.html#extraction-candidates">Extraction Candidates</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#id7">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#available-extraction-candidates">Available Extraction Candidates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#banknumber">banknumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id3">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id4">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extractions_information.html#extraction-entities">Extraction Entities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extractions_information.html#bounding-box">Bounding Box</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#id10">Example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extractions_information.html#coordinate-system">Coordinate system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#bic">bic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id5">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id6">Example</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#city">city</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id7">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id8">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="extraction_entities.html">Extraction entities</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#amount">amount</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#format">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#companyname">companyname</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id9">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id10">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#bankaccount">bankaccount</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id1">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id2">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#companynameaddition">companynameaddition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id11">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id12">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#banknumber">banknumber</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id3">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id4">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#currency">currency</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id13">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id14">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#bic">bic</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id5">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id6">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#customerid">customerid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id15">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id16">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#city">city</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id7">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id8">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#date">date</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id17">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id18">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#companyname">companyname</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id9">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id10">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#doctype">doctype</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id19">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id20">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#companynameaddition">companynameaddition</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id11">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id12">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#documentdomain">documentdomain</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id21">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id22">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#currency">currency</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id13">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id14">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#hregnumber">hregnumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id23">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id24">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#customerid">customerid</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id15">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id16">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#iban">iban</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id25">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id26">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#date">date</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id17">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id18">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#invoiceid">invoiceid</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id27">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id28">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#doctype">doctype</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id19">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id20">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#paymentstate">paymentstate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id29">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id30">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#documentdomain">documentdomain</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id21">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id22">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#poboxnumber">poboxnumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id31">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id32">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#domain">domain</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id23">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id24">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#reference">reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id33">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id34">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#email">email</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id25">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id26">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#street">street</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id35">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id36">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#hregnumber">hregnumber</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id27">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id28">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#taxnumber">taxnumber</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id37">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id38">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#iban">iban</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id29">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id30">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#url">url</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id39">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id40">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#invoiceid">invoiceid</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id31">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id32">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#vat">vat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id41">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id42">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#language">language</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id33">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id34">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#paymentstate">paymentstate</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id35">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id36">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#poboxnumber">poboxnumber</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id37">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id38">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#reference">reference</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id39">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id40">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#sender">sender</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id41">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id42">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#street">street</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id43">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id44">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#subject">subject</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id45">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id46">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#taxnumber">taxnumber</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id47">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id48">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#timeperiod">timeperiod</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id49">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id50">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#url">url</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id51">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id52">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#vat">vat</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id53">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id54">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extraction_entities.html#zipcode">zipcode</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id55">Format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extraction_entities.html#id56">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#zipcode">zipcode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id43">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id44">Example</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="guides/oauth2.html">Authorization Implementation Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#the-redirect-uri">The redirect URI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document_search.html">Search</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="document_search.html#basic-search">Basic search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="document_search.html#query-parameters">Query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="document_search.html#response">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="document_search.html#example">Example:</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#implement-an-authentication-flow">Implement an authentication flow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#server-side-flow">Server-Side Flow</a></li>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#client-side-flow">Client-Side Flow</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#making-api-requests">Making API requests</a></li>
 </ul>
 </li>
 </ul>
@@ -684,7 +650,7 @@ the list of pages of a document, issue a <tt class="docutils literal"><span clas
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">pages</span>
 </pre></div>
 </div>
-<p>The response is a paginated list of pages.</p>
+<p>The response is a list of pages.</p>
 <div class="section" id="id9">
 <h3>Request<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="path-parameters">
@@ -759,7 +725,6 @@ the list of pages of a document, issue a <tt class="docutils literal"><span clas
 </div>
 <div class="section" id="id13">
 <h3>Body<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
-<p>A pagination entity with the following fields:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -777,12 +742,7 @@ the list of pages of a document, issue a <tt class="docutils literal"><span clas
 <td>int</td>
 <td>Total number of document pages</td>
 </tr>
-<tr class="row-odd"><td>next</td>
-<td>string or <tt class="docutils literal"><span class="pre">null</span></tt></td>
-<td>The first page of the next result page or
-<tt class="docutils literal"><span class="pre">null</span></tt> if there is no next result page</td>
-</tr>
-<tr class="row-even"><td>pages</td>
+<tr class="row-odd"><td>pages</td>
 <td>array of <a class="reference internal" href="#entity-page"><em>pages</em></a></td>
 <td>All pages of the current result page</td>
 </tr>
@@ -820,16 +780,11 @@ the list of pages of a document, issue a <tt class="docutils literal"><span clas
 <td>Link to the document to which the page belongs</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td>next</td>
-<td>string</td>
-<td>Link to the next page</td>
-</tr>
-<tr class="row-even"><td>&nbsp;</td>
 <td>pages</td>
 <td>string</td>
 <td>Link to the pages of the document</td>
 </tr>
-<tr class="row-odd"><td>_images</td>
+<tr class="row-even"><td>_images</td>
 <td><em>dimensions in pixels</em></td>
 <td>&nbsp;</td>
 <td>Link to a preview image of the page</td>
@@ -840,23 +795,20 @@ the list of pages of a document, issue a <tt class="docutils literal"><span clas
 <h4>Example<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
   <span class="nt">&quot;totalCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nt">&quot;next&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
   <span class="nt">&quot;pages&quot;</span><span class="p">:</span> <span class="p">[{</span>
     <span class="nt">&quot;documentId&quot;</span><span class="p">:</span> <span class="s2">&quot;c292af40-d06a-11e2-9a2f-000000000000&quot;</span><span class="p">,</span>
     <span class="nt">&quot;pagenum&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
     <span class="nt">&quot;_links&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;next&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/2&quot;</span><span class="p">,</span>
       <span class="nt">&quot;document&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;pages&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;pages&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages&quot;</span>
     <span class="p">},</span>
-      <span class="nt">&quot;_images&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;360x520&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/360x520&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;146x146&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/146x146&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;750x900&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/750x900&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;1280x1810&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/1280x1810&quot;</span>
-      <span class="p">}</span>
+    <span class="nt">&quot;_images&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;360x520&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/360x520&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;146x146&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/146x146&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;750x900&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/750x900&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;1280x1810&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/1280x1810&quot;</span>
     <span class="p">}</span>
-  <span class="p">]</span>
+  <span class="p">}]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1249,7 +1201,7 @@ layout URI:</p>
 <div class="section" id="retrieving-extractions">
 <h2>Retrieving extractions<a class="headerlink" href="#retrieving-extractions" title="Permalink to this headline">¶</a></h2>
 <p>After a document is processed the extractions from the document
-analysis can be retrieved. See <a class="reference internal" href="extractions_information.html#extractions-information"><em>Information on extractions</em></a> for
+analysis can be retrieved. See <a class="reference internal" href="document_extractions.html#document-extractions"><em>Document Extractions</em></a> for
 details about extractions.</p>
 <div class="section" id="id29">
 <h3>Request<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
@@ -1310,7 +1262,32 @@ extractions URI:</p>
 </div>
 <div class="section" id="id34">
 <h4>Body (application/vnd.gini.v1+json)<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h4>
-<p>The body of the response is described under <a class="reference internal" href="extractions_information.html#extractions-information"><em>Information on extractions</em></a>.</p>
+<p>A detailed explanation of the response format can be found in
+<a class="reference internal" href="document_extractions.html#document-extractions"><em>Document Extractions</em></a>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="11%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">extractions</span></tt></td>
+<td>Object</td>
+<td>A mapping of labels to <a class="reference internal" href="document_extractions.html#extractions"><em>Extractions</em></a> (i.e.
+<a class="reference internal" href="document_extractions.html#specific-extractions"><em>Specific extractions</em></a>)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">candidates</span></tt></td>
+<td>Object</td>
+<td>A mapping of labels to a list of <a class="reference internal" href="document_extractions.html#extraction-candidates"><em>Extraction Candidates</em></a></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="id35">
 <h4>Example<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
@@ -1396,7 +1373,7 @@ pattern by a <tt class="docutils literal"><span class="pre">PUT</span></tt> requ
 </pre></div>
 </div>
 <p>The label must correspond to the name of the extraction type (e. g.
-<tt class="docutils literal"><span class="pre">amountToPay</span></tt>. See <a class="reference internal" href="extractions_information.html#available-specific-extractions"><em>Available Specific Extractions</em></a> for a list
+<tt class="docutils literal"><span class="pre">amountToPay</span></tt>. See <a class="reference internal" href="document_extractions.html#available-specific-extractions"><em>Available Specific Extractions</em></a> for a list
 of names).</p>
 <div class="section" id="id38">
 <h5>Headers<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h5>
@@ -1626,9 +1603,9 @@ documents.</p>
 <td><em>(Optional)</em> Maximum number of documents to
 return. Defaults to <em>20</em>.</td>
 </tr>
-<tr class="row-odd"><td>next</td>
-<td>string</td>
-<td><em>(Optional)</em> Start document</td>
+<tr class="row-odd"><td>offset</td>
+<td>int</td>
+<td><em>(Optional)</em> Start offset. Defaults to <em>0</em>.</td>
 </tr>
 </tbody>
 </table>
@@ -1681,12 +1658,7 @@ return. Defaults to <em>20</em>.</td>
 <td>int</td>
 <td>Total number of documents</td>
 </tr>
-<tr class="row-odd"><td>next</td>
-<td>string or <tt class="docutils literal"><span class="pre">null</span></tt></td>
-<td>The first document of the next result page or
-<tt class="docutils literal"><span class="pre">null</span></tt> if there is no next page</td>
-</tr>
-<tr class="row-even"><td>documents</td>
+<tr class="row-odd"><td>documents</td>
 <td>array of documents</td>
 <td>All documents of the current page</td>
 </tr>
@@ -1697,9 +1669,10 @@ return. Defaults to <em>20</em>.</td>
 <h4>Example<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre>{
   &quot;totalCount&quot;: 118,
-  &quot;next&quot;: &quot;aa7f3e80-93c6-11e3-b247-8851fb5148ed&quot;,
   &quot;documents&quot;: [
-    {…}, {…}, …
+    {...},
+    {...},
+    ...
   ]
 }
 </pre></div>
@@ -1715,10 +1688,10 @@ return. Defaults to <em>20</em>.</td>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="finding_documents.html" class="btn btn-neutral float-right" title="Finding documents">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="document_extractions.html" class="btn btn-neutral float-right" title="Document Extractions">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="overview.html" class="btn btn-neutral" title="Overview"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="guides/oauth2.html" class="btn btn-neutral" title="Authorization Implementation Guide"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1739,5 +1712,15 @@ return. Defaults to <em>20</em>.</td>
   </div>
   
 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-19408970-13', 'gini.net');
+      ga('send', 'pageview');
+  </script>
+  
 </body>
 </html>

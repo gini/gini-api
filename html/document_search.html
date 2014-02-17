@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview &mdash; Gini API v1 documentation</title>
+  <title>Search &mdash; Gini API v1 documentation</title>
   
 
   
@@ -53,8 +53,7 @@
 
   
     <link rel="top" title="Gini API v1 documentation" href="index.html"/>
-        <link rel="next" title="Authorization Implementation Guide" href="guides/oauth2.html"/>
-        <link rel="prev" title="Gini API documentation" href="index.html"/> 
+        <link rel="prev" title="Entity reference" href="entity_reference.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -81,17 +80,17 @@
         
         
             <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#media-types">Media Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#versions">Versions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#v1">v1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#v1">v1</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#security">Security</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#client-errors">Client Errors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#http-response-codes">HTTP response codes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#error-entity">Error entity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#client-errors">Client Errors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#http-response-codes">HTTP response codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#error-entity">Error entity</a></li>
 </ul>
 </li>
 </ul>
@@ -299,11 +298,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="document_search.html">Search</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="document_search.html#basic-search">Basic search</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="document_search.html#query-parameters">Query parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="document_search.html#response">Response</a></li>
-<li class="toctree-l3"><a class="reference internal" href="document_search.html#example">Example:</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Search</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-search">Basic search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#query-parameters">Query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#response">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example:</a></li>
 </ul>
 </li>
 </ul>
@@ -331,7 +330,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Overview</li>
+    <li>Search</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -340,97 +339,23 @@
 </div>
           <div role="main">
             
-  <div class="section" id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="media-types">
-<h2>Media Types<a class="headerlink" href="#media-types" title="Permalink to this headline">¶</a></h2>
-<p>Custom media types are used in the API to let consumers choose the
-version of the data format they wish to receive. This is done by adding one or
-more of the following types to the <tt class="docutils literal"><span class="pre">Accept</span></tt> header when you make a request.
-Media types are specific to resources, allowing them to change independently
-and supporting formats that other resources don&#8217;t.</p>
-<p>The media types consumed and produced by the Gini API look like this:</p>
-<div class="highlight-python"><div class="highlight"><pre>application/vnd.gini[.version][+json]
+  <div class="section" id="search">
+<h1>Search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h1>
+<p>The Gini API provides fulltext search over a user&#8217;s documents.</p>
+<div class="section" id="basic-search">
+<h2>Basic search<a class="headerlink" href="#basic-search" title="Permalink to this headline">¶</a></h2>
+<p>Searches for documents containing the given words. The search results
+are paginated.</p>
+<div class="highlight-python"><div class="highlight"><pre>GET /search?q={searchTerm}
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">If you don&#8217;t specify a version in your requests, the API&#8217;s
-responses might change without further notice. It is strongly
-recommended to always specify a specific API version.</p>
-</div>
-</div>
-<div class="section" id="versions">
-<span id="overview-versions"></span><h2>Versions<a class="headerlink" href="#versions" title="Permalink to this headline">¶</a></h2>
-<p>Currently there is one stable version of the Gini API. Future versions can be
-requested using a specific <tt class="docutils literal"><span class="pre">Accept</span></tt> header.</p>
-<div class="section" id="v1">
-<h3>v1<a class="headerlink" href="#v1" title="Permalink to this headline">¶</a></h3>
-<p>Gini API v1 is stable and will not be changed in an incompatible way. Please
-contact us via <a class="reference external" href="mailto:api&#37;&#52;&#48;gini&#46;net">api<span>&#64;</span>gini<span>&#46;</span>net</a> if you have any problems.</p>
-<p>By default all requests receive data in version 1 of the API. Developers are
-strongly encouraged to explicitly specify the required version of the Gini API
-using the HTTP/1.1 <tt class="docutils literal"><span class="pre">Accept</span></tt> header:</p>
-<div class="highlight-python"><div class="highlight"><pre>Accept: application/vnd.gini.v1+json
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="authentication">
-<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
-<p>Only authenticated users are allowed to make API requests. The Gini
-API uses the <a class="reference external" href="http://tools.ietf.org/html/rfc6749.html">OAuth 2.0 protocol</a> with <a class="reference external" href="http://tools.ietf.org/html/rfc6750.html">bearer tokens</a> for authentication. To use
-the Gini API within your application, you first have to register your
-application with Gini. Then your application requests an access token
-from the Gini Authorization Server and uses that token to access the
-Gini API.</p>
-<p>See <a class="reference internal" href="guides/oauth2.html#guide-oauth2"><em>Authorization Implementation Guide</em></a> for a detailed overview about the
-authorization process and how to implement it in your application.</p>
-</div>
-<div class="section" id="security">
-<h2>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h2>
-<p>The Gini API is only accessible over HTTPS. Please make sure that your
-application does proper certificate validation.</p>
-</div>
-<div class="section" id="client-errors">
-<h2>Client Errors<a class="headerlink" href="#client-errors" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="http-response-codes">
-<h3>HTTP response codes<a class="headerlink" href="#http-response-codes" title="Permalink to this headline">¶</a></h3>
-<p>The API uses idiomatic HTTP status codes to indicate if a request was
-successful, and if not, whether it should be retried.</p>
+<div class="section" id="query-parameters">
+<h3>Query parameters<a class="headerlink" href="#query-parameters" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
+<col width="11%" />
 <col width="10%" />
-<col width="90%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Code</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>2xx</td>
-<td>The request was successful.</td>
-</tr>
-<tr class="row-odd"><td>4xx</td>
-<td>The request was not successful. See the response body for details.
-Retrying with the same arguments will not work.</td>
-</tr>
-<tr class="row-even"><td>5xx</td>
-<td>Some error occurred while processing the request. Please try again.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="error-entity">
-<h3>Error entity<a class="headerlink" href="#error-entity" title="Permalink to this headline">¶</a></h3>
-<p>The Gini API always returns a JSON object further describing the error which
-occurred. The JSON object consists of the following properties:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="16%" />
-<col width="13%" />
-<col width="71%" />
+<col width="78%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -439,26 +364,66 @@ occurred. The JSON object consists of the following properties:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>message</td>
+<tr class="row-even"><td>q</td>
 <td>string</td>
-<td>Human consumable error description (<strong>not</strong>
-intended for application end-users)</td>
+<td>The search term(s), separated by space. Multiple terms are
+combined using an <em>AND</em> operator.</td>
 </tr>
-<tr class="row-odd"><td>requestId</td>
+<tr class="row-odd"><td>limit</td>
+<td>int</td>
+<td><em>(Optional)</em> Number of results per page. <strong>Must</strong> be between
+<em>1</em> and <em>250</em>. Defaults to <em>20</em>.</td>
+</tr>
+<tr class="row-even"><td>offset</td>
+<td>int</td>
+<td><em>(Optional)</em> Start offset. Defaults to <em>0</em>.</td>
+</tr>
+<tr class="row-odd"><td>docType</td>
 <td>string</td>
-<td>Unique ID identifying the request. Please
-provide this when contacting the support.</td>
+<td><em>(Optional)</em> Only include documents with the given doctype
+in search results. See <a class="reference internal" href="entity_reference.html#extraction-entity-doctype"><em>doctype</em></a> for
+a list of possible values.</td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="example">
-<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-  <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Validation of the request entity failed&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;requestId&quot;</span><span class="p">:</span> <span class="s2">&quot;8896f9dc-260d-4133-9848-c54e5715270f&quot;</span>
-<span class="p">}</span>
-</pre></div>
 </div>
+<div class="section" id="response">
+<h3>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="24%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>documents</td>
+<td>List of documents</td>
+<td>List of documents matching the query.</td>
+</tr>
+<tr class="row-odd"><td>totalCount</td>
+<td>int</td>
+<td>Total number of documents matching the query.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="example">
+<h3>Example:<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json"><div class="highlight"><pre>{
+  &quot;documents&quot;: [
+    {...},
+    {...},
+    {...}
+  ],
+  &quot;totalCount&quot;: 3
+}
+</pre></div>
 </div>
 </div>
 </div>
@@ -470,10 +435,8 @@ provide this when contacting the support.</td>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="guides/oauth2.html" class="btn btn-neutral float-right" title="Authorization Implementation Guide">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="index.html" class="btn btn-neutral" title="Gini API documentation"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="entity_reference.html" class="btn btn-neutral" title="Entity reference"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

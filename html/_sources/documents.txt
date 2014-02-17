@@ -225,7 +225,7 @@ the list of pages of a document, issue a ``GET`` request to the
 
   GET /documents/{id}/pages
 
-The response is a paginated list of pages.
+The response is a list of pages.
 
 Request
 ~~~~~~~
@@ -272,15 +272,10 @@ Status codes
 Body
 ~~~~
 
-A pagination entity with the following fields:
-
 +------------+-----------------------+--------------------------------------------------+
 | Name       | Type                  | Description                                      |
 +============+=======================+==================================================+
 | totalCount | int                   | Total number of document pages                   |
-+------------+-----------------------+--------------------------------------------------+
-| next       | string or ``null``    | The first page of the next result page or        |
-|            |                       | ``null`` if there is no next result page         |
 +------------+-----------------------+--------------------------------------------------+
 | pages      | array of :ref:`pages  | All pages of the current result page             |
 |            | <entity-page>`        |                                                  |
@@ -299,8 +294,6 @@ A page is an entity with the following fields:
 +------------+-------------------------+--------+--------------------------------------------------+
 | _links     | document                | string | Link to the document to which the page belongs   |
 +------------+-------------------------+--------+--------------------------------------------------+
-|            | next                    | string | Link to the next page                            |
-+------------+-------------------------+--------+--------------------------------------------------+
 |            | pages                   | string | Link to the pages of the document                |
 +------------+-------------------------+--------+--------------------------------------------------+
 | _images    | *dimensions in pixels*  |        | Link to a preview image of the page              |
@@ -313,23 +306,20 @@ Example
 
    {
      "totalCount": 1,
-     "next": null,
      "pages": [{
        "documentId": "c292af40-d06a-11e2-9a2f-000000000000",
        "pagenum":1,
        "_links": {
-         "next": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/2",
          "document": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000",
-         "pages": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages",
+         "pages": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages"
        },
-         "_images": {
-           "360x520": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/360x520",
-           "146x146": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/146x146",
-           "750x900": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/750x900",
-           "1280x1810": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/1280x1810"
-         }
+       "_images": {
+         "360x520": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/360x520",
+         "146x146": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/146x146",
+         "750x900": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/750x900",
+         "1280x1810": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/1280x1810"
        }
-     ]
+     }]
    }
 
 
@@ -596,7 +586,7 @@ Retrieving extractions
 ----------------------
 
 After a document is processed the extractions from the document
-analysis can be retrieved. See :ref:`extractions_information` for
+analysis can be retrieved. See :ref:`document_extractions` for
 details about extractions.
 
 Request
@@ -642,7 +632,20 @@ Headers
 Body (application/vnd.gini.v1+json)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The body of the response is described under :ref:`extractions_information`.
+A detailed explanation of the response format can be found in
+:ref:`document_extractions`.
+
+
+
++-----------------+----------+---------------------------------------------------------------+
+| Name            | Type     | Description                                                   |
++=================+==========+===============================================================+
+| ``extractions`` | Object   | A mapping of labels to :ref:`extractions` (i.e.               |
+|                 |          | :ref:`specific-extractions`)                                  |
++-----------------+----------+---------------------------------------------------------------+
+| ``candidates``  | Object   | A mapping of labels to a list of :ref:`extraction-candidates` |
++-----------------+----------+---------------------------------------------------------------+
+
 
 Example
 ^^^^^^^
@@ -872,7 +875,7 @@ Request query parameters
 | limit                   | int    | *(Optional)* Maximum number of documents to      |
 |                         |        | return. Defaults to *20*.                        |
 +-------------------------+--------+--------------------------------------------------+
-| next                    | string | *(Optional)* Start document                      |
+| offset                  | int    | *(Optional)* Start offset. Defaults to *0*.      |
 +-------------------------+--------+--------------------------------------------------+
 
 Example request
@@ -907,9 +910,6 @@ The response entity has the following fields:
 +=========================+====================+==================================================+
 | totalCount              | int                | Total number of documents                        |
 +-------------------------+--------------------+--------------------------------------------------+
-| next                    | string or ``null`` | The first document of the next result page or    |
-|                         |                    | ``null`` if there is no next page                |
-+-------------------------+--------------------+--------------------------------------------------+
 | documents               | array of documents | All documents of the current page                |
 |                         |                    |                                                  |
 +-------------------------+--------------------+--------------------------------------------------+
@@ -922,9 +922,9 @@ Example
 
    {
      "totalCount": 118,
-     "next": "aa7f3e80-93c6-11e3-b247-8851fb5148ed",
      "documents": [
-       {…}, {…}, …
+       {...},
+       {...},
+       ...
      ]
    }
-   

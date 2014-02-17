@@ -43,11 +43,11 @@ Table of contents
    :maxdepth: 2
 
    overview
-   documents
-   finding_documents
-   extractions_information
-   extraction_entities
    guides/oauth2
+   documents
+   document_extractions
+   entity_reference
+   document_search
 
 
 .. todolist::
