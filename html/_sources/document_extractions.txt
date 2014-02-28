@@ -5,16 +5,16 @@ Document Extractions
 
 Documents are full of information. For instance, invoices contain an
 amount to pay and additional information such as a bank account and a
-due date. The Gini API is able to extract those information and
-provide them in a structured way. In the following, that extracted
-information will be called *extractions*. Examples for extractions
+due date. The Gini API is able to extract this information and
+provide it in a structured way. In the following, that extracted
+information will be referred to as *extractions*. Examples for extractions
 are, as already mentioned, amounts and bank accounts, but also
 addresses, tax numbers, links to websites etc.
 
 Additionally, Gini also maps a semantic property to an extraction. In
 other words, Gini not only extracts a date from a given document, but
 also infers that the date is the due date of an invoice. In the
-following, that will be called a *specific extraction*.
+following, that will be referred to as a *specific extraction*.
 
 
 .. _extractions:

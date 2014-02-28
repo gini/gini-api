@@ -133,14 +133,14 @@
 <li class="toctree-l3"><a class="reference internal" href="documents.html#id18">Response</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-a-document-s-source-file">Retrieving a document&#8217;s source file</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id23">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id25">Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-the-processed-document">Retrieving the processed document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id24">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id26">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-extractions">Retrieving extractions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id29">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id32">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id30">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id33">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-feedback-on-extractions">Submitting feedback on extractions</a><ul>
@@ -149,14 +149,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#deleting-documents">Deleting documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id44">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id46">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id45">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id47">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#request-query-parameters">Request query parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#example-request">Example request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id49">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id50">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -344,15 +344,15 @@
 <span id="id1"></span><h1>Document Extractions<a class="headerlink" href="#document-extractions" title="Permalink to this headline">¶</a></h1>
 <p>Documents are full of information. For instance, invoices contain an
 amount to pay and additional information such as a bank account and a
-due date. The Gini API is able to extract those information and
-provide them in a structured way. In the following, that extracted
-information will be called <em>extractions</em>. Examples for extractions
+due date. The Gini API is able to extract this information and
+provide it in a structured way. In the following, that extracted
+information will be referred to as <em>extractions</em>. Examples for extractions
 are, as already mentioned, amounts and bank accounts, but also
 addresses, tax numbers, links to websites etc.</p>
 <p>Additionally, Gini also maps a semantic property to an extraction. In
 other words, Gini not only extracts a date from a given document, but
 also infers that the date is the due date of an invoice. In the
-following, that will be called a <em>specific extraction</em>.</p>
+following, that will be referred to as a <em>specific extraction</em>.</p>
 <div class="section" id="extractions">
 <span id="id2"></span><h2>Extractions<a class="headerlink" href="#extractions" title="Permalink to this headline">¶</a></h2>
 <p>An <em>extraction</em> contains an <tt class="docutils literal"><span class="pre">entity</span></tt> describing the general semantic

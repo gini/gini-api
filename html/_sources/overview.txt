@@ -6,7 +6,7 @@ Media Types
 
 Custom media types are used in the API to let consumers choose the
 version of the data format they wish to receive. This is done by adding one or
-more of the following types to the ``Accept`` header when you make a request.
+more of the following media types to the ``Accept`` header when a request is made.
 Media types are specific to resources, allowing them to change independently
 and supporting formats that other resources don't.
 
@@ -66,7 +66,8 @@ Security
 --------
 
 The Gini API is only accessible over HTTPS. Please make sure that your
-application does proper certificate validation.
+application validates the relevant X.509 certificates (e.g. common
+name matches hostname, issuing CA is trusted, etc.).
 
 .. todo:: Maybe add the current fingerprint of our X.509 certificate(s)?
 

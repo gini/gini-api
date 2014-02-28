@@ -132,14 +132,14 @@
 <li class="toctree-l3"><a class="reference internal" href="documents.html#id18">Response</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-a-document-s-source-file">Retrieving a document&#8217;s source file</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id23">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id25">Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-the-processed-document">Retrieving the processed document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id24">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id26">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-extractions">Retrieving extractions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id29">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id32">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id30">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id33">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-feedback-on-extractions">Submitting feedback on extractions</a><ul>
@@ -148,14 +148,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#deleting-documents">Deleting documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id44">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id46">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id45">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id47">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#request-query-parameters">Request query parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#example-request">Example request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id49">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id50">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -348,22 +348,22 @@
 document sender or the amount to pay in an invoice.</p>
 <p>The API supports documents in the formats <strong>PDF</strong>, <strong>GIF</strong>, <strong>JPEG</strong>, <strong>PNG</strong>,
 and <strong>TIFF</strong>.</p>
-<p>Furthermore there&#8217;s the distinction between <strong>native PDF</strong> files (i. e. files
+<p>Furthermore there is the distinction between <strong>native PDF</strong> files (i. e. files
 digitally created from Microsoft Word documents and containing textual
 information) and <strong>scanned PDF</strong> files, created by scanning paper documents.</p>
 <p>After a file has been submitted and validated, Gini first extracts the textual
 contents of the document. Native PDF files already contain this information and
-are analyzed accordingly. Scanned documents like the aforementioned image files
-do not provide easily processable information directly so Gini has to preprocess
+are analyzed accordingly. Scanned documents (like the aforementioned) image files
+do not provide easily processable information directly, so Gini has to preprocess
 these files using Optical Character Recognition (OCR) and other methods to
 obtain their content.</p>
 <p>Once the layout and textual information is available for the uploaded document,
-Gini starts extracting semantic information from within and meta information
+Gini starts extracting semantic and meta information
 about the document, such as the document sender (e. g. name, address) or the
 document type (e. g. invoice, contract).</p>
-<p>In the unlikely case Gini was unable to infer the information correctly, it is
+<p>In the unlikely case that Gini was unable to infer the information correctly, it is
 possible to correct the extractions manually (e. g. by selecting the correct
-amount to pay on the document) and submit it back to the API which also helps
+amount to pay on the document) and submit it back to the API. This also helps
 to improve the learning extraction system over time.</p>
 <p>If you have any questions about the Gini API and the functionality it provides,
 please contact us via <a class="reference external" href="mailto:api&#37;&#52;&#48;gini&#46;net">api<span>&#64;</span>gini<span>&#46;</span>net</a>.</p>
@@ -391,7 +391,7 @@ please contact us via <a class="reference external" href="mailto:api&#37;&#52;&#
 <li class="toctree-l2"><a class="reference internal" href="documents.html#checking-processing-status-and-getting-document-information">Checking processing status and getting document information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-a-document-s-pages">Retrieving a document&#8217;s pages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-the-layout-of-a-document">Retrieving the layout of a document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-a-document-s-source-file">Retrieving a document&#8217;s source file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-the-processed-document">Retrieving the processed document</a></li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-extractions">Retrieving extractions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-feedback-on-extractions">Submitting feedback on extractions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#deleting-documents">Deleting documents</a></li>

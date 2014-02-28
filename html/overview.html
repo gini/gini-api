@@ -133,14 +133,14 @@
 <li class="toctree-l3"><a class="reference internal" href="documents.html#id18">Response</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-a-document-s-source-file">Retrieving a document&#8217;s source file</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id23">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id25">Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-the-processed-document">Retrieving the processed document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id24">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id26">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-extractions">Retrieving extractions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id29">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id32">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id30">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id33">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-feedback-on-extractions">Submitting feedback on extractions</a><ul>
@@ -149,14 +149,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#deleting-documents">Deleting documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id44">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id46">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id45">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id47">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#request-query-parameters">Request query parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#example-request">Example request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="documents.html#id49">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#id50">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -346,7 +346,7 @@
 <h2>Media Types<a class="headerlink" href="#media-types" title="Permalink to this headline">¶</a></h2>
 <p>Custom media types are used in the API to let consumers choose the
 version of the data format they wish to receive. This is done by adding one or
-more of the following types to the <tt class="docutils literal"><span class="pre">Accept</span></tt> header when you make a request.
+more of the following media types to the <tt class="docutils literal"><span class="pre">Accept</span></tt> header when a request is made.
 Media types are specific to resources, allowing them to change independently
 and supporting formats that other resources don&#8217;t.</p>
 <p>The media types consumed and produced by the Gini API look like this:</p>
@@ -390,7 +390,8 @@ authorization process and how to implement it in your application.</p>
 <div class="section" id="security">
 <h2>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h2>
 <p>The Gini API is only accessible over HTTPS. Please make sure that your
-application does proper certificate validation.</p>
+application validates the relevant X.509 certificates (e.g. common
+name matches hostname, issuing CA is trusted, etc.).</p>
 </div>
 <div class="section" id="client-errors">
 <h2>Client Errors<a class="headerlink" href="#client-errors" title="Permalink to this headline">¶</a></h2>

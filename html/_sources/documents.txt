@@ -2,7 +2,7 @@ Documents
 =========
 
 As the key aspect of the Gini API is to provide information extraction for
-analyzing documents, the API is mainly build around the concept of documents.
+analyzing documents, the API is mainly built around the concept of documents.
 A document can be any written representation of information, usually invoices,
 reminders, contracts and so on.
 
@@ -40,7 +40,7 @@ Supported file formats
 Gini currently supports input files in the formats PDF, GIF
 (non-animated), PNG, JPEG, and TIFF. You can use native documents (PDF
 only) as well as scanned document (all formats). Note that there are
-certain limitation on a document that the Gini API accepts:
+certain limitations on a document that the Gini API accepts:
 
   * Document file size must be less than 10 MiB
   * PDF files **must not** have any security restrictions such as
@@ -184,7 +184,7 @@ Body (application/vnd.gini.v1+json)
 +--------------------+-------------------+---------------------------------------------------------------------------------------+
 |                    | ``layout``        | URI to the layout of the document (layout URI)                                        |
 +--------------------+-------------------+---------------------------------------------------------------------------------------+
-|                    | ``source``        | URI to the source file of the document (source URI)                                   |
+|                    | ``processed``     | URI to the processed document                                                         |
 +--------------------+-------------------+---------------------------------------------------------------------------------------+
 |                    | ``document``      | URI to the of the document, meaning the current resource (document URI)               |
 +--------------------+-------------------+---------------------------------------------------------------------------------------+
@@ -202,7 +202,7 @@ Example
         "extractions": "https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/extractions",
         "layout": "https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/layout",
         "document": "https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000",
-        "source": "https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/source"
+        "processed": "https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/processed"
       }
     }
 
@@ -220,8 +220,8 @@ Retrieving a document's pages
 -----------------------------
 
 The Gini API renders preview images of a document's pages. To retrieve
-the list of pages of a document, issue a ``GET`` request to the
-``pages`` subresource of a document::
+the list of pages for a document, issue a ``GET`` request to the
+``pages`` sub-resource of a document::
 
   GET /documents/{id}/pages
 
@@ -327,7 +327,8 @@ Retrieving the layout of a document
 -----------------------------------
 
 The layout of the document describes the textual content of a document
-with positional information.
+with positional information, based on :ref:`the processed document
+<retrieving-the-processed-document>`.
 
 Coordinate system
 ~~~~~~~~~~~~~~~~~
@@ -533,17 +534,22 @@ Errors
 | 404 (Not Found)   | Returned when the requested layout is invalid   |
 +-------------------+-------------------------------------------------+
 
-Retrieving a document's source file
------------------------------------
+
+.. _retrieving-the-processed-document:
+
+Retrieving the processed document
+---------------------------------
 
 Request
 ~~~~~~~
 
-The source file of a document can be retrieved by a ``GET`` request:
+Before Gini tries to extract information it preprocesses the document,
+e.g. to deskew pages. The processed document can be retrieved by a
+``GET`` request:
 
 ::
 
-    GET /documents/{id}/source
+    GET /documents/{id}/processed
 
 Path parameters
 ^^^^^^^^^^^^^^^
@@ -570,7 +576,10 @@ Headers
 Body
 ^^^^
 
-The uploaded source document.
+The version of the uploaded document file after preprocessing
+(i.e. color corrected, deskewed) which has been used for all layout
+and semantic extractions. In case of native PDF documents identical to
+the original document file.
 
 Errors
 ^^^^^^
@@ -585,7 +594,7 @@ Errors
 Retrieving extractions
 ----------------------
 
-After a document is processed the extractions from the document
+After a document has been processed, the extractions from the document
 analysis can be retrieved. See :ref:`document_extractions` for
 details about extractions.
 
@@ -656,11 +665,11 @@ Example
         "extractions": {
             "amountToPay": {
                 "box": {
-                    "height": 9,
-                    "left": 516,
-                    "page": 1,
-                    "top": 588,
-                    "width": 42
+                    "height": 9.0,
+                    "left": 516.0,
+                    "page": 1.0,
+                    "top": 588.0,
+                    "width": 42.0
                 },
                 "entity": "amount",
                 "value": "24.99:EUR",
@@ -671,22 +680,22 @@ Example
             "amounts": [
               {
                   "box": {
-                      "height": 9,
-                      "left": 517,
-                      "page": 1,
-                      "top": 574,
-                      "width": 42
+                      "height": 9.0,
+                      "left": 516.0,
+                      "page": 1.0,
+                      "top": 588.0,
+                      "width": 42.0
                   },
                   "entity": "amount",
                   "value": "24.99:EUR"
               },
               {
                   "box": {
-                      "height": 9,
-                      "left": 241,
-                      "page": 1,
-                      "top": 588,
-                      "width": 42
+                      "height": 9.0,
+                      "left": 241.0,
+                      "page": 1.0,
+                      "top": 588.0,
+                      "width": 42.0
                   },
                   "entity": "amount",
                   "value": "21.0:EUR"
@@ -717,7 +726,7 @@ Request
 ^^^^^^^
 
 Give feedback and correct or verify a specific labeled extraction
-pattern by a ``PUT`` request to the documents extractions URI:
+pattern with a ``PUT`` request to the documents extractions URI:
 
 ::
 
@@ -814,7 +823,7 @@ Deleting documents
 
 If you want to delete a document you can do this by doing a
 DELETE request on the document URI. When the document is deleted all
-associated resources (extractions, layout) will be deleted as well.
+associated resources (extractions, layout) will also be deleted.
 
 Request
 ~~~~~~~

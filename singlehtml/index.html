@@ -131,14 +131,14 @@
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id18">Response</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#retrieving-a-document-s-source-file">Retrieving a document&#8217;s source file</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id23">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id25">Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#retrieving-the-processed-document">Retrieving the processed document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id24">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id26">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#retrieving-extractions">Retrieving extractions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id29">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id32">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id30">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id33">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#submitting-feedback-on-extractions">Submitting feedback on extractions</a><ul>
@@ -147,14 +147,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#deleting-documents">Deleting documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id44">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id46">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id45">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id47">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#request-query-parameters">Request query parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#example-request">Example request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id49">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id50">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -347,22 +347,22 @@
 document sender or the amount to pay in an invoice.</p>
 <p>The API supports documents in the formats <strong>PDF</strong>, <strong>GIF</strong>, <strong>JPEG</strong>, <strong>PNG</strong>,
 and <strong>TIFF</strong>.</p>
-<p>Furthermore there&#8217;s the distinction between <strong>native PDF</strong> files (i. e. files
+<p>Furthermore there is the distinction between <strong>native PDF</strong> files (i. e. files
 digitally created from Microsoft Word documents and containing textual
 information) and <strong>scanned PDF</strong> files, created by scanning paper documents.</p>
 <p>After a file has been submitted and validated, Gini first extracts the textual
 contents of the document. Native PDF files already contain this information and
-are analyzed accordingly. Scanned documents like the aforementioned image files
-do not provide easily processable information directly so Gini has to preprocess
+are analyzed accordingly. Scanned documents (like the aforementioned) image files
+do not provide easily processable information directly, so Gini has to preprocess
 these files using Optical Character Recognition (OCR) and other methods to
 obtain their content.</p>
 <p>Once the layout and textual information is available for the uploaded document,
-Gini starts extracting semantic information from within and meta information
+Gini starts extracting semantic and meta information
 about the document, such as the document sender (e. g. name, address) or the
 document type (e. g. invoice, contract).</p>
-<p>In the unlikely case Gini was unable to infer the information correctly, it is
+<p>In the unlikely case that Gini was unable to infer the information correctly, it is
 possible to correct the extractions manually (e. g. by selecting the correct
-amount to pay on the document) and submit it back to the API which also helps
+amount to pay on the document) and submit it back to the API. This also helps
 to improve the learning extraction system over time.</p>
 <p>If you have any questions about the Gini API and the functionality it provides,
 please contact us via <a class="reference external" href="mailto:api&#37;&#52;&#48;gini&#46;net">api<span>&#64;</span>gini<span>&#46;</span>net</a>.</p>
@@ -376,7 +376,7 @@ please contact us via <a class="reference external" href="mailto:api&#37;&#52;&#
 <h4>Media Types<a class="headerlink" href="#media-types" title="Permalink to this headline">¶</a></h4>
 <p>Custom media types are used in the API to let consumers choose the
 version of the data format they wish to receive. This is done by adding one or
-more of the following types to the <tt class="docutils literal"><span class="pre">Accept</span></tt> header when you make a request.
+more of the following media types to the <tt class="docutils literal"><span class="pre">Accept</span></tt> header when a request is made.
 Media types are specific to resources, allowing them to change independently
 and supporting formats that other resources don&#8217;t.</p>
 <p>The media types consumed and produced by the Gini API look like this:</p>
@@ -420,7 +420,8 @@ authorization process and how to implement it in your application.</p>
 <div class="section" id="security">
 <h4>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h4>
 <p>The Gini API is only accessible over HTTPS. Please make sure that your
-application does proper certificate validation.</p>
+application validates the relevant X.509 certificates (e.g. common
+name matches hostname, issuing CA is trusted, etc.).</p>
 </div>
 <div class="section" id="client-errors">
 <h4>Client Errors<a class="headerlink" href="#client-errors" title="Permalink to this headline">¶</a></h4>
@@ -877,7 +878,7 @@ query parameter <tt class="docutils literal"><span class="pre">token</span></tt>
 <span id="document-documents"></span><div class="section" id="documents">
 <h3>Documents<a class="headerlink" href="#documents" title="Permalink to this headline">¶</a></h3>
 <p>As the key aspect of the Gini API is to provide information extraction for
-analyzing documents, the API is mainly build around the concept of documents.
+analyzing documents, the API is mainly built around the concept of documents.
 A document can be any written representation of information, usually invoices,
 reminders, contracts and so on.</p>
 <p>The main idea is that you submit a document in form of an electronic file to
@@ -902,7 +903,7 @@ document, the location of the new document is returned in the
 <p>Gini currently supports input files in the formats PDF, GIF
 (non-animated), PNG, JPEG, and TIFF. You can use native documents (PDF
 only) as well as scanned document (all formats). Note that there are
-certain limitation on a document that the Gini API accepts:</p>
+certain limitations on a document that the Gini API accepts:</p>
 <blockquote>
 <div><ul class="simple">
 <li>Document file size must be less than 10 MiB</li>
@@ -1129,8 +1130,8 @@ document URI.</p>
 <td>URI to the layout of the document (layout URI)</td>
 </tr>
 <tr class="row-odd"><td>&nbsp;</td>
-<td><tt class="docutils literal"><span class="pre">source</span></tt></td>
-<td>URI to the source file of the document (source URI)</td>
+<td><tt class="docutils literal"><span class="pre">processed</span></tt></td>
+<td>URI to the processed document</td>
 </tr>
 <tr class="row-even"><td>&nbsp;</td>
 <td><tt class="docutils literal"><span class="pre">document</span></tt></td>
@@ -1149,7 +1150,7 @@ document URI.</p>
     <span class="s">&quot;extractions&quot;</span><span class="p">:</span> <span class="s">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/extractions&quot;</span><span class="p">,</span>
     <span class="s">&quot;layout&quot;</span><span class="p">:</span> <span class="s">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/layout&quot;</span><span class="p">,</span>
     <span class="s">&quot;document&quot;</span><span class="p">:</span> <span class="s">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000&quot;</span><span class="p">,</span>
-    <span class="s">&quot;source&quot;</span><span class="p">:</span> <span class="s">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/source&quot;</span>
+    <span class="s">&quot;processed&quot;</span><span class="p">:</span> <span class="s">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/processed&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -1179,8 +1180,8 @@ document URI.</p>
 <div class="section" id="retrieving-a-document-s-pages">
 <h4>Retrieving a document&#8217;s pages<a class="headerlink" href="#retrieving-a-document-s-pages" title="Permalink to this headline">¶</a></h4>
 <p>The Gini API renders preview images of a document&#8217;s pages. To retrieve
-the list of pages of a document, issue a <tt class="docutils literal"><span class="pre">GET</span></tt> request to the
-<tt class="docutils literal"><span class="pre">pages</span></tt> subresource of a document:</p>
+the list of pages for a document, issue a <tt class="docutils literal"><span class="pre">GET</span></tt> request to the
+<tt class="docutils literal"><span class="pre">pages</span></tt> sub-resource of a document:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">pages</span>
 </pre></div>
 </div>
@@ -1352,7 +1353,7 @@ the list of pages of a document, issue a <tt class="docutils literal"><span clas
 <div class="section" id="retrieving-the-layout-of-a-document">
 <h4>Retrieving the layout of a document<a class="headerlink" href="#retrieving-the-layout-of-a-document" title="Permalink to this headline">¶</a></h4>
 <p>The layout of the document describes the textual content of a document
-with positional information.</p>
+with positional information, based on <a class="reference internal" href="index.html#retrieving-the-processed-document"><em>the processed document</em></a>.</p>
 <div class="section" id="coordinate-system">
 <h5>Coordinate system<a class="headerlink" href="#coordinate-system" title="Permalink to this headline">¶</a></h5>
 <p>The origin of the coordinate system is adjusted to the upper left corner
@@ -1658,16 +1659,18 @@ layout URI:</p>
 </div>
 </div>
 </div>
-<div class="section" id="retrieving-a-document-s-source-file">
-<h4>Retrieving a document&#8217;s source file<a class="headerlink" href="#retrieving-a-document-s-source-file" title="Permalink to this headline">¶</a></h4>
-<div class="section" id="id23">
-<h5>Request<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h5>
-<p>The source file of a document can be retrieved by a <tt class="docutils literal"><span class="pre">GET</span></tt> request:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">source</span>
+<div class="section" id="retrieving-the-processed-document">
+<span id="id23"></span><h4>Retrieving the processed document<a class="headerlink" href="#retrieving-the-processed-document" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id24">
+<h5>Request<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h5>
+<p>Before Gini tries to extract information it preprocesses the document,
+e.g. to deskew pages. The processed document can be retrieved by a
+<tt class="docutils literal"><span class="pre">GET</span></tt> request:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">processed</span>
 </pre></div>
 </div>
-<div class="section" id="id24">
-<h6>Path parameters<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id25">
+<h6>Path parameters<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="40%" />
@@ -1686,10 +1689,10 @@ layout URI:</p>
 </table>
 </div>
 </div>
-<div class="section" id="id25">
-<h5>Response<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h5>
 <div class="section" id="id26">
-<h6>Headers<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h6>
+<h5>Response<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id27">
+<h6>Headers<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="40%" />
@@ -1707,12 +1710,15 @@ layout URI:</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id27">
-<h6>Body<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h6>
-<p>The uploaded source document.</p>
-</div>
 <div class="section" id="id28">
-<h6>Errors<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h6>
+<h6>Body<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h6>
+<p>The version of the uploaded document file after preprocessing
+(i.e. color corrected, deskewed) which has been used for all layout
+and semantic extractions. In case of native PDF documents identical to
+the original document file.</p>
+</div>
+<div class="section" id="id29">
+<h6>Errors<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="32%" />
@@ -1734,18 +1740,18 @@ layout URI:</p>
 </div>
 <div class="section" id="retrieving-extractions">
 <h4>Retrieving extractions<a class="headerlink" href="#retrieving-extractions" title="Permalink to this headline">¶</a></h4>
-<p>After a document is processed the extractions from the document
+<p>After a document has been processed, the extractions from the document
 analysis can be retrieved. See <a class="reference internal" href="index.html#document-extractions"><em>Document Extractions</em></a> for
 details about extractions.</p>
-<div class="section" id="id29">
-<h5>Request<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id30">
+<h5>Request<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h5>
 <p>Extractions can be retrieved by doing a <tt class="docutils literal"><span class="pre">GET</span></tt> request on the
 extractions URI:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">extractions</span>
 </pre></div>
 </div>
-<div class="section" id="id30">
-<h6>Headers<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id31">
+<h6>Headers<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="29%" />
@@ -1763,17 +1769,17 @@ extractions URI:</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id31">
-<h6>Example<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id32">
+<h6>Example<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X GET -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/extractions
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id32">
-<h5>Response<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h5>
 <div class="section" id="id33">
-<h6>Headers<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h6>
+<h5>Response<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id34">
+<h6>Headers<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="37%" />
@@ -1794,8 +1800,8 @@ extractions URI:</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id34">
-<h6>Body (application/vnd.gini.v1+json)<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id35">
+<h6>Body (application/vnd.gini.v1+json)<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h6>
 <p>A detailed explanation of the response format can be found in
 <a class="reference internal" href="index.html#document-extractions"><em>Document Extractions</em></a>.</p>
 <table border="1" class="docutils">
@@ -1823,17 +1829,17 @@ extractions URI:</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id35">
-<h6>Example<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id36">
+<h6>Example<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h6>
 <div class="code json highlight-python"><div class="highlight"><pre> {
     &quot;extractions&quot;: {
         &quot;amountToPay&quot;: {
             &quot;box&quot;: {
-                &quot;height&quot;: 9,
-                &quot;left&quot;: 516,
-                &quot;page&quot;: 1,
-                &quot;top&quot;: 588,
-                &quot;width&quot;: 42
+                &quot;height&quot;: 9.0,
+                &quot;left&quot;: 516.0,
+                &quot;page&quot;: 1.0,
+                &quot;top&quot;: 588.0,
+                &quot;width&quot;: 42.0
             },
             &quot;entity&quot;: &quot;amount&quot;,
             &quot;value&quot;: &quot;24.99:EUR&quot;,
@@ -1844,22 +1850,22 @@ extractions URI:</p>
         &quot;amounts&quot;: [
           {
               &quot;box&quot;: {
-                  &quot;height&quot;: 9,
-                  &quot;left&quot;: 517,
-                  &quot;page&quot;: 1,
-                  &quot;top&quot;: 574,
-                  &quot;width&quot;: 42
+                  &quot;height&quot;: 9.0,
+                  &quot;left&quot;: 516.0,
+                  &quot;page&quot;: 1.0,
+                  &quot;top&quot;: 588.0,
+                  &quot;width&quot;: 42.0
               },
               &quot;entity&quot;: &quot;amount&quot;,
               &quot;value&quot;: &quot;24.99:EUR&quot;
           },
           {
               &quot;box&quot;: {
-                  &quot;height&quot;: 9,
-                  &quot;left&quot;: 241,
-                  &quot;page&quot;: 1,
-                  &quot;top&quot;: 588,
-                  &quot;width&quot;: 42
+                  &quot;height&quot;: 9.0,
+                  &quot;left&quot;: 241.0,
+                  &quot;page&quot;: 1.0,
+                  &quot;top&quot;: 588.0,
+                  &quot;width&quot;: 42.0
               },
               &quot;entity&quot;: &quot;amount&quot;,
               &quot;value&quot;: &quot;21.0:EUR&quot;
@@ -1871,8 +1877,8 @@ extractions URI:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id36">
-<h6>Errors<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id37">
+<h6>Errors<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="26%" />
@@ -1899,18 +1905,18 @@ extractions URI:</p>
 <h4>Submitting feedback on extractions<a class="headerlink" href="#submitting-feedback-on-extractions" title="Permalink to this headline">¶</a></h4>
 <div class="section" id="submitting-feedback-on-incorrect-extractions">
 <h5>Submitting feedback on incorrect extractions<a class="headerlink" href="#submitting-feedback-on-incorrect-extractions" title="Permalink to this headline">¶</a></h5>
-<div class="section" id="id37">
-<h6>Request<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id38">
+<h6>Request<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h6>
 <p>Give feedback and correct or verify a specific labeled extraction
-pattern by a <tt class="docutils literal"><span class="pre">PUT</span></tt> request to the documents extractions URI:</p>
+pattern with a <tt class="docutils literal"><span class="pre">PUT</span></tt> request to the documents extractions URI:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">PUT</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">extractions</span><span class="o">/</span><span class="p">{</span><span class="n">label</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>The label must correspond to the name of the extraction type (e. g.
 <tt class="docutils literal"><span class="pre">amountToPay</span></tt>. See <a class="reference internal" href="index.html#available-specific-extractions"><em>Available Specific Extractions</em></a> for a list
 of names).</p>
-<div class="section" id="id38">
-<h7>Headers<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h7>
+<div class="section" id="id39">
+<h7>Headers<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h7>
 <table border="1" class="docutils">
 <colgroup>
 <col width="37%" />
@@ -1928,8 +1934,8 @@ of names).</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id39">
-<h7>Body<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h7>
+<div class="section" id="id40">
+<h7>Body<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h7>
 <table border="1" class="docutils">
 <colgroup>
 <col width="16%" />
@@ -1974,8 +1980,8 @@ of names).</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id40">
-<h7>Example<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h7>
+<div class="section" id="id41">
+<h7>Example<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h7>
 <div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
     <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
@@ -1990,8 +1996,8 @@ of names).</p>
 </div>
 </div>
 </div>
-<div class="section" id="id41">
-<h6>Response<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id42">
+<h6>Response<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="30%" />
@@ -2015,8 +2021,8 @@ of names).</p>
 </div>
 <div class="section" id="submitting-feedback-for-invalid-extractions">
 <h5>Submitting feedback for invalid extractions<a class="headerlink" href="#submitting-feedback-for-invalid-extractions" title="Permalink to this headline">¶</a></h5>
-<div class="section" id="id42">
-<h6>Request<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id43">
+<h6>Request<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h6>
 <p>In case an extraction was found erroneously (i.e. is not present in
 the source document), you can delete it by issuing a <tt class="docutils literal"><span class="pre">DELETE</span></tt>
 request to the extraction URI:</p>
@@ -2024,8 +2030,8 @@ request to the extraction URI:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id43">
-<h6>Response<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id44">
+<h6>Response<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="26%" />
@@ -2052,25 +2058,25 @@ request to the extraction URI:</p>
 <h4>Deleting documents<a class="headerlink" href="#deleting-documents" title="Permalink to this headline">¶</a></h4>
 <p>If you want to delete a document you can do this by doing a
 DELETE request on the document URI. When the document is deleted all
-associated resources (extractions, layout) will be deleted as well.</p>
-<div class="section" id="id44">
-<h5>Request<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h5>
+associated resources (extractions, layout) will also be deleted.</p>
+<div class="section" id="id45">
+<h5>Request<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h5>
 <p>Documents can be deleted by doing a <tt class="docutils literal"><span class="pre">DELETE</span></tt> request on the document
 URI.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">DELETE</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="id45">
-<h6>Example<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id46">
+<h6>Example<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; -X DELETE -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id46">
-<h5>Response<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h5>
 <div class="section" id="id47">
-<h6>Headers<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h6>
+<h5>Response<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id48">
+<h6>Headers<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="43%" />
@@ -2088,8 +2094,8 @@ URI.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id48">
-<h6>Errors<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id49">
+<h6>Errors<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -2150,11 +2156,11 @@ return. Defaults to <em>20</em>.</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id49">
-<h5>Response<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h5>
-<p>The response is a paginated list of documents.</p>
 <div class="section" id="id50">
-<h6>Headers<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h6>
+<h5>Response<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h5>
+<p>The response is a paginated list of documents.</p>
+<div class="section" id="id51">
+<h6>Headers<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="43%" />
@@ -2172,8 +2178,8 @@ return. Defaults to <em>20</em>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id51">
-<h6>Body<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id52">
+<h6>Body<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h6>
 <p>The response entity has the following fields:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -2199,8 +2205,8 @@ return. Defaults to <em>20</em>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id52">
-<h6>Example<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id53">
+<h6>Example<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-json"><div class="highlight"><pre>{
   &quot;totalCount&quot;: 118,
   &quot;documents&quot;: [
@@ -2219,15 +2225,15 @@ return. Defaults to <em>20</em>.</td>
 <span id="id1"></span><h3>Document Extractions<a class="headerlink" href="#document-extractions" title="Permalink to this headline">¶</a></h3>
 <p>Documents are full of information. For instance, invoices contain an
 amount to pay and additional information such as a bank account and a
-due date. The Gini API is able to extract those information and
-provide them in a structured way. In the following, that extracted
-information will be called <em>extractions</em>. Examples for extractions
+due date. The Gini API is able to extract this information and
+provide it in a structured way. In the following, that extracted
+information will be referred to as <em>extractions</em>. Examples for extractions
 are, as already mentioned, amounts and bank accounts, but also
 addresses, tax numbers, links to websites etc.</p>
 <p>Additionally, Gini also maps a semantic property to an extraction. In
 other words, Gini not only extracts a date from a given document, but
 also infers that the date is the due date of an invoice. In the
-following, that will be called a <em>specific extraction</em>.</p>
+following, that will be referred to as a <em>specific extraction</em>.</p>
 <div class="section" id="extractions">
 <span id="id2"></span><h4>Extractions<a class="headerlink" href="#extractions" title="Permalink to this headline">¶</a></h4>
 <p>An <em>extraction</em> contains an <tt class="docutils literal"><span class="pre">entity</span></tt> describing the general semantic
