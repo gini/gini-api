@@ -288,6 +288,48 @@ Example
 
 
 .. index::
+   pair: companyregisterid; extraction entity
+.. _extraction-entity-companyregisterid:
+
+companyregisterid
+-----------------
+
+Describes a German Register number in the format
+``<Area of the Commercial Registry>:<Number>:<Office of the Registry>``
+with ":" as delimiter between components.
+
+Format
+~~~~~~
+
++--------------+---------------------+------------------------------------------------------------+
+| Name         | Type                | Description                                                |
++==============+=====================+============================================================+
+| ``entity``   | ``string``          | **Must** be ``companyregisterid``                          |
++--------------+---------------------+------------------------------------------------------------+
+| ``value``    | ``string``          | Register number in the defined format                      |
++--------------+---------------------+------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
++--------------+---------------------+------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code:: json
+
+    {
+        "entity": "companyregisterid",
+        "value": "HRB:108514:München",
+        "box": {
+            "page": 1,
+            "left": 525,
+            "top": 805,
+            "width": 34,
+            "height": 6
+        }
+    }
+
+
+.. index::
    pair: currency; extraction entity
 .. _extraction-entity-currency:
 
@@ -485,48 +527,6 @@ Example
         "value": "TeleCommunication"
     }
 
-
-.. index::
-   pair: hregnumber; extraction entity
-.. _extraction-entity-hregnumber:
-
-
-hregnumber
-----------
-
-Describes a German Register number in the format
-``<Area of the Commercial Registry>:<Number>:<Office of the Registry>``
-with ":" as delimiter between components.
-
-Format
-~~~~~~
-
-+--------------+---------------------+------------------------------------------------------------+
-| Name         | Type                | Description                                                |
-+==============+=====================+============================================================+
-| ``entity``   | ``string``          | **Must** be ``hregnumber``                                 |
-+--------------+---------------------+------------------------------------------------------------+
-| ``value``    | ``string``          | Register number in the defined format                      |
-+--------------+---------------------+------------------------------------------------------------+
-| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number   |
-+--------------+---------------------+------------------------------------------------------------+
-
-Example
-~~~~~~~
-
-.. code:: json
-
-    {
-        "entity": "hregnumber",
-        "value": "HRB:108514:München",
-        "box": {
-            "page": 1,
-            "left": 525,
-            "top": 805,
-            "width": 34,
-            "height": 6
-        }
-    }
 
 
 .. index::

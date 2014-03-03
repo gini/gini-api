@@ -217,32 +217,32 @@
 <li class="toctree-l3"><a class="reference internal" href="#id12">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#currency">currency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#companyregisterid">companyregisterid</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id13">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id14">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#customerid">customerid</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#currency">currency</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id15">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id16">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#date">date</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#customerid">customerid</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id17">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id18">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#doctype">doctype</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#date">date</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id19">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id20">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#documentdomain">documentdomain</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#doctype">doctype</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id21">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id22">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#hregnumber">hregnumber</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#documentdomain">documentdomain</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id23">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id24">Example</a></li>
 </ul>
@@ -697,13 +697,65 @@ and <tt class="docutils literal"><span class="pre">&lt;Currency</span> <span cla
 </div>
 </div>
 </div>
+<div class="section" id="companyregisterid">
+<span id="extraction-entity-companyregisterid"></span><span id="index-7"></span><h2>companyregisterid<a class="headerlink" href="#companyregisterid" title="Permalink to this headline">¶</a></h2>
+<p>Describes a German Register number in the format
+<tt class="docutils literal"><span class="pre">&lt;Area</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">Commercial</span> <span class="pre">Registry&gt;:&lt;Number&gt;:&lt;Office</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">Registry&gt;</span></tt>
+with &#8221;:&#8221; as delimiter between components.</p>
+<div class="section" id="id13">
+<h3>Format<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="22%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">entity</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td><strong>Must</strong> be <tt class="docutils literal"><span class="pre">companyregisterid</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">value</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td>Register number in the defined format</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">box</span></tt></td>
+<td><a class="reference internal" href="document_extractions.html#bounding-box"><em>Bounding Box</em></a></td>
+<td>Bounding box of the occurrence including the page number</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id14">
+<h3>Example<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;companyregisterid&quot;</span><span class="p">,</span>
+    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;HRB:108514:München&quot;</span><span class="p">,</span>
+    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">525</span><span class="p">,</span>
+        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">805</span><span class="p">,</span>
+        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">34</span><span class="p">,</span>
+        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="currency">
-<span id="extraction-entity-currency"></span><span id="index-7"></span><h2>currency<a class="headerlink" href="#currency" title="Permalink to this headline">¶</a></h2>
+<span id="extraction-entity-currency"></span><span id="index-8"></span><h2>currency<a class="headerlink" href="#currency" title="Permalink to this headline">¶</a></h2>
 <p>Describes the currency of the document.</p>
 <p>The currency code must be given according to the list specified in <a class="reference external" href="http://en.wikipedia.org/wiki/ISO_4217">ISO
 4217</a>.</p>
-<div class="section" id="id13">
-<h3>Format<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>Format<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -732,8 +784,8 @@ and <tt class="docutils literal"><span class="pre">&lt;Currency</span> <span cla
 </tbody>
 </table>
 </div>
-<div class="section" id="id14">
-<h3>Example<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>Example<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
     <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;currency&quot;</span><span class="p">,</span>
     <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;EUR&quot;</span><span class="p">,</span>
@@ -750,10 +802,10 @@ and <tt class="docutils literal"><span class="pre">&lt;Currency</span> <span cla
 </div>
 </div>
 <div class="section" id="customerid">
-<span id="extraction-entity-customerid"></span><span id="index-8"></span><h2>customerid<a class="headerlink" href="#customerid" title="Permalink to this headline">¶</a></h2>
+<span id="extraction-entity-customerid"></span><span id="index-9"></span><h2>customerid<a class="headerlink" href="#customerid" title="Permalink to this headline">¶</a></h2>
 <p>Describes a customer ID.</p>
-<div class="section" id="id15">
-<h3>Format<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h3>Format<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="12%" />
@@ -782,8 +834,8 @@ and <tt class="docutils literal"><span class="pre">&lt;Currency</span> <span cla
 </tbody>
 </table>
 </div>
-<div class="section" id="id16">
-<h3>Example<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id18">
+<h3>Example<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
     <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;customerid&quot;</span><span class="p">,</span>
     <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;M500721563&quot;</span><span class="p">,</span>
@@ -800,11 +852,11 @@ and <tt class="docutils literal"><span class="pre">&lt;Currency</span> <span cla
 </div>
 </div>
 <div class="section" id="date">
-<span id="extraction-entity-date"></span><span id="index-9"></span><h2>date<a class="headerlink" href="#date" title="Permalink to this headline">¶</a></h2>
+<span id="extraction-entity-date"></span><span id="index-10"></span><h2>date<a class="headerlink" href="#date" title="Permalink to this headline">¶</a></h2>
 <p>Describes a date in the format <tt class="docutils literal"><span class="pre">&lt;Year&gt;-&lt;Month&gt;-&lt;Day&gt;</span></tt> with &#8220;-&#8221; as
 delimiter between date components.</p>
-<div class="section" id="id17">
-<h3>Format<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h3>Format<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -833,8 +885,8 @@ delimiter between date components.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id18">
-<h3>Example<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id20">
+<h3>Example<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
     <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;date&quot;</span><span class="p">,</span>
     <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;2012-11-16&quot;</span><span class="p">,</span>
@@ -851,7 +903,7 @@ delimiter between date components.</p>
 </div>
 </div>
 <div class="section" id="doctype">
-<span id="extraction-entity-doctype"></span><span id="index-10"></span><h2>doctype<a class="headerlink" href="#doctype" title="Permalink to this headline">¶</a></h2>
+<span id="extraction-entity-doctype"></span><span id="index-11"></span><h2>doctype<a class="headerlink" href="#doctype" title="Permalink to this headline">¶</a></h2>
 <p>Describes a document type as one of the following values:</p>
 <ul class="simple">
 <li><tt class="docutils literal"><span class="pre">BankStatement</span></tt></li>
@@ -861,8 +913,8 @@ delimiter between date components.</p>
 <li><tt class="docutils literal"><span class="pre">TravelExpenseReport</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">Other</span></tt></li>
 </ul>
-<div class="section" id="id19">
-<h3>Format<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h3>Format<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="26%" />
@@ -887,8 +939,8 @@ delimiter between date components.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id20">
-<h3>Example<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id22">
+<h3>Example<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
     <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;doctype&quot;</span><span class="p">,</span>
     <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;Invoice&quot;</span>
@@ -898,7 +950,7 @@ delimiter between date components.</p>
 </div>
 </div>
 <div class="section" id="documentdomain">
-<span id="extraction-entity-documentdomain"></span><span id="index-11"></span><h2>documentdomain<a class="headerlink" href="#documentdomain" title="Permalink to this headline">¶</a></h2>
+<span id="extraction-entity-documentdomain"></span><span id="index-12"></span><h2>documentdomain<a class="headerlink" href="#documentdomain" title="Permalink to this headline">¶</a></h2>
 <p>Describes a document domain as one of the following values:</p>
 <ul class="simple">
 <li><tt class="docutils literal"><span class="pre">TeleCommunication</span></tt></li>
@@ -907,8 +959,8 @@ delimiter between date components.</p>
 <li><tt class="docutils literal"><span class="pre">Energy</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">Travel</span></tt></li>
 </ul>
-<div class="section" id="id21">
-<h3>Format<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3>Format<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -933,63 +985,11 @@ delimiter between date components.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id22">
-<h3>Example<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;documentdomain&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;TeleCommunication&quot;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="hregnumber">
-<span id="extraction-entity-hregnumber"></span><span id="index-12"></span><h2>hregnumber<a class="headerlink" href="#hregnumber" title="Permalink to this headline">¶</a></h2>
-<p>Describes a German Register number in the format
-<tt class="docutils literal"><span class="pre">&lt;Area</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">Commercial</span> <span class="pre">Registry&gt;:&lt;Number&gt;:&lt;Office</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">Registry&gt;</span></tt>
-with &#8221;:&#8221; as delimiter between components.</p>
-<div class="section" id="id23">
-<h3>Format<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
-<table border="1" class="docutils">
-<colgroup>
-<col width="15%" />
-<col width="22%" />
-<col width="63%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">entity</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td><strong>Must</strong> be <tt class="docutils literal"><span class="pre">hregnumber</span></tt></td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">value</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td>Register number in the defined format</td>
-</tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">box</span></tt></td>
-<td><a class="reference internal" href="document_extractions.html#bounding-box"><em>Bounding Box</em></a></td>
-<td>Bounding box of the occurrence including the page number</td>
-</tr>
-</tbody>
-</table>
-</div>
 <div class="section" id="id24">
 <h3>Example<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
 <div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;hregnumber&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;HRB:108514:München&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">525</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">805</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">34</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
-    <span class="p">}</span>
+    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;documentdomain&quot;</span><span class="p">,</span>
+    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;TeleCommunication&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>

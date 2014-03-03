@@ -100,7 +100,7 @@ Available Specific Extractions
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``bic``                  | The bic of a payment recipient.                                                | :ref:`extraction-entity-bic`                 | ``bics``                 |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``companyRegisterId``    | The Commercial Registry number of a document sender.                           | :ref:`extraction-entity-hregnumber`          | ``companyRegisterIds``   |
+| ``companyRegisterId``    | The Commercial Registry number of a document sender.                           | :ref:`extraction-entity-companyregisterid`   | ``companyRegisterIds``   |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``customerId``           | The customer Id of a document recipient.                                       | :ref:`extraction-entity-customerid`          | ``customerIds``          |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
@@ -164,35 +164,35 @@ Example
 Available Extraction Candidates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
-| Name                     | Description                                                                                | Entity                               |
-+==========================+============================================================================================+======================================+
-| ``amounts``              | All amounts of a given document.                                                           | :ref:`extraction-entity-amount`      |
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
-| ``bankAccountNumbers``   | All account numbers of a given document.                                                   | :ref:`extraction-entity-bankaccount` |
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
-| ``bankNumbers``          | All bank numbers of a given document.                                                      | :ref:`extraction-entity-banknumber`  |
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
-| ``bics``                 | All bics of a given document.                                                              | :ref:`extraction-entity-bic`         |
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
-| ``companyRegisterIds``   | All alphanumeric strings (of a similiar structure as a German company register id) of a    | :ref:`extraction-entity-hregnumber`  |
-|                          | given document.                                                                            |                                      |
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
-| ``customerIds``          | All alphanumeric strings (of a similiar structure as an identifier) of a given document.   | :ref:`extraction-entity-customerid`  |
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
-| ``dates``                | All dates of a given document.                                                             | :ref:`extraction-entity-date`        |
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
-| ``ibans``                | All IBANs of a given document.                                                             | :ref:`extraction-entity-iban`        |
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
-| ``invoiceIds``           | All alphanumeric strings (of similiar structure as an identifier) of a given document.     | :ref:`extraction-entity-invoiceid`   |
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
-| ``taxNumbers``           | All strings of digits (of a similiar structure as a German tax number) of a given          | :ref:`extraction-entity-taxnumber`   |
-|                          | document.                                                                                  |                                      |
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
-| ``vatRegNumbers``        | All alphanumeric strings (of a similiar structure as an identifier) of a given document.   | :ref:`extraction-entity-vat`         |
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
-| ``websites``             | All links found in a given document.                                                       | :ref:`extraction-entity-url`         |
-+--------------------------+--------------------------------------------------------------------------------------------+--------------------------------------+
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| Name                     | Description                                                                                | Entity                                      |
++==========================+============================================================================================+=============================================+
+| ``amounts``              | All amounts of a given document.                                                           | :ref:`extraction-entity-amount`             |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+|``bankAccountNumbers``    |All account numbers of a given document.                                                    | :ref:`extraction-entity-bankaccount`        |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``bankNumbers``          | All bank numbers of a given document.                                                      | :ref:`extraction-entity-banknumber`         |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``bics``                 | All bics of a given document.                                                              | :ref:`extraction-entity-bic`                |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``companyRegisterIds``   | All alphanumeric strings (of a similiar structure as a German company register id) of a    | :ref:`extraction-entity-companyregisterid`  |
+|                          | given document.                                                                            |                                             |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``customerIds``          | All alphanumeric strings (of a similiar structure as an identifier) of a given document.   | :ref:`extraction-entity-customerid`         |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``dates``                | All dates of a given document.                                                             | :ref:`extraction-entity-date`               |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``ibans``                | All IBANs of a given document.                                                             | :ref:`extraction-entity-iban`               |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``invoiceIds``           | All alphanumeric strings (of similiar structure as an identifier) of a given document.     | :ref:`extraction-entity-invoiceid`          |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``taxNumbers``           | All strings of digits (of a similiar structure as a German tax number) of a given          | :ref:`extraction-entity-taxnumber`          |
+|                          | document.                                                                                  |                                             |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``vatRegNumbers``        | All alphanumeric strings (of a similiar structure as an identifier) of a given document.   | :ref:`extraction-entity-vat`                |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``websites``             | All links found in a given document.                                                       | :ref:`extraction-entity-url`                |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 
 
 .. _available-extraction-entities:
@@ -210,12 +210,12 @@ description):
 * :ref:`extraction-entity-city`
 * :ref:`extraction-entity-companyname`
 * :ref:`extraction-entity-companynameaddition`
+* :ref:`extraction-entity-companyregisterid`
 * :ref:`extraction-entity-currency`
 * :ref:`extraction-entity-customerid`
 * :ref:`extraction-entity-date`
 * :ref:`extraction-entity-doctype`
 * :ref:`extraction-entity-documentdomain`
-* :ref:`extraction-entity-hregnumber`
 * :ref:`extraction-entity-iban`
 * :ref:`extraction-entity-invoiceid`
 * :ref:`extraction-entity-paymentstate`
