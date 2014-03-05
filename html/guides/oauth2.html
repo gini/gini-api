@@ -124,23 +124,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../documents.html#retrieving-a-document-s-pages">Retrieving a document&#8217;s pages</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../documents.html#id9">Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../documents.html#id12">Response</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id13">Body</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id14">Body</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../documents.html#retrieving-the-layout-of-a-document">Retrieving the layout of a document</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../documents.html#coordinate-system">Coordinate system</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id15">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id18">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id16">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id19">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../documents.html#retrieving-the-processed-document">Retrieving the processed document</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id24">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id26">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id25">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id27">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../documents.html#retrieving-extractions">Retrieving extractions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id30">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id33">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id31">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id34">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../documents.html#submitting-feedback-on-extractions">Submitting feedback on extractions</a><ul>
@@ -149,14 +149,14 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../documents.html#deleting-documents">Deleting documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id45">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id47">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id46">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id48">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../documents.html#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../documents.html#request-query-parameters">Request query parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../documents.html#example-request">Example request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id50">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id51">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -606,9 +606,35 @@ can request a new access token using the refresh token:</p>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
 <span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
 
-grant_type=refresh_token&amp;refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26
+grant_type=refresh_token&amp;refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26&amp;client_id=example-clientid&amp;client_secret=secret
 </pre></div>
 </div>
+<p>The request takes the following parameters:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>client_id</td>
+<td>The client ID you received from Gini.</td>
+</tr>
+<tr class="row-odd"><td>client_secret</td>
+<td>The client secret you received from Gini.</td>
+</tr>
+<tr class="row-even"><td>grant_type</td>
+<td>Must be <tt class="docutils literal"><span class="pre">refresh_token</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td>refresh_token</td>
+<td>The refresh token.</td>
+</tr>
+</tbody>
+</table>
 <p>The response is a new token. See <a class="reference internal" href="#guide-oauth2-token-response"><em>Token response</em></a> for details.</p>
 </div>
 </div>
@@ -617,7 +643,7 @@ grant_type=refresh_token&amp;refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26
 <p>Like the <a class="reference internal" href="#guide-oauth2-server-side-flow"><em>Server-Side Flow</em></a>, the authentication flow
 begins with your application redirecting the user to the Gini
 Authorization Server:</p>
-<div class="highlight-python"><div class="highlight"><pre>https://user.gini.net/authorize?response_type=token&amp;client_id={clientId}&amp;state={state}
+<div class="highlight-python"><div class="highlight"><pre>https://user.gini.net/authorize?response_type=token&amp;client_id={clientId}&amp;redirect_uri={redirectUri}&amp;state={state}
 </pre></div>
 </div>
 <p>The URI takes the following parameters:</p>
@@ -635,7 +661,12 @@ Authorization Server:</p>
 <tr class="row-even"><td>client_id</td>
 <td>The client ID you received from Gini.</td>
 </tr>
-<tr class="row-odd"><td>state <em>(optional)</em></td>
+<tr class="row-odd"><td>redirect_uri</td>
+<td>Where to redirect after the user completed the authorization.
+Must be one of the values that you provided when you
+<a class="reference internal" href="#guide-oauth2-app-registration"><em>registered your application</em></a>.</td>
+</tr>
+<tr class="row-even"><td>state <em>(optional)</em></td>
 <td>Some random string (should be unguessable) to protect against
 cross-site request forgery attacks.</td>
 </tr>
@@ -643,7 +674,7 @@ cross-site request forgery attacks.</td>
 </table>
 <div class="section" id="id2">
 <h4>Example request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/authorize?response_type=token&amp;client_id=example-clientid&amp;state=uiaeo</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/authorize?response_type=token&amp;client_id=example-clientid&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2F&amp;state=uiaeo</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
 <span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
 </pre></div>

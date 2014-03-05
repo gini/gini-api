@@ -231,7 +231,21 @@ can request a new access token using the refresh token:
    Content-Type: application/x-www-form-urlencoded
    Connection: close
 
-   grant_type=refresh_token&refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26
+   grant_type=refresh_token&refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26&client_id=example-clientid&client_secret=secret
+
+The request takes the following parameters:
+
++-------------------+--------------------------------------------------------+
+| Name              | Description                                            |
++===================+========================================================+
+| client_id         | The client ID you received from Gini.                  |
++-------------------+--------------------------------------------------------+
+| client_secret     | The client secret you received from Gini.              |
++-------------------+--------------------------------------------------------+
+| grant_type        | Must be ``refresh_token``.                             |
++-------------------+--------------------------------------------------------+
+| refresh_token     | The refresh token.                                     |
++-------------------+--------------------------------------------------------+
 
 The response is a new token. See :ref:`guide-oauth2-token-response` for details.
 
@@ -245,7 +259,7 @@ Like the :ref:`guide-oauth2-server-side-flow`, the authentication flow
 begins with your application redirecting the user to the Gini
 Authorization Server::
 
-   https://user.gini.net/authorize?response_type=token&client_id={clientId}&state={state}
+   https://user.gini.net/authorize?response_type=token&client_id={clientId}&redirect_uri={redirectUri}&state={state}
 
 The URI takes the following parameters:
 
@@ -253,6 +267,11 @@ The URI takes the following parameters:
 | Name               | Description                                                     |
 +====================+=================================================================+
 | client_id          | The client ID you received from Gini.                           |
++--------------------+-----------------------------------------------------------------+
+| redirect_uri       | Where to redirect after the user completed the authorization.   |
+|                    | Must be one of the values that you provided when you            |
+|                    | :ref:`registered your application                               |
+|                    | <guide-oauth2-app-registration>`.                               |
 +--------------------+-----------------------------------------------------------------+
 | state *(optional)* | Some random string (should be unguessable) to protect against   |
 |                    | cross-site request forgery attacks.                             |
@@ -263,7 +282,7 @@ Example request
 
 .. code-block:: http
 
-   GET /authorize?response_type=token&client_id=example-clientid&state=uiaeo HTTP/1.1
+   GET /authorize?response_type=token&client_id=example-clientid&redirect_uri=https%3A%2F%2Fapp.example.com%2F&state=uiaeo HTTP/1.1
    Host: user.gini.net
    Connection: close
 
