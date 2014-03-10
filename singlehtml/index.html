@@ -299,7 +299,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-document_search">Search</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-document_search#basic-search">Basic search</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-document_search#query-parameters">Query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-document_search#request">Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-document_search#response">Response</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-document_search#example">Example:</a></li>
 </ul>
@@ -2029,7 +2029,7 @@ extractions URI:</p>
             &quot;box&quot;: {
                 &quot;height&quot;: 9.0,
                 &quot;left&quot;: 516.0,
-                &quot;page&quot;: 1.0,
+                &quot;page&quot;: 1,
                 &quot;top&quot;: 588.0,
                 &quot;width&quot;: 42.0
             },
@@ -2044,7 +2044,7 @@ extractions URI:</p>
               &quot;box&quot;: {
                   &quot;height&quot;: 9.0,
                   &quot;left&quot;: 516.0,
-                  &quot;page&quot;: 1.0,
+                  &quot;page&quot;: 1,
                   &quot;top&quot;: 588.0,
                   &quot;width&quot;: 42.0
               },
@@ -2055,7 +2055,7 @@ extractions URI:</p>
               &quot;box&quot;: {
                   &quot;height&quot;: 9.0,
                   &quot;left&quot;: 241.0,
-                  &quot;page&quot;: 1.0,
+                  &quot;page&quot;: 1,
                   &quot;top&quot;: 588.0,
                   &quot;width&quot;: 42.0
               },
@@ -2796,7 +2796,7 @@ extraction originates.</p>
 <td>The vertical dimension of a box</td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">page</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">int</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
 <td>The page on which the box can be found, starting with 1</td>
 </tr>
 </tbody>
@@ -3983,16 +3983,37 @@ between components.</p>
 <h4>Basic search<a class="headerlink" href="#basic-search" title="Permalink to this headline">¶</a></h4>
 <p>Searches for documents containing the given words. The search results
 are paginated.</p>
+<div class="section" id="request">
+<h5>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-python"><div class="highlight"><pre>GET /search?q={searchTerm}
 </pre></div>
 </div>
-<div class="section" id="query-parameters">
-<h5>Query parameters<a class="headerlink" href="#query-parameters" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="headers">
+<h6>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
-<col width="11%" />
-<col width="10%" />
-<col width="78%" />
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="query-parameters">
+<h6>Query parameters<a class="headerlink" href="#query-parameters" title="Permalink to this headline">¶</a></h6>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="14%" />
+<col width="71%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -4001,22 +4022,22 @@ are paginated.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>q</td>
-<td>string</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">q</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
 <td>The search term(s), separated by space. Multiple terms are
 combined using an <em>AND</em> operator.</td>
 </tr>
-<tr class="row-odd"><td>limit</td>
-<td>int</td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">limit</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
 <td><em>(Optional)</em> Number of results per page. <strong>Must</strong> be between
 <em>1</em> and <em>250</em>. Defaults to <em>20</em>.</td>
 </tr>
-<tr class="row-even"><td>offset</td>
-<td>int</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">offset</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
 <td><em>(Optional)</em> Start offset. Defaults to <em>0</em>.</td>
 </tr>
-<tr class="row-odd"><td>docType</td>
-<td>string</td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">docType</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
 <td><em>(Optional)</em> Only include documents with the given doctype
 in search results. See <a class="reference internal" href="index.html#extraction-entity-doctype"><em>doctype</em></a> for
 a list of possible values.</td>
@@ -4024,13 +4045,51 @@ a list of possible values.</td>
 </tbody>
 </table>
 </div>
+</div>
 <div class="section" id="response">
 <h5>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id1">
+<h6>Headers<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
-<col width="15%" />
-<col width="24%" />
-<col width="61%" />
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>200 (OK)</td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+.json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="body">
+<h6>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h6>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="16%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -4039,16 +4098,17 @@ a list of possible values.</td>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>documents</td>
-<td>List of documents</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">documents</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">object</span></tt></td>
 <td>List of documents matching the query.</td>
 </tr>
-<tr class="row-odd"><td>totalCount</td>
-<td>int</td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">totalCount</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
 <td>Total number of documents matching the query.</td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div class="section" id="example">
 <h5>Example:<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h5>

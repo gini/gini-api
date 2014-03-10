@@ -10,45 +10,74 @@ Basic search
 Searches for documents containing the given words. The search results
 are paginated.
 
+Request
+~~~~~~~
+
 ::
 
    GET /search?q={searchTerm}
 
 
+Headers
+^^^^^^^
+
++--------------+-----------------------------------+
+| Header       | Value                             |
++==============+===================================+
+| ``Accept``   | ``application/vnd.gini.v1+json``  |
++--------------+-----------------------------------+
+
 Query parameters
 ^^^^^^^^^^^^^^^^
 
-+---------+--------+--------------------------------------------------------------+
-| Name    | Type   | Description                                                  |
-+=========+========+==============================================================+
-| q       | string | The search term(s), separated by space. Multiple terms are   |
-|         |        | combined using an *AND* operator.                            |
-+---------+--------+--------------------------------------------------------------+
-| limit   | int    | *(Optional)* Number of results per page. **Must** be between |
-|         |        | *1* and *250*. Defaults to *20*.                             |
-+---------+--------+--------------------------------------------------------------+
-| offset  | int    | *(Optional)* Start offset. Defaults to *0*.                  |
-+---------+--------+--------------------------------------------------------------+
-| docType | string | *(Optional)* Only include documents with the given doctype   |
-|         |        | in search results. See :ref:`extraction-entity-doctype` for  |
-|         |        | a list of possible values.                                   |
-+---------+--------+--------------------------------------------------------------+
-
++-------------+------------+--------------------------------------------------------------+
+| Name        | Type       | Description                                                  |
++=============+============+==============================================================+
+| ``q``       | ``string`` | The search term(s), separated by space. Multiple terms are   |
+|             |            | combined using an *AND* operator.                            |
++-------------+------------+--------------------------------------------------------------+
+| ``limit``   | ``number`` | *(Optional)* Number of results per page. **Must** be between |
+|             |            | *1* and *250*. Defaults to *20*.                             |
++-------------+------------+--------------------------------------------------------------+
+| ``offset``  | ``number`` | *(Optional)* Start offset. Defaults to *0*.                  |
++-------------+------------+--------------------------------------------------------------+
+| ``docType`` | ``string`` | *(Optional)* Only include documents with the given doctype   |
+|             |            | in search results. See :ref:`extraction-entity-doctype` for  |
+|             |            | a list of possible values.                                   |
++-------------+------------+--------------------------------------------------------------+
 
 Response
-^^^^^^^^
+~~~~~~~~
 
-+------------+-------------------+------------------------------------------------+
-| Name       | Type              | Description                                    |
-+============+===================+================================================+
-| documents  | List of documents | List of documents matching the query.          |
-+------------+-------------------+------------------------------------------------+
-| totalCount | int               | Total number of documents matching the query.  |
-+------------+-------------------+------------------------------------------------+
+Headers
+^^^^^^^
+
++-------------+-------------+
+| Status Code | Description |
++=============+=============+
+| 200 (OK)    | Success     |
++-------------+-------------+
+
++--------------------+-----------------------------------+
+| Header             | Value                             |
++====================+===================================+
+| ``Content-Type``   | ``application/vnd.gini.v1+.json`` |
++--------------------+-----------------------------------+
+
+Body
+^^^^
+
++----------------+------------+------------------------------------------------+
+| Name           | Type       | Description                                    |
++================+============+================================================+
+| ``documents``  | ``object`` | List of documents matching the query.          |
++----------------+------------+------------------------------------------------+
+| ``totalCount`` | ``number`` | Total number of documents matching the query.  |
++----------------+------------+------------------------------------------------+
 
 
 Example:
-^^^^^^^^
+~~~~~~~~
 
 .. todo:: add documents
 

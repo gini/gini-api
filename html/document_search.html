@@ -300,7 +300,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Search</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-search">Basic search</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#query-parameters">Query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request">Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#response">Response</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example">Example:</a></li>
 </ul>
@@ -346,16 +346,37 @@
 <h2>Basic search<a class="headerlink" href="#basic-search" title="Permalink to this headline">¶</a></h2>
 <p>Searches for documents containing the given words. The search results
 are paginated.</p>
+<div class="section" id="request">
+<h3>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre>GET /search?q={searchTerm}
 </pre></div>
 </div>
-<div class="section" id="query-parameters">
-<h3>Query parameters<a class="headerlink" href="#query-parameters" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="headers">
+<h4>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="11%" />
-<col width="10%" />
-<col width="78%" />
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="query-parameters">
+<h4>Query parameters<a class="headerlink" href="#query-parameters" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="14%" />
+<col width="71%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -364,22 +385,22 @@ are paginated.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>q</td>
-<td>string</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">q</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
 <td>The search term(s), separated by space. Multiple terms are
 combined using an <em>AND</em> operator.</td>
 </tr>
-<tr class="row-odd"><td>limit</td>
-<td>int</td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">limit</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
 <td><em>(Optional)</em> Number of results per page. <strong>Must</strong> be between
 <em>1</em> and <em>250</em>. Defaults to <em>20</em>.</td>
 </tr>
-<tr class="row-even"><td>offset</td>
-<td>int</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">offset</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
 <td><em>(Optional)</em> Start offset. Defaults to <em>0</em>.</td>
 </tr>
-<tr class="row-odd"><td>docType</td>
-<td>string</td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">docType</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
 <td><em>(Optional)</em> Only include documents with the given doctype
 in search results. See <a class="reference internal" href="entity_reference.html#extraction-entity-doctype"><em>doctype</em></a> for
 a list of possible values.</td>
@@ -387,13 +408,51 @@ a list of possible values.</td>
 </tbody>
 </table>
 </div>
+</div>
 <div class="section" id="response">
 <h3>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>Headers<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="15%" />
-<col width="24%" />
-<col width="61%" />
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>200 (OK)</td>
+<td>Success</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+.json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="body">
+<h4>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="16%" />
+<col width="63%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -402,16 +461,17 @@ a list of possible values.</td>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>documents</td>
-<td>List of documents</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">documents</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">object</span></tt></td>
 <td>List of documents matching the query.</td>
 </tr>
-<tr class="row-odd"><td>totalCount</td>
-<td>int</td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">totalCount</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
 <td>Total number of documents matching the query.</td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div class="section" id="example">
 <h3>Example:<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>

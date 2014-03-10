@@ -248,7 +248,7 @@ extraction originates.
 +--------------+------------+----------------------------------------------------------+
 | ``height``   | ``number`` | The vertical dimension of a box                          |
 +--------------+------------+----------------------------------------------------------+
-| ``page``     | ``int``    | The page on which the box can be found, starting with 1  |
+| ``page``     | ``number`` | The page on which the box can be found, starting with 1  |
 +--------------+------------+----------------------------------------------------------+
 
 Example

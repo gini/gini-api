@@ -716,7 +716,7 @@ Example
                 "box": {
                     "height": 9.0,
                     "left": 516.0,
-                    "page": 1.0,
+                    "page": 1,
                     "top": 588.0,
                     "width": 42.0
                 },
@@ -731,7 +731,7 @@ Example
                   "box": {
                       "height": 9.0,
                       "left": 516.0,
-                      "page": 1.0,
+                      "page": 1,
                       "top": 588.0,
                       "width": 42.0
                   },
@@ -742,7 +742,7 @@ Example
                   "box": {
                       "height": 9.0,
                       "left": 241.0,
-                      "page": 1.0,
+                      "page": 1,
                       "top": 588.0,
                       "width": 42.0
                   },
