@@ -308,8 +308,6 @@ Body
 +----------------+------------+----------------------------------------------------------+
 | Name           | Type       | Description                                              |
 +================+============+==========================================================+
-| ``totalCount`` | ``number`` | Total number of document pages                           |
-+----------------+------------+----------------------------------------------------------+
 | ``pages``      | ``array``  | All :ref:`pages<entity-page>` in the current result page |
 +----------------+------------+----------------------------------------------------------+
 
@@ -340,24 +338,22 @@ Example
 
 .. code-block:: json
 
-   {
-     "totalCount": 1,
-     "pages": [{
-       "documentId": "c292af40-d06a-11e2-9a2f-000000000000",
-       "pagenum":1,
-       "_links": {
-         "document": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000",
-         "pages": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages"
-       },
-       "_images": {
-         "360x520": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/360x520",
-         "146x146": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/146x146",
-         "750x900": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/750x900",
-         "1280x1810": "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/1280x1810"
-       }
-     }]
-   }
-
+    [
+      {
+        "images" : {
+          "1280x1810" : "https://api-dev.gini.net/documents/a2b19d90-9d5f-11e3-9ca6-000000000000/pages/1/1280x1810",
+          "750x900" : "https://api-dev.gini.net/documents/a2b19d90-9d5f-11e3-9ca6-000000000000/pages/1/750x900"
+        },
+        "pageNumber" : 1
+      },
+      {
+        "pageNumber" : 2,
+        "images" : {
+          "1280x1810" : "https://api-dev.gini.net/documents/a2b19d90-9d5f-11e3-9ca6-000000000000/pages/2/1280x1810",
+          "750x900" : "https://api-dev.gini.net/documents/a2b19d90-9d5f-11e3-9ca6-000000000000/pages/2/750x900"
+        }
+      }
+    ]
 
 Retrieving the layout of a document
 -----------------------------------

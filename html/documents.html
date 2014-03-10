@@ -818,11 +818,7 @@ the list of pages for a document, issue a <tt class="docutils literal"><span cla
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">totalCount</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
-<td>Total number of document pages</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">pages</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">pages</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">array</span></tt></td>
 <td>All <a class="reference internal" href="#entity-page"><em>pages</em></a> in the current result page</td>
 </tr>
@@ -883,23 +879,22 @@ the list of pages for a document, issue a <tt class="docutils literal"><span cla
 </table>
 <div class="section" id="id15">
 <h4>Example<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-  <span class="nt">&quot;totalCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nt">&quot;pages&quot;</span><span class="p">:</span> <span class="p">[{</span>
-    <span class="nt">&quot;documentId&quot;</span><span class="p">:</span> <span class="s2">&quot;c292af40-d06a-11e2-9a2f-000000000000&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;pagenum&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
-    <span class="nt">&quot;_links&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;document&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;pages&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages&quot;</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;images&quot;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;1280x1810&quot;</span> <span class="p">:</span> <span class="s2">&quot;https://api-dev.gini.net/documents/a2b19d90-9d5f-11e3-9ca6-000000000000/pages/1/1280x1810&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;750x900&quot;</span> <span class="p">:</span> <span class="s2">&quot;https://api-dev.gini.net/documents/a2b19d90-9d5f-11e3-9ca6-000000000000/pages/1/750x900&quot;</span>
     <span class="p">},</span>
-    <span class="nt">&quot;_images&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;360x520&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/360x520&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;146x146&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/146x146&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;750x900&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/750x900&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;1280x1810&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/1280x1810&quot;</span>
+    <span class="nt">&quot;pageNumber&quot;</span> <span class="p">:</span> <span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;pageNumber&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;images&quot;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;1280x1810&quot;</span> <span class="p">:</span> <span class="s2">&quot;https://api-dev.gini.net/documents/a2b19d90-9d5f-11e3-9ca6-000000000000/pages/2/1280x1810&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;750x900&quot;</span> <span class="p">:</span> <span class="s2">&quot;https://api-dev.gini.net/documents/a2b19d90-9d5f-11e3-9ca6-000000000000/pages/2/750x900&quot;</span>
     <span class="p">}</span>
-  <span class="p">}]</span>
-<span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
