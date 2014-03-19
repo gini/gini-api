@@ -154,9 +154,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#request-query-parameters">Request query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id51">Request query parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example-request">Example request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id51">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id52">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -363,6 +363,13 @@ submitted to Gini.</p>
 POST request on the <tt class="docutils literal"><span class="pre">/documents</span></tt> path. After successful creation of a
 document, the location of the new document is returned in the
 <tt class="docutils literal"><span class="pre">Location</span></tt> header.</p>
+<p>The Gini API currently supports two different variants of uploads, one
+optimized for web applications running in a web browser and one for all other
+types of clients.</p>
+<p>The variant optimized for web browsers expects the documents to be uploaded
+using a <tt class="docutils literal"><span class="pre">multipart/form-data</span></tt> request as constructed by typical web browsers.</p>
+<p>The variant aimed at all other clients simply uses the request body (independent
+of the <tt class="docutils literal"><span class="pre">Content-Type</span></tt> of the request) as document.</p>
 <div class="section" id="supported-file-formats">
 <h3>Supported file formats<a class="headerlink" href="#supported-file-formats" title="Permalink to this headline">¶</a></h3>
 <p>Gini currently supports input files in the formats PDF, GIF
@@ -371,13 +378,14 @@ only) as well as scanned document (all formats). Note that there are
 certain limitations on a document that the Gini API accepts:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Document file size must be less than 10 MiB</li>
+<li>Document file size must be less than 10 MiB.</li>
 <li>PDF files <strong>must not</strong> have any security restrictions such as
 password protection.</li>
 <li>Scanned documents should have a resolution of at least
-300dpi in order for the OCR to return optimal results</li>
-<li>Only the first ten pages of a document are processed</li>
-<li>Only documents in German are supported for now</li>
+300dpi in order for the OCR to return optimal results.</li>
+<li>Only the first 10 pages of a document are processed.</li>
+<li>Only contents of documents in German language are sufficiently well
+recognized.</li>
 </ul>
 </div></blockquote>
 </div>
@@ -404,14 +412,43 @@ password protection.</li>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">multipart/form-data</span></tt></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
+<tr class="row-odd"><td>&nbsp;</td>
+<td><tt class="docutils literal"><span class="pre">*/*</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="request-query-parameters">
+<h4>Request query parameters<a class="headerlink" href="#request-query-parameters" title="Permalink to this headline">¶</a></h4>
+<p>If the upload is performed not using <tt class="docutils literal"><span class="pre">multipart/form-data</span></tt> you can optionally
+provide a file name for the submitted document with a query parameter:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="14%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">filename</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td><em>(Optional)</em> File name of the submitted document</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="body">
 <h4>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h4>
+<p>Only in case of <tt class="docutils literal"><span class="pre">Content-Type:</span> <span class="pre">multipart/form-data</span></tt> (applications running in a
+web browser):</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="50%" />
@@ -434,7 +471,12 @@ password protection.</li>
 </div>
 <div class="section" id="example">
 <h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
-<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; --form &quot;file=@file.pdf&quot; -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents
+<p>Variant for web applications running in a web browser:</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; --form &#39;file=@file.pdf&#39; -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents
+</pre></div>
+</div>
+<p>Variant for other types of applications:</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; --data-binary &#39;@file.pdf&#39; -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents?filename=file.pdf
 </pre></div>
 </div>
 </div>
@@ -746,7 +788,7 @@ the list of pages for a document, issue a <tt class="docutils literal"><span cla
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>id</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">id</span></tt></td>
 <td>Document ID</td>
 </tr>
 </tbody>
@@ -1290,7 +1332,7 @@ e.g. to deskew pages. The processed document can be retrieved by a
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>id</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">id</span></tt></td>
 <td>Document ID</td>
 </tr>
 </tbody>
@@ -1576,27 +1618,7 @@ of names).</p>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">box</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">object</span></tt></td>
-<td>Optional: Bounding box where the extraction can be found</td>
-</tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">page</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
-<td>Page where the box can be found starting with 1</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">left</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
-<td>Distance of box from the left edge of the page</td>
-</tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">top</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
-<td>Distance of box from the top edge of the page</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">width</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
-<td>Width of box</td>
-</tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">height</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
-<td>Height of box</td>
+<td><em>(Optional)</em> Bounding box where the extraction can be found</td>
 </tr>
 </tbody>
 </table>
@@ -1744,8 +1766,8 @@ documents.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span>
 </pre></div>
 </div>
-<div class="section" id="request-query-parameters">
-<h3>Request query parameters<a class="headerlink" href="#request-query-parameters" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id51">
+<h3>Request query parameters<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="29%" />
@@ -1777,11 +1799,11 @@ return. Defaults to <em>20</em>.</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id51">
-<h3>Response<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h3>
-<p>The response is a paginated list of documents.</p>
 <div class="section" id="id52">
-<h4>Headers<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
+<h3>Response<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h3>
+<p>The response is a paginated list of documents.</p>
+<div class="section" id="id53">
+<h4>Headers<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="50%" />
@@ -1799,8 +1821,8 @@ return. Defaults to <em>20</em>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id53">
-<h4>Body<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id54">
+<h4>Body<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
 <p>The response entity has the following fields:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1826,8 +1848,8 @@ return. Defaults to <em>20</em>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id54">
-<h4>Example<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id55">
+<h4>Example<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre>{
   &quot;totalCount&quot;: 118,
   &quot;documents&quot;: [

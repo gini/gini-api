@@ -33,6 +33,16 @@ POST request on the ``/documents`` path. After successful creation of a
 document, the location of the new document is returned in the
 ``Location`` header.
 
+The Gini API currently supports two different variants of uploads, one
+optimized for web applications running in a web browser and one for all other
+types of clients.
+
+The variant optimized for web browsers expects the documents to be uploaded
+using a ``multipart/form-data`` request as constructed by typical web browsers.
+
+The variant aimed at all other clients simply uses the request body (independent
+of the ``Content-Type`` of the request) as document.
+
 
 Supported file formats
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -42,13 +52,14 @@ Gini currently supports input files in the formats PDF, GIF
 only) as well as scanned document (all formats). Note that there are
 certain limitations on a document that the Gini API accepts:
 
-  * Document file size must be less than 10 MiB
+  * Document file size must be less than 10 MiB.
   * PDF files **must not** have any security restrictions such as
     password protection. 
   * Scanned documents should have a resolution of at least
-    300dpi in order for the OCR to return optimal results
-  * Only the first ten pages of a document are processed
-  * Only documents in German are supported for now
+    300dpi in order for the OCR to return optimal results.
+  * Only the first 10 pages of a document are processed.
+  * Only contents of documents in German language are sufficiently well
+    recognized.
 
 
 Request
@@ -69,11 +80,30 @@ Headers
 +====================+===================================+
 | ``Content-Type``   | ``multipart/form-data``           |
 +--------------------+-----------------------------------+
+|                    | ``*/*``                           |
++--------------------+-----------------------------------+
 | ``Accept``         | ``application/vnd.gini.v1+json``  |
 +--------------------+-----------------------------------+
 
+
+Request query parameters
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+If the upload is performed not using ``multipart/form-data`` you can optionally
+provide a file name for the submitted document with a query parameter:
+
++-------------------------+------------+--------------------------------------------------+
+| Name                    | Type       | Description                                      |
++=========================+============+==================================================+
+| ``filename``            | ``string`` | *(Optional)* File name of the submitted document |
++-------------------------+------------+--------------------------------------------------+
+
+
 Body
 ^^^^
+
+Only in case of ``Content-Type: multipart/form-data`` (applications running in a
+web browser):
 
 +---------------------------+---------------------------+
 | Key                       | Description               |
@@ -86,9 +116,19 @@ Body
 Example
 ^^^^^^^
 
+Variant for web applications running in a web browser:
+
 .. code:: bash
 
-    curl -H 'Authorization: BEARER <token>' --form "file=@file.pdf" -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents
+    curl -H 'Authorization: BEARER <token>' --form 'file=@file.pdf' -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents
+
+
+Variant for other types of applications:
+
+.. code:: bash
+
+    curl -H 'Authorization: BEARER <token>' --data-binary '@file.pdf' -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents?filename=file.pdf
+
 
 Response
 ~~~~~~~~
@@ -118,6 +158,7 @@ Errors
 +=====================+=====================================================+
 | 400 (Bad Request)   | Returned when a file in an invalid format is sent   |
 +---------------------+-----------------------------------------------------+
+
 
 Checking processing status and getting document information
 -----------------------------------------------------------
@@ -269,7 +310,7 @@ Path parameters
 +--------------------+------------------------------+
 | Name               | Value                        |
 +====================+==============================+
-| id                 | Document ID                  |
+| ``id``             | Document ID                  |
 +--------------------+------------------------------+
 
 Headers
@@ -600,7 +641,7 @@ Path parameters
 +--------------------+------------------------------+
 | Name               | Value                        |
 +====================+==============================+
-| id                 | Document ID                  |
+| ``id``             | Document ID                  |
 +--------------------+------------------------------+
 
 
@@ -793,23 +834,13 @@ Headers
 Body
 ''''
 
-+--------------+------------+------------------------------------------------------------+
-| Key          | Type       | Description                                                |
-+==============+============+============================================================+
-| ``value``    | ``string`` | New value of extraction                                    |
-+--------------+------------+------------------------------------------------------------+
-| ``box``      | ``object`` | Optional: Bounding box where the extraction can be found   |
-+--------------+------------+------------------------------------------------------------+
-| ``page``     | ``number`` | Page where the box can be found starting with 1            |
-+--------------+------------+------------------------------------------------------------+
-| ``left``     | ``number`` | Distance of box from the left edge of the page             |
-+--------------+------------+------------------------------------------------------------+
-| ``top``      | ``number`` | Distance of box from the top edge of the page              |
-+--------------+------------+------------------------------------------------------------+
-| ``width``    | ``number`` | Width of box                                               |
-+--------------+------------+------------------------------------------------------------+
-| ``height``   | ``number`` | Height of box                                              |
-+--------------+------------+------------------------------------------------------------+
++--------------+------------+-------------------------------------------------------------+
+| Key          | Type       | Description                                                 |
++==============+============+=============================================================+
+| ``value``    | ``string`` | New value of extraction                                     |
++--------------+------------+-------------------------------------------------------------+
+| ``box``      | ``object`` | *(Optional)* Bounding box where the extraction can be found |
++--------------+------------+-------------------------------------------------------------+
 
 Example
 '''''''
