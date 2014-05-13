@@ -74,7 +74,7 @@ extraction. It also has an additional field ``candidates``:
 Example
 """""""
 
-.. code:: json
+.. code-block:: json
 
    "paymentDueDate": {
      "entity": "date",
@@ -254,7 +254,7 @@ extraction originates.
 Example
 ~~~~~~~
 
-.. code:: json
+.. code-block:: json
 
     "box": {
       "page": 2,

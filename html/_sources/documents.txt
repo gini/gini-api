@@ -54,7 +54,7 @@ certain limitations on a document that the Gini API accepts:
 
   * Document file size must be less than 10 MiB.
   * PDF files **must not** have any security restrictions such as
-    password protection. 
+    password protection.
   * Scanned documents should have a resolution of at least
     300dpi in order for the OCR to return optimal results.
   * Only the first 10 pages of a document are processed.
@@ -118,14 +118,14 @@ Example
 
 Variant for web applications running in a web browser:
 
-.. code:: bash
+.. code-block:: bash
 
     curl -H 'Authorization: BEARER <token>' --form 'file=@file.pdf' -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents
 
 
 Variant for other types of applications:
 
-.. code:: bash
+.. code-block:: bash
 
     curl -H 'Authorization: BEARER <token>' --data-binary '@file.pdf' -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents?filename=file.pdf
 
@@ -191,7 +191,7 @@ Headers
 Example
 ^^^^^^^
 
-.. code:: bash
+.. code-block:: bash
 
     curl -H 'Authorization: BEARER <token>' -X GET -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
 
@@ -253,7 +253,7 @@ Body (application/vnd.gini.v1+json)
 Example
 ^^^^^^^
 
-.. code:: json
+.. code-block:: json
 
     {
       "id": "626626a0-749f-11e2-bfd6-000000000000",
@@ -432,7 +432,7 @@ Headers
 Example
 ^^^^^^^
 
-.. code:: bash
+.. code-block:: bash
 
     curl -H 'Authorization: BEARER <token>' -X GET -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/layout
 
@@ -545,7 +545,7 @@ Word Object
 Example
 ^^^^^^^
 
-.. code:: json
+.. code-block:: json
 
     {
       "pages": [
@@ -745,7 +745,7 @@ A detailed explanation of the response format can be found in
 Example
 ^^^^^^^
 
-.. code:: json
+.. code-block:: json
 
      {
         "extractions": {
@@ -845,7 +845,7 @@ Body
 Example
 '''''''
 
-.. code:: json
+.. code-block:: json
 
     {
         "box": {

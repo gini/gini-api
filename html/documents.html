@@ -308,6 +308,15 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="client_libs.html">Client Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="client_libs.html#ruby">Ruby</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="client_libs.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="client_libs.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="client_libs.html#upcoming-clients">Upcoming clients</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -472,11 +481,11 @@ web browser):</p>
 <div class="section" id="example">
 <h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
 <p>Variant for web applications running in a web browser:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; --form &#39;file=@file.pdf&#39; -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --form <span class="s1">&#39;file=@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents
 </pre></div>
 </div>
 <p>Variant for other types of applications:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; --data-binary &#39;@file.pdf&#39; -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents?filename=file.pdf
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf
 </pre></div>
 </div>
 </div>
@@ -577,7 +586,7 @@ document URI.</p>
 </div>
 <div class="section" id="id4">
 <h4>Example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
-<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; -X GET -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X GET -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
 </pre></div>
 </div>
 </div>
@@ -716,30 +725,30 @@ document URI.</p>
 </div>
 <div class="section" id="id7">
 <h4>Example<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
-<div class="code json highlight-python"><div class="highlight"><pre>{
-  &quot;id&quot;: &quot;626626a0-749f-11e2-bfd6-000000000000&quot;,
-  &quot;creationDate&quot;: 1360623867402,
-  &quot;name&quot;: &quot;scanned.jpg&quot;,
-  &quot;progress&quot;: &quot;COMPLETED&quot;,
-  &quot;origin&quot;: &quot;UPLOAD&quot;,
-  &quot;sourceClassification&quot;: &quot;SCANNED&quot;
-  &quot;pageCount&quot;: 1,
-  &quot;pages&quot; : [
-    {
-      &quot;images&quot; : {
-        &quot;750x900&quot; : &quot;http://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/pages/1/750x900&quot;,
-        &quot;1280x1810&quot; : &quot;http://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/pages/1/1280x1810&quot;
-      },
-      &quot;pageNumber&quot; : 1
-    }
-  ],
-  &quot;_links&quot;: {
-    &quot;extractions&quot;: &quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/extractions&quot;,
-    &quot;layout&quot;: &quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/layout&quot;,
-    &quot;document&quot;: &quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000&quot;,
-    &quot;processed&quot;: &quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/processed&quot;
-  }
-}
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;626626a0-749f-11e2-bfd6-000000000000&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;creationDate&quot;</span><span class="p">:</span> <span class="mi">1360623867402</span><span class="p">,</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;scanned.jpg&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETED&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;UPLOAD&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;sourceClassification&quot;</span><span class="p">:</span> <span class="s2">&quot;SCANNED&quot;</span>
+  <span class="s2">&quot;pageCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;pages&quot;</span> <span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;images&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;750x900&quot;</span> <span class="p">:</span> <span class="s2">&quot;http://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/pages/1/750x900&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;1280x1810&quot;</span> <span class="p">:</span> <span class="s2">&quot;http://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/pages/1/1280x1810&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;pageNumber&quot;</span> <span class="p">:</span> <span class="mi">1</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;_links&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;extractions&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/extractions&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/layout&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;document&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;processed&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/processed&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -980,7 +989,7 @@ layout URI:</p>
 </div>
 <div class="section" id="id18">
 <h4>Example<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
-<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; -X GET -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/layout
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X GET -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/layout
 </pre></div>
 </div>
 </div>
@@ -1224,67 +1233,67 @@ layout URI:</p>
 </div>
 <div class="section" id="id22">
 <h4>Example<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;pages&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s">&quot;number&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s">&quot;sizeX&quot;</span><span class="p">:</span> <span class="mf">595.3</span><span class="p">,</span>
-      <span class="s">&quot;sizeY&quot;</span><span class="p">:</span> <span class="mf">841.9</span><span class="p">,</span>
-      <span class="s">&quot;textZones&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-          <span class="s">&quot;paragraphs&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">{</span>
-              <span class="s">&quot;l&quot;</span><span class="p">:</span> <span class="mf">54.0</span><span class="p">,</span>
-              <span class="s">&quot;t&quot;</span><span class="p">:</span> <span class="mf">158.76</span><span class="p">,</span>
-              <span class="s">&quot;w&quot;</span><span class="p">:</span> <span class="mf">190.1</span><span class="p">,</span>
-              <span class="s">&quot;h&quot;</span><span class="p">:</span> <span class="mf">36.55000000000001</span><span class="p">,</span>
-              <span class="s">&quot;lines&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                  <span class="s">&quot;l&quot;</span><span class="p">:</span> <span class="mf">54.0</span><span class="p">,</span>
-                  <span class="s">&quot;t&quot;</span><span class="p">:</span> <span class="mf">158.76</span><span class="p">,</span>
-                  <span class="s">&quot;w&quot;</span><span class="p">:</span> <span class="mf">190.1</span><span class="p">,</span>
-                  <span class="s">&quot;h&quot;</span><span class="p">:</span> <span class="mf">10.810000000000002</span><span class="p">,</span>
-                  <span class="s">&quot;wds&quot;</span><span class="p">:</span> <span class="p">[</span>
-                    <span class="p">{</span>
-                      <span class="s">&quot;l&quot;</span><span class="p">:</span> <span class="mf">54.0</span><span class="p">,</span>
-                      <span class="s">&quot;t&quot;</span><span class="p">:</span> <span class="mf">158.76</span><span class="p">,</span>
-                      <span class="s">&quot;w&quot;</span><span class="p">:</span> <span class="mf">18.129999999999995</span><span class="p">,</span>
-                      <span class="s">&quot;h&quot;</span><span class="p">:</span> <span class="mf">9.900000000000006</span><span class="p">,</span>
-                      <span class="s">&quot;fontSize&quot;</span><span class="p">:</span> <span class="mf">9.9</span><span class="p">,</span>
-                      <span class="s">&quot;fontFamily&quot;</span><span class="p">:</span> <span class="s">&quot;Arial-BoldMT&quot;</span><span class="p">,</span>
-                      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;Ihre&quot;</span>
-                    <span class="p">},</span>
-                    <span class="p">{</span>
-                      <span class="s">&quot;l&quot;</span><span class="p">:</span> <span class="mf">74.86</span><span class="p">,</span>
-                      <span class="s">&quot;t&quot;</span><span class="p">:</span> <span class="mf">158.76</span><span class="p">,</span>
-                      <span class="s">&quot;w&quot;</span><span class="p">:</span> <span class="mf">83.91000000000001</span><span class="p">,</span>
-                      <span class="s">&quot;h&quot;</span><span class="p">:</span> <span class="mf">9.900000000000006</span><span class="p">,</span>
-                      <span class="s">&quot;fontSize&quot;</span><span class="p">:</span> <span class="mf">9.9</span><span class="p">,</span>
-                      <span class="s">&quot;fontFamily&quot;</span><span class="p">:</span> <span class="s">&quot;Arial-BoldMT&quot;</span><span class="p">,</span>
-                      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;Vorgangsnummer&quot;</span>
-                    <span class="p">},</span>
-                    <span class="p">{</span>
-                      <span class="s">&quot;l&quot;</span><span class="p">:</span> <span class="mf">158.76</span><span class="p">,</span>
-                      <span class="s">&quot;t&quot;</span><span class="p">:</span> <span class="mf">158.76</span><span class="p">,</span>
-                      <span class="s">&quot;w&quot;</span><span class="p">:</span> <span class="mf">3.3000000000000114</span><span class="p">,</span>
-                      <span class="s">&quot;h&quot;</span><span class="p">:</span> <span class="mf">9.900000000000006</span><span class="p">,</span>
-                      <span class="s">&quot;fontSize&quot;</span><span class="p">:</span> <span class="mf">9.9</span><span class="p">,</span>
-                      <span class="s">&quot;fontFamily&quot;</span><span class="p">:</span> <span class="s">&quot;Arial-BoldMT&quot;</span><span class="p">,</span>
-                      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;:&quot;</span>
-                    <span class="p">},</span>
-                    <span class="p">[</span><span class="o">...</span><span class="p">]</span>
-                  <span class="p">]</span>
-                <span class="p">},</span>
-                <span class="p">[</span><span class="o">...</span><span class="p">]</span>
-              <span class="p">]</span>
-            <span class="p">}</span>
-          <span class="p">]</span>
-        <span class="p">}</span>
-      <span class="p">]</span>
-    <span class="p">},</span>
-    <span class="p">[</span><span class="o">...</span><span class="p">]</span>
-  <span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight-json"><div class="highlight"><pre>{
+  &quot;pages&quot;: [
+    {
+      &quot;number&quot;: 1,
+      &quot;sizeX&quot;: 595.3,
+      &quot;sizeY&quot;: 841.9,
+      &quot;textZones&quot;: [
+        {
+          &quot;paragraphs&quot;: [
+            {
+              &quot;l&quot;: 54.0,
+              &quot;t&quot;: 158.76,
+              &quot;w&quot;: 190.1,
+              &quot;h&quot;: 36.55000000000001,
+              &quot;lines&quot;: [
+                {
+                  &quot;l&quot;: 54.0,
+                  &quot;t&quot;: 158.76,
+                  &quot;w&quot;: 190.1,
+                  &quot;h&quot;: 10.810000000000002,
+                  &quot;wds&quot;: [
+                    {
+                      &quot;l&quot;: 54.0,
+                      &quot;t&quot;: 158.76,
+                      &quot;w&quot;: 18.129999999999995,
+                      &quot;h&quot;: 9.900000000000006,
+                      &quot;fontSize&quot;: 9.9,
+                      &quot;fontFamily&quot;: &quot;Arial-BoldMT&quot;,
+                      &quot;text&quot;: &quot;Ihre&quot;
+                    },
+                    {
+                      &quot;l&quot;: 74.86,
+                      &quot;t&quot;: 158.76,
+                      &quot;w&quot;: 83.91000000000001,
+                      &quot;h&quot;: 9.900000000000006,
+                      &quot;fontSize&quot;: 9.9,
+                      &quot;fontFamily&quot;: &quot;Arial-BoldMT&quot;,
+                      &quot;text&quot;: &quot;Vorgangsnummer&quot;
+                    },
+                    {
+                      &quot;l&quot;: 158.76,
+                      &quot;t&quot;: 158.76,
+                      &quot;w&quot;: 3.3000000000000114,
+                      &quot;h&quot;: 9.900000000000006,
+                      &quot;fontSize&quot;: 9.9,
+                      &quot;fontFamily&quot;: &quot;Arial-BoldMT&quot;,
+                      &quot;text&quot;: &quot;:&quot;
+                    },
+                    [...]
+                  ]
+                },
+                [...]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    [...]
+  ]
+}
 </pre></div>
 </div>
 </div>
@@ -1494,7 +1503,7 @@ extractions URI:</p>
 </div>
 <div class="section" id="id37">
 <h4>Example<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h4>
-<div class="code json highlight-python"><div class="highlight"><pre> {
+<div class="highlight-json"><div class="highlight"><pre> {
     &quot;extractions&quot;: {
         &quot;amountToPay&quot;: {
             &quot;box&quot;: {
@@ -1625,15 +1634,15 @@ of names).</p>
 </div>
 <div class="section" id="id42">
 <h5>Example<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">405</span><span class="p">,</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">421</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">36</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">405</span><span class="p">,</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">421</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">36</span>
     <span class="p">},</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;new value&quot;</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;new value&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>

@@ -306,6 +306,15 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-client_libs">Client Libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-client_libs#ruby">Ruby</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-client_libs#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-client_libs#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-client_libs#upcoming-clients">Upcoming clients</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -1038,11 +1047,11 @@ web browser):</p>
 <div class="section" id="example">
 <h6>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h6>
 <p>Variant for web applications running in a web browser:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; --form &#39;file=@file.pdf&#39; -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --form <span class="s1">&#39;file=@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents
 </pre></div>
 </div>
 <p>Variant for other types of applications:</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; --data-binary &#39;@file.pdf&#39; -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents?filename=file.pdf
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf
 </pre></div>
 </div>
 </div>
@@ -1143,7 +1152,7 @@ document URI.</p>
 </div>
 <div class="section" id="id4">
 <h6>Example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h6>
-<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; -X GET -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X GET -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
 </pre></div>
 </div>
 </div>
@@ -1282,30 +1291,30 @@ document URI.</p>
 </div>
 <div class="section" id="id7">
 <h6>Example<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h6>
-<div class="code json highlight-python"><div class="highlight"><pre>{
-  &quot;id&quot;: &quot;626626a0-749f-11e2-bfd6-000000000000&quot;,
-  &quot;creationDate&quot;: 1360623867402,
-  &quot;name&quot;: &quot;scanned.jpg&quot;,
-  &quot;progress&quot;: &quot;COMPLETED&quot;,
-  &quot;origin&quot;: &quot;UPLOAD&quot;,
-  &quot;sourceClassification&quot;: &quot;SCANNED&quot;
-  &quot;pageCount&quot;: 1,
-  &quot;pages&quot; : [
-    {
-      &quot;images&quot; : {
-        &quot;750x900&quot; : &quot;http://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/pages/1/750x900&quot;,
-        &quot;1280x1810&quot; : &quot;http://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/pages/1/1280x1810&quot;
-      },
-      &quot;pageNumber&quot; : 1
-    }
-  ],
-  &quot;_links&quot;: {
-    &quot;extractions&quot;: &quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/extractions&quot;,
-    &quot;layout&quot;: &quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/layout&quot;,
-    &quot;document&quot;: &quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000&quot;,
-    &quot;processed&quot;: &quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/processed&quot;
-  }
-}
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;626626a0-749f-11e2-bfd6-000000000000&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;creationDate&quot;</span><span class="p">:</span> <span class="mi">1360623867402</span><span class="p">,</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;scanned.jpg&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;progress&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETED&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;UPLOAD&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;sourceClassification&quot;</span><span class="p">:</span> <span class="s2">&quot;SCANNED&quot;</span>
+  <span class="s2">&quot;pageCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="nt">&quot;pages&quot;</span> <span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;images&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;750x900&quot;</span> <span class="p">:</span> <span class="s2">&quot;http://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/pages/1/750x900&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;1280x1810&quot;</span> <span class="p">:</span> <span class="s2">&quot;http://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/pages/1/1280x1810&quot;</span>
+      <span class="p">},</span>
+      <span class="nt">&quot;pageNumber&quot;</span> <span class="p">:</span> <span class="mi">1</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;_links&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;extractions&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/extractions&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/layout&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;document&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;processed&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/processed&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -1546,7 +1555,7 @@ layout URI:</p>
 </div>
 <div class="section" id="id18">
 <h6>Example<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h6>
-<div class="code bash highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; -X GET -H &#39;Accept: application/vnd.gini.v1+json&#39; -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/layout
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X GET -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/layout
 </pre></div>
 </div>
 </div>
@@ -1790,67 +1799,67 @@ layout URI:</p>
 </div>
 <div class="section" id="id22">
 <h6>Example<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h6>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-  <span class="s">&quot;pages&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="s">&quot;number&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s">&quot;sizeX&quot;</span><span class="p">:</span> <span class="mf">595.3</span><span class="p">,</span>
-      <span class="s">&quot;sizeY&quot;</span><span class="p">:</span> <span class="mf">841.9</span><span class="p">,</span>
-      <span class="s">&quot;textZones&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-          <span class="s">&quot;paragraphs&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">{</span>
-              <span class="s">&quot;l&quot;</span><span class="p">:</span> <span class="mf">54.0</span><span class="p">,</span>
-              <span class="s">&quot;t&quot;</span><span class="p">:</span> <span class="mf">158.76</span><span class="p">,</span>
-              <span class="s">&quot;w&quot;</span><span class="p">:</span> <span class="mf">190.1</span><span class="p">,</span>
-              <span class="s">&quot;h&quot;</span><span class="p">:</span> <span class="mf">36.55000000000001</span><span class="p">,</span>
-              <span class="s">&quot;lines&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                  <span class="s">&quot;l&quot;</span><span class="p">:</span> <span class="mf">54.0</span><span class="p">,</span>
-                  <span class="s">&quot;t&quot;</span><span class="p">:</span> <span class="mf">158.76</span><span class="p">,</span>
-                  <span class="s">&quot;w&quot;</span><span class="p">:</span> <span class="mf">190.1</span><span class="p">,</span>
-                  <span class="s">&quot;h&quot;</span><span class="p">:</span> <span class="mf">10.810000000000002</span><span class="p">,</span>
-                  <span class="s">&quot;wds&quot;</span><span class="p">:</span> <span class="p">[</span>
-                    <span class="p">{</span>
-                      <span class="s">&quot;l&quot;</span><span class="p">:</span> <span class="mf">54.0</span><span class="p">,</span>
-                      <span class="s">&quot;t&quot;</span><span class="p">:</span> <span class="mf">158.76</span><span class="p">,</span>
-                      <span class="s">&quot;w&quot;</span><span class="p">:</span> <span class="mf">18.129999999999995</span><span class="p">,</span>
-                      <span class="s">&quot;h&quot;</span><span class="p">:</span> <span class="mf">9.900000000000006</span><span class="p">,</span>
-                      <span class="s">&quot;fontSize&quot;</span><span class="p">:</span> <span class="mf">9.9</span><span class="p">,</span>
-                      <span class="s">&quot;fontFamily&quot;</span><span class="p">:</span> <span class="s">&quot;Arial-BoldMT&quot;</span><span class="p">,</span>
-                      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;Ihre&quot;</span>
-                    <span class="p">},</span>
-                    <span class="p">{</span>
-                      <span class="s">&quot;l&quot;</span><span class="p">:</span> <span class="mf">74.86</span><span class="p">,</span>
-                      <span class="s">&quot;t&quot;</span><span class="p">:</span> <span class="mf">158.76</span><span class="p">,</span>
-                      <span class="s">&quot;w&quot;</span><span class="p">:</span> <span class="mf">83.91000000000001</span><span class="p">,</span>
-                      <span class="s">&quot;h&quot;</span><span class="p">:</span> <span class="mf">9.900000000000006</span><span class="p">,</span>
-                      <span class="s">&quot;fontSize&quot;</span><span class="p">:</span> <span class="mf">9.9</span><span class="p">,</span>
-                      <span class="s">&quot;fontFamily&quot;</span><span class="p">:</span> <span class="s">&quot;Arial-BoldMT&quot;</span><span class="p">,</span>
-                      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;Vorgangsnummer&quot;</span>
-                    <span class="p">},</span>
-                    <span class="p">{</span>
-                      <span class="s">&quot;l&quot;</span><span class="p">:</span> <span class="mf">158.76</span><span class="p">,</span>
-                      <span class="s">&quot;t&quot;</span><span class="p">:</span> <span class="mf">158.76</span><span class="p">,</span>
-                      <span class="s">&quot;w&quot;</span><span class="p">:</span> <span class="mf">3.3000000000000114</span><span class="p">,</span>
-                      <span class="s">&quot;h&quot;</span><span class="p">:</span> <span class="mf">9.900000000000006</span><span class="p">,</span>
-                      <span class="s">&quot;fontSize&quot;</span><span class="p">:</span> <span class="mf">9.9</span><span class="p">,</span>
-                      <span class="s">&quot;fontFamily&quot;</span><span class="p">:</span> <span class="s">&quot;Arial-BoldMT&quot;</span><span class="p">,</span>
-                      <span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;:&quot;</span>
-                    <span class="p">},</span>
-                    <span class="p">[</span><span class="o">...</span><span class="p">]</span>
-                  <span class="p">]</span>
-                <span class="p">},</span>
-                <span class="p">[</span><span class="o">...</span><span class="p">]</span>
-              <span class="p">]</span>
-            <span class="p">}</span>
-          <span class="p">]</span>
-        <span class="p">}</span>
-      <span class="p">]</span>
-    <span class="p">},</span>
-    <span class="p">[</span><span class="o">...</span><span class="p">]</span>
-  <span class="p">]</span>
-<span class="p">}</span>
+<div class="highlight-json"><div class="highlight"><pre>{
+  &quot;pages&quot;: [
+    {
+      &quot;number&quot;: 1,
+      &quot;sizeX&quot;: 595.3,
+      &quot;sizeY&quot;: 841.9,
+      &quot;textZones&quot;: [
+        {
+          &quot;paragraphs&quot;: [
+            {
+              &quot;l&quot;: 54.0,
+              &quot;t&quot;: 158.76,
+              &quot;w&quot;: 190.1,
+              &quot;h&quot;: 36.55000000000001,
+              &quot;lines&quot;: [
+                {
+                  &quot;l&quot;: 54.0,
+                  &quot;t&quot;: 158.76,
+                  &quot;w&quot;: 190.1,
+                  &quot;h&quot;: 10.810000000000002,
+                  &quot;wds&quot;: [
+                    {
+                      &quot;l&quot;: 54.0,
+                      &quot;t&quot;: 158.76,
+                      &quot;w&quot;: 18.129999999999995,
+                      &quot;h&quot;: 9.900000000000006,
+                      &quot;fontSize&quot;: 9.9,
+                      &quot;fontFamily&quot;: &quot;Arial-BoldMT&quot;,
+                      &quot;text&quot;: &quot;Ihre&quot;
+                    },
+                    {
+                      &quot;l&quot;: 74.86,
+                      &quot;t&quot;: 158.76,
+                      &quot;w&quot;: 83.91000000000001,
+                      &quot;h&quot;: 9.900000000000006,
+                      &quot;fontSize&quot;: 9.9,
+                      &quot;fontFamily&quot;: &quot;Arial-BoldMT&quot;,
+                      &quot;text&quot;: &quot;Vorgangsnummer&quot;
+                    },
+                    {
+                      &quot;l&quot;: 158.76,
+                      &quot;t&quot;: 158.76,
+                      &quot;w&quot;: 3.3000000000000114,
+                      &quot;h&quot;: 9.900000000000006,
+                      &quot;fontSize&quot;: 9.9,
+                      &quot;fontFamily&quot;: &quot;Arial-BoldMT&quot;,
+                      &quot;text&quot;: &quot;:&quot;
+                    },
+                    [...]
+                  ]
+                },
+                [...]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    [...]
+  ]
+}
 </pre></div>
 </div>
 </div>
@@ -2060,7 +2069,7 @@ extractions URI:</p>
 </div>
 <div class="section" id="id37">
 <h6>Example<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h6>
-<div class="code json highlight-python"><div class="highlight"><pre> {
+<div class="highlight-json"><div class="highlight"><pre> {
     &quot;extractions&quot;: {
         &quot;amountToPay&quot;: {
             &quot;box&quot;: {
@@ -2191,15 +2200,15 @@ of names).</p>
 </div>
 <div class="section" id="id42">
 <h7>Example<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h7>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">405</span><span class="p">,</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">421</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">36</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">405</span><span class="p">,</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">421</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">36</span>
     <span class="p">},</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;new value&quot;</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;new value&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -2519,7 +2528,7 @@ extraction. It also has an additional field <tt class="docutils literal"><span c
 </table>
 <div class="section" id="id4">
 <h6>Example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h6>
-<div class="code json highlight-python"><div class="highlight"><pre>&quot;paymentDueDate&quot;: {
+<div class="highlight-json"><div class="highlight"><pre>&quot;paymentDueDate&quot;: {
   &quot;entity&quot;: &quot;date&quot;,
   &quot;value&quot;: &quot;2012-06-20&quot;,
   &quot;box&quot;: { ... },
@@ -2820,7 +2829,7 @@ extraction originates.</p>
 </table>
 <div class="section" id="id10">
 <h5>Example<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre>&quot;box&quot;: {
+<div class="highlight-json"><div class="highlight"><pre>&quot;box&quot;: {
   &quot;page&quot;: 2,
   &quot;left&quot;: 483.0,
   &quot;top&quot;: 450.0,
@@ -2880,15 +2889,15 @@ and <tt class="docutils literal"><span class="pre">&lt;Currency</span> <span cla
 </div>
 <div class="section" id="example">
 <h5>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;amount&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;33.78:EUR&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">395</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;amount&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;33.78:EUR&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">395</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -2930,15 +2939,15 @@ and <tt class="docutils literal"><span class="pre">&lt;Currency</span> <span cla
 </div>
 <div class="section" id="id2">
 <h5>Example<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;bankaccount&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;1597880&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">506</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">777</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">53</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;bankaccount&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;1597880&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">506</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">777</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">53</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -2980,15 +2989,15 @@ and <tt class="docutils literal"><span class="pre">&lt;Currency</span> <span cla
 </div>
 <div class="section" id="id4">
 <h5>Example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;banknumber&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;70250150&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">147</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">427</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">52</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">8</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;banknumber&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;70250150&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">147</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">427</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">52</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">8</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3030,15 +3039,15 @@ and <tt class="docutils literal"><span class="pre">&lt;Currency</span> <span cla
 </div>
 <div class="section" id="id6">
 <h5>Example<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;bic&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;GENODEF1HH2&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">506</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">777</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">53</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;bic&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;GENODEF1HH2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">506</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">777</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">53</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3080,15 +3089,15 @@ and <tt class="docutils literal"><span class="pre">&lt;Currency</span> <span cla
 </div>
 <div class="section" id="id8">
 <h5>Example<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;city&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;München&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">395</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;München&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">395</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3130,15 +3139,15 @@ and <tt class="docutils literal"><span class="pre">&lt;Currency</span> <span cla
 </div>
 <div class="section" id="id10">
 <h5>Example<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;companyname&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;Weinquelle Lühmann&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">395</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;companyname&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Weinquelle Lühmann&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">395</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3180,15 +3189,15 @@ and <tt class="docutils literal"><span class="pre">&lt;Currency</span> <span cla
 </div>
 <div class="section" id="id12">
 <h5>Example<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;companynameaddition&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;Kundenservice&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">395</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;companynameaddition&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Kundenservice&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">395</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3232,15 +3241,15 @@ with &#8221;:&#8221; as delimiter between components.</p>
 </div>
 <div class="section" id="id14">
 <h5>Example<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;companyregisterid&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;HRB:108514:München&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">525</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">805</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">34</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;companyregisterid&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;HRB:108514:München&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">525</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">805</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">34</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3284,15 +3293,15 @@ with &#8221;:&#8221; as delimiter between components.</p>
 </div>
 <div class="section" id="id16">
 <h5>Example<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;currency&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;EUR&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">395</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;currency&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;EUR&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">395</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3334,15 +3343,15 @@ with &#8221;:&#8221; as delimiter between components.</p>
 </div>
 <div class="section" id="id18">
 <h5>Example<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;customerid&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;M500721563&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">317</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">158</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">8</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;customerid&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;M500721563&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">317</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">158</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">8</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3385,15 +3394,15 @@ delimiter between date components.</p>
 </div>
 <div class="section" id="id20">
 <h5>Example<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;date&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;2012-11-16&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">429</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">143</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">8</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;date&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-11-16&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">429</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">143</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">8</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3439,9 +3448,9 @@ delimiter between date components.</p>
 </div>
 <div class="section" id="id22">
 <h5>Example<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;doctype&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;Invoice&quot;</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;doctype&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Invoice&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -3485,9 +3494,9 @@ delimiter between date components.</p>
 </div>
 <div class="section" id="id24">
 <h5>Example<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;documentdomain&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;TeleCommunication&quot;</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;documentdomain&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;TeleCommunication&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -3529,15 +3538,15 @@ delimiter between date components.</p>
 </div>
 <div class="section" id="id26">
 <h5>Example<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;iban&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;DE74700500000000028273&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">425</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">770</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">83</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;iban&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;DE74700500000000028273&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">425</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">770</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">83</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3579,15 +3588,15 @@ delimiter between date components.</p>
 </div>
 <div class="section" id="id28">
 <h5>Example<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;invoiceid&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;201210124056&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">429</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">133</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">53</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">8</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;invoiceid&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;201210124056&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">429</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">133</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">53</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">8</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3629,9 +3638,9 @@ delimiter between date components.</p>
 </div>
 <div class="section" id="id30">
 <h5>Example<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;paymentState&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;Paid&quot;</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;paymentState&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Paid&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -3672,15 +3681,15 @@ delimiter between date components.</p>
 </div>
 <div class="section" id="id32">
 <h5>Example<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;poboxnumber&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;22087&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">223</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">125</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;poboxnumber&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;22087&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">223</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">125</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3722,15 +3731,15 @@ delimiter between date components.</p>
 </div>
 <div class="section" id="id34">
 <h5>Example<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;reference&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;K19218331&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">395</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;K19218331&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">535</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">395</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3774,15 +3783,15 @@ are replaced with the German word &#8220;Straße&#8221;.</p>
 </div>
 <div class="section" id="id36">
 <h5>Example<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;street&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;Emmy-Noether-Straße:2a&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">162</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">125</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">55</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;street&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Emmy-Noether-Straße:2a&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">162</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">125</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">55</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3826,15 +3835,15 @@ between components.</p>
 </div>
 <div class="section" id="id38">
 <h5>Example<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;taxnumber&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;143/163/4028/9&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">501</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">812</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">58</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;taxnumber&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;143/163/4028/9&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">501</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">812</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">58</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3877,15 +3886,15 @@ between components.</p>
 </div>
 <div class="section" id="id40">
 <h5>Example<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;url&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;www.m-net.de&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">444</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">553</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">8</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;url&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;www.m-net.de&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">444</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">553</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">8</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3927,15 +3936,15 @@ between components.</p>
 </div>
 <div class="section" id="id42">
 <h5>Example<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;vat&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;DE188796931&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">453</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">812</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">43</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;vat&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;DE188796931&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">453</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">812</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">43</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -3977,15 +3986,15 @@ between components.</p>
 </div>
 <div class="section" id="id44">
 <h5>Example<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h5>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s">&quot;entity&quot;</span><span class="p">:</span> <span class="s">&quot;zipCode&quot;</span><span class="p">,</span>
-    <span class="s">&quot;value&quot;</span><span class="p">:</span> <span class="s">&quot;18337&quot;</span><span class="p">,</span>
-    <span class="s">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">&quot;left&quot;</span><span class="p">:</span> <span class="mi">62</span><span class="p">,</span>
-        <span class="s">&quot;top&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
-        <span class="s">&quot;width&quot;</span><span class="p">:</span> <span class="mi">55</span><span class="p">,</span>
-        <span class="s">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;zipCode&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;18337&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mi">62</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mi">55</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mi">6</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -4140,6 +4149,73 @@ a list of possible values.</td>
 </pre></div>
 </div>
 </div>
+</div>
+</div>
+<span id="document-client_libs"></span><div class="section" id="client-libraries">
+<h3>Client Libraries<a class="headerlink" href="#client-libraries" title="Permalink to this headline">¶</a></h3>
+<p>All official clients are released under the <a class="reference external" href="http://choosealicense.com/licenses/mit/">MIT License (Expat)</a>. As part of the open-source community we highly appreciate
+pull-requests, forks, feature requests and bug reports.</p>
+<div class="section" id="ruby">
+<h4>Ruby<a class="headerlink" href="#ruby" title="Permalink to this headline">¶</a></h4>
+<p>Ruby is the first official client that supports all of the API&#8217;s capabilities. Features include:</p>
+<ul class="simple">
+<li>upload</li>
+<li>download</li>
+<li>list</li>
+<li>extractions</li>
+<li>layout</li>
+<li>feedback</li>
+<li>search</li>
+</ul>
+<p>Please refer to the <a class="reference external" href="http://rubydoc.info/gems/gini-api/frames/file/README.md">documentation</a> for additional informations.</p>
+<div class="section" id="installation">
+<h5>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h5>
+<p>You can either use the source directly or install the gem from rubygems.org:</p>
+<div class="highlight-bash"><div class="highlight"><pre>⌘ &gt; gem install gini-api
+Fetching: gini-api-0.9.5.gem <span class="o">(</span>100%<span class="o">)</span>
+Successfully installed gini-api-0.9.5
+1 gem installed
+</pre></div>
+</div>
+</div>
+<div class="section" id="resources">
+<h5>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Documentation</td>
+<td><a class="reference external" href="http://rubydoc.info/gems/gini-api/frames/file/README.md">http://rubydoc.info/gems/gini-api/frames/file/README.md</a></td>
+</tr>
+<tr class="row-even"><td>Source</td>
+<td><a class="reference external" href="https://github.com/gini/gini-api-ruby">https://github.com/gini/gini-api-ruby</a></td>
+</tr>
+<tr class="row-odd"><td>Issues tracker</td>
+<td><a class="reference external" href="https://github.com/gini/gini-api-ruby/issues">https://github.com/gini/gini-api-ruby/issues</a></td>
+</tr>
+<tr class="row-even"><td>Playground</td>
+<td><a class="reference external" href="https://github.com/gini/gini-api-playground">https://github.com/gini/gini-api-playground</a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <a class="reference external" href="https://github.com/gini/gini-api-playground">playground</a> includes example scripts to showcase some of the API features.
+It&#8217;s intended to help you to get started quickly.</p>
+</div>
+</div>
+</div>
+<div class="section" id="upcoming-clients">
+<h4>Upcoming clients<a class="headerlink" href="#upcoming-clients" title="Permalink to this headline">¶</a></h4>
+<p>We are currently working on additional client libraries including:</p>
+<ul class="simple">
+<li>JavaScript</li>
+<li>iOS</li>
+<li>Python</li>
+<li>Java</li>
+</ul>
 </div>
 </div>
 </div>

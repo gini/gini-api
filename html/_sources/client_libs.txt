@@ -1,0 +1,60 @@
+Client Libraries
+================
+
+All official clients are released under the `MIT License (Expat) <http://choosealicense.com/licenses/mit/>`_. As part of the open-source community we highly appreciate
+pull-requests, forks, feature requests and bug reports.
+
+Ruby
+----
+
+Ruby is the first official client that supports all of the API's capabilities. Features include:
+
+* upload
+* download
+* list
+* extractions
+* layout
+* feedback
+* search
+
+Please refer to the `documentation <http://rubydoc.info/gems/gini-api/frames/file/README.md>`_ for additional informations.
+
+Installation
+~~~~~~~~~~~~
+
+You can either use the source directly or install the gem from rubygems.org:
+
+.. code-block:: bash
+
+    ⌘ > gem install gini-api
+    Fetching: gini-api-0.9.5.gem (100%)
+    Successfully installed gini-api-0.9.5
+    1 gem installed
+
+
+Resources
+~~~~~~~~~
+
++----------------+---------------------------------------------------------+
+| Documentation  | http://rubydoc.info/gems/gini-api/frames/file/README.md |
++----------------+---------------------------------------------------------+
+| Source         | https://github.com/gini/gini-api-ruby                   |
++----------------+---------------------------------------------------------+
+| Issues tracker | https://github.com/gini/gini-api-ruby/issues            |
++----------------+---------------------------------------------------------+
+| Playground     | https://github.com/gini/gini-api-playground             |
++----------------+---------------------------------------------------------+
+
+.. note::
+    The `playground <https://github.com/gini/gini-api-playground>`_ includes example scripts to showcase some of the API features.
+    It's intended to help you to get started quickly.
+
+Upcoming clients
+----------------
+
+We are currently working on additional client libraries including:
+
+* JavaScript
+* iOS
+* Python
+* Java
