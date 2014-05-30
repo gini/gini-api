@@ -261,7 +261,7 @@ Example
       "name": "scanned.jpg",
       "progress": "COMPLETED",
       "origin": "UPLOAD",
-      "sourceClassification": "SCANNED"
+      "sourceClassification": "SCANNED",
       "pageCount": 1,
       "pages" : [
         {
