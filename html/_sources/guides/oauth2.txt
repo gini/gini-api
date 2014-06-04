@@ -318,6 +318,7 @@ application has provided in the previous step, the request has been
 created by some third party application. Your application should not
 use the received access token to make any API requests.
 
+.. _guide-oauth2-making-api-requests:
 
 Making API requests
 -------------------

@@ -49,6 +49,7 @@ Table of contents
    entity_reference
    document_search
    client_libs
+   user_center_api
 
 
 .. todolist::

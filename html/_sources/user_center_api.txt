@@ -1,0 +1,234 @@
+===============
+User Center API
+===============
+
+
+Gini's User Center offers an API, e.g. to programmatically create new
+Gini accounts and to make API requests on behalf of a created user.
+
+.. note::
+
+   Access to the User Center API is restricted to selected clients
+   only.
+
+
+
+Client Authentication
+=====================
+
+All access to the User Center API requires client authentication. A
+client can authenticate itself with the *Client Credentials Grant*
+described in :rfc:`6749`. In short, the client exchanges its client ID
+and client secret for an access token.
+
+.. seealso::
+
+   :rfc:`6749#section-4.4`
+      The OAuth 2.0 Authorization Framework: Client Credentials Grant
+
+Request
+-------
+
+To get a client access token, do a ``GET`` request to
+``/oauth/token?grant_type=client_credentials``. The request must
+contain a HTTP basic access authorization header, with the client ID
+as username and the client secret as password.
+
+Example
+^^^^^^^
+
+.. code-block:: http
+
+   GET /oauth/token?grant_type=client_credentials HTTP/1.1
+   Authorization: Basic Y2xpZW50LWlkOnNlY3JldA==
+   Host: user.gini.net
+   Accept: application/json
+
+Example response
+----------------
+
+.. code-block:: json
+
+   {"access_token":"74c1e7fe-e464-451f-a6eb-8f0998c46ff6","token_type":"bearer","expires_in":3599}
+
+The client can now use the returned access token to make requests to
+the User Center API, by sending the token as a bearer token in the
+``Authorization`` request header:
+
+.. code-block:: http
+
+   GET /api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e HTTP/1.1
+   Host: user.gini.net
+   Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6
+   Accept: application/json
+
+
+		
+Authenticating on behalf of a user
+==================================
+
+The *Resource Owner Password Credentials Grant* can be used to
+exchange an user's email address and password with an access
+token. The access token can then be used to make requests to the Gini
+API on behalf of the user.
+
+.. seealso::
+
+   :rfc:`6749#section-4.3`
+      The OAuth 2.0 Authorization Framework: Resource Owner Password Credentials Grant
+
+Request
+-------
+
++----------------+---------------------------------------------------------------+
+| Key            | Description                                                   |
++================+===============================================================+
+| ``grant_type`` | Must be ``password``.                                         |
++----------------+---------------------------------------------------------------+
+| ``username``   | The user's email address.                                     |
++----------------+---------------------------------------------------------------+
+| ``password``   | The user's password.                                          |
++----------------+---------------------------------------------------------------+
+
+Note that the client must authenticate itself using HTTP basic access
+authentication with its ID as username and its secret as password.
+      
+Example
+^^^^^^^
+
+.. code-block:: http
+
+   POST /oauth/token HTTP/1.1
+   Authorization: Basic Y2xpZW50LWlkOnNlY3JldA==
+   Host: user.gini.net
+   Accept: application/json
+   Content-Type: application/x-www-form-urlencoded
+
+   grant_type=password&username=some_user@example.com&password=supersecret
+
+
+Example response
+----------------
+
+.. code-block:: json
+
+   {"access_token":"6c470ffa-abf1-41aa-b866-cd3be0ee84f4","token_type":"bearer","expires_in":3599}
+
+The returned access token can now be used to make requests to the Gini
+API on behalf of the user. See :ref:`guide-oauth2-making-api-requests`
+for details.
+
+
+
+Creating a new user
+===================
+
+To create a new user, submit a ``POST`` request to ``/api/users``.
+
+Request
+-------
+
++--------------+---------------------------------------------------------------+
+| Key          | Description                                                   |
++==============+===============================================================+
+| ``email``    | The new user's email address (will be used as login username) |
++--------------+---------------------------------------------------------------+
+| ``password`` | The new user's password. Must be at least 6 characters long.  |
++--------------+---------------------------------------------------------------+
+
+
+Example request
+^^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   POST /api/users HTTP/1.1
+   Host: user.gini.net
+   Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6
+   Content-Type: application/json
+   
+   {"email":"some_user@example.com","password:"supersecret"}
+
+Example response
+----------------
+
+.. code-block:: http
+
+   HTTP/1.1 201 Created
+   Location: https://user.gini.net/api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e
+   Content-Length: 0
+
+If the request entity was considered invalid (missing fields, password
+less than 6 chars etc.) or a user with that email address already
+exists, the API responds with ``400 Bad Request``.
+
+
+
+Retrieving user information
+===========================
+
+Information about a user can be retrieved with a ``GET`` request on
+``/api/users/{userId}``
+
+
+Example request
+---------------
+
+.. code-block:: http
+
+   GET /api/users/88a28076-18e8-4275-b39c-eaacc240d406 HTTP/1.1
+   Host: user.gini.net
+   Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6
+   Accept: application/json
+
+
+Response
+--------
+
++--------------+---------------------------+
+| Key          | Description               |
++==============+===========================+
+| ``id``       | Unique User ID.           |
++--------------+---------------------------+
+| ``email``    | The user's email address. |
++--------------+---------------------------+
+
+Example
+^^^^^^^
+
+.. code-block:: json
+
+   {"id":"c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e","email":"some_user@example.com"}
+
+
+
+Changing an user's password
+===========================
+
+An user's password can be changed with a ``POST`` request to
+``/api/users/{userId}``. To update an user's password, the current
+password must be provided.
+
+Request
+-------
+
++-----------------+-----------------------------------------------------------------+
+| Key             | Description                                                     |
++=================+=================================================================+
+| ``oldPassword`` | The user's current password.                                    |
++-----------------+-----------------------------------------------------------------+
+| ``password``    | The password to which the user's password should be changed to. |
++-----------------+-----------------------------------------------------------------+
+
+
+Example request
+^^^^^^^^^^^^^^^
+
+.. code-block:: http
+
+   POST /api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e HTTP/1.1
+   Host: user.gini.net
+   Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6
+   Content-Type: application/json
+   
+   {"oldPassword":"supersecret","password:"anothersecret"}
