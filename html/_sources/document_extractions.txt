@@ -110,6 +110,8 @@ Available Specific Extractions
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``documentDomain``       | The domain of a current document.                                              | :ref:`extraction-entity-documentdomain`      | n/a                      |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``email``                | The most probable email address of a sender                                    | :ref:`extraction-entity-email`               | ``emails``               | 
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``iban``                 | The IBAN of a document sender.                                                 | :ref:`extraction-entity-iban`                | ``ibans``                |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``invoiceId``            | The invoice Id of a given document.                                            | :ref:`extraction-entity-invoiceid`           | ``invoiceIds``           |
@@ -119,6 +121,8 @@ Available Specific Extractions
 | ``paymentReference``     | The payment reference.                                                         | :ref:`extraction-entity-reference`           | n/a                      |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``paymentState``         | If a document has yet to be paid or is paid already.                           | :ref:`extraction-entity-paymentstate`        | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``phoneNumber``          | The first found phoneNumber in a given document.                               | :ref:`extraction-entity-phonenumber`         | ``phoneNumbers``         |               
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``senderCity``           | The sender city.                                                               | :ref:`extraction-entity-city`                | n/a                      |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
@@ -182,9 +186,13 @@ Available Extraction Candidates
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``dates``                | All dates of a given document.                                                             | :ref:`extraction-entity-date`               |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``emails``               | All emails of a given document.                                                            | :ref:`extraction-entity-email`              |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``ibans``                | All IBANs of a given document.                                                             | :ref:`extraction-entity-iban`               |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``invoiceIds``           | All alphanumeric strings (of similiar structure as an identifier) of a given document.     | :ref:`extraction-entity-invoiceid`          |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``phoneNumbers``         | All phone numbers of a given document.                                                     | :ref:`extraction-entity-phonenumber`        |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``taxNumbers``           | All strings of digits (of a similiar structure as a German tax number) of a given          | :ref:`extraction-entity-taxnumber`          |
 |                          | document.                                                                                  |                                             |
@@ -216,9 +224,11 @@ description):
 * :ref:`extraction-entity-date`
 * :ref:`extraction-entity-doctype`
 * :ref:`extraction-entity-documentdomain`
+* :ref:`extraction-entity-email`
 * :ref:`extraction-entity-iban`
 * :ref:`extraction-entity-invoiceid`
 * :ref:`extraction-entity-paymentstate`
+* :ref:`extraction-entity-phonenumber`
 * :ref:`extraction-entity-poboxnumber`
 * :ref:`extraction-entity-reference`
 * :ref:`extraction-entity-street`

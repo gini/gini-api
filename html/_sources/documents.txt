@@ -374,6 +374,11 @@ A page is an entity with the following fields:
 |                | *image resolution in pixels* | ``string`` | Link to a pre-rendered image of the page                   |
 +----------------+------------------------------+------------+------------------------------------------------------------+
 
+.. note::
+
+   Image downloads require a corresponding ``Accept`` header such as
+   ``image/jpeg`` or ``image/*``.
+
 Example
 ^^^^^^^
 
@@ -539,6 +544,8 @@ Word Object
 +----------------+--------------+--------------------------------------------------------+
 | ``fontFamily`` | ``string``   | Name of the font family of the word                    |
 +----------------+--------------+--------------------------------------------------------+
+| ``bold``       | ``boolean``  | Indicates bold font style                              |
++----------------+--------------+--------------------------------------------------------+
 | ``text``       | ``string``   | Text of word                                           |
 +----------------+--------------+--------------------------------------------------------+
 
@@ -575,6 +582,7 @@ Example
                           "h": 9.900000000000006,
                           "fontSize": 9.9,
                           "fontFamily": "Arial-BoldMT",
+                          "bold":false,
                           "text": "Ihre"
                         },
                         {
@@ -584,6 +592,7 @@ Example
                           "h": 9.900000000000006,
                           "fontSize": 9.9,
                           "fontFamily": "Arial-BoldMT",
+                          "bold":false,
                           "text": "Vorgangsnummer"
                         },
                         {
@@ -593,6 +602,7 @@ Example
                           "h": 9.900000000000006,
                           "fontSize": 9.9,
                           "fontFamily": "Arial-BoldMT",
+                          "bold":false,
                           "text": ":"
                         },
                         [...]
