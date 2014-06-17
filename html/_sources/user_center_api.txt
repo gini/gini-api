@@ -11,7 +11,7 @@ Gini accounts and to make API requests on behalf of a created user.
    Access to the User Center API is restricted to selected clients
    only.
 
-
+.. _client_authentication:
 
 Client Authentication
 =====================

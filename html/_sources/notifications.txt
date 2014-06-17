@@ -1,0 +1,96 @@
+.. _notifications:
+
+Notifications
+=============
+
+Sometimes it is not desirable or not convinient to actively poll for the processing status of documents. The notification API allows to retrieve status changes in a publish/subscribe fashion.
+
+Retrieving Document Change Events for a Client
+----------------------------------------------
+
+The status changes of documents which are proccessed for your application can be received by subscribing a SSE (server sent events) capable client with a valid client bearer token. See :ref:`client_authentication`.
+Since the browser implementations of `SSE eventsource <http://www.w3.org/TR/eventsource/>`_ lacks the capability to submit headers, the bearer header can be replaced with a query parameter. Unfortunately, the eventsource standard does not support authorization directly. That means that the subscription request returns *always* status code 200. If the authorization failes, a error message is returned in the response body.
+Once the connection is established, the document status changes are sent by the server as SSE event stream.
+
+Request
+~~~~~~~
+
+The subscription can be done by doing a ``POST`` with a valid authorization header on the following URI.
+
+::
+
+    POST https://notifications.gini.net/events/client
+
+Headers
+^^^^^^^
+
++--------------------+-----------------------------------+
+| Header             | Value                             |
++====================+===================================+
+| ``Accept``         | ``text/event-stream``             |
++--------------------+-----------------------------------+
+
+Example
+^^^^^^^
+
+Variant for web applications running in a web browser:
+
+.. code-block:: bash
+
+    curl -H 'Authorization: BEARER <token>' -H 'Accept: text/event-stream' https://notifications.gini.net/events/client 
+
+
+Response
+~~~~~~~~
+
+Headers
+^^^^^^^
+
++---------------+--------------------------------------------------+
+| Status Code   | Description                                      |
++===============+==================================================+
+| 200           | No meaning, error messages are embedded in body  |
++---------------+--------------------------------------------------+
+
+
+Errors
+^^^^^^
+
+Error messages are embeded in the response body of the subscription request. 
+
++---------------------+-------------------------------------------------------+
+| Message             | Description                                           |
++=====================+=======================================================+
+| auth_required       | Unauthorized (401). Client must send a valid bearer   | 
+|                     | authorization header                                  |
++---------------------+-------------------------------------------------------+
+| auth_failed         | Authentification failed, e.g. token is not valid      |
++---------------------+-------------------------------------------------------+
+| not_accepted        | Wrong content type requested                          |
++---------------------+-------------------------------------------------------+
+
+Body
+^^^^
+
+The server sends a stream of events encoded in json. The subscription request returns
+either some empty lines or a error message.
+
++----------------+------------+-----------------------------------------------------+
+| Key            | Type       | Description                                         |
++================+============+=====================================================+
+| ``documentId`` | ``string`` | Unique identifier of document as UUID Version 1     | 
++----------------+------------+-----------------------------------------------------+
+| ``status``     | ``string`` | Processing status of a document. Possible Values:   |
+|                |            |  ``PENDING``, ``COMPLETED``, ``ERROR``              |
++----------------+------------+-----------------------------------------------------+
+
+Example
+^^^^^^^
+
+.. code-block:: json
+
+    {
+     "documentId": "626626a0-749f-11e2-bfd6-000000000000",
+     "status": "COMPLETED"
+    }
+

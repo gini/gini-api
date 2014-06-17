@@ -318,6 +318,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="notifications.html">Notifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notifications.html#retrieving-document-change-events-for-a-client">Retrieving Document Change Events for a Client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notifications.html#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notifications.html#response">Response</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="client_libs.html">Client Libraries</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="client_libs.html#ruby">Ruby</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="client_libs.html#installation">Installation</a></li>
@@ -334,22 +342,22 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="user_center_api.html#authenticating-on-behalf-of-a-user">Authenticating on behalf of a user</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id1">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id3">Example response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id2">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id4">Example response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="user_center_api.html#creating-a-new-user">Creating a new user</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id4">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id5">Example response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id5">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id6">Example response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="user_center_api.html#retrieving-user-information">Retrieving user information</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id6">Example request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id7">Example request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="user_center_api.html#response">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="user_center_api.html#changing-an-user-s-password">Changing an user&#8217;s password</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id8">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id9">Request</a></li>
 </ul>
 </li>
 </ul>
@@ -594,7 +602,8 @@ web browser):</p>
 processing status of a single document by examining the document
 information. It can be retrieved by a <tt class="docutils literal"><span class="pre">GET</span></tt> request to the document
 URI. When the document has been processed you can retrieve the extractions
-from it and additional information such as the document layout.</p>
+from it and additional information such as the document layout.
+Alternatively, SSE (server sent events) based <a class="reference internal" href="notifications.html#notifications"><em>Notifications</em></a> can be used.</p>
 <div class="section" id="id2">
 <h3>Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Document information can be retrieved by doing a <tt class="docutils literal"><span class="pre">GET</span></tt> request on the
@@ -1611,10 +1620,7 @@ extractions URI:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>400 (Bad Request)</td>
-<td>Return when a file in an invalid format is sent</td>
-</tr>
-<tr class="row-odd"><td>404 (Not Found)</td>
+<tr class="row-even"><td>404 (Not Found)</td>
 <td>Response status if the requested entity couldn&#8217;t be found</td>
 </tr>
 </tbody>

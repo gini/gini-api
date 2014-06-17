@@ -168,6 +168,7 @@ processing status of a single document by examining the document
 information. It can be retrieved by a ``GET`` request to the document
 URI. When the document has been processed you can retrieve the extractions
 from it and additional information such as the document layout.
+Alternatively, SSE (server sent events) based :ref:`notifications` can be used.
 
 Request
 ~~~~~~~
@@ -807,8 +808,6 @@ Errors
 +---------------------+-------------------------------------------------------------+
 | Status Code         | Description                                                 |
 +=====================+=============================================================+
-| 400 (Bad Request)   | Return when a file in an invalid format is sent             |
-+---------------------+-------------------------------------------------------------+
 | 404 (Not Found)     | Response status if the requested entity couldn't be found   |
 +---------------------+-------------------------------------------------------------+
 

@@ -316,6 +316,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-notifications">Notifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-notifications#retrieving-document-change-events-for-a-client">Retrieving Document Change Events for a Client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-notifications#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-notifications#response">Response</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-client_libs">Client Libraries</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-client_libs#ruby">Ruby</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-client_libs#installation">Installation</a></li>
@@ -332,22 +340,22 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-user_center_api#authenticating-on-behalf-of-a-user">Authenticating on behalf of a user</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id1">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id3">Example response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id2">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id4">Example response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-user_center_api#creating-a-new-user">Creating a new user</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id4">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id5">Example response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id5">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id6">Example response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-user_center_api#retrieving-user-information">Retrieving user information</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id6">Example request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id7">Example request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#response">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-user_center_api#changing-an-user-s-password">Changing an user&#8217;s password</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id8">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id9">Request</a></li>
 </ul>
 </li>
 </ul>
@@ -1160,7 +1168,8 @@ web browser):</p>
 processing status of a single document by examining the document
 information. It can be retrieved by a <tt class="docutils literal"><span class="pre">GET</span></tt> request to the document
 URI. When the document has been processed you can retrieve the extractions
-from it and additional information such as the document layout.</p>
+from it and additional information such as the document layout.
+Alternatively, SSE (server sent events) based <a class="reference internal" href="index.html#notifications"><em>Notifications</em></a> can be used.</p>
 <div class="section" id="id2">
 <h5>Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
 <p>Document information can be retrieved by doing a <tt class="docutils literal"><span class="pre">GET</span></tt> request on the
@@ -2177,10 +2186,7 @@ extractions URI:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>400 (Bad Request)</td>
-<td>Return when a file in an invalid format is sent</td>
-</tr>
-<tr class="row-odd"><td>404 (Not Found)</td>
+<tr class="row-even"><td>404 (Not Found)</td>
 <td>Response status if the requested entity couldn&#8217;t be found</td>
 </tr>
 </tbody>
@@ -4323,6 +4329,139 @@ a list of possible values.</td>
 </div>
 </div>
 </div>
+<span id="document-notifications"></span><div class="section" id="notifications">
+<span id="id1"></span><h3>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes it is not desirable or not convinient to actively poll for the processing status of documents. The notification API allows to retrieve status changes in a publish/subscribe fashion.</p>
+<div class="section" id="retrieving-document-change-events-for-a-client">
+<h4>Retrieving Document Change Events for a Client<a class="headerlink" href="#retrieving-document-change-events-for-a-client" title="Permalink to this headline">¶</a></h4>
+<p>The status changes of documents which are proccessed for your application can be received by subscribing a SSE (server sent events) capable client with a valid client bearer token. See <a class="reference internal" href="index.html#client-authentication"><em>Client Authentication</em></a>.
+Since the browser implementations of <a class="reference external" href="http://www.w3.org/TR/eventsource/">SSE eventsource</a> lacks the capability to submit headers, the bearer header can be replaced with a query parameter. Unfortunately, the eventsource standard does not support authorization directly. That means that the subscription request returns <em>always</em> status code 200. If the authorization failes, a error message is returned in the response body.
+Once the connection is established, the document status changes are sent by the server as SSE event stream.</p>
+<div class="section" id="request">
+<h5>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h5>
+<p>The subscription can be done by doing a <tt class="docutils literal"><span class="pre">POST</span></tt> with a valid authorization header on the following URI.</p>
+<div class="highlight-python"><div class="highlight"><pre>POST https://notifications.gini.net/events/client
+</pre></div>
+</div>
+<div class="section" id="headers">
+<h6>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h6>
+<table border="1" class="docutils">
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">text/event-stream</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="example">
+<h6>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h6>
+<p>Variant for web applications running in a web browser:</p>
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -H <span class="s1">&#39;Accept: text/event-stream&#39;</span> https://notifications.gini.net/events/client
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="response">
+<h5>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id2">
+<h6>Headers<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h6>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>200</td>
+<td>No meaning, error messages are embedded in body</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="errors">
+<h6>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h6>
+<p>Error messages are embeded in the response body of the subscription request.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Message</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>auth_required</td>
+<td>Unauthorized (401). Client must send a valid bearer
+authorization header</td>
+</tr>
+<tr class="row-odd"><td>auth_failed</td>
+<td>Authentification failed, e.g. token is not valid</td>
+</tr>
+<tr class="row-even"><td>not_accepted</td>
+<td>Wrong content type requested</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="body">
+<h6>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h6>
+<p>The server sends a stream of events encoded in json. The subscription request returns
+either some empty lines or a error message.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="15%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">documentId</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td>Unique identifier of document as UUID Version 1</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">status</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td><dl class="first last docutils">
+<dt>Processing status of a document. Possible Values:</dt>
+<dd><tt class="docutils literal"><span class="pre">PENDING</span></tt>, <tt class="docutils literal"><span class="pre">COMPLETED</span></tt>, <tt class="docutils literal"><span class="pre">ERROR</span></tt></dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h6>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h6>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+ <span class="nt">&quot;documentId&quot;</span><span class="p">:</span> <span class="s2">&quot;626626a0-749f-11e2-bfd6-000000000000&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETED&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <span id="document-client_libs"></span><div class="section" id="client-libraries">
 <h3>Client Libraries<a class="headerlink" href="#client-libraries" title="Permalink to this headline">¶</a></h3>
 <p>All official clients are released under the <a class="reference external" href="http://choosealicense.com/licenses/mit/">MIT License (Expat)</a>. As part of the open-source community we highly appreciate
@@ -4400,7 +4539,7 @@ Gini accounts and to make API requests on behalf of a created user.</p>
 only.</p>
 </div>
 <div class="section" id="client-authentication">
-<h4>Client Authentication<a class="headerlink" href="#client-authentication" title="Permalink to this headline">¶</a></h4>
+<span id="id1"></span><h4>Client Authentication<a class="headerlink" href="#client-authentication" title="Permalink to this headline">¶</a></h4>
 <p>All access to the User Center API requires client authentication. A
 client can authenticate itself with the <em>Client Credentials Grant</em>
 described in <span class="target" id="index-0"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6749.html"><strong>RFC 6749</strong></a>. In short, the client exchanges its client ID
@@ -4457,8 +4596,8 @@ API on behalf of the user.</p>
 <dd>The OAuth 2.0 Authorization Framework: Resource Owner Password Credentials Grant</dd>
 </dl>
 </div>
-<div class="section" id="id1">
-<h5>Request<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id2">
+<h5>Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="20%" />
@@ -4483,8 +4622,8 @@ API on behalf of the user.</p>
 </table>
 <p>Note that the client must authenticate itself using HTTP basic access
 authentication with its ID as username and its secret as password.</p>
-<div class="section" id="id2">
-<h6>Example<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id3">
+<h6>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/oauth/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Authorization</span><span class="o">:</span> <span class="l">Basic Y2xpZW50LWlkOnNlY3JldA==</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
@@ -4496,8 +4635,8 @@ grant_type=password&amp;username=some_user@example.com&amp;password=supersecret
 </div>
 </div>
 </div>
-<div class="section" id="id3">
-<h5>Example response<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id4">
+<h5>Example response<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="s2">&quot;6c470ffa-abf1-41aa-b866-cd3be0ee84f4&quot;</span><span class="p">,</span><span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="s2">&quot;bearer&quot;</span><span class="p">,</span><span class="nt">&quot;expires_in&quot;</span><span class="p">:</span><span class="mi">3599</span><span class="p">}</span>
 </pre></div>
 </div>
@@ -4509,8 +4648,8 @@ for details.</p>
 <div class="section" id="creating-a-new-user">
 <h4>Creating a new user<a class="headerlink" href="#creating-a-new-user" title="Permalink to this headline">¶</a></h4>
 <p>To create a new user, submit a <tt class="docutils literal"><span class="pre">POST</span></tt> request to <tt class="docutils literal"><span class="pre">/api/users</span></tt>.</p>
-<div class="section" id="id4">
-<h5>Request<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id5">
+<h5>Request<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="18%" />
@@ -4542,8 +4681,8 @@ Content-Type: application/json
 </div>
 </div>
 </div>
-<div class="section" id="id5">
-<h5>Example response<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id6">
+<h5>Example response<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
 <span class="na">Location</span><span class="o">:</span> <span class="l">https://user.gini.net/api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e</span>
 <span class="na">Content-Length</span><span class="o">:</span> <span class="l">0</span>
@@ -4558,8 +4697,8 @@ exists, the API responds with <tt class="docutils literal"><span class="pre">400
 <h4>Retrieving user information<a class="headerlink" href="#retrieving-user-information" title="Permalink to this headline">¶</a></h4>
 <p>Information about a user can be retrieved with a <tt class="docutils literal"><span class="pre">GET</span></tt> request on
 <tt class="docutils literal"><span class="pre">/api/users/{userId}</span></tt></p>
-<div class="section" id="id6">
-<h5>Example request<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id7">
+<h5>Example request<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/api/users/88a28076-18e8-4275-b39c-eaacc240d406</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
 <span class="na">Authorization</span><span class="o">:</span> <span class="l">BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6</span>
@@ -4588,8 +4727,8 @@ exists, the API responds with <tt class="docutils literal"><span class="pre">400
 </tr>
 </tbody>
 </table>
-<div class="section" id="id7">
-<h6>Example<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id8">
+<h6>Example<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e&quot;</span><span class="p">,</span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="s2">&quot;some_user@example.com&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
@@ -4601,8 +4740,8 @@ exists, the API responds with <tt class="docutils literal"><span class="pre">400
 <p>An user&#8217;s password can be changed with a <tt class="docutils literal"><span class="pre">POST</span></tt> request to
 <tt class="docutils literal"><span class="pre">/api/users/{userId}</span></tt>. To update an user&#8217;s password, the current
 password must be provided.</p>
-<div class="section" id="id8">
-<h5>Request<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id9">
+<h5>Request<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -4622,8 +4761,8 @@ password must be provided.</p>
 </tr>
 </tbody>
 </table>
-<div class="section" id="id9">
-<h6>Example request<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id10">
+<h6>Example request<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-http"><div class="highlight"><pre>POST /api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e HTTP/1.1
 Host: user.gini.net
 Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6

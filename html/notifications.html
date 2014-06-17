@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview &mdash; Gini API v1 documentation</title>
+  <title>Notifications &mdash; Gini API v1 documentation</title>
   
 
   
@@ -53,8 +53,8 @@
 
   
     <link rel="top" title="Gini API v1 documentation" href="index.html"/>
-        <link rel="next" title="Authorization Implementation Guide" href="guides/oauth2.html"/>
-        <link rel="prev" title="Gini API documentation" href="index.html"/> 
+        <link rel="next" title="Client Libraries" href="client_libs.html"/>
+        <link rel="prev" title="Search" href="document_search.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -81,17 +81,17 @@
         
         
             <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#media-types">Media Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#versions">Versions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#v1">v1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#v1">v1</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#security">Security</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#client-errors">Client Errors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#http-response-codes">HTTP response codes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#error-entity">Error entity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#client-errors">Client Errors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#http-response-codes">HTTP response codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#error-entity">Error entity</a></li>
 </ul>
 </li>
 </ul>
@@ -318,10 +318,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="notifications.html">Notifications</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notifications.html#retrieving-document-change-events-for-a-client">Retrieving Document Change Events for a Client</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="notifications.html#request">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="notifications.html#response">Response</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Notifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#retrieving-document-change-events-for-a-client">Retrieving Document Change Events for a Client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#request">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#response">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -385,7 +385,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Overview</li>
+    <li>Notifications</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -394,123 +394,132 @@
 </div>
           <div role="main">
             
-  <div class="section" id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="media-types">
-<h2>Media Types<a class="headerlink" href="#media-types" title="Permalink to this headline">¶</a></h2>
-<p>Custom media types are used in the API to let consumers choose the
-version of the data format they wish to receive. This is done by adding one or
-more of the following media types to the <tt class="docutils literal"><span class="pre">Accept</span></tt> header when a request is made.
-Media types are specific to resources, allowing them to change independently
-and supporting formats that other resources don&#8217;t.</p>
-<p>The media types consumed and produced by the Gini API look like this:</p>
-<div class="highlight-python"><div class="highlight"><pre>application/vnd.gini[.version][+json]
+  <div class="section" id="notifications">
+<span id="id1"></span><h1>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h1>
+<p>Sometimes it is not desirable or not convinient to actively poll for the processing status of documents. The notification API allows to retrieve status changes in a publish/subscribe fashion.</p>
+<div class="section" id="retrieving-document-change-events-for-a-client">
+<h2>Retrieving Document Change Events for a Client<a class="headerlink" href="#retrieving-document-change-events-for-a-client" title="Permalink to this headline">¶</a></h2>
+<p>The status changes of documents which are proccessed for your application can be received by subscribing a SSE (server sent events) capable client with a valid client bearer token. See <a class="reference internal" href="user_center_api.html#client-authentication"><em>Client Authentication</em></a>.
+Since the browser implementations of <a class="reference external" href="http://www.w3.org/TR/eventsource/">SSE eventsource</a> lacks the capability to submit headers, the bearer header can be replaced with a query parameter. Unfortunately, the eventsource standard does not support authorization directly. That means that the subscription request returns <em>always</em> status code 200. If the authorization failes, a error message is returned in the response body.
+Once the connection is established, the document status changes are sent by the server as SSE event stream.</p>
+<div class="section" id="request">
+<h3>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h3>
+<p>The subscription can be done by doing a <tt class="docutils literal"><span class="pre">POST</span></tt> with a valid authorization header on the following URI.</p>
+<div class="highlight-python"><div class="highlight"><pre>POST https://notifications.gini.net/events/client
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">If you don&#8217;t specify a version in your requests, the API&#8217;s
-responses might change without further notice. It is strongly
-recommended to always specify a specific API version.</p>
-</div>
-</div>
-<div class="section" id="versions">
-<span id="overview-versions"></span><h2>Versions<a class="headerlink" href="#versions" title="Permalink to this headline">¶</a></h2>
-<p>Currently there is one stable version of the Gini API. Future versions can be
-requested using a specific <tt class="docutils literal"><span class="pre">Accept</span></tt> header.</p>
-<div class="section" id="v1">
-<h3>v1<a class="headerlink" href="#v1" title="Permalink to this headline">¶</a></h3>
-<p>Gini API v1 is stable and will not be changed in an incompatible way. Please
-contact us via <a class="reference external" href="mailto:api&#37;&#52;&#48;gini&#46;net">api<span>&#64;</span>gini<span>&#46;</span>net</a> if you have any problems.</p>
-<p>By default all requests receive data in version 1 of the API. Developers are
-strongly encouraged to explicitly specify the required version of the Gini API
-using the HTTP/1.1 <tt class="docutils literal"><span class="pre">Accept</span></tt> header:</p>
-<div class="highlight-python"><div class="highlight"><pre>Accept: application/vnd.gini.v1+json
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="authentication">
-<h2>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h2>
-<p>Only authenticated users are allowed to make API requests. The Gini
-API uses the <a class="reference external" href="http://tools.ietf.org/html/rfc6749.html">OAuth 2.0 protocol</a> with <a class="reference external" href="http://tools.ietf.org/html/rfc6750.html">bearer tokens</a> for authentication. To use
-the Gini API within your application, you first have to register your
-application with Gini. Then your application requests an access token
-from the Gini Authorization Server and uses that token to access the
-Gini API.</p>
-<p>See <a class="reference internal" href="guides/oauth2.html#guide-oauth2"><em>Authorization Implementation Guide</em></a> for a detailed overview about the
-authorization process and how to implement it in your application.</p>
-</div>
-<div class="section" id="security">
-<h2>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h2>
-<p>The Gini API is only accessible over HTTPS. Please make sure that your
-application validates the relevant X.509 certificates (e.g. common
-name matches hostname, issuing CA is trusted, etc.).</p>
-</div>
-<div class="section" id="client-errors">
-<h2>Client Errors<a class="headerlink" href="#client-errors" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="http-response-codes">
-<h3>HTTP response codes<a class="headerlink" href="#http-response-codes" title="Permalink to this headline">¶</a></h3>
-<p>The API uses idiomatic HTTP status codes to indicate if a request was
-successful, and if not, whether it should be retried.</p>
+<div class="section" id="headers">
+<h4>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col width="36%" />
+<col width="64%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Code</th>
-<th class="head">Description</th>
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>2xx</td>
-<td>The request was successful.</td>
-</tr>
-<tr class="row-odd"><td>4xx</td>
-<td>The request was not successful. See the response body for details.
-Retrying with the same arguments will not work.</td>
-</tr>
-<tr class="row-even"><td>5xx</td>
-<td>Some error occurred while processing the request. Please try again.</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">text/event-stream</span></tt></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="error-entity">
-<h3>Error entity<a class="headerlink" href="#error-entity" title="Permalink to this headline">¶</a></h3>
-<p>The Gini API always returns a JSON object further describing the error which
-occurred. The JSON object consists of the following properties:</p>
+<div class="section" id="example">
+<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+<p>Variant for web applications running in a web browser:</p>
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -H <span class="s1">&#39;Accept: text/event-stream&#39;</span> https://notifications.gini.net/events/client
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="response">
+<h3>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h4>Headers<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="16%" />
-<col width="13%" />
-<col width="71%" />
+<col width="23%" />
+<col width="77%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>200</td>
+<td>No meaning, error messages are embedded in body</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="errors">
+<h4>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h4>
+<p>Error messages are embeded in the response body of the subscription request.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Message</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>auth_required</td>
+<td>Unauthorized (401). Client must send a valid bearer
+authorization header</td>
+</tr>
+<tr class="row-odd"><td>auth_failed</td>
+<td>Authentification failed, e.g. token is not valid</td>
+</tr>
+<tr class="row-even"><td>not_accepted</td>
+<td>Wrong content type requested</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="body">
+<h4>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h4>
+<p>The server sends a stream of events encoded in json. The subscription request returns
+either some empty lines or a error message.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="15%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
 <th class="head">Type</th>
 <th class="head">Description</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>message</td>
-<td>string</td>
-<td>Human consumable error description (<strong>not</strong>
-intended for application end-users)</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">documentId</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td>Unique identifier of document as UUID Version 1</td>
 </tr>
-<tr class="row-odd"><td>requestId</td>
-<td>string</td>
-<td>Unique ID identifying the request. Please
-provide this when contacting the support.</td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">status</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td><dl class="first last docutils">
+<dt>Processing status of a document. Possible Values:</dt>
+<dd><tt class="docutils literal"><span class="pre">PENDING</span></tt>, <tt class="docutils literal"><span class="pre">COMPLETED</span></tt>, <tt class="docutils literal"><span class="pre">ERROR</span></tt></dd>
+</dl>
+</td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="example">
-<h4>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="id3">
+<h4>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-  <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Validation of the request entity failed&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;requestId&quot;</span><span class="p">:</span> <span class="s2">&quot;8896f9dc-260d-4133-9848-c54e5715270f&quot;</span>
+ <span class="nt">&quot;documentId&quot;</span><span class="p">:</span> <span class="s2">&quot;626626a0-749f-11e2-bfd6-000000000000&quot;</span><span class="p">,</span>
+ <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETED&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -525,10 +534,10 @@ provide this when contacting the support.</td>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="guides/oauth2.html" class="btn btn-neutral float-right" title="Authorization Implementation Guide">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="client_libs.html" class="btn btn-neutral float-right" title="Client Libraries">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Gini API documentation"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="document_search.html" class="btn btn-neutral" title="Search"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
