@@ -83,8 +83,6 @@ Request
 +----------------+---------------------------------------------------------------+
 | Key            | Description                                                   |
 +================+===============================================================+
-| ``grant_type`` | Must be ``password``.                                         |
-+----------------+---------------------------------------------------------------+
 | ``username``   | The user's email address.                                     |
 +----------------+---------------------------------------------------------------+
 | ``password``   | The user's password.                                          |
@@ -98,13 +96,13 @@ Example
 
 .. code-block:: http
 
-   POST /oauth/token HTTP/1.1
+   POST /oauth/token?grant_type=password HTTP/1.1
    Authorization: Basic Y2xpZW50LWlkOnNlY3JldA==
    Host: user.gini.net
    Accept: application/json
    Content-Type: application/x-www-form-urlencoded
 
-   grant_type=password&username=some_user@example.com&password=supersecret
+   username=some_user@example.com&password=supersecret
 
 
 Example response

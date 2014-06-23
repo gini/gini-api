@@ -4609,13 +4609,10 @@ API on behalf of the user.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">grant_type</span></tt></td>
-<td>Must be <tt class="docutils literal"><span class="pre">password</span></tt>.</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">username</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">username</span></tt></td>
 <td>The user&#8217;s email address.</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">password</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">password</span></tt></td>
 <td>The user&#8217;s password.</td>
 </tr>
 </tbody>
@@ -4624,13 +4621,13 @@ API on behalf of the user.</p>
 authentication with its ID as username and its secret as password.</p>
 <div class="section" id="id3">
 <h6>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h6>
-<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/oauth/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/oauth/token?grant_type=password</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Authorization</span><span class="o">:</span> <span class="l">Basic Y2xpZW50LWlkOnNlY3JldA==</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
 <span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
 
-grant_type=password&amp;username=some_user@example.com&amp;password=supersecret
+username=some_user@example.com&amp;password=supersecret
 </pre></div>
 </div>
 </div>
