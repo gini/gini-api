@@ -61,6 +61,13 @@ certain limitations on a document that the Gini API accepts:
   * Only contents of documents in German language are sufficiently well
     recognized.
 
+Document Type Hints
+~~~~~~~~~~~~~~~~~~~
+
+The type of a document is in many cases known to the client application. If you 
+provide the ``doctype`` parameter with a valid value from the :ref:`extraction-entity-doctype` entity , Gini can optimize
+the processing of the document in many ways. Furthermore, some incubating extractions may only 
+available if the document type is provided. 
 
 Request
 ~~~~~~~
@@ -92,11 +99,15 @@ Request query parameters
 If the upload is performed not using ``multipart/form-data`` you can optionally
 provide a file name for the submitted document with a query parameter:
 
-+-------------------------+------------+--------------------------------------------------+
-| Name                    | Type       | Description                                      |
-+=========================+============+==================================================+
-| ``filename``            | ``string`` | *(Optional)* File name of the submitted document |
-+-------------------------+------------+--------------------------------------------------+
++-------------------------+------------+----------------------------------------------------+
+| Name                    | Type       | Description                                        |
++=========================+============+====================================================+
+| ``filename``            | ``string`` | *(Optional)* File name of the submitted document   |
++-------------------------+------------+----------------------------------------------------+
+| ``doctype``             | ``string`` | *(Optional)* Type of the submitted document        |
+|                         |            | See :ref:`extraction-entity-doctype` for possible  | 
+|                         |            | values                                             |
++-------------------------+------------+----------------------------------------------------+
 
 
 Body

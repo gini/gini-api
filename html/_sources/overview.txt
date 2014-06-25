@@ -29,7 +29,9 @@ Versions
 --------
 
 Currently there is one stable version of the Gini API. Future versions can be
-requested using a specific ``Accept`` header.
+requested using a specific ``Accept`` header. Additionally, we provide a unstable
+incubator version of the Gini API. This is primarily for testing new extractions but
+may affect other parts of the Gini API as well.
 
 v1
 ~~
@@ -45,6 +47,20 @@ using the HTTP/1.1 ``Accept`` header:
 
     Accept: application/vnd.gini.v1+json
 
+
+incubator
+~~~~~~~~~
+
+Gini API incubator is unstable and can change at any time. We will provide new and immature 
+features (e.g. extractions) exclusively under this Gini API version. We encourage developers to test these
+features and to give us feedback under api@gini.net. The incubating features are accessible by
+using the HTTP/1.1 ``Accept`` header:
+
+::
+
+    Accept: application/vnd.gini.incubator+json
+
+See :ref:`incubator` for further informations.
 
 Authentication
 --------------

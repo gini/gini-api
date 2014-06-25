@@ -85,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#media-types">Media Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#versions">Versions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#v1">v1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#incubator">incubator</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a></li>
@@ -112,6 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="documents.html">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#supported-file-formats">Supported file formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#document-type-hints">Document Type Hints</a></li>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#request">Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#response">Response</a></li>
 </ul>
@@ -318,6 +320,22 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="incubator.html">Incubator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="incubator.html#incubating-extractions">Incubating Extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#accessing-incubating-extractions">Accessing Incubating Extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#receipt-extraction">Receipt Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#fuel-receipt-extraction">Fuel Receipt Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#subject-extraction">Subject Extraction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="incubator.html#incubating-entities">Incubating Entities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#volume">volume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#fuelprice">fuelprice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#subject">subject</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="notifications.html">Notifications</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notifications.html#retrieving-document-change-events-for-a-client">Retrieving Document Change Events for a Client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="notifications.html#request">Request</a></li>
@@ -332,6 +350,7 @@
 <li class="toctree-l3"><a class="reference internal" href="client_libs.html#resources">Resources</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="client_libs.html#ios">iOS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="client_libs.html#upcoming-clients">Upcoming clients</a></li>
 </ul>
 </li>
@@ -417,7 +436,9 @@ recommended to always specify a specific API version.</p>
 <div class="section" id="versions">
 <span id="overview-versions"></span><h2>Versions<a class="headerlink" href="#versions" title="Permalink to this headline">¶</a></h2>
 <p>Currently there is one stable version of the Gini API. Future versions can be
-requested using a specific <tt class="docutils literal"><span class="pre">Accept</span></tt> header.</p>
+requested using a specific <tt class="docutils literal"><span class="pre">Accept</span></tt> header. Additionally, we provide a unstable
+incubator version of the Gini API. This is primarily for testing new extractions but
+may affect other parts of the Gini API as well.</p>
 <div class="section" id="v1">
 <h3>v1<a class="headerlink" href="#v1" title="Permalink to this headline">¶</a></h3>
 <p>Gini API v1 is stable and will not be changed in an incompatible way. Please
@@ -428,6 +449,17 @@ using the HTTP/1.1 <tt class="docutils literal"><span class="pre">Accept</span><
 <div class="highlight-python"><div class="highlight"><pre>Accept: application/vnd.gini.v1+json
 </pre></div>
 </div>
+</div>
+<div class="section" id="incubator">
+<h3>incubator<a class="headerlink" href="#incubator" title="Permalink to this headline">¶</a></h3>
+<p>Gini API incubator is unstable and can change at any time. We will provide new and immature
+features (e.g. extractions) exclusively under this Gini API version. We encourage developers to test these
+features and to give us feedback under <a class="reference external" href="mailto:api&#37;&#52;&#48;gini&#46;net">api<span>&#64;</span>gini<span>&#46;</span>net</a>. The incubating features are accessible by
+using the HTTP/1.1 <tt class="docutils literal"><span class="pre">Accept</span></tt> header:</p>
+<div class="highlight-python"><div class="highlight"><pre>Accept: application/vnd.gini.incubator+json
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="incubator.html#incubator"><em>Incubator</em></a> for further informations.</p>
 </div>
 </div>
 <div class="section" id="authentication">

@@ -85,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overview.html#v1">v1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#incubator">incubator</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#authentication">Authentication</a></li>
@@ -112,6 +113,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#supported-file-formats">Supported file formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#document-type-hints">Document Type Hints</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#request">Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#response">Response</a></li>
 </ul>
@@ -318,6 +320,22 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="incubator.html">Incubator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="incubator.html#incubating-extractions">Incubating Extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#accessing-incubating-extractions">Accessing Incubating Extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#receipt-extraction">Receipt Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#fuel-receipt-extraction">Fuel Receipt Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#subject-extraction">Subject Extraction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="incubator.html#incubating-entities">Incubating Entities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#volume">volume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#fuelprice">fuelprice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#subject">subject</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="notifications.html">Notifications</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="notifications.html#retrieving-document-change-events-for-a-client">Retrieving Document Change Events for a Client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="notifications.html#request">Request</a></li>
@@ -332,6 +350,7 @@
 <li class="toctree-l3"><a class="reference internal" href="client_libs.html#resources">Resources</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="client_libs.html#ios">iOS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="client_libs.html#upcoming-clients">Upcoming clients</a></li>
 </ul>
 </li>
@@ -443,6 +462,13 @@ recognized.</li>
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="document-type-hints">
+<h3>Document Type Hints<a class="headerlink" href="#document-type-hints" title="Permalink to this headline">¶</a></h3>
+<p>The type of a document is in many cases known to the client application. If you
+provide the <tt class="docutils literal"><span class="pre">doctype</span></tt> parameter with a valid value from the <a class="reference internal" href="entity_reference.html#extraction-entity-doctype"><em>doctype</em></a> entity , Gini can optimize
+the processing of the document in many ways. Furthermore, some incubating extractions may only
+available if the document type is provided.</p>
+</div>
 <div class="section" id="request">
 <h3>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h3>
 <p>Documents can be submitted by doing a <tt class="docutils literal"><span class="pre">POST</span></tt> request on the
@@ -481,9 +507,9 @@ recognized.</li>
 provide a file name for the submitted document with a query parameter:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="29%" />
-<col width="14%" />
-<col width="57%" />
+<col width="28%" />
+<col width="13%" />
+<col width="58%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -495,6 +521,12 @@ provide a file name for the submitted document with a query parameter:</p>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">filename</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">string</span></tt></td>
 <td><em>(Optional)</em> File name of the submitted document</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">doctype</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td><em>(Optional)</em> Type of the submitted document
+See <a class="reference internal" href="entity_reference.html#extraction-entity-doctype"><em>doctype</em></a> for possible
+values</td>
 </tr>
 </tbody>
 </table>

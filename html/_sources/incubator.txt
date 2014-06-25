@@ -1,0 +1,239 @@
+.. _incubator:
+
+Incubator
+=========
+
+The incubator Gini API is unstable and subject of change. It allows early access 
+to immature features which are still in research or under development. 
+
+
+Incubating Extractions
+----------------------
+
+This kind of features are not accessible via the v1 version of the Gini API. They
+are only accessible by submitting the incubator version header and/or special parameters.
+
+.. _accessing-incubating-extractions:
+
+Accessing Incubating Extractions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The incubating extractions are accessible by submitting the incubator custom media type ``Access`` header.
+See the example below:
+
+.. code-block:: bash
+
+
+    curl -H 'Authorization: BEARER <token>' -H 'Accept: application/vnd.gini.incubator+json' -i https://api.gini.net/documents/<documentId>/extractions
+   
+
+
+Receipt Extraction
+^^^^^^^^^^^^^^^^^^
+
+Receipts are printed acknowledgements that a specified article or payment has been received. 
+They are often printed in stores with cash registers and include informations like price, tax,
+discount and the purchased items or services.
+
+Supported Specific Extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| Name                     | Description                                  | Entity                                       |  Candidates               | Special Values          |
++==========================+==============================================+==============================================+===========================+=========================+
+| ``amountToPay``          | The amount which was paid.               | :ref:`extraction-entity-amount`              |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``docType``              | The document type of a given document.       | :ref:`extraction-entity-doctype`             |  n/a                      | ``Receipt``             |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``documentDate``         | The document date.                           | :ref:`extraction-entity-date`                |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``senderName``           | The name of the seller.                      | :ref:`extraction-entity-companyname`         |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+
+Access
+~~~~~~
+
+The document type hint parameter must be set to ``Receipt`` when :ref:`submitting-documents`. See the example below:
+
+.. code-block:: bash
+
+    curl -H 'Authorization: BEARER <token>' --data-binary '@file.pdf' -H 'Accept: application/vnd.gini.incubator+json' -i https://api.gini.net/documents?filename=file.pdf&doctype=Receipt
+
+Fuel Receipt Extraction
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Fuel receipts are a special kind of receipts for purchasing gasoline in a gas station.
+
+Supported Specific Extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| Name                     | Description                                  | Entity                                       |  Candidates               | Special Values          |
++==========================+==============================================+==============================================+===========================+=========================+
+| ``amountLiters``         | The amount of gasoline purchased.            | :ref:`extraction-entity-volume`              |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``amountToPay``          | The amount which was paid.                   | :ref:`extraction-entity-amount`              |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``docType``              | The document type of a given document.       | :ref:`extraction-entity-doctype`             |  n/a                      | ``FuelReceipt``         |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``pricePerLiter``        | The price per liter of gasoline.             | :ref:`extraction-entity-fuelprice`           |  ``pricePerLiters``       | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+
+Access
+~~~~~~
+
+The document type hint parameter must be set to ``FuelReceipt`` when :ref:`submitting-documents`. 
+See the example below:
+
+.. code-block:: bash
+
+   
+    curl -H 'Authorization: BEARER <token>' --data-binary '@file.pdf' -H 'Accept: application/vnd.gini.incubator+json' -i https://api.gini.net/documents?filename=file.pdf&doctype=FuelReceipt
+
+
+Furthermore, the ``Accept`` header must be set to the incubator custom media type if you access the extractions. 
+See :ref:`accessing-incubating-extractions`
+
+
+Subject Extraction
+^^^^^^^^^^^^^^^^^^
+
+This extraction captures the subject line of a letter.
+
+Supported Specific Extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| Name                     | Description                                  | Entity                                       |  Candidates               | Special Values          |
++==========================+==============================================+==============================================+===========================+=========================+
+| ``subject``              | The subject line of a letter.                | :ref:`extraction-entity-subject`             |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+
+Access
+~~~~~~
+
+The ``Accept`` header must be set to the incubator custom media type if you access the extractions. 
+See :ref:`accessing-incubating-extractions`
+
+Incubating Entities
+-------------------
+.. index::
+   pair: volume; extraction entity
+.. _extraction-entity-volume:
+
+volume
+^^^^^^
+
+Describes a volume (e.g. of gasoline) with a specific unit (e.g. liter) in the format
+``<Volume>:<Unit>``, where ``<Volume>`` is a decimal number with "." as decimal separator 
+and ":" as delimiter between ``<Volume>`` and ``<Unit>``.
+
+Format
+~~~~~~
+ 
++--------------+---------------------+----------------------------------------------------------+
+| Name         | Type                | Description                                              |
++==============+=====================+==========================================================+
+| ``entity``   | ``string``          | **Must** be ``volume``                                   |
++--------------+---------------------+----------------------------------------------------------+
+| ``value``    | ``string``          | Volume in the defined format                             |
++--------------+---------------------+----------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number |
++--------------+---------------------+----------------------------------------------------------+
+ 
+Example
+~~~~~~~
+ 
+.. code-block:: json
+ 
+    {
+        "entity": "volume",
+        "value": "63.56:l",
+        "box": {
+            "top": 210.0,
+            "left": 199.0,
+            "width": 43.0,
+            "height": 7.0,
+            "page": 1
+        }
+    }
+
+.. index::
+   pair: fuelprice; extraction entity
+.. _extraction-entity-fuelprice:
+ 
+fuelprice
+^^^^^^^^^
+
+Describes a price per liter (e.g. of gasoline) with a specific currency (e.g. EUR) in the format
+``<Fuelprice>:<Currency>``, where ``<Fuelprice>`` is a decimal number with "." as decimal separator 
+and ":" as delimiter between ``<Fuelprice>`` and ``<Currency>``.
+ 
+Format
+~~~~~~
+ 
++--------------+---------------------+----------------------------------------------------------+
+| Name         | Type                | Description                                              |
++==============+=====================+==========================================================+
+| ``entity``   | ``string``          | **Must** be ``fuelprice``                                |
++--------------+---------------------+----------------------------------------------------------+
+| ``value``    | ``string``          | Fuelprice in the defined format                          |
++--------------+---------------------+----------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number |
++--------------+---------------------+----------------------------------------------------------+
+ 
+Example
+~~~~~~~
+ 
+.. code-block:: json
+  
+    {
+        "entity": "fuelprice",
+        "value": "1.439:EUR",
+        "box": {
+            "top": 210.0,
+            "left": 257.0,
+            "width": 53.0,
+            "height": 8.0,
+            "page": 1
+        }
+    }
+
+.. index::
+   pair: subject; extraction entity
+.. _extraction-entity-subject:
+  
+subject
+^^^^^^^
+
+Represents the subject line of a letter.
+
+Format
+~~~~~~
+
++--------------+---------------------+----------------------------------------------------------+
+| Name         | Type                | Description                                              |
++==============+=====================+==========================================================+
+| ``entity``   | ``string``          | **Must** be ``subject``                                  |
++--------------+---------------------+----------------------------------------------------------+
+| ``value``    | ``string``          | The subject                                              |
++--------------+---------------------+----------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number |
++--------------+---------------------+----------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code-block:: json
+  
+    {
+        "entity": "subject",
+        "value": "Thema Unser Vorteilsangebot. Ihre Fahrfreude.",
+        "box": {
+            "top": 379.0,
+            "left": 68.0,
+            "width": 244.0,
+            "height": 10.0,
+            "page": 1
+        }
+    }

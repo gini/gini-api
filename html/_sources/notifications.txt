@@ -15,11 +15,11 @@ Once the connection is established, the document status changes are sent by the 
 Request
 ~~~~~~~
 
-The subscription can be done by doing a ``POST`` with a valid authorization header on the following URI.
+The subscription can be done by doing a ``GET`` with a valid authorization header on the following URI.
 
 ::
 
-    POST https://notifications.gini.net/events/client
+    GET https://notifications.gini.net/events/client
 
 Headers
 ^^^^^^^

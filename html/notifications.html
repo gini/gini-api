@@ -54,7 +54,7 @@
   
     <link rel="top" title="Gini API v1 documentation" href="index.html"/>
         <link rel="next" title="Client Libraries" href="client_libs.html"/>
-        <link rel="prev" title="Search" href="document_search.html"/> 
+        <link rel="prev" title="Incubator" href="incubator.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -85,6 +85,7 @@
 <li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overview.html#v1">v1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overview.html#incubator">incubator</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#authentication">Authentication</a></li>
@@ -112,6 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="documents.html">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#supported-file-formats">Supported file formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documents.html#document-type-hints">Document Type Hints</a></li>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#request">Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#response">Response</a></li>
 </ul>
@@ -318,6 +320,22 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="incubator.html">Incubator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="incubator.html#incubating-extractions">Incubating Extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#accessing-incubating-extractions">Accessing Incubating Extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#receipt-extraction">Receipt Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#fuel-receipt-extraction">Fuel Receipt Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#subject-extraction">Subject Extraction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="incubator.html#incubating-entities">Incubating Entities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#volume">volume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#fuelprice">fuelprice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#subject">subject</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Notifications</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#retrieving-document-change-events-for-a-client">Retrieving Document Change Events for a Client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#request">Request</a></li>
@@ -332,6 +350,7 @@
 <li class="toctree-l3"><a class="reference internal" href="client_libs.html#resources">Resources</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="client_libs.html#ios">iOS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="client_libs.html#upcoming-clients">Upcoming clients</a></li>
 </ul>
 </li>
@@ -404,8 +423,8 @@ Since the browser implementations of <a class="reference external" href="http://
 Once the connection is established, the document status changes are sent by the server as SSE event stream.</p>
 <div class="section" id="request">
 <h3>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h3>
-<p>The subscription can be done by doing a <tt class="docutils literal"><span class="pre">POST</span></tt> with a valid authorization header on the following URI.</p>
-<div class="highlight-python"><div class="highlight"><pre>POST https://notifications.gini.net/events/client
+<p>The subscription can be done by doing a <tt class="docutils literal"><span class="pre">GET</span></tt> with a valid authorization header on the following URI.</p>
+<div class="highlight-python"><div class="highlight"><pre>GET https://notifications.gini.net/events/client
 </pre></div>
 </div>
 <div class="section" id="headers">
@@ -537,7 +556,7 @@ either some empty lines or a error message.</p>
         <a href="client_libs.html" class="btn btn-neutral float-right" title="Client Libraries">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="document_search.html" class="btn btn-neutral" title="Search"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="incubator.html" class="btn btn-neutral" title="Incubator"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

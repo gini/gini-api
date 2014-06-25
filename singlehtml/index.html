@@ -83,6 +83,7 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-overview#media-types">Media Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-overview#versions">Versions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-overview#v1">v1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-overview#incubator">incubator</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-overview#authentication">Authentication</a></li>
@@ -110,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-documents">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#supported-file-formats">Supported file formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#document-type-hints">Document Type Hints</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#request">Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#response">Response</a></li>
 </ul>
@@ -316,6 +318,22 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-incubator">Incubator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-incubator#incubating-extractions">Incubating Extractions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-incubator#accessing-incubating-extractions">Accessing Incubating Extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-incubator#receipt-extraction">Receipt Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-incubator#fuel-receipt-extraction">Fuel Receipt Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-incubator#subject-extraction">Subject Extraction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-incubator#incubating-entities">Incubating Entities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-incubator#volume">volume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-incubator#fuelprice">fuelprice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-incubator#subject">subject</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-notifications">Notifications</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-notifications#retrieving-document-change-events-for-a-client">Retrieving Document Change Events for a Client</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-notifications#request">Request</a></li>
@@ -330,6 +348,7 @@
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-client_libs#resources">Resources</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-client_libs#ios">iOS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-client_libs#upcoming-clients">Upcoming clients</a></li>
 </ul>
 </li>
@@ -447,7 +466,9 @@ recommended to always specify a specific API version.</p>
 <div class="section" id="versions">
 <span id="overview-versions"></span><h4>Versions<a class="headerlink" href="#versions" title="Permalink to this headline">¶</a></h4>
 <p>Currently there is one stable version of the Gini API. Future versions can be
-requested using a specific <tt class="docutils literal"><span class="pre">Accept</span></tt> header.</p>
+requested using a specific <tt class="docutils literal"><span class="pre">Accept</span></tt> header. Additionally, we provide a unstable
+incubator version of the Gini API. This is primarily for testing new extractions but
+may affect other parts of the Gini API as well.</p>
 <div class="section" id="v1">
 <h5>v1<a class="headerlink" href="#v1" title="Permalink to this headline">¶</a></h5>
 <p>Gini API v1 is stable and will not be changed in an incompatible way. Please
@@ -458,6 +479,17 @@ using the HTTP/1.1 <tt class="docutils literal"><span class="pre">Accept</span><
 <div class="highlight-python"><div class="highlight"><pre>Accept: application/vnd.gini.v1+json
 </pre></div>
 </div>
+</div>
+<div class="section" id="incubator">
+<h5>incubator<a class="headerlink" href="#incubator" title="Permalink to this headline">¶</a></h5>
+<p>Gini API incubator is unstable and can change at any time. We will provide new and immature
+features (e.g. extractions) exclusively under this Gini API version. We encourage developers to test these
+features and to give us feedback under <a class="reference external" href="mailto:api&#37;&#52;&#48;gini&#46;net">api<span>&#64;</span>gini<span>&#46;</span>net</a>. The incubating features are accessible by
+using the HTTP/1.1 <tt class="docutils literal"><span class="pre">Accept</span></tt> header:</p>
+<div class="highlight-python"><div class="highlight"><pre>Accept: application/vnd.gini.incubator+json
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="index.html#incubator"><em>Incubator</em></a> for further informations.</p>
 </div>
 </div>
 <div class="section" id="authentication">
@@ -1009,6 +1041,13 @@ recognized.</li>
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="document-type-hints">
+<h5>Document Type Hints<a class="headerlink" href="#document-type-hints" title="Permalink to this headline">¶</a></h5>
+<p>The type of a document is in many cases known to the client application. If you
+provide the <tt class="docutils literal"><span class="pre">doctype</span></tt> parameter with a valid value from the <a class="reference internal" href="index.html#extraction-entity-doctype"><em>doctype</em></a> entity , Gini can optimize
+the processing of the document in many ways. Furthermore, some incubating extractions may only
+available if the document type is provided.</p>
+</div>
 <div class="section" id="request">
 <h5>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h5>
 <p>Documents can be submitted by doing a <tt class="docutils literal"><span class="pre">POST</span></tt> request on the
@@ -1047,9 +1086,9 @@ recognized.</li>
 provide a file name for the submitted document with a query parameter:</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="29%" />
-<col width="14%" />
-<col width="57%" />
+<col width="28%" />
+<col width="13%" />
+<col width="58%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Name</th>
@@ -1061,6 +1100,12 @@ provide a file name for the submitted document with a query parameter:</p>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">filename</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">string</span></tt></td>
 <td><em>(Optional)</em> File name of the submitted document</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">doctype</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td><em>(Optional)</em> Type of the submitted document
+See <a class="reference internal" href="index.html#extraction-entity-doctype"><em>doctype</em></a> for possible
+values</td>
 </tr>
 </tbody>
 </table>
@@ -4329,6 +4374,294 @@ a list of possible values.</td>
 </div>
 </div>
 </div>
+<span id="document-incubator"></span><div class="section" id="incubator">
+<span id="id1"></span><h3>Incubator<a class="headerlink" href="#incubator" title="Permalink to this headline">¶</a></h3>
+<p>The incubator Gini API is unstable and subject of change. It allows early access
+to immature features which are still in research or under development.</p>
+<div class="section" id="incubating-extractions">
+<h4>Incubating Extractions<a class="headerlink" href="#incubating-extractions" title="Permalink to this headline">¶</a></h4>
+<p>This kind of features are not accessible via the v1 version of the Gini API. They
+are only accessible by submitting the incubator version header and/or special parameters.</p>
+<div class="section" id="accessing-incubating-extractions">
+<span id="id2"></span><h5>Accessing Incubating Extractions<a class="headerlink" href="#accessing-incubating-extractions" title="Permalink to this headline">¶</a></h5>
+<p>The incubating extractions are accessible by submitting the incubator custom media type <tt class="docutils literal"><span class="pre">Access</span></tt> header.
+See the example below:</p>
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.incubator+json&#39;</span> -i https://api.gini.net/documents/&lt;documentId&gt;/extractions
+</pre></div>
+</div>
+</div>
+<div class="section" id="receipt-extraction">
+<h5>Receipt Extraction<a class="headerlink" href="#receipt-extraction" title="Permalink to this headline">¶</a></h5>
+<p>Receipts are printed acknowledgements that a specified article or payment has been received.
+They are often printed in stores with cash registers and include informations like price, tax,
+discount and the purchased items or services.</p>
+<div class="section" id="supported-specific-extractions">
+<h6>Supported Specific Extractions<a class="headerlink" href="#supported-specific-extractions" title="Permalink to this headline">¶</a></h6>
+</div>
+<div class="section" id="access">
+<h6>Access<a class="headerlink" href="#access" title="Permalink to this headline">¶</a></h6>
+<p>The document type hint parameter must be set to <tt class="docutils literal"><span class="pre">Receipt</span></tt> when <a class="reference internal" href="index.html#submitting-documents"><em>Submitting files</em></a>. See the example below:</p>
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.incubator+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf&amp;doctype<span class="o">=</span>Receipt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="fuel-receipt-extraction">
+<h5>Fuel Receipt Extraction<a class="headerlink" href="#fuel-receipt-extraction" title="Permalink to this headline">¶</a></h5>
+<p>Fuel receipts are a special kind of receipts for purchasing gasoline in a gas station.</p>
+<div class="section" id="id3">
+<h6>Supported Specific Extractions<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h6>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="27%" />
+<col width="27%" />
+<col width="16%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">Entity</th>
+<th class="head">Candidates</th>
+<th class="head">Special Values</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">amountLiters</span></tt></td>
+<td>The amount of gasoline purchased.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-volume"><em>volume</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">amountToPay</span></tt></td>
+<td>The amount which was paid.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-amount"><em>amount</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">docType</span></tt></td>
+<td>The document type of a given document.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-doctype"><em>doctype</em></a></td>
+<td>n/a</td>
+<td><tt class="docutils literal"><span class="pre">FuelReceipt</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">pricePerLiter</span></tt></td>
+<td>The price per liter of gasoline.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-fuelprice"><em>fuelprice</em></a></td>
+<td><tt class="docutils literal"><span class="pre">pricePerLiters</span></tt></td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h6>Access<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h6>
+<p>The document type hint parameter must be set to <tt class="docutils literal"><span class="pre">FuelReceipt</span></tt> when <a class="reference internal" href="index.html#submitting-documents"><em>Submitting files</em></a>.
+See the example below:</p>
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.incubator+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf&amp;doctype<span class="o">=</span>FuelReceipt
+</pre></div>
+</div>
+<p>Furthermore, the <tt class="docutils literal"><span class="pre">Accept</span></tt> header must be set to the incubator custom media type if you access the extractions.
+See <a class="reference internal" href="index.html#accessing-incubating-extractions"><em>Accessing Incubating Extractions</em></a></p>
+</div>
+</div>
+<div class="section" id="subject-extraction">
+<h5>Subject Extraction<a class="headerlink" href="#subject-extraction" title="Permalink to this headline">¶</a></h5>
+<p>This extraction captures the subject line of a letter.</p>
+<div class="section" id="id5">
+<h6>Supported Specific Extractions<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h6>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="27%" />
+<col width="27%" />
+<col width="16%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">Entity</th>
+<th class="head">Candidates</th>
+<th class="head">Special Values</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">subject</span></tt></td>
+<td>The subject line of a letter.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-subject"><em>subject</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id6">
+<h6>Access<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h6>
+<p>The <tt class="docutils literal"><span class="pre">Accept</span></tt> header must be set to the incubator custom media type if you access the extractions.
+See <a class="reference internal" href="index.html#accessing-incubating-extractions"><em>Accessing Incubating Extractions</em></a></p>
+</div>
+</div>
+</div>
+<div class="section" id="incubating-entities">
+<h4>Incubating Entities<a class="headerlink" href="#incubating-entities" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="volume">
+<span id="extraction-entity-volume"></span><span id="index-0"></span><h5>volume<a class="headerlink" href="#volume" title="Permalink to this headline">¶</a></h5>
+<p>Describes a volume (e.g. of gasoline) with a specific unit (e.g. liter) in the format
+<tt class="docutils literal"><span class="pre">&lt;Volume&gt;:&lt;Unit&gt;</span></tt>, where <tt class="docutils literal"><span class="pre">&lt;Volume&gt;</span></tt> is a decimal number with &#8221;.&#8221; as decimal separator
+and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span class="pre">&lt;Volume&gt;</span></tt> and <tt class="docutils literal"><span class="pre">&lt;Unit&gt;</span></tt>.</p>
+<div class="section" id="format">
+<h6>Format<a class="headerlink" href="#format" title="Permalink to this headline">¶</a></h6>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="23%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">entity</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td><strong>Must</strong> be <tt class="docutils literal"><span class="pre">volume</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">value</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td>Volume in the defined format</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">box</span></tt></td>
+<td><a class="reference internal" href="index.html#bounding-box"><em>Bounding Box</em></a></td>
+<td>Bounding box of the occurrence including the page number</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="example">
+<h6>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h6>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;volume&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;63.56:l&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mf">210.0</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mf">199.0</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mf">43.0</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mf">7.0</span><span class="p">,</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="fuelprice">
+<span id="extraction-entity-fuelprice"></span><span id="index-1"></span><h5>fuelprice<a class="headerlink" href="#fuelprice" title="Permalink to this headline">¶</a></h5>
+<p>Describes a price per liter (e.g. of gasoline) with a specific currency (e.g. EUR) in the format
+<tt class="docutils literal"><span class="pre">&lt;Fuelprice&gt;:&lt;Currency&gt;</span></tt>, where <tt class="docutils literal"><span class="pre">&lt;Fuelprice&gt;</span></tt> is a decimal number with &#8221;.&#8221; as decimal separator
+and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span class="pre">&lt;Fuelprice&gt;</span></tt> and <tt class="docutils literal"><span class="pre">&lt;Currency&gt;</span></tt>.</p>
+<div class="section" id="id7">
+<h6>Format<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h6>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="23%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">entity</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td><strong>Must</strong> be <tt class="docutils literal"><span class="pre">fuelprice</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">value</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td>Fuelprice in the defined format</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">box</span></tt></td>
+<td><a class="reference internal" href="index.html#bounding-box"><em>Bounding Box</em></a></td>
+<td>Bounding box of the occurrence including the page number</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id8">
+<h6>Example<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h6>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;fuelprice&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;1.439:EUR&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mf">210.0</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mf">257.0</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mf">53.0</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mf">8.0</span><span class="p">,</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="subject">
+<span id="extraction-entity-subject"></span><span id="index-2"></span><h5>subject<a class="headerlink" href="#subject" title="Permalink to this headline">¶</a></h5>
+<p>Represents the subject line of a letter.</p>
+<div class="section" id="id9">
+<h6>Format<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h6>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="23%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">entity</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td><strong>Must</strong> be <tt class="docutils literal"><span class="pre">subject</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">value</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td>The subject</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">box</span></tt></td>
+<td><a class="reference internal" href="index.html#bounding-box"><em>Bounding Box</em></a></td>
+<td>Bounding box of the occurrence including the page number</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id10">
+<h6>Example<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h6>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;subject&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Thema Unser Vorteilsangebot. Ihre Fahrfreude.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mf">379.0</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mf">68.0</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mf">244.0</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <span id="document-notifications"></span><div class="section" id="notifications">
 <span id="id1"></span><h3>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes it is not desirable or not convinient to actively poll for the processing status of documents. The notification API allows to retrieve status changes in a publish/subscribe fashion.</p>
@@ -4339,8 +4672,8 @@ Since the browser implementations of <a class="reference external" href="http://
 Once the connection is established, the document status changes are sent by the server as SSE event stream.</p>
 <div class="section" id="request">
 <h5>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h5>
-<p>The subscription can be done by doing a <tt class="docutils literal"><span class="pre">POST</span></tt> with a valid authorization header on the following URI.</p>
-<div class="highlight-python"><div class="highlight"><pre>POST https://notifications.gini.net/events/client
+<p>The subscription can be done by doing a <tt class="docutils literal"><span class="pre">GET</span></tt> with a valid authorization header on the following URI.</p>
+<div class="highlight-python"><div class="highlight"><pre>GET https://notifications.gini.net/events/client
 </pre></div>
 </div>
 <div class="section" id="headers">
@@ -4518,12 +4851,16 @@ It&#8217;s intended to help you to get started quickly.</p>
 </div>
 </div>
 </div>
+<div class="section" id="ios">
+<h4>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h4>
+<p>The iOS SDK is hosted on <a class="reference external" href="https://github.com/gini/gini-sdk-ios">Github</a></p>
+<p>Check out the <a class="reference external" href="http://developer.gini.net/gini-sdk-ios">documentation</a> that includes a tutorial on how to include Gini Technology in your own app.</p>
+</div>
 <div class="section" id="upcoming-clients">
 <h4>Upcoming clients<a class="headerlink" href="#upcoming-clients" title="Permalink to this headline">¶</a></h4>
 <p>We are currently working on additional client libraries including:</p>
 <ul class="simple">
 <li>JavaScript</li>
-<li>iOS</li>
 <li>Python</li>
 <li>Java</li>
 </ul>
