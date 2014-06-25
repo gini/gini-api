@@ -41,7 +41,7 @@ Supported Specific Extractions
 +--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
 | Name                     | Description                                  | Entity                                       |  Candidates               | Special Values          |
 +==========================+==============================================+==============================================+===========================+=========================+
-| ``amountToPay``          | The amount which was paid.               | :ref:`extraction-entity-amount`              |  n/a                      | n/a                     |
+| ``amountToPay``          | The amount which was paid.                   | :ref:`extraction-entity-amount`              |  n/a                      | n/a                     |
 +--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
 | ``docType``              | The document type of a given document.       | :ref:`extraction-entity-doctype`             |  n/a                      | ``Receipt``             |
 +--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
@@ -57,7 +57,7 @@ The document type hint parameter must be set to ``Receipt`` when :ref:`submittin
 
 .. code-block:: bash
 
-    curl -H 'Authorization: BEARER <token>' --data-binary '@file.pdf' -H 'Accept: application/vnd.gini.incubator+json' -i https://api.gini.net/documents?filename=file.pdf&doctype=Receipt
+    curl -H 'Authorization: BEARER <token>' --data-binary '@file.pdf' -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents?filename=file.pdf&doctype=Receipt
 
 Fuel Receipt Extraction
 ^^^^^^^^^^^^^^^^^^^^^^^

@@ -436,11 +436,54 @@ They are often printed in stores with cash registers and include informations li
 discount and the purchased items or services.</p>
 <div class="section" id="supported-specific-extractions">
 <h4>Supported Specific Extractions<a class="headerlink" href="#supported-specific-extractions" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="27%" />
+<col width="27%" />
+<col width="16%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">Entity</th>
+<th class="head">Candidates</th>
+<th class="head">Special Values</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">amountToPay</span></tt></td>
+<td>The amount which was paid.</td>
+<td><a class="reference internal" href="entity_reference.html#extraction-entity-amount"><em>amount</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">docType</span></tt></td>
+<td>The document type of a given document.</td>
+<td><a class="reference internal" href="entity_reference.html#extraction-entity-doctype"><em>doctype</em></a></td>
+<td>n/a</td>
+<td><tt class="docutils literal"><span class="pre">Receipt</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">documentDate</span></tt></td>
+<td>The document date.</td>
+<td><a class="reference internal" href="entity_reference.html#extraction-entity-date"><em>date</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderName</span></tt></td>
+<td>The name of the seller.</td>
+<td><a class="reference internal" href="entity_reference.html#extraction-entity-companyname"><em>companyname</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="access">
 <h4>Access<a class="headerlink" href="#access" title="Permalink to this headline">¶</a></h4>
 <p>The document type hint parameter must be set to <tt class="docutils literal"><span class="pre">Receipt</span></tt> when <a class="reference internal" href="documents.html#submitting-documents"><em>Submitting files</em></a>. See the example below:</p>
-<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.incubator+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf&amp;doctype<span class="o">=</span>Receipt
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf&amp;doctype<span class="o">=</span>Receipt
 </pre></div>
 </div>
 </div>
