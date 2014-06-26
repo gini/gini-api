@@ -643,7 +643,7 @@ application.</li>
 <span id="guide-oauth2-server-side-flow"></span><h5>Server-Side Flow<a class="headerlink" href="#server-side-flow" title="Permalink to this headline">¶</a></h5>
 <p>The authentication flow begins with your application redirecting
 the user to the Gini Authorization Server:</p>
-<div class="highlight-python"><div class="highlight"><pre>https://user.gini.net/authorize?response_type=code&amp;client_id={clientId}&amp;redirect_uri={redirectUri}&amp;state={state}
+<div class="highlight-python"><div class="highlight"><pre>https://user.gini.net/oauth/authorize?response_type=code&amp;client_id={clientId}&amp;redirect_uri={redirectUri}&amp;state={state}
 </pre></div>
 </div>
 <p>The URI takes the following parameters:</p>
@@ -674,7 +674,7 @@ cross-site request forgery attacks.</td>
 </table>
 <div class="section" id="example-request">
 <h6>Example request<a class="headerlink" href="#example-request" title="Permalink to this headline">¶</a></h6>
-<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/authorize?response_type=code&amp;client_id=example-clientid&amp;state=uiaeo&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2F</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/oauth/authorize?response_type=code&amp;client_id=example-clientid&amp;state=uiaeo&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2F</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
 <span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
 </pre></div>
@@ -715,7 +715,7 @@ aborted.</p>
 </div>
 <p>Your application then exchanges the received authorization code for an
 access token:</p>
-<div class="highlight-python"><div class="highlight"><pre>POST https://user.gini.net/token
+<div class="highlight-python"><div class="highlight"><pre>POST https://user.gini.net/oauth/token
 </pre></div>
 </div>
 <p>The request takes the following parameters, encoded using the
@@ -731,12 +731,6 @@ access token:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>client_id</td>
-<td>The client ID you received from Gini.</td>
-</tr>
-<tr class="row-odd"><td>client_secret</td>
-<td>The client secret you received from Gini.</td>
-</tr>
 <tr class="row-even"><td>grant_type</td>
 <td>Must be set to <tt class="docutils literal"><span class="pre">authorization_code</span></tt>.</td>
 </tr>
@@ -751,15 +745,18 @@ identical).</td>
 </tr>
 </tbody>
 </table>
+<p>The request must contain a HTTP basic access authorization header,
+with the client ID as username and the client secret as password.</p>
 </div>
 <div class="section" id="id1">
 <h6>Example request<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h6>
-<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/oauth/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Basic ZXhhbXBsZS1jbGllbnRpZDpzZWNyZXQ=</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
 <span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
 
-client_id=example-clientid&amp;client_secret=secret&amp;code=117587e6-4ea5-49ce-a90b-a66d232dfa26&amp;grant_type=authorization_code&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2F
+code=117587e6-4ea5-49ce-a90b-a66d232dfa26&amp;grant_type=authorization_code&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2F
 </pre></div>
 </div>
 </div>
@@ -841,12 +838,13 @@ object with the following fields:</p>
 <p>Once an access token has expired (see the <tt class="docutils literal"><span class="pre">expires_in</span></tt> field of a
 <a class="reference internal" href="index.html#guide-oauth2-token-response"><em>token response</em></a>), your application
 can request a new access token using the refresh token:</p>
-<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/oauth/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Basic ZXhhbXBsZS1jbGllbnRpZDpzZWNyZXQ=</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
 <span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
 
-grant_type=refresh_token&amp;refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26&amp;client_id=example-clientid&amp;client_secret=secret
+grant_type=refresh_token&amp;refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26
 </pre></div>
 </div>
 <p>The request takes the following parameters:</p>
@@ -861,12 +859,6 @@ grant_type=refresh_token&amp;refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26&
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>client_id</td>
-<td>The client ID you received from Gini.</td>
-</tr>
-<tr class="row-odd"><td>client_secret</td>
-<td>The client secret you received from Gini.</td>
-</tr>
 <tr class="row-even"><td>grant_type</td>
 <td>Must be <tt class="docutils literal"><span class="pre">refresh_token</span></tt>.</td>
 </tr>
@@ -875,6 +867,8 @@ grant_type=refresh_token&amp;refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26&
 </tr>
 </tbody>
 </table>
+<p>The request must contain a HTTP basic access authorization header,
+with the client ID as username and the client secret as password.</p>
 <p>The response is a new token. See <a class="reference internal" href="index.html#guide-oauth2-token-response"><em>Token response</em></a> for details.</p>
 </div>
 </div>
@@ -883,7 +877,7 @@ grant_type=refresh_token&amp;refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26&
 <p>Like the <a class="reference internal" href="index.html#guide-oauth2-server-side-flow"><em>Server-Side Flow</em></a>, the authentication flow
 begins with your application redirecting the user to the Gini
 Authorization Server:</p>
-<div class="highlight-python"><div class="highlight"><pre>https://user.gini.net/authorize?response_type=token&amp;client_id={clientId}&amp;redirect_uri={redirectUri}&amp;state={state}
+<div class="highlight-python"><div class="highlight"><pre>https://user.gini.net/oauth/authorize?response_type=token&amp;client_id={clientId}&amp;redirect_uri={redirectUri}&amp;state={state}
 </pre></div>
 </div>
 <p>The URI takes the following parameters:</p>
@@ -914,7 +908,7 @@ cross-site request forgery attacks.</td>
 </table>
 <div class="section" id="id2">
 <h6>Example request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h6>
-<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/authorize?response_type=token&amp;client_id=example-clientid&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2F&amp;state=uiaeo</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/oauth/authorize?response_type=token&amp;client_id=example-clientid&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2F&amp;state=uiaeo</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
 <span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
 </pre></div>
