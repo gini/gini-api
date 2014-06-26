@@ -4441,8 +4441,8 @@ discount and the purchased items or services.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="access">
-<h6>Access<a class="headerlink" href="#access" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="submit">
+<h6>Submit<a class="headerlink" href="#submit" title="Permalink to this headline">¶</a></h6>
 <p>The document type hint parameter must be set to <tt class="docutils literal"><span class="pre">Receipt</span></tt> when <a class="reference internal" href="index.html#submitting-documents"><em>Submitting files</em></a>. See the example below:</p>
 <div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf&amp;doctype<span class="o">=</span>Receipt
 </pre></div>
@@ -4499,12 +4499,15 @@ discount and the purchased items or services.</p>
 </table>
 </div>
 <div class="section" id="id4">
-<h6>Access<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h6>
+<h6>Submit<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h6>
 <p>The document type hint parameter must be set to <tt class="docutils literal"><span class="pre">FuelReceipt</span></tt> when <a class="reference internal" href="index.html#submitting-documents"><em>Submitting files</em></a>.
 See the example below:</p>
-<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.incubator+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf&amp;doctype<span class="o">=</span>FuelReceipt
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf&amp;doctype<span class="o">=</span>FuelReceipt
 </pre></div>
 </div>
+</div>
+<div class="section" id="access">
+<h6>Access<a class="headerlink" href="#access" title="Permalink to this headline">¶</a></h6>
 <p>Furthermore, the <tt class="docutils literal"><span class="pre">Accept</span></tt> header must be set to the incubator custom media type if you access the extractions.
 See <a class="reference internal" href="index.html#accessing-incubating-extractions"><em>Accessing Incubating Extractions</em></a></p>
 </div>

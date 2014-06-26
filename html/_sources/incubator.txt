@@ -50,7 +50,7 @@ Supported Specific Extractions
 | ``senderName``           | The name of the seller.                      | :ref:`extraction-entity-companyname`         |  n/a                      | n/a                     |
 +--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
 
-Access
+Submit
 ~~~~~~
 
 The document type hint parameter must be set to ``Receipt`` when :ref:`submitting-documents`. See the example below:
@@ -79,7 +79,7 @@ Supported Specific Extractions
 | ``pricePerLiter``        | The price per liter of gasoline.             | :ref:`extraction-entity-fuelprice`           |  ``pricePerLiters``       | n/a                     |
 +--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
 
-Access
+Submit
 ~~~~~~
 
 The document type hint parameter must be set to ``FuelReceipt`` when :ref:`submitting-documents`. 
@@ -88,8 +88,10 @@ See the example below:
 .. code-block:: bash
 
    
-    curl -H 'Authorization: BEARER <token>' --data-binary '@file.pdf' -H 'Accept: application/vnd.gini.incubator+json' -i https://api.gini.net/documents?filename=file.pdf&doctype=FuelReceipt
+    curl -H 'Authorization: BEARER <token>' --data-binary '@file.pdf' -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents?filename=file.pdf&doctype=FuelReceipt
 
+Access
+~~~~~~
 
 Furthermore, the ``Accept`` header must be set to the incubator custom media type if you access the extractions. 
 See :ref:`accessing-incubating-extractions`
