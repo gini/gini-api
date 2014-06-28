@@ -117,6 +117,30 @@ Access
 The ``Accept`` header must be set to the incubator custom media type if you access the extractions. 
 See :ref:`accessing-incubating-extractions`
 
+
+
+Recipient Extraction
+^^^^^^^^^^^^^^^^^^^^
+
+This extraction captures the recipient of a letter.
+
+Supported Specific Extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| Name                     | Description                                  | Entity                                       |  Candidates               | Special Values          |
++==========================+==============================================+==============================================+===========================+=========================+
+| ``recipient``            | The recipient of a letter.                   | :ref:`extraction-entity-recipient`           |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+
+Access
+~~~~~~
+
+The ``Accept`` header must be set to the incubator custom media type if you access the extractions.
+See :ref:`accessing-incubating-extractions`
+
+
+
 Incubating Entities
 -------------------
 .. index::
@@ -231,6 +255,47 @@ Example
     {
         "entity": "subject",
         "value": "Thema Unser Vorteilsangebot. Ihre Fahrfreude.",
+        "box": {
+            "top": 379.0,
+            "left": 68.0,
+            "width": 244.0,
+            "height": 10.0,
+            "page": 1
+        }
+    }
+
+
+
+.. index::
+   pair: recipient; extraction entity
+.. _extraction-entity-recipient:
+
+recipient
+^^^^^^^^^
+
+Represents the recipient of a letter.
+
+Format
+~~~~~~
+
++--------------+---------------------+----------------------------------------------------------+
+| Name         | Type                | Description                                              |
++==============+=====================+==========================================================+
+| ``entity``   | ``string``          | **Must** be ``recipient``                                |
++--------------+---------------------+----------------------------------------------------------+
+| ``value``    | ``string``          | The recipient                                            |
++--------------+---------------------+----------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number |
++--------------+---------------------+----------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code-block:: json
+
+    {
+        "entity": "recipient",
+        "value": "Max Mustermann Musterstrasse 1 Musterstadt",
         "box": {
             "top": 379.0,
             "left": 68.0,

@@ -326,12 +326,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#receipt-extraction">Receipt Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fuel-receipt-extraction">Fuel Receipt Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#subject-extraction">Subject Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recipient-extraction">Recipient Extraction</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#incubating-entities">Incubating Entities</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#volume">volume</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fuelprice">fuelprice</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#subject">subject</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recipient">recipient</a></li>
 </ul>
 </li>
 </ul>
@@ -588,6 +590,43 @@ See <a class="reference internal" href="#accessing-incubating-extractions"><em>A
 See <a class="reference internal" href="#accessing-incubating-extractions"><em>Accessing Incubating Extractions</em></a></p>
 </div>
 </div>
+<div class="section" id="recipient-extraction">
+<h3>Recipient Extraction<a class="headerlink" href="#recipient-extraction" title="Permalink to this headline">¶</a></h3>
+<p>This extraction captures the recipient of a letter.</p>
+<div class="section" id="id7">
+<h4>Supported Specific Extractions<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="27%" />
+<col width="27%" />
+<col width="16%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">Entity</th>
+<th class="head">Candidates</th>
+<th class="head">Special Values</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">recipient</span></tt></td>
+<td>The recipient of a letter.</td>
+<td><a class="reference internal" href="#extraction-entity-recipient"><em>recipient</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id8">
+<h4>Access<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p>The <tt class="docutils literal"><span class="pre">Accept</span></tt> header must be set to the incubator custom media type if you access the extractions.
+See <a class="reference internal" href="#accessing-incubating-extractions"><em>Accessing Incubating Extractions</em></a></p>
+</div>
+</div>
 </div>
 <div class="section" id="incubating-entities">
 <h2>Incubating Entities<a class="headerlink" href="#incubating-entities" title="Permalink to this headline">¶</a></h2>
@@ -648,8 +687,8 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 <p>Describes a price per liter (e.g. of gasoline) with a specific currency (e.g. EUR) in the format
 <tt class="docutils literal"><span class="pre">&lt;Fuelprice&gt;:&lt;Currency&gt;</span></tt>, where <tt class="docutils literal"><span class="pre">&lt;Fuelprice&gt;</span></tt> is a decimal number with &#8221;.&#8221; as decimal separator
 and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span class="pre">&lt;Fuelprice&gt;</span></tt> and <tt class="docutils literal"><span class="pre">&lt;Currency&gt;</span></tt>.</p>
-<div class="section" id="id7">
-<h4>Format<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id9">
+<h4>Format<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -678,8 +717,8 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 </tbody>
 </table>
 </div>
-<div class="section" id="id8">
-<h4>Example<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id10">
+<h4>Example<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;fuelprice&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;1.439:EUR&quot;</span><span class="p">,</span>
@@ -698,8 +737,8 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 <div class="section" id="subject">
 <span id="extraction-entity-subject"></span><span id="index-2"></span><h3>subject<a class="headerlink" href="#subject" title="Permalink to this headline">¶</a></h3>
 <p>Represents the subject line of a letter.</p>
-<div class="section" id="id9">
-<h4>Format<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id11">
+<h4>Format<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -728,11 +767,61 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 </tbody>
 </table>
 </div>
-<div class="section" id="id10">
-<h4>Example<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id12">
+<h4>Example<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;subject&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Thema Unser Vorteilsangebot. Ihre Fahrfreude.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mf">379.0</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mf">68.0</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mf">244.0</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="recipient">
+<span id="extraction-entity-recipient"></span><span id="index-3"></span><h3>recipient<a class="headerlink" href="#recipient" title="Permalink to this headline">¶</a></h3>
+<p>Represents the recipient of a letter.</p>
+<div class="section" id="id13">
+<h4>Format<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="23%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">entity</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td><strong>Must</strong> be <tt class="docutils literal"><span class="pre">recipient</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">value</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td>The recipient</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">box</span></tt></td>
+<td><a class="reference internal" href="document_extractions.html#bounding-box"><em>Bounding Box</em></a></td>
+<td>Bounding box of the occurrence including the page number</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id14">
+<h4>Example<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;recipient&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Max Mustermann Musterstrasse 1 Musterstadt&quot;</span><span class="p">,</span>
     <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mf">379.0</span><span class="p">,</span>
         <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mf">68.0</span><span class="p">,</span>
