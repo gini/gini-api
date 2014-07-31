@@ -146,24 +146,25 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#submitting-feedback-on-extractions">Submitting feedback on extractions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#submitting-feedback-on-incorrect-extractions">Submitting feedback on incorrect extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submitting-feedback-on-single-extractions">Submitting feedback on single extractions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submitting-feedback-on-multiple-extractions">Submitting feedback on multiple extractions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#submitting-feedback-for-invalid-extractions">Submitting feedback for invalid extractions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#create-an-error-report-for-a-document">Create an Error Report for a Document</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id46">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id51">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id51">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id56">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#deleting-documents">Deleting documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id55">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id57">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id60">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id62">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id60">Request query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id65">Request query parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example-request">Example request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id61">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id66">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -1669,8 +1670,12 @@ extractions URI:</p>
 </div>
 <div class="section" id="submitting-feedback-on-extractions">
 <h2>Submitting feedback on extractions<a class="headerlink" href="#submitting-feedback-on-extractions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="submitting-feedback-on-incorrect-extractions">
-<h3>Submitting feedback on incorrect extractions<a class="headerlink" href="#submitting-feedback-on-incorrect-extractions" title="Permalink to this headline">¶</a></h3>
+<p>You can submit feedback on extractions, in order to help to improve the recognition
+rate of the Gini API. Gini uses several techniques to learn from feedback on
+extractions automatically. Thereby, it is equally important for Gini to receive both, feedback
+on correct and on incorrect extractions.</p>
+<div class="section" id="submitting-feedback-on-single-extractions">
+<span id="singlefeedback"></span><h3>Submitting feedback on single extractions<a class="headerlink" href="#submitting-feedback-on-single-extractions" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id39">
 <h4>Request<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h4>
 <p>Give feedback and correct or verify a specific labeled extraction
@@ -1759,7 +1764,125 @@ of names).</p>
 <td>The feedback was successfully processed</td>
 </tr>
 <tr class="row-odd"><td>404 (Not Found)</td>
-<td>The document or label couldn&#8217;t not be found</td>
+<td>The document or label could not be found</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="submitting-feedback-on-multiple-extractions">
+<h3>Submitting feedback on multiple extractions<a class="headerlink" href="#submitting-feedback-on-multiple-extractions" title="Permalink to this headline">¶</a></h3>
+<p>The Gini API also allows to submit feedback on multiple extractions for a
+single document with a single request. It is strongly recommended for two reasons
+that you submit your feedback on this way. On the one hand,
+the total number of roundtrips is reduced to one and the feedback is handled
+internally as a batch. Thus, the update is more efficient for multiple extractions
+compared to submitting each feedback with a separate request
+(See <a class="reference internal" href="#singlefeedback"><em>Submitting feedback on single extractions</em></a>). On the other hand, Gini&#8217;s
+training techniques can benefit from the feedback on multiple extractions, as Gini
+can be aware of the fact that the single parts of the submitted feedback belong together.</p>
+<div class="section" id="id44">
+<h4>Request<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
+<p>Give feedback and correct or verify multiple specific labeled extraction
+patterns with a single <tt class="docutils literal"><span class="pre">PUT</span></tt> request to the documents extractions URI:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">PUT</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">extractions</span>
+</pre></div>
+</div>
+<p>The labels must correspond to the names of the extraction types (e. g.
+<tt class="docutils literal"><span class="pre">amountToPay</span></tt>. See <a class="reference internal" href="document_extractions.html#available-specific-extractions"><em>Available Specific Extractions</em></a> for a list
+of names).</p>
+<div class="section" id="id45">
+<h5>Headers<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Value</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id46">
+<h5>Body<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h5>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="14%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">feedback</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">object</span></tt></td>
+<td>A mapping of labels to <a class="reference internal" href="document_extractions.html#extractions"><em>Extractions</em></a> (i.e.
+<a class="reference internal" href="document_extractions.html#specific-extractions"><em>Specific extractions</em></a>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id47">
+<h5>Example<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h5>
+<div class="highlight-json"><div class="highlight"><pre>{
+    &quot;feedback&quot;: {
+        &quot;amountToPay&quot;: {
+            &quot;box&quot;: {
+               &quot;height&quot;: 14,
+               &quot;left&quot;: 405,
+               &quot;page&quot;: 1,
+               &quot;top&quot;: 421,
+               &quot;width&quot;: 36
+            },
+            &quot;value&quot;: &quot;new value&quot;
+        },
+        &quot;bic&quot;: {
+            &quot;box&quot;: {
+                &quot;height&quot;: 14,
+                &quot;left&quot;: 100,
+                &quot;page&quot;: 1,
+                &quot;top&quot;: 609,
+                &quot;width&quot;: 40
+            },
+            &quot;value&quot;: &quot;new value&quot;,
+            &quot;entity&quot;: &quot;bic&quot;
+        },
+        ...
+    }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id48">
+<h4>Response<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Status Code</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>204 (No Content)</td>
+<td>The feedback was successfully processed</td>
+</tr>
+<tr class="row-odd"><td>404 (Not Found)</td>
+<td>The document or label could not be found</td>
 </tr>
 </tbody>
 </table>
@@ -1767,8 +1890,8 @@ of names).</p>
 </div>
 <div class="section" id="submitting-feedback-for-invalid-extractions">
 <h3>Submitting feedback for invalid extractions<a class="headerlink" href="#submitting-feedback-for-invalid-extractions" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id44">
-<h4>Request<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id49">
+<h4>Request<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h4>
 <p>In case an extraction was found erroneously (i.e. is not present in
 the source document), you can delete it by issuing a <tt class="docutils literal"><span class="pre">DELETE</span></tt>
 request to the extraction URI:</p>
@@ -1776,8 +1899,8 @@ request to the extraction URI:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id45">
-<h4>Response<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id50">
+<h4>Response<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="26%" />
@@ -1806,14 +1929,14 @@ request to the extraction URI:</p>
 create an error report for a document. This allows Gini to analyze and correct the problem that was found. The owner of this
 document must agree that Gini can use this document for debugging and error analysis. The returned <tt class="docutils literal"><span class="pre">errorId</span></tt> can
 be used to refer to the reported error towards the Gini support.</p>
-<div class="section" id="id46">
-<h3>Request<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id51">
+<h3>Request<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h3>
 <p>Create a error report with a <tt class="docutils literal"><span class="pre">POST</span></tt> request to the document URI:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">errorreport</span>
 </pre></div>
 </div>
-<div class="section" id="id47">
-<h4>Headers<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id52">
+<h4>Headers<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="37%" />
@@ -1831,8 +1954,8 @@ be used to refer to the reported error towards the Gini support.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id48">
-<h4>Request query parameters<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id53">
+<h4>Request query parameters<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="28%" />
@@ -1858,21 +1981,21 @@ error found</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id49">
-<h4>Body<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id54">
+<h4>Body<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
 <p>Empty.</p>
 </div>
-<div class="section" id="id50">
-<h4>Example<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id55">
+<h4>Example<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X POST -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/errorreport?summary<span class="o">=</span>Extractions%20Empty&amp;description<span class="o">=</span>Despite%20the%20submitted%20remittance%20slip%20has%20a%20good%20image%20quality%2C%20the%20iban%20was%20not%20found.
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id51">
-<h3>Response<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id52">
-<h4>Headers<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id56">
+<h3>Response<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id57">
+<h4>Headers<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="30%" />
@@ -1893,8 +2016,8 @@ error found</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id53">
-<h4>Body<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id58">
+<h4>Body<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="26%" />
@@ -1920,8 +2043,8 @@ refer to this error.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id54">
-<h4>Example<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id59">
+<h4>Example<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
   <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;error was reported, please refer to the given error id&quot;</span><span class="p">,</span>
   <span class="nt">&quot;errorId&quot;</span><span class="p">:</span> <span class="s2">&quot;436626a0-749f-11e2-bfd6-00000000000&quot;</span>
@@ -1936,24 +2059,24 @@ refer to this error.</td>
 <p>If you want to delete a document you can do this by doing a
 DELETE request on the document URI. When the document is deleted all
 associated resources (extractions, layout) will also be deleted.</p>
-<div class="section" id="id55">
-<h3>Request<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id60">
+<h3>Request<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h3>
 <p>Documents can be deleted by doing a <tt class="docutils literal"><span class="pre">DELETE</span></tt> request on the document
 URI.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">DELETE</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="id56">
-<h4>Example<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id61">
+<h4>Example<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; -X DELETE -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id57">
-<h3>Response<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id58">
-<h4>Headers<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id62">
+<h3>Response<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id63">
+<h4>Headers<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="47%" />
@@ -1971,8 +2094,8 @@ URI.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id59">
-<h4>Errors<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id64">
+<h4>Errors<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -2000,8 +2123,8 @@ documents.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span>
 </pre></div>
 </div>
-<div class="section" id="id60">
-<h3>Request query parameters<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id65">
+<h3>Request query parameters<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="29%" />
@@ -2033,11 +2156,11 @@ return. Defaults to <em>20</em>.</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id61">
-<h3>Response<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id66">
+<h3>Response<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h3>
 <p>The response is a paginated list of documents.</p>
-<div class="section" id="id62">
-<h4>Headers<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id67">
+<h4>Headers<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="50%" />
@@ -2055,8 +2178,8 @@ return. Defaults to <em>20</em>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id63">
-<h4>Body<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id68">
+<h4>Body<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h4>
 <p>The response entity has the following fields:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -2082,8 +2205,8 @@ return. Defaults to <em>20</em>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id64">
-<h4>Example<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id69">
+<h4>Example<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre>{
   &quot;totalCount&quot;: 118,
   &quot;documents&quot;: [

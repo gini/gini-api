@@ -825,7 +825,14 @@ Errors
 Submitting feedback on extractions
 ----------------------------------
 
-Submitting feedback on incorrect extractions
+You can submit feedback on extractions, in order to help to improve the recognition 
+rate of the Gini API. Gini uses several techniques to learn from feedback on 
+extractions automatically. Thereby, it is equally important for Gini to receive both, feedback 
+on correct and on incorrect extractions. 
+
+.. _singlefeedback:
+
+Submitting feedback on single extractions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Request
@@ -886,9 +893,98 @@ Response
 +====================+===============================================+
 | 204 (No Content)   | The feedback was successfully processed       |
 +--------------------+-----------------------------------------------+
-| 404 (Not Found)    | The document or label couldn't not be found   |
+| 404 (Not Found)    | The document or label could not be found      |
 +--------------------+-----------------------------------------------+
 
+
+Submitting feedback on multiple extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Gini API also allows to submit feedback on multiple extractions for a 
+single document with a single request. It is strongly recommended for two reasons 
+that you submit your feedback on this way. On the one hand,
+the total number of roundtrips is reduced to one and the feedback is handled
+internally as a batch. Thus, the update is more efficient for multiple extractions
+compared to submitting each feedback with a separate request 
+(See :ref:`singlefeedback`). On the other hand, Gini's 
+training techniques can benefit from the feedback on multiple extractions, as Gini
+can be aware of the fact that the single parts of the submitted feedback belong together.
+
+Request
+^^^^^^^
+
+Give feedback and correct or verify multiple specific labeled extraction
+patterns with a single ``PUT`` request to the documents extractions URI:
+
+::
+
+    PUT /documents/{id}/extractions
+
+The labels must correspond to the names of the extraction types (e. g.
+``amountToPay``. See :ref:`available-specific-extractions` for a list
+of names).
+
+Headers
+'''''''
+
++--------------------+----------------------------------+
+| Header             | Value                            |
++====================+==================================+
+| ``Content-Type``   | ``application/vnd.gini.v1+json`` |
++--------------------+----------------------------------+
+
+Body
+''''
+
++--------------+------------+-------------------------------------------------------------+
+| Key          | Type       | Description                                                 |
++==============+============+=============================================================+
+| ``feedback`` | ``object`` | A mapping of labels to :ref:`extractions` (i.e.             |
+|              |            | :ref:`specific-extractions`)                                |
++--------------+------------+-------------------------------------------------------------+
+
+Example
+'''''''
+
+.. code-block:: json
+
+    {	
+	"feedback": {
+	    "amountToPay": {
+		"box": {
+            	   "height": 14,
+            	   "left": 405,
+            	   "page": 1,
+            	   "top": 421,
+            	   "width": 36
+        	},
+        	"value": "new value"
+	    },
+	    "bic": {
+		"box": {
+		    "height": 14,
+		    "left": 100,
+		    "page": 1,
+		    "top": 609,
+		    "width": 40
+		},
+		"value": "new value",
+		"entity": "bic"
+	    },
+	    ...
+    	}
+    }
+
+Response
+^^^^^^^^
+
++--------------------+-----------------------------------------------+
+| Status Code        | Description                                   |
++====================+===============================================+
+| 204 (No Content)   | The feedback was successfully processed       |
++--------------------+-----------------------------------------------+
+| 404 (Not Found)    | The document or label could not be found      |
++--------------------+-----------------------------------------------+
 
 Submitting feedback for invalid extractions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
