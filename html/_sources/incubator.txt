@@ -139,6 +139,56 @@ Access
 The ``Accept`` header must be set to the incubator custom media type if you access the extractions.
 See :ref:`accessing-incubating-extractions`
 
+Energy Statement Extractions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+An energy statement is a document sent by an energy provider to their client which lists the energy consumption over a certain time period together with the charges. 
+
+Supported Specific Extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| Name                     | Description                                  | Entity                                       |  Candidates               | Special Values          |
++==========================+==============================================+==============================================+===========================+=========================+
+| ``amountToPay``          | The amount which has to be paid              | :ref:`extraction-entity-amount`              |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``billingAmount``        | The amount which was charged.                | :ref:`extraction-entity-amount`              |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``consumption``          | The amount of energy which was consumed.     | :ref:`extraction-entity-energyconsumption`   |  ``consumptions``         | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``consumptionDuration``  | The time period of the charged consumption.  | :ref:`extraction-entity-timeperiod`          |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``counterNumber``        | The number of the counter which measured the | :ref:`extraction-entity-counternumber`       |  ``counterNumbers``       | n/a                     |
+|                          | consumption.                                 |                                              |                           |                         |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``customerPostalCode``   | The postal code of the client.               | :ref:`extraction-entity-postalcode`          |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``docType``              | The document type of a given document.       | :ref:`extraction-entity-doctype`             |  n/a                      | ``Energy``              |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``energyType``           | The type of energy beeing charged.           | :ref:`extraction-entity-energytype`          |  n/a                      | ``Electricity``,        |
+|                          |                                              |                                              |                           | ``Gas``                 |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``paidAmount``           | The amount which was already paid.           | :ref:`extraction-entity-amount`              |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| ``refundAmount``         | The amount which will be refunded.           | :ref:`extraction-entity-amount`              |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+
+Submit
+~~~~~~
+
+The document type hint parameter must be set to ``Energy`` when :ref:`submitting-documents`. 
+See the example below:
+
+.. code-block:: bash
+
+   
+    curl -H 'Authorization: BEARER <token>' --data-binary '@file.pdf' -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents?filename=file.pdf&doctype=Energy
+
+Access
+~~~~~~
+
+Furthermore, the ``Accept`` header must be set to the incubator custom media type if you access the extractions. 
+See :ref:`accessing-incubating-extractions`
 
 
 Incubating Entities
@@ -304,3 +354,205 @@ Example
             "page": 1
         }
     }
+
+.. index::
+   pair: counternumber; extraction entity
+.. _extraction-entity-counternumber:
+
+counternumber
+^^^^^^^^^^^^^
+
+Represents the number of a counter which measures energy consumption.
+
+Format
+~~~~~~
+
++--------------+---------------------+----------------------------------------------------------+
+| Name         | Type                | Description                                              |
++==============+=====================+==========================================================+
+| ``entity``   | ``string``          | **Must** be ``counternumber``                            |
++--------------+---------------------+----------------------------------------------------------+
+| ``value``    | ``string``          | The counter number.                                      |
++--------------+---------------------+----------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number |
++--------------+---------------------+----------------------------------------------------------+
+
+
+Example
+~~~~~~~
+
+.. code-block:: json
+
+    {
+        "entity": "counternumber",
+        "value": "220666",
+        "box": {
+            "top": 379.0,
+            "left": 68.0,
+            "width": 244.0,
+            "height": 10.0,
+            "page": 1
+        }
+    }
+
+.. index::
+   pair: energyconsumption; extraction entity
+.. _extraction-entity-energyconsumption:
+
+energyconsumption
+^^^^^^^^^^^^^^^^^
+
+Represents the amount of consumed energy. The format is ``<amount>``:``<unit>`` where ``<unit>``
+is always ``kWh``.
+
+Format
+~~~~~~
+
++--------------+---------------------+----------------------------------------------------------+
+| Name         | Type                | Description                                              |
++==============+=====================+==========================================================+
+| ``entity``   | ``string``          | **Must** be ``energyconsumption``                        |
++--------------+---------------------+----------------------------------------------------------+
+| ``value``    | ``string``          | The energy consumption in the defined format.            |
++--------------+---------------------+----------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number |
++--------------+---------------------+----------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code-block:: json
+
+    {
+        "entity": "energyconsumption",
+        "value": "176.00:kWh",
+        "box": {
+            "top": 379.0,
+            "left": 68.0,
+            "width": 244.0,
+            "height": 10.0,
+            "page": 1
+        }
+    }
+
+.. index::
+   pair: energytype; extraction entity
+.. _extraction-entity-energytype:
+
+energytype
+^^^^^^^^^^
+
+Represents the type of energy beeing charged. The possible types are ``Electricity`` or ``Gas``.
+
+
+Format
+~~~~~~
+
++--------------+---------------------+----------------------------------------------------------+
+| Name         | Type                | Description                                              |
++==============+=====================+==========================================================+
+| ``entity``   | ``string``          | **Must** be ``energytype``                               |
++--------------+---------------------+----------------------------------------------------------+
+| ``value``    | ``string``          | ``Electricity`` or ``Gas``                               |
++--------------+---------------------+----------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number |
++--------------+---------------------+----------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code-block:: json
+
+    {
+        "entity": "energytype",
+        "value": "Gas",
+        "box": {
+            "top": 379.0,
+            "left": 68.0,
+            "width": 244.0,
+            "height": 10.0,
+            "page": 1
+        }
+    }
+
+.. index::
+   pair: postalcode; extraction entity
+.. _extraction-entity-postalcode:
+
+postalcode
+^^^^^^^^^^
+
+Represents a postal code. The format is ``<countrycode>``:``<zipcode>``:``<city>``.
+
+
+Format
+~~~~~~
+
++--------------+---------------------+----------------------------------------------------------+
+| Name         | Type                | Description                                              |
++==============+=====================+==========================================================+
+| ``entity``   | ``string``          | **Must** be ``postalcode``                               |
++--------------+---------------------+----------------------------------------------------------+
+| ``value``    | ``string``          | The postalcode in the defined format.                    |
++--------------+---------------------+----------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number |
++--------------+---------------------+----------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code-block:: json
+
+    {
+        "entity": "postalcode",
+        "value": "DE:81379:Munich",
+        "box": {
+            "top": 379.0,
+            "left": 68.0,
+            "width": 244.0,
+            "height": 10.0,
+            "page": 1
+        }
+    }
+
+
+.. index::
+   pair: timeperiod; extraction entity
+.. _extraction-entity-timeperiod:
+
+timeperiod
+^^^^^^^^^^
+
+Represents a time period. The format is ``<number of days>``:``day``.
+
+
+Format
+~~~~~~
+
++--------------+---------------------+----------------------------------------------------------+
+| Name         | Type                | Description                                              |
++==============+=====================+==========================================================+
+| ``entity``   | ``string``          | **Must** be ``timeperiod``                               |
++--------------+---------------------+----------------------------------------------------------+
+| ``value``    | ``string``          | The timeperiod in the defined format.                    |
++--------------+---------------------+----------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number |
++--------------+---------------------+----------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code-block:: json
+
+    {
+        "entity": "timeperiod",
+        "value": "30:day",
+        "box": {
+            "top": 379.0,
+            "left": 68.0,
+            "width": 244.0,
+            "height": 10.0,
+            "page": 1
+        }
+    }
+

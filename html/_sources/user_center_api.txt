@@ -196,7 +196,7 @@ Example
 
 .. code-block:: json
 
-   {"id":"c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e","email":"some_user@example.com"}
+   {"id":"88a28076-18e8-4275-b39c-eaacc240d406","email":"some_user@example.com"}
 
 
 

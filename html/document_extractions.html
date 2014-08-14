@@ -333,6 +333,7 @@
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#fuel-receipt-extraction">Fuel Receipt Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#subject-extraction">Subject Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#recipient-extraction">Recipient Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#energy-statement-extractions">Energy Statement Extractions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="incubator.html#incubating-entities">Incubating Entities</a><ul>
@@ -340,6 +341,11 @@
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#fuelprice">fuelprice</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#subject">subject</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#recipient">recipient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#counternumber">counternumber</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#energyconsumption">energyconsumption</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#energytype">energytype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#postalcode">postalcode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#timeperiod">timeperiod</a></li>
 </ul>
 </li>
 </ul>
@@ -740,16 +746,20 @@ given document.</td>
 <td>All phone numbers of a given document.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-phonenumber"><em>phonenumber</em></a></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">taxNumbers</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderNames</span></tt></td>
+<td>All possible sender names of a given document.</td>
+<td><a class="reference internal" href="entity_reference.html#extraction-entity-companyname"><em>companyname</em></a></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">taxNumbers</span></tt></td>
 <td>All strings of digits (of a similiar structure as a German tax number) of a given
 document.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-taxnumber"><em>taxnumber</em></a></td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">vatRegNumbers</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">vatRegNumbers</span></tt></td>
 <td>All alphanumeric strings (of a similiar structure as an identifier) of a given document.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-vat"><em>vat</em></a></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">websites</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">websites</span></tt></td>
 <td>All links found in a given document.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-url"><em>url</em></a></td>
 </tr>
