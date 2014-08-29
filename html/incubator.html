@@ -331,6 +331,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#accessing-incubating-extractions">Accessing Incubating Extractions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#receipt-extraction">Receipt Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fuel-receipt-extraction">Fuel Receipt Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accounting-related-extractions">Accounting Related Extractions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#subject-extraction">Subject Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#recipient-extraction">Recipient Extraction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#energy-statement-extractions">Energy Statement Extractions</a></li>
@@ -565,11 +566,48 @@ See the example below:</p>
 See <a class="reference internal" href="#accessing-incubating-extractions"><em>Accessing Incubating Extractions</em></a></p>
 </div>
 </div>
+<div class="section" id="accounting-related-extractions">
+<h3>Accounting Related Extractions<a class="headerlink" href="#accounting-related-extractions" title="Permalink to this headline">¶</a></h3>
+<p>This extraction captures the net amount of an invoice.</p>
+<div class="section" id="id5">
+<h4>Supported Specific Extractions<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="27%" />
+<col width="27%" />
+<col width="16%" />
+<col width="15%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+<th class="head">Entity</th>
+<th class="head">Candidates</th>
+<th class="head">Special Values</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">netAmount</span></tt></td>
+<td>The net amount of an invoice.</td>
+<td><a class="reference internal" href="entity_reference.html#extraction-entity-amount"><em>amount</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id6">
+<h4>Access<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p>The <tt class="docutils literal"><span class="pre">Accept</span></tt> header must be set to the incubator custom media type if you access the extractions.
+See <a class="reference internal" href="#accessing-incubating-extractions"><em>Accessing Incubating Extractions</em></a></p>
+</div>
+</div>
 <div class="section" id="subject-extraction">
 <h3>Subject Extraction<a class="headerlink" href="#subject-extraction" title="Permalink to this headline">¶</a></h3>
 <p>This extraction captures the subject line of a letter.</p>
-<div class="section" id="id5">
-<h4>Supported Specific Extractions<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id7">
+<h4>Supported Specific Extractions<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -596,8 +634,8 @@ See <a class="reference internal" href="#accessing-incubating-extractions"><em>A
 </tbody>
 </table>
 </div>
-<div class="section" id="id6">
-<h4>Access<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id8">
+<h4>Access<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
 <p>The <tt class="docutils literal"><span class="pre">Accept</span></tt> header must be set to the incubator custom media type if you access the extractions.
 See <a class="reference internal" href="#accessing-incubating-extractions"><em>Accessing Incubating Extractions</em></a></p>
 </div>
@@ -605,8 +643,8 @@ See <a class="reference internal" href="#accessing-incubating-extractions"><em>A
 <div class="section" id="recipient-extraction">
 <h3>Recipient Extraction<a class="headerlink" href="#recipient-extraction" title="Permalink to this headline">¶</a></h3>
 <p>This extraction captures the recipient of a letter.</p>
-<div class="section" id="id7">
-<h4>Supported Specific Extractions<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id9">
+<h4>Supported Specific Extractions<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -633,8 +671,8 @@ See <a class="reference internal" href="#accessing-incubating-extractions"><em>A
 </tbody>
 </table>
 </div>
-<div class="section" id="id8">
-<h4>Access<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id10">
+<h4>Access<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <p>The <tt class="docutils literal"><span class="pre">Accept</span></tt> header must be set to the incubator custom media type if you access the extractions.
 See <a class="reference internal" href="#accessing-incubating-extractions"><em>Accessing Incubating Extractions</em></a></p>
 </div>
@@ -642,8 +680,8 @@ See <a class="reference internal" href="#accessing-incubating-extractions"><em>A
 <div class="section" id="energy-statement-extractions">
 <h3>Energy Statement Extractions<a class="headerlink" href="#energy-statement-extractions" title="Permalink to this headline">¶</a></h3>
 <p>An energy statement is a document sent by an energy provider to their client which lists the energy consumption over a certain time period together with the charges.</p>
-<div class="section" id="id9">
-<h4>Supported Specific Extractions<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id11">
+<h4>Supported Specific Extractions<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -726,16 +764,16 @@ consumption.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id10">
-<h4>Submit<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id12">
+<h4>Submit<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
 <p>The document type hint parameter must be set to <tt class="docutils literal"><span class="pre">Energy</span></tt> when <a class="reference internal" href="documents.html#submitting-documents"><em>Submitting files</em></a>.
 See the example below:</p>
 <div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf&amp;doctype<span class="o">=</span>Energy
 </pre></div>
 </div>
 </div>
-<div class="section" id="id11">
-<h4>Access<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id13">
+<h4>Access<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
 <p>Furthermore, the <tt class="docutils literal"><span class="pre">Accept</span></tt> header must be set to the incubator custom media type if you access the extractions.
 See <a class="reference internal" href="#accessing-incubating-extractions"><em>Accessing Incubating Extractions</em></a></p>
 </div>
@@ -800,8 +838,8 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 <p>Describes a price per liter (e.g. of gasoline) with a specific currency (e.g. EUR) in the format
 <tt class="docutils literal"><span class="pre">&lt;Fuelprice&gt;:&lt;Currency&gt;</span></tt>, where <tt class="docutils literal"><span class="pre">&lt;Fuelprice&gt;</span></tt> is a decimal number with &#8221;.&#8221; as decimal separator
 and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span class="pre">&lt;Fuelprice&gt;</span></tt> and <tt class="docutils literal"><span class="pre">&lt;Currency&gt;</span></tt>.</p>
-<div class="section" id="id12">
-<h4>Format<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id14">
+<h4>Format<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -830,8 +868,8 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 </tbody>
 </table>
 </div>
-<div class="section" id="id13">
-<h4>Example<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id15">
+<h4>Example<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;fuelprice&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;1.439:EUR&quot;</span><span class="p">,</span>
@@ -850,8 +888,8 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 <div class="section" id="subject">
 <span id="extraction-entity-subject"></span><span id="index-2"></span><h3>subject<a class="headerlink" href="#subject" title="Permalink to this headline">¶</a></h3>
 <p>Represents the subject line of a letter.</p>
-<div class="section" id="id14">
-<h4>Format<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id16">
+<h4>Format<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -880,8 +918,8 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 </tbody>
 </table>
 </div>
-<div class="section" id="id15">
-<h4>Example<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id17">
+<h4>Example<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;subject&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Thema Unser Vorteilsangebot. Ihre Fahrfreude.&quot;</span><span class="p">,</span>
@@ -900,8 +938,8 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 <div class="section" id="recipient">
 <span id="extraction-entity-recipient"></span><span id="index-3"></span><h3>recipient<a class="headerlink" href="#recipient" title="Permalink to this headline">¶</a></h3>
 <p>Represents the recipient of a letter.</p>
-<div class="section" id="id16">
-<h4>Format<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id18">
+<h4>Format<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -930,8 +968,8 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 </tbody>
 </table>
 </div>
-<div class="section" id="id17">
-<h4>Example<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id19">
+<h4>Example<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;recipient&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Max Mustermann Musterstrasse 1 Musterstadt&quot;</span><span class="p">,</span>
@@ -950,8 +988,8 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 <div class="section" id="counternumber">
 <span id="extraction-entity-counternumber"></span><span id="index-4"></span><h3>counternumber<a class="headerlink" href="#counternumber" title="Permalink to this headline">¶</a></h3>
 <p>Represents the number of a counter which measures energy consumption.</p>
-<div class="section" id="id18">
-<h4>Format<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id20">
+<h4>Format<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -980,8 +1018,8 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 </tbody>
 </table>
 </div>
-<div class="section" id="id19">
-<h4>Example<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id21">
+<h4>Example<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;counternumber&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;220666&quot;</span><span class="p">,</span>
@@ -1001,8 +1039,8 @@ and &#8221;:&#8221; as delimiter between <tt class="docutils literal"><span clas
 <span id="extraction-entity-energyconsumption"></span><span id="index-5"></span><h3>energyconsumption<a class="headerlink" href="#energyconsumption" title="Permalink to this headline">¶</a></h3>
 <p>Represents the amount of consumed energy. The format is <tt class="docutils literal"><span class="pre">&lt;amount&gt;</span></tt>:<tt class="docutils literal"><span class="pre">&lt;unit&gt;</span></tt> where <tt class="docutils literal"><span class="pre">&lt;unit&gt;</span></tt>
 is always <tt class="docutils literal"><span class="pre">kWh</span></tt>.</p>
-<div class="section" id="id20">
-<h4>Format<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id22">
+<h4>Format<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -1031,8 +1069,8 @@ is always <tt class="docutils literal"><span class="pre">kWh</span></tt>.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id21">
-<h4>Example<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id23">
+<h4>Example<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;energyconsumption&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;176.00:kWh&quot;</span><span class="p">,</span>
@@ -1051,8 +1089,8 @@ is always <tt class="docutils literal"><span class="pre">kWh</span></tt>.</p>
 <div class="section" id="energytype">
 <span id="extraction-entity-energytype"></span><span id="index-6"></span><h3>energytype<a class="headerlink" href="#energytype" title="Permalink to this headline">¶</a></h3>
 <p>Represents the type of energy beeing charged. The possible types are <tt class="docutils literal"><span class="pre">Electricity</span></tt> or <tt class="docutils literal"><span class="pre">Gas</span></tt>.</p>
-<div class="section" id="id22">
-<h4>Format<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id24">
+<h4>Format<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -1081,8 +1119,8 @@ is always <tt class="docutils literal"><span class="pre">kWh</span></tt>.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id23">
-<h4>Example<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id25">
+<h4>Example<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;energytype&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Gas&quot;</span><span class="p">,</span>
@@ -1101,8 +1139,8 @@ is always <tt class="docutils literal"><span class="pre">kWh</span></tt>.</p>
 <div class="section" id="postalcode">
 <span id="extraction-entity-postalcode"></span><span id="index-7"></span><h3>postalcode<a class="headerlink" href="#postalcode" title="Permalink to this headline">¶</a></h3>
 <p>Represents a postal code. The format is <tt class="docutils literal"><span class="pre">&lt;countrycode&gt;</span></tt>:<tt class="docutils literal"><span class="pre">&lt;zipcode&gt;</span></tt>:<tt class="docutils literal"><span class="pre">&lt;city&gt;</span></tt>.</p>
-<div class="section" id="id24">
-<h4>Format<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id26">
+<h4>Format<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -1131,8 +1169,8 @@ is always <tt class="docutils literal"><span class="pre">kWh</span></tt>.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id25">
-<h4>Example<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id27">
+<h4>Example<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;postalcode&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;DE:81379:Munich&quot;</span><span class="p">,</span>
@@ -1151,8 +1189,8 @@ is always <tt class="docutils literal"><span class="pre">kWh</span></tt>.</p>
 <div class="section" id="timeperiod">
 <span id="extraction-entity-timeperiod"></span><span id="index-8"></span><h3>timeperiod<a class="headerlink" href="#timeperiod" title="Permalink to this headline">¶</a></h3>
 <p>Represents a time period. The format is <tt class="docutils literal"><span class="pre">&lt;number</span> <span class="pre">of</span> <span class="pre">days&gt;</span></tt>:<tt class="docutils literal"><span class="pre">day</span></tt>.</p>
-<div class="section" id="id26">
-<h4>Format<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id28">
+<h4>Format<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -1181,8 +1219,8 @@ is always <tt class="docutils literal"><span class="pre">kWh</span></tt>.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id27">
-<h4>Example<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id29">
+<h4>Example<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;timeperiod&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;30:day&quot;</span><span class="p">,</span>

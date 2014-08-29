@@ -97,6 +97,28 @@ Furthermore, the ``Accept`` header must be set to the incubator custom media typ
 See :ref:`accessing-incubating-extractions`
 
 
+Accounting Related Extractions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This extraction captures the net amount of an invoice.
+
+Supported Specific Extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+| Name                     | Description                                  | Entity                                       |  Candidates               | Special Values          |
++==========================+==============================================+==============================================+===========================+=========================+
+| ``netAmount``            | The net amount of an invoice.                | :ref:`extraction-entity-amount`              |  n/a                      | n/a                     |
++--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
+
+Access
+~~~~~~
+
+The ``Accept`` header must be set to the incubator custom media type if you access the extractions.
+See :ref:`accessing-incubating-extractions`
+
+
+
 Subject Extraction
 ^^^^^^^^^^^^^^^^^^
 
