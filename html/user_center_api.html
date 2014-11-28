@@ -375,22 +375,22 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#authenticating-on-behalf-of-a-user">Authenticating on behalf of a user</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Example response</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#creating-a-new-user">Creating a new user</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">Example response</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-new-user">Creating a new user</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Example response</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#retrieving-user-information">Retrieving user information</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id7">Example request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Example request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#response">Response</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#changing-an-user-s-password">Changing an user&#8217;s password</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id9">Request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changing-a-user-s-password">Changing a user&#8217;s password</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Request</a></li>
 </ul>
 </li>
 </ul>
@@ -428,7 +428,7 @@
           <div role="main">
             
   <div class="section" id="user-center-api">
-<h1>User Center API<a class="headerlink" href="#user-center-api" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>User Center API<a class="headerlink" href="#user-center-api" title="Permalink to this headline">¶</a></h1>
 <p>Gini&#8217;s User Center offers an API, e.g. to programmatically create new
 Gini accounts and to make API requests on behalf of a created user.</p>
 <div class="admonition note">
@@ -437,7 +437,7 @@ Gini accounts and to make API requests on behalf of a created user.</p>
 only.</p>
 </div>
 <div class="section" id="client-authentication">
-<span id="id1"></span><h2>Client Authentication<a class="headerlink" href="#client-authentication" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Client Authentication<a class="headerlink" href="#client-authentication" title="Permalink to this headline">¶</a></h2>
 <p>All access to the User Center API requires client authentication. A
 client can authenticate itself with the <em>Client Credentials Grant</em>
 described in <span class="target" id="index-0"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6749.html"><strong>RFC 6749</strong></a>. In short, the client exchanges its client ID
@@ -482,9 +482,9 @@ the User Center API, by sending the token as a bearer token in the
 </div>
 </div>
 <div class="section" id="authenticating-on-behalf-of-a-user">
-<h2>Authenticating on behalf of a user<a class="headerlink" href="#authenticating-on-behalf-of-a-user" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Authenticating on behalf of a user<a class="headerlink" href="#authenticating-on-behalf-of-a-user" title="Permalink to this headline">¶</a></h2>
 <p>The <em>Resource Owner Password Credentials Grant</em> can be used to
-exchange an user&#8217;s email address and password with an access
+exchange a user&#8217;s email address and password with an access
 token. The access token can then be used to make requests to the Gini
 API on behalf of the user.</p>
 <div class="admonition seealso">
@@ -494,8 +494,8 @@ API on behalf of the user.</p>
 <dd>The OAuth 2.0 Authorization Framework: Resource Owner Password Credentials Grant</dd>
 </dl>
 </div>
-<div class="section" id="id2">
-<h3>Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>Request<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="20%" />
@@ -517,8 +517,8 @@ API on behalf of the user.</p>
 </table>
 <p>Note that the client must authenticate itself using HTTP basic access
 authentication with its ID as username and its secret as password.</p>
-<div class="section" id="id3">
-<h4>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id5">
+<h4>Example<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/oauth/token?grant_type=password</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Authorization</span><span class="o">:</span> <span class="l">Basic Y2xpZW50LWlkOnNlY3JldA==</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
@@ -530,8 +530,8 @@ username=some_user@example.com&amp;password=supersecret
 </div>
 </div>
 </div>
-<div class="section" id="id4">
-<h3>Example response<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>Example response<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="s2">&quot;6c470ffa-abf1-41aa-b866-cd3be0ee84f4&quot;</span><span class="p">,</span><span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="s2">&quot;bearer&quot;</span><span class="p">,</span><span class="nt">&quot;expires_in&quot;</span><span class="p">:</span><span class="mi">3599</span><span class="p">}</span>
 </pre></div>
 </div>
@@ -541,10 +541,10 @@ for details.</p>
 </div>
 </div>
 <div class="section" id="creating-a-new-user">
-<h2>Creating a new user<a class="headerlink" href="#creating-a-new-user" title="Permalink to this headline">¶</a></h2>
+<span id="id7"></span><h2>Creating a new user<a class="headerlink" href="#creating-a-new-user" title="Permalink to this headline">¶</a></h2>
 <p>To create a new user, submit a <tt class="docutils literal"><span class="pre">POST</span></tt> request to <tt class="docutils literal"><span class="pre">/api/users</span></tt>.</p>
-<div class="section" id="id5">
-<h3>Request<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>Request<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="18%" />
@@ -576,8 +576,8 @@ Content-Type: application/json
 </div>
 </div>
 </div>
-<div class="section" id="id6">
-<h3>Example response<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>Example response<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
 <span class="na">Location</span><span class="o">:</span> <span class="l">https://user.gini.net/api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e</span>
 <span class="na">Content-Length</span><span class="o">:</span> <span class="l">0</span>
@@ -592,8 +592,8 @@ exists, the API responds with <tt class="docutils literal"><span class="pre">400
 <h2>Retrieving user information<a class="headerlink" href="#retrieving-user-information" title="Permalink to this headline">¶</a></h2>
 <p>Information about a user can be retrieved with a <tt class="docutils literal"><span class="pre">GET</span></tt> request on
 <tt class="docutils literal"><span class="pre">/api/users/{userId}</span></tt></p>
-<div class="section" id="id7">
-<h3>Example request<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id10">
+<h3>Example request<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/api/users/88a28076-18e8-4275-b39c-eaacc240d406</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
 <span class="na">Authorization</span><span class="o">:</span> <span class="l">BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6</span>
@@ -622,21 +622,21 @@ exists, the API responds with <tt class="docutils literal"><span class="pre">400
 </tr>
 </tbody>
 </table>
-<div class="section" id="id8">
-<h4>Example<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id11">
+<h4>Example<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;88a28076-18e8-4275-b39c-eaacc240d406&quot;</span><span class="p">,</span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="s2">&quot;some_user@example.com&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="changing-an-user-s-password">
-<h2>Changing an user&#8217;s password<a class="headerlink" href="#changing-an-user-s-password" title="Permalink to this headline">¶</a></h2>
-<p>An user&#8217;s password can be changed with a <tt class="docutils literal"><span class="pre">POST</span></tt> request to
-<tt class="docutils literal"><span class="pre">/api/users/{userId}</span></tt>. To update an user&#8217;s password, the current
+<div class="section" id="changing-a-user-s-password">
+<h2>Changing a user&#8217;s password<a class="headerlink" href="#changing-a-user-s-password" title="Permalink to this headline">¶</a></h2>
+<p>A user&#8217;s password can be changed with a <tt class="docutils literal"><span class="pre">POST</span></tt> request to
+<tt class="docutils literal"><span class="pre">/api/users/{userId}</span></tt>. To update a user&#8217;s password, the current
 password must be provided.</p>
-<div class="section" id="id9">
-<h3>Request<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h3>Request<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -656,8 +656,8 @@ password must be provided.</p>
 </tr>
 </tbody>
 </table>
-<div class="section" id="id10">
-<h4>Example request<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id13">
+<h4>Example request<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-http"><div class="highlight"><pre>POST /api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e HTTP/1.1
 Host: user.gini.net
 Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6

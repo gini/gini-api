@@ -374,22 +374,22 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-user_center_api#authenticating-on-behalf-of-a-user">Authenticating on behalf of a user</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id2">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id4">Example response</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#document-user_center_api#creating-a-new-user">Creating a new user</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id5">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id4">Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id6">Example response</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-user_center_api#creating-a-new-user">Creating a new user</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id8">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id9">Example response</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-user_center_api#retrieving-user-information">Retrieving user information</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id7">Example request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id10">Example request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#response">Response</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#document-user_center_api#changing-an-user-s-password">Changing an user&#8217;s password</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id9">Request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-user_center_api#changing-a-user-s-password">Changing a user&#8217;s password</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-user_center_api#id12">Request</a></li>
 </ul>
 </li>
 </ul>
@@ -2246,7 +2246,7 @@ extractions URI:</p>
             &quot;entity&quot;: &quot;amount&quot;,
             &quot;value&quot;: &quot;24.99:EUR&quot;,
             &quot;candidates&quot;: &quot;amounts&quot;
-        },
+        }
       },
       &quot;candidates&quot;: {
         &quot;amounts&quot;: [
@@ -2619,7 +2619,7 @@ error found</td>
 </div>
 <div class="section" id="id55">
 <h6>Example<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h6>
-<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X POST -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/errorreport?summary<span class="o">=</span>Extractions%20Empty&amp;description<span class="o">=</span>Despite%20the%20submitted%20remittance%20slip%20has%20a%20good%20image%20quality%2C%20the%20iban%20was%20not%20found.
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X POST -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/errorreport?summary<span class="o">=</span>Extractions%20Empty<span class="p">&amp;</span><span class="nv">description</span><span class="o">=</span>Despite%20the%20submitted%20remittance%20slip%20has%20a%20good%20image%20quality%2C%20the%20iban%20was%20not%20found.
 </pre></div>
 </div>
 </div>
@@ -3101,7 +3101,7 @@ extraction. It also has an additional field <tt class="docutils literal"><span c
 <div class="section" id="extraction-candidates">
 <span id="id6"></span><h4>Extraction Candidates<a class="headerlink" href="#extraction-candidates" title="Permalink to this headline">¶</a></h4>
 <p><em>Extraction candidates</em> are a list of suggestions for an appropriate
-<a class="reference internal" href="index.html#extractions"><em>extraction</em></a>, in no specific order.</p>
+<a class="reference internal" href="index.html#extractions"><em>extraction</em></a>.</p>
 <div class="section" id="id7">
 <h5>Example<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-json"><div class="highlight"><pre>&quot;dates&quot;: [
@@ -4748,13 +4748,73 @@ discount and the purchased items or services.</p>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">documentDate</span></tt></td>
 <td>The document date.</td>
 <td><a class="reference internal" href="index.html#extraction-entity-date"><em>date</em></a></td>
+<td><tt class="docutils literal"><span class="pre">dates</span></tt></td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">email</span></tt></td>
+<td>The email of the seller.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-email"><em>email</em></a></td>
+<td><tt class="docutils literal"><span class="pre">emails</span></tt></td>
+<td>n/a</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">receiptNumber</span></tt></td>
+<td>The number of the receipt.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-invoiceid"><em>invoiceid</em></a></td>
+<td><tt class="docutils literal"><span class="pre">receiptNumbers</span></tt></td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">phoneNumber</span></tt></td>
+<td>The phone number of the seller.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-phonenumber"><em>phonenumber</em></a></td>
+<td><tt class="docutils literal"><span class="pre">phoneNumbers</span></tt></td>
+<td>n/a</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderName</span></tt></td>
+<td>The name of the seller.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-companyname"><em>companyname</em></a></td>
+<td><tt class="docutils literal"><span class="pre">senderNames</span></tt></td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderNameAddition</span></tt></td>
+<td>The name of the branch of the seller.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-companynameaddition"><em>companynameaddition</em></a></td>
 <td>n/a</td>
 <td>n/a</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderName</span></tt></td>
-<td>The name of the seller.</td>
-<td><a class="reference internal" href="index.html#extraction-entity-companyname"><em>companyname</em></a></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderStreet</span></tt></td>
+<td>The street and house number of the seller.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-street"><em>street</em></a></td>
 <td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderPostalCode</span></tt></td>
+<td>The zip code of the seller.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-zipcode"><em>zipcode</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderCity</span></tt></td>
+<td>The city of the seller.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-city"><em>city</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">taxNumber</span></tt></td>
+<td>The tax number of the seller.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-taxnumber"><em>taxnumber</em></a></td>
+<td><tt class="docutils literal"><span class="pre">taxNumbers</span></tt></td>
+<td>n/a</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">vatRegNumber</span></tt></td>
+<td>The vat identification number of the seller.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-vat"><em>vat</em></a></td>
+<td><tt class="docutils literal"><span class="pre">vatRegNumbers</span></tt></td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">website</span></tt></td>
+<td>The website of the seller.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-url"><em>url</em></a></td>
+<td><tt class="docutils literal"><span class="pre">websites</span></tt></td>
 <td>n/a</td>
 </tr>
 </tbody>
@@ -4763,7 +4823,7 @@ discount and the purchased items or services.</p>
 <div class="section" id="submit">
 <h6>Submit<a class="headerlink" href="#submit" title="Permalink to this headline">¶</a></h6>
 <p>The document type hint parameter must be set to <tt class="docutils literal"><span class="pre">Receipt</span></tt> when <a class="reference internal" href="index.html#submitting-documents"><em>Submitting files</em></a>. See the example below:</p>
-<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf&amp;doctype<span class="o">=</span>Receipt
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf<span class="p">&amp;</span><span class="nv">doctype</span><span class="o">=</span>Receipt
 </pre></div>
 </div>
 </div>
@@ -4821,7 +4881,7 @@ discount and the purchased items or services.</p>
 <h6>Submit<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h6>
 <p>The document type hint parameter must be set to <tt class="docutils literal"><span class="pre">FuelReceipt</span></tt> when <a class="reference internal" href="index.html#submitting-documents"><em>Submitting files</em></a>.
 See the example below:</p>
-<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf&amp;doctype<span class="o">=</span>FuelReceipt
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf<span class="p">&amp;</span><span class="nv">doctype</span><span class="o">=</span>FuelReceipt
 </pre></div>
 </div>
 </div>
@@ -4833,7 +4893,7 @@ See <a class="reference internal" href="index.html#accessing-incubating-extracti
 </div>
 <div class="section" id="accounting-related-extractions">
 <h5>Accounting Related Extractions<a class="headerlink" href="#accounting-related-extractions" title="Permalink to this headline">¶</a></h5>
-<p>This extraction captures the net amount of an invoice.</p>
+<p>These extractions are printed on invoices and are needed for proper accounting.</p>
 <div class="section" id="id5">
 <h6>Supported Specific Extractions<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
@@ -4855,6 +4915,30 @@ See <a class="reference internal" href="index.html#accessing-incubating-extracti
 <tbody valign="top">
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">netAmount</span></tt></td>
 <td>The net amount of an invoice.</td>
+<td><a class="reference internal" href="index.html#extraction-entity-amount"><em>amount</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">tax0</span></tt></td>
+<td>The amount with tax rate of 0%</td>
+<td><a class="reference internal" href="index.html#extraction-entity-amount"><em>amount</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">tax7</span></tt></td>
+<td>The amount with tax rate of 7%</td>
+<td><a class="reference internal" href="index.html#extraction-entity-amount"><em>amount</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">tax16</span></tt></td>
+<td>The amount with tax rate of 16%</td>
+<td><a class="reference internal" href="index.html#extraction-entity-amount"><em>amount</em></a></td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">tax19</span></tt></td>
+<td>The amount with tax rate of 19%</td>
 <td><a class="reference internal" href="index.html#extraction-entity-amount"><em>amount</em></a></td>
 <td>n/a</td>
 <td>n/a</td>
@@ -5033,7 +5117,7 @@ consumption.</td>
 <h6>Submit<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h6>
 <p>The document type hint parameter must be set to <tt class="docutils literal"><span class="pre">Energy</span></tt> when <a class="reference internal" href="index.html#submitting-documents"><em>Submitting files</em></a>.
 See the example below:</p>
-<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf&amp;doctype<span class="o">=</span>Energy
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> --data-binary <span class="s1">&#39;@file.pdf&#39;</span> -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents?filename<span class="o">=</span>file.pdf<span class="p">&amp;</span><span class="nv">doctype</span><span class="o">=</span>Energy
 </pre></div>
 </div>
 </div>
@@ -5659,7 +5743,7 @@ pull-requests, forks, feature requests and bug reports.</p>
 <div class="highlight-bash"><div class="highlight"><pre>⌘ &gt; gem install gini-api
 Fetching: gini-api-0.9.5.gem <span class="o">(</span>100%<span class="o">)</span>
 Successfully installed gini-api-0.9.5
-1 gem installed
+<span class="m">1</span> gem installed
 </pre></div>
 </div>
 </div>
@@ -5708,7 +5792,7 @@ It&#8217;s intended to help you to get started quickly.</p>
 </div>
 </div>
 <span id="document-user_center_api"></span><div class="section" id="user-center-api">
-<h3>User Center API<a class="headerlink" href="#user-center-api" title="Permalink to this headline">¶</a></h3>
+<span id="id1"></span><h3>User Center API<a class="headerlink" href="#user-center-api" title="Permalink to this headline">¶</a></h3>
 <p>Gini&#8217;s User Center offers an API, e.g. to programmatically create new
 Gini accounts and to make API requests on behalf of a created user.</p>
 <div class="admonition note">
@@ -5717,7 +5801,7 @@ Gini accounts and to make API requests on behalf of a created user.</p>
 only.</p>
 </div>
 <div class="section" id="client-authentication">
-<span id="id1"></span><h4>Client Authentication<a class="headerlink" href="#client-authentication" title="Permalink to this headline">¶</a></h4>
+<span id="id2"></span><h4>Client Authentication<a class="headerlink" href="#client-authentication" title="Permalink to this headline">¶</a></h4>
 <p>All access to the User Center API requires client authentication. A
 client can authenticate itself with the <em>Client Credentials Grant</em>
 described in <span class="target" id="index-0"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6749.html"><strong>RFC 6749</strong></a>. In short, the client exchanges its client ID
@@ -5762,9 +5846,9 @@ the User Center API, by sending the token as a bearer token in the
 </div>
 </div>
 <div class="section" id="authenticating-on-behalf-of-a-user">
-<h4>Authenticating on behalf of a user<a class="headerlink" href="#authenticating-on-behalf-of-a-user" title="Permalink to this headline">¶</a></h4>
+<span id="id3"></span><h4>Authenticating on behalf of a user<a class="headerlink" href="#authenticating-on-behalf-of-a-user" title="Permalink to this headline">¶</a></h4>
 <p>The <em>Resource Owner Password Credentials Grant</em> can be used to
-exchange an user&#8217;s email address and password with an access
+exchange a user&#8217;s email address and password with an access
 token. The access token can then be used to make requests to the Gini
 API on behalf of the user.</p>
 <div class="admonition seealso">
@@ -5774,8 +5858,8 @@ API on behalf of the user.</p>
 <dd>The OAuth 2.0 Authorization Framework: Resource Owner Password Credentials Grant</dd>
 </dl>
 </div>
-<div class="section" id="id2">
-<h5>Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id4">
+<h5>Request<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="20%" />
@@ -5797,8 +5881,8 @@ API on behalf of the user.</p>
 </table>
 <p>Note that the client must authenticate itself using HTTP basic access
 authentication with its ID as username and its secret as password.</p>
-<div class="section" id="id3">
-<h6>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id5">
+<h6>Example<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/oauth/token?grant_type=password</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Authorization</span><span class="o">:</span> <span class="l">Basic Y2xpZW50LWlkOnNlY3JldA==</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
@@ -5810,8 +5894,8 @@ username=some_user@example.com&amp;password=supersecret
 </div>
 </div>
 </div>
-<div class="section" id="id4">
-<h5>Example response<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id6">
+<h5>Example response<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="s2">&quot;6c470ffa-abf1-41aa-b866-cd3be0ee84f4&quot;</span><span class="p">,</span><span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="s2">&quot;bearer&quot;</span><span class="p">,</span><span class="nt">&quot;expires_in&quot;</span><span class="p">:</span><span class="mi">3599</span><span class="p">}</span>
 </pre></div>
 </div>
@@ -5821,10 +5905,10 @@ for details.</p>
 </div>
 </div>
 <div class="section" id="creating-a-new-user">
-<h4>Creating a new user<a class="headerlink" href="#creating-a-new-user" title="Permalink to this headline">¶</a></h4>
+<span id="id7"></span><h4>Creating a new user<a class="headerlink" href="#creating-a-new-user" title="Permalink to this headline">¶</a></h4>
 <p>To create a new user, submit a <tt class="docutils literal"><span class="pre">POST</span></tt> request to <tt class="docutils literal"><span class="pre">/api/users</span></tt>.</p>
-<div class="section" id="id5">
-<h5>Request<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id8">
+<h5>Request<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="18%" />
@@ -5856,8 +5940,8 @@ Content-Type: application/json
 </div>
 </div>
 </div>
-<div class="section" id="id6">
-<h5>Example response<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id9">
+<h5>Example response<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
 <span class="na">Location</span><span class="o">:</span> <span class="l">https://user.gini.net/api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e</span>
 <span class="na">Content-Length</span><span class="o">:</span> <span class="l">0</span>
@@ -5872,8 +5956,8 @@ exists, the API responds with <tt class="docutils literal"><span class="pre">400
 <h4>Retrieving user information<a class="headerlink" href="#retrieving-user-information" title="Permalink to this headline">¶</a></h4>
 <p>Information about a user can be retrieved with a <tt class="docutils literal"><span class="pre">GET</span></tt> request on
 <tt class="docutils literal"><span class="pre">/api/users/{userId}</span></tt></p>
-<div class="section" id="id7">
-<h5>Example request<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id10">
+<h5>Example request<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/api/users/88a28076-18e8-4275-b39c-eaacc240d406</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
 <span class="na">Authorization</span><span class="o">:</span> <span class="l">BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6</span>
@@ -5902,21 +5986,21 @@ exists, the API responds with <tt class="docutils literal"><span class="pre">400
 </tr>
 </tbody>
 </table>
-<div class="section" id="id8">
-<h6>Example<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id11">
+<h6>Example<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;88a28076-18e8-4275-b39c-eaacc240d406&quot;</span><span class="p">,</span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="s2">&quot;some_user@example.com&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="changing-an-user-s-password">
-<h4>Changing an user&#8217;s password<a class="headerlink" href="#changing-an-user-s-password" title="Permalink to this headline">¶</a></h4>
-<p>An user&#8217;s password can be changed with a <tt class="docutils literal"><span class="pre">POST</span></tt> request to
-<tt class="docutils literal"><span class="pre">/api/users/{userId}</span></tt>. To update an user&#8217;s password, the current
+<div class="section" id="changing-a-user-s-password">
+<h4>Changing a user&#8217;s password<a class="headerlink" href="#changing-a-user-s-password" title="Permalink to this headline">¶</a></h4>
+<p>A user&#8217;s password can be changed with a <tt class="docutils literal"><span class="pre">POST</span></tt> request to
+<tt class="docutils literal"><span class="pre">/api/users/{userId}</span></tt>. To update a user&#8217;s password, the current
 password must be provided.</p>
-<div class="section" id="id9">
-<h5>Request<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id12">
+<h5>Request<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -5936,8 +6020,8 @@ password must be provided.</p>
 </tr>
 </tbody>
 </table>
-<div class="section" id="id10">
-<h6>Example request<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id13">
+<h6>Example request<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-http"><div class="highlight"><pre>POST /api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e HTTP/1.1
 Host: user.gini.net
 Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6

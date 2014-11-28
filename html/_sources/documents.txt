@@ -811,7 +811,7 @@ Example
                 "entity": "amount",
                 "value": "24.99:EUR",
                 "candidates": "amounts"
-            },
+            }
           },
           "candidates": {
             "amounts": [

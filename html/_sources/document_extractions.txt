@@ -150,7 +150,7 @@ Extraction Candidates
 ---------------------
 
 *Extraction candidates* are a list of suggestions for an appropriate
-:ref:`extraction <extractions>`, in no specific order.
+:ref:`extraction <extractions>`.
 
 Example
 ~~~~~~~

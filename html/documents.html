@@ -376,22 +376,22 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="user_center_api.html#authenticating-on-behalf-of-a-user">Authenticating on behalf of a user</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id2">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id4">Example response</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="user_center_api.html#creating-a-new-user">Creating a new user</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id5">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id4">Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id6">Example response</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="user_center_api.html#creating-a-new-user">Creating a new user</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id8">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id9">Example response</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="user_center_api.html#retrieving-user-information">Retrieving user information</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id7">Example request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id10">Example request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="user_center_api.html#response">Response</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="user_center_api.html#changing-an-user-s-password">Changing an user&#8217;s password</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id9">Request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_center_api.html#changing-a-user-s-password">Changing a user&#8217;s password</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id12">Request</a></li>
 </ul>
 </li>
 </ul>
@@ -1673,7 +1673,7 @@ extractions URI:</p>
             &quot;entity&quot;: &quot;amount&quot;,
             &quot;value&quot;: &quot;24.99:EUR&quot;,
             &quot;candidates&quot;: &quot;amounts&quot;
-        },
+        }
       },
       &quot;candidates&quot;: {
         &quot;amounts&quot;: [
@@ -2046,7 +2046,7 @@ error found</td>
 </div>
 <div class="section" id="id55">
 <h4>Example<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X POST -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/errorreport?summary<span class="o">=</span>Extractions%20Empty&amp;description<span class="o">=</span>Despite%20the%20submitted%20remittance%20slip%20has%20a%20good%20image%20quality%2C%20the%20iban%20was%20not%20found.
+<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X POST -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/errorreport?summary<span class="o">=</span>Extractions%20Empty<span class="p">&amp;</span><span class="nv">description</span><span class="o">=</span>Despite%20the%20submitted%20remittance%20slip%20has%20a%20good%20image%20quality%2C%20the%20iban%20was%20not%20found.
 </pre></div>
 </div>
 </div>

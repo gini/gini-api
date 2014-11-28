@@ -1,3 +1,5 @@
+.. _user_center_api:
+
 ===============
 User Center API
 ===============
@@ -63,12 +65,13 @@ the User Center API, by sending the token as a bearer token in the
    Accept: application/json
 
 
+.. _authenticating_on_behalf_of_a_user:
 		
 Authenticating on behalf of a user
 ==================================
 
 The *Resource Owner Password Credentials Grant* can be used to
-exchange an user's email address and password with an access
+exchange a user's email address and password with an access
 token. The access token can then be used to make requests to the Gini
 API on behalf of the user.
 
@@ -117,6 +120,7 @@ API on behalf of the user. See :ref:`guide-oauth2-making-api-requests`
 for details.
 
 
+.. _creating_a_new_user:
 
 Creating a new user
 ===================
@@ -200,11 +204,11 @@ Example
 
 
 
-Changing an user's password
-===========================
+Changing a user's password
+==========================
 
-An user's password can be changed with a ``POST`` request to
-``/api/users/{userId}``. To update an user's password, the current
+A user's password can be changed with a ``POST`` request to
+``/api/users/{userId}``. To update a user's password, the current
 password must be provided.
 
 Request
