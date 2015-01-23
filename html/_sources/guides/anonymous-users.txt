@@ -1,0 +1,73 @@
+================================
+Managing anonymous Gini accounts
+================================
+
+.. todo:: general discussion about acounts
+
+
+Gini offers the :ref:`user_center_api` to work with Gini users. This
+step-by-step guide outlines how to create and use a new (anonymous)
+Gini account. See the links to the corresponding sections of the
+:ref:`user_center_api` for details about every single step.
+
+
+#. :ref:`Obtain a client token <client_authentication>`
+
+   Before you are able to use the :ref:`user_center_api`, you need to
+   obtain a client access token. This client access tokes authorizes
+   your client (i.e. your application) against the
+   :ref:`user_center_api`.
+
+   It is assumed that you have a client ID ``client-id`` and a client
+   secret ``client-secret``. Authorized by those (with HTTP Basic
+   Authentication), your client can optain a client access token using
+   the following request:
+
+   .. code:: console
+
+      curl -v -H 'Accept: application/json' -u 'client-id:client-secret' 'https://user.gini.net/oauth/token?grant_type=client_credentials'
+
+   In case of success, the response will have HTTP status ``200`` and
+   ``1eb7ca49-d99f-40cb-b86d-8dd689ca2345`` is returned as client
+   access token:
+
+   .. code:: json
+
+      {"access_token":"1eb7ca49-d99f-40cb-b86d-8dd689ca2345","token_type":"bearer","expires_in":43199,"scope":"read"}
+
+
+#. :ref:`Create a new user <creating_a_new_user>`
+
+   Your client is now allowed to create a new user, authorized by the
+   client access token.
+
+   Two values are required for a new user: A username and a
+   password. The username must be a syntactically correct email
+   address whose domain part is easily linkable to your
+   application. For example, if your company is called *Example Inc.*,
+   then *app.example.org* would be a good domain to use for your app's
+   user accounts.
+
+   .. code:: console
+
+      curl -v -X POST --data '{"email":"random@example.org", "password":"geheim"}' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: BEARER 1eb7ca49-d99f-40cb-b86d-8dd689ca2345' 'https://user.gini.net/api/users'
+
+   This will create a new user *random@example.org* with password
+   *geheim*. If the creation is successful, the response will have
+   HTTP status ``201`` and the response contains a **Location** header
+   that points to the new user.
+
+
+#. :ref:`Log in as that user <authenticating_on_behalf_of_a_user>`
+
+   .. code:: console
+
+      curl -v -X POST -d 'username=random@example.org' -d 'password=geheim'  -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: application/json' -u 'client-id:client-secret' 'https://user.gini.net/oauth/token?grant_type=password'
+
+   Note that this request requires HTTP Basic Authentication again,
+   with the client ID as username and the client secret as
+   password. It **does not** require a client access token.
+
+   The result is an access token that can be used to make API requests
+   on behalf of the user. See :ref:`guide-oauth2-making-api-requests`
+   for details.

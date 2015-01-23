@@ -2,7 +2,13 @@ Client Libraries
 ================
 
 All official clients are released under the `MIT License (Expat) <http://choosealicense.com/licenses/mit/>`_. As part of the open-source community we highly appreciate
-pull-requests, forks, feature requests and bug reports.
+pull requests, forks, feature requests and bug reports.
+
+Gini offers SDKs for the following languages:
+
+.. contents::
+   :local:
+
 
 Ruby
 ----
@@ -17,7 +23,7 @@ Ruby is the first official client that supports all of the API's capabilities. F
 * feedback
 * search
 
-Please refer to the `documentation <http://rubydoc.info/gems/gini-api/frames/file/README.md>`_ for additional informations.
+Please refer to the `documentation <http://rubydoc.info/gems/gini-api/frames/file/README.md>`_ for additional information.
 
 Installation
 ~~~~~~~~~~~~

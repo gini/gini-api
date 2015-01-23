@@ -465,6 +465,8 @@ Describes a document type as one of the following values:
 - ``BankStatement``
 - ``Contract``
 - ``Invoice``
+- ``Payroll``
+- ``Receipt``
 - ``Reminder``
 - ``RemittanceSlip``
 - ``TravelExpenseReport``
@@ -858,7 +860,7 @@ taxnumber
 ---------
 
 Describes a Geman tax number in the format
-``<3 digits>/<3 digits>/<4 digits>/<1 digit>`` with "/" as delimiter
+``<3-5 digits>/<3 digits>/<4 digits>/<1 digit>`` with "/" as delimiter
 between components.
 
 Format
@@ -890,6 +892,48 @@ Example
             "height": 6.0
         }
     }
+
+
+
+.. index::
+   pair: text; extraction entity
+.. _extraction-entity-text:
+
+text
+----
+
+Describes a plain text entity.
+
+Format
+~~~~~~
+
++--------------+---------------------+-------------------------------------------------------------------------+
+| Name         | Type                | Description                                                             |
++==============+=====================+=========================================================================+
+| ``entity``   | ``string``          | **Must** be ``text``                                                    |
++--------------+---------------------+-------------------------------------------------------------------------+
+| ``value``    | ``string``          | Plain text                                                              |
++--------------+---------------------+-------------------------------------------------------------------------+
+| ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number                |
++--------------+---------------------+-------------------------------------------------------------------------+
+
+Example
+~~~~~~~
+
+.. code-block:: json
+
+    {
+        "entity": "text",
+        "value": "Aktenzeichen: K19218331",
+        "box": {
+            "page": 1,
+            "left": 535.0,
+            "top": 395.0,
+            "width": 25.0,
+            "height": 10.0
+        }
+    }
+
 
 
 .. index::

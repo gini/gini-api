@@ -3,6 +3,14 @@
 Authorization Implementation Guide
 ==================================
 
+.. warning::
+
+   While the information in this guide is not wrong, Gini highly
+   recommends the use of anonymous accounts for now. See
+   :doc:`anonymous-users` for information how to create and use
+   anonymous accounts.
+
+
 All API requests require an authenticated Gini user. You can authorize
 against the API using `OAuth 2.0
 <http://tools.ietf.org/html/rfc6749.html>`_.
@@ -16,33 +24,10 @@ against the API using `OAuth 2.0
       The OAuth 2.0 Authorization Framework: Bearer Token Usage
 
 
-.. _guide-oauth2-app-registration:
-
-First of all: Register your application with Gini
--------------------------------------------------
-
-Before you can use the Gini API within your application, you first have to
-register your application with Gini. To register your app with Gini, write an
-email to api@gini.net containing the following information:
-
-* Name of your application
-* A (short) description of your application (will not be exposed to end users)
-* One or multiple redirect URIs (see :ref:`guide-oauth2-redirect-uri`
-  for details)
-
-You will then receive a client ID and a client secret from Gini.
-
-
-.. warning::
-
-   Your client secret *must* be kept confidential. Do not share it with
-   others (e. g. in a public repository).
-
-
 .. _guide-oauth2-redirect-uri:
 
 The redirect URI
-^^^^^^^^^^^^^^^^
+----------------
 
 In short, the redirect URI is your application's starting point. After
 the Gini Authorization Server finished the authorization interaction
@@ -91,7 +76,7 @@ The URI takes the following parameters:
 | redirect_uri       | Where to redirect after the user completed the authorization.   |
 |                    | Must be one of the values that you provided when you            |
 |                    | :ref:`registered your application                               |
-|                    | <guide-oauth2-app-registration>`.                               |
+|                    | <guide-getting-started-app-registration>`.                      |
 +--------------------+-----------------------------------------------------------------+
 | state *(optional)* | Some random string (should be unguessable) to protect against   |
 |                    | cross-site request forgery attacks.                             |
@@ -271,7 +256,7 @@ The URI takes the following parameters:
 | redirect_uri       | Where to redirect after the user completed the authorization.   |
 |                    | Must be one of the values that you provided when you            |
 |                    | :ref:`registered your application                               |
-|                    | <guide-oauth2-app-registration>`.                               |
+|                    | <guide-getting-started-app-registration>`.                      |
 +--------------------+-----------------------------------------------------------------+
 | state *(optional)* | Some random string (should be unguessable) to protect against   |
 |                    | cross-site request forgery attacks.                             |

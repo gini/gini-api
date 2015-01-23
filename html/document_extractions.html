@@ -81,7 +81,17 @@
         
         
             <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="guides/getting-started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#create-a-user-and-obtain-an-access-token">Create a user and obtain an access token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#upload-a-document">Upload a document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#wait-for-the-document-processing-to-complete">Wait for the document processing to complete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#retrieve-the-extractions">Retrieve the extractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#send-feedback-and-get-even-better-extractions-next-time">Send feedback and get even better extractions next time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#what-next">What next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview about the Gini API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overview.html#v1">v1</a></li>
@@ -97,19 +107,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="guides/oauth2.html">Authorization Implementation Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#the-redirect-uri">The redirect URI</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#implement-an-authentication-flow">Implement an authentication flow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#server-side-flow">Server-Side Flow</a></li>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#client-side-flow">Client-Side Flow</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#making-api-requests">Making API requests</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documents.html">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#supported-file-formats">Supported file formats</a></li>
@@ -300,19 +298,24 @@
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id42">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#url">url</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#text">text</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id43">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id44">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#vat">vat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#url">url</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id45">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id46">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#zipcode">zipcode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#vat">vat</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id47">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id48">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#zipcode">zipcode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id49">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id50">Example</a></li>
 </ul>
 </li>
 </ul>
@@ -347,6 +350,7 @@
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#energytype">energytype</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#postalcode">postalcode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#timeperiod">timeperiod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#time">time</a></li>
 </ul>
 </li>
 </ul>
@@ -624,47 +628,52 @@ extraction. It also has an additional field <tt class="docutils literal"><span c
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-phonenumber"><em>phonenumber</em></a></td>
 <td><tt class="docutils literal"><span class="pre">phoneNumbers</span></tt></td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderCity</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">referenceId</span></tt></td>
+<td>The first found reference id in a given document.</td>
+<td><a class="reference internal" href="entity_reference.html#extraction-entity-text"><em>text</em></a></td>
+<td><tt class="docutils literal"><span class="pre">referenceIds</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderCity</span></tt></td>
 <td>The sender city.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-city"><em>city</em></a></td>
 <td>n/a</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderName</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderName</span></tt></td>
 <td>The sender name.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-companyname"><em>companyname</em></a></td>
 <td><tt class="docutils literal"><span class="pre">senderNames</span></tt></td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderNameAddition</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderNameAddition</span></tt></td>
 <td>The sender name addition.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-companynameaddition"><em>companynameaddition</em></a></td>
 <td>n/a</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderPoBox</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderPoBox</span></tt></td>
 <td>The sender post-office box.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-poboxnumber"><em>poboxnumber</em></a></td>
 <td>n/a</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderPostalCode</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderPostalCode</span></tt></td>
 <td>The sender&#8217;s postal code.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-zipcode"><em>zipcode</em></a></td>
 <td>n/a</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderStreet</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderStreet</span></tt></td>
 <td>The sender&#8217;s street with house number.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-street"><em>street</em></a></td>
 <td>n/a</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">taxNumber</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">taxNumber</span></tt></td>
 <td>The tax number of a document sender.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-taxnumber"><em>taxnumber</em></a></td>
 <td><tt class="docutils literal"><span class="pre">taxnumbers</span></tt></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">vatRegNumber</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">vatRegNumber</span></tt></td>
 <td>The VAT number of a document sender.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-vat"><em>vat</em></a></td>
 <td><tt class="docutils literal"><span class="pre">vatRegNumbers</span></tt></td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">website</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">website</span></tt></td>
 <td>The most probable web address of a sender.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-url"><em>url</em></a></td>
 <td><tt class="docutils literal"><span class="pre">websites</span></tt></td>
@@ -747,20 +756,24 @@ given document.</td>
 <td>All phone numbers of a given document.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-phonenumber"><em>phonenumber</em></a></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderNames</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">referenceIds</span></tt></td>
+<td>All potential reference id numbers of a given document.</td>
+<td><a class="reference internal" href="entity_reference.html#extraction-entity-text"><em>text</em></a></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderNames</span></tt></td>
 <td>All possible sender names of a given document.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-companyname"><em>companyname</em></a></td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">taxNumbers</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">taxNumbers</span></tt></td>
 <td>All strings of digits (of a similiar structure as a German tax number) of a given
 document.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-taxnumber"><em>taxnumber</em></a></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">vatRegNumbers</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">vatRegNumbers</span></tt></td>
 <td>All alphanumeric strings (of a similiar structure as an identifier) of a given document.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-vat"><em>vat</em></a></td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">websites</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">websites</span></tt></td>
 <td>All links found in a given document.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-url"><em>url</em></a></td>
 </tr>
@@ -795,6 +808,7 @@ description):</p>
 <li><a class="reference internal" href="entity_reference.html#extraction-entity-reference"><em>reference</em></a></li>
 <li><a class="reference internal" href="entity_reference.html#extraction-entity-street"><em>street</em></a></li>
 <li><a class="reference internal" href="entity_reference.html#extraction-entity-taxnumber"><em>taxnumber</em></a></li>
+<li><a class="reference internal" href="entity_reference.html#extraction-entity-text"><em>text</em></a></li>
 <li><a class="reference internal" href="entity_reference.html#extraction-entity-url"><em>url</em></a></li>
 <li><a class="reference internal" href="entity_reference.html#extraction-entity-vat"><em>vat</em></a></li>
 <li><a class="reference internal" href="entity_reference.html#extraction-entity-zipcode"><em>zipcode</em></a></li>

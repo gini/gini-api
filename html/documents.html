@@ -54,7 +54,7 @@
   
     <link rel="top" title="Gini API v1 documentation" href="index.html"/>
         <link rel="next" title="Document Extractions" href="document_extractions.html"/>
-        <link rel="prev" title="Authorization Implementation Guide" href="guides/oauth2.html"/> 
+        <link rel="prev" title="Managing anonymous Gini accounts" href="guides/anonymous-users.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -81,7 +81,17 @@
         
         
             <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="guides/getting-started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#create-a-user-and-obtain-an-access-token">Create a user and obtain an access token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#upload-a-document">Upload a document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#wait-for-the-document-processing-to-complete">Wait for the document processing to complete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#retrieve-the-extractions">Retrieve the extractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#send-feedback-and-get-even-better-extractions-next-time">Send feedback and get even better extractions next time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#what-next">What next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview about the Gini API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overview.html#v1">v1</a></li>
@@ -97,19 +107,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="guides/oauth2.html">Authorization Implementation Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#the-redirect-uri">The redirect URI</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#implement-an-authentication-flow">Implement an authentication flow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#server-side-flow">Server-Side Flow</a></li>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#client-side-flow">Client-Side Flow</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#making-api-requests">Making API requests</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#supported-file-formats">Supported file formats</a></li>
@@ -300,19 +298,24 @@
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id42">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#url">url</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#text">text</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id43">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id44">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#vat">vat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#url">url</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id45">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id46">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#zipcode">zipcode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#vat">vat</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id47">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id48">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#zipcode">zipcode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id49">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id50">Example</a></li>
 </ul>
 </li>
 </ul>
@@ -347,6 +350,7 @@
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#energytype">energytype</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#postalcode">postalcode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#timeperiod">timeperiod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#time">time</a></li>
 </ul>
 </li>
 </ul>
@@ -432,7 +436,7 @@
 <h1>Documents<a class="headerlink" href="#documents" title="Permalink to this headline">¶</a></h1>
 <p>As the key aspect of the Gini API is to provide information extraction for
 analyzing documents, the API is mainly built around the concept of documents.
-A document can be any written representation of information, usually invoices,
+A document can be any written representation of information such as invoices,
 reminders, contracts and so on.</p>
 <p>The main idea is that you submit a document in form of an electronic file to
 Gini. After the document has been analyzed by Gini you can get the information
@@ -1728,7 +1732,7 @@ extractions URI:</p>
 </div>
 </div>
 <div class="section" id="submitting-feedback-on-extractions">
-<h2>Submitting feedback on extractions<a class="headerlink" href="#submitting-feedback-on-extractions" title="Permalink to this headline">¶</a></h2>
+<span id="sending-feedback"></span><h2>Submitting feedback on extractions<a class="headerlink" href="#submitting-feedback-on-extractions" title="Permalink to this headline">¶</a></h2>
 <p>You can submit feedback on extractions, in order to help to improve the recognition
 rate of the Gini API. Gini uses several techniques to learn from feedback on
 extractions automatically. Thereby, it is equally important for Gini to receive both, feedback
@@ -2290,7 +2294,7 @@ return. Defaults to <em>20</em>.</td>
         <a href="document_extractions.html" class="btn btn-neutral float-right" title="Document Extractions">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="guides/oauth2.html" class="btn btn-neutral" title="Authorization Implementation Guide"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="guides/anonymous-users.html" class="btn btn-neutral" title="Managing anonymous Gini accounts"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

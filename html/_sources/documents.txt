@@ -3,7 +3,7 @@ Documents
 
 As the key aspect of the Gini API is to provide information extraction for
 analyzing documents, the API is mainly built around the concept of documents.
-A document can be any written representation of information, usually invoices,
+A document can be any written representation of information such as invoices,
 reminders, contracts and so on.
 
 The main idea is that you submit a document in form of an electronic file to
@@ -850,6 +850,9 @@ Errors
 +=====================+=============================================================+
 | 404 (Not Found)     | Response status if the requested entity couldn't be found   |
 +---------------------+-------------------------------------------------------------+
+
+
+.. _sending-feedback:
 
 Submitting feedback on extractions
 ----------------------------------

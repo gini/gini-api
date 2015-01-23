@@ -81,7 +81,17 @@
         
         
             <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="guides/getting-started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#create-a-user-and-obtain-an-access-token">Create a user and obtain an access token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#upload-a-document">Upload a document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#wait-for-the-document-processing-to-complete">Wait for the document processing to complete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#retrieve-the-extractions">Retrieve the extractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#send-feedback-and-get-even-better-extractions-next-time">Send feedback and get even better extractions next time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#what-next">What next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview about the Gini API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overview.html#v1">v1</a></li>
@@ -97,19 +107,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="guides/oauth2.html">Authorization Implementation Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#the-redirect-uri">The redirect URI</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#implement-an-authentication-flow">Implement an authentication flow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#server-side-flow">Server-Side Flow</a></li>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#client-side-flow">Client-Side Flow</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#making-api-requests">Making API requests</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documents.html">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#supported-file-formats">Supported file formats</a></li>
@@ -300,19 +298,24 @@
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id42">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#url">url</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#text">text</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id43">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id44">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#vat">vat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#url">url</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id45">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id46">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#zipcode">zipcode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#vat">vat</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id47">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id48">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#zipcode">zipcode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id49">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id50">Example</a></li>
 </ul>
 </li>
 </ul>
@@ -347,6 +350,7 @@
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#energytype">energytype</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#postalcode">postalcode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#timeperiod">timeperiod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#time">time</a></li>
 </ul>
 </li>
 </ul>
@@ -431,9 +435,21 @@
   <div class="section" id="client-libraries">
 <h1>Client Libraries<a class="headerlink" href="#client-libraries" title="Permalink to this headline">¶</a></h1>
 <p>All official clients are released under the <a class="reference external" href="http://choosealicense.com/licenses/mit/">MIT License (Expat)</a>. As part of the open-source community we highly appreciate
-pull-requests, forks, feature requests and bug reports.</p>
+pull requests, forks, feature requests and bug reports.</p>
+<p>Gini offers SDKs for the following languages:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#ruby" id="id2">Ruby</a><ul>
+<li><a class="reference internal" href="#installation" id="id3">Installation</a></li>
+<li><a class="reference internal" href="#resources" id="id4">Resources</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ios" id="id5">iOS</a></li>
+<li><a class="reference internal" href="#upcoming-clients" id="id6">Upcoming clients</a></li>
+</ul>
+</div>
 <div class="section" id="ruby">
-<h2>Ruby<a class="headerlink" href="#ruby" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Ruby</a><a class="headerlink" href="#ruby" title="Permalink to this headline">¶</a></h2>
 <p>Ruby is the first official client that supports all of the API&#8217;s capabilities. Features include:</p>
 <ul class="simple">
 <li>upload</li>
@@ -444,9 +460,9 @@ pull-requests, forks, feature requests and bug reports.</p>
 <li>feedback</li>
 <li>search</li>
 </ul>
-<p>Please refer to the <a class="reference external" href="http://rubydoc.info/gems/gini-api/frames/file/README.md">documentation</a> for additional informations.</p>
+<p>Please refer to the <a class="reference external" href="http://rubydoc.info/gems/gini-api/frames/file/README.md">documentation</a> for additional information.</p>
 <div class="section" id="installation">
-<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id3">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
 <p>You can either use the source directly or install the gem from rubygems.org:</p>
 <div class="highlight-bash"><div class="highlight"><pre>⌘ &gt; gem install gini-api
 Fetching: gini-api-0.9.5.gem <span class="o">(</span>100%<span class="o">)</span>
@@ -456,7 +472,7 @@ Successfully installed gini-api-0.9.5
 </div>
 </div>
 <div class="section" id="resources">
-<h3>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">Resources</a><a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="22%" />
@@ -485,12 +501,12 @@ It&#8217;s intended to help you to get started quickly.</p>
 </div>
 </div>
 <div class="section" id="ios">
-<h2>iOS<a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">iOS</a><a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h2>
 <p>The iOS SDK is hosted on <a class="reference external" href="https://github.com/gini/gini-sdk-ios">Github</a></p>
 <p>Check out the <a class="reference external" href="http://developer.gini.net/gini-sdk-ios">documentation</a> that includes a tutorial on how to include Gini Technology in your own app.</p>
 </div>
 <div class="section" id="upcoming-clients">
-<h2>Upcoming clients<a class="headerlink" href="#upcoming-clients" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Upcoming clients</a><a class="headerlink" href="#upcoming-clients" title="Permalink to this headline">¶</a></h2>
 <p>We are currently working on additional client libraries including:</p>
 <ul class="simple">
 <li>JavaScript</li>

@@ -42,8 +42,9 @@ Table of contents
 .. toctree::
    :maxdepth: 2
 
+   guides/getting-started
    overview
-   guides/oauth2
+   guides/anonymous-users
    documents
    document_extractions
    entity_reference

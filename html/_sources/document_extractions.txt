@@ -124,6 +124,8 @@ Available Specific Extractions
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``phoneNumber``          | The first found phoneNumber in a given document.                               | :ref:`extraction-entity-phonenumber`         | ``phoneNumbers``         |               
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``referenceId``          | The first found reference id in a given document.                              | :ref:`extraction-entity-text`                | ``referenceIds``         |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``senderCity``           | The sender city.                                                               | :ref:`extraction-entity-city`                | n/a                      |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``senderName``           | The sender name.                                                               | :ref:`extraction-entity-companyname`         | ``senderNames``          |
@@ -194,6 +196,8 @@ Available Extraction Candidates
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``phoneNumbers``         | All phone numbers of a given document.                                                     | :ref:`extraction-entity-phonenumber`        |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
+| ``referenceIds``         | All potential reference id numbers of a given document.                                    | :ref:`extraction-entity-text`               |
++--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``senderNames``          | All possible sender names of a given document.                                             | :ref:`extraction-entity-companyname`        |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``taxNumbers``           | All strings of digits (of a similiar structure as a German tax number) of a given          | :ref:`extraction-entity-taxnumber`          |
@@ -235,6 +239,7 @@ description):
 * :ref:`extraction-entity-reference`
 * :ref:`extraction-entity-street`
 * :ref:`extraction-entity-taxnumber`
+* :ref:`extraction-entity-text`
 * :ref:`extraction-entity-url`
 * :ref:`extraction-entity-vat`
 * :ref:`extraction-entity-zipcode`

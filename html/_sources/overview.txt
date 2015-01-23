@@ -1,5 +1,11 @@
-Overview
-========
+Overview about the Gini API
+===========================
+
+This section provides general information about the Gini API. If you want a
+step-by-step guide how to upload your first document and retrieve its semantic
+content, have a look at the :ref:`getting started guide
+<guide-getting-started>`.
+
 
 Media Types
 -----------
@@ -12,7 +18,7 @@ and supporting formats that other resources don't.
 
 The media types consumed and produced by the Gini API look like this::
 
-    application/vnd.gini[.version][+json]
+    application/vnd.gini.<version>+json
 
 .. warning::
 
@@ -22,8 +28,8 @@ The media types consumed and produced by the Gini API look like this::
 
 .. todo:: This section sounds an awful lot like http://developer.github.com/v3/media/
 
-.. _overview-versions:
 
+.. _overview-versions:
 
 Versions
 --------

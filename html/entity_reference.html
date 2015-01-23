@@ -81,7 +81,17 @@
         
         
             <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="guides/getting-started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#create-a-user-and-obtain-an-access-token">Create a user and obtain an access token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#upload-a-document">Upload a document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#wait-for-the-document-processing-to-complete">Wait for the document processing to complete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#retrieve-the-extractions">Retrieve the extractions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#send-feedback-and-get-even-better-extractions-next-time">Send feedback and get even better extractions next time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#what-next">What next?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview about the Gini API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="overview.html#v1">v1</a></li>
@@ -97,19 +107,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="guides/oauth2.html">Authorization Implementation Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#the-redirect-uri">The redirect URI</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#implement-an-authentication-flow">Implement an authentication flow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#server-side-flow">Server-Side Flow</a></li>
-<li class="toctree-l3"><a class="reference internal" href="guides/oauth2.html#client-side-flow">Client-Side Flow</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="guides/oauth2.html#making-api-requests">Making API requests</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="documents.html">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#supported-file-formats">Supported file formats</a></li>
@@ -300,19 +298,24 @@
 <li class="toctree-l3"><a class="reference internal" href="#id42">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#url">url</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#text">text</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id43">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id44">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#vat">vat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#url">url</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id45">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id46">Example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#zipcode">zipcode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vat">vat</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id47">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id48">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#zipcode">zipcode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id49">Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id50">Example</a></li>
 </ul>
 </li>
 </ul>
@@ -347,6 +350,7 @@
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#energytype">energytype</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#postalcode">postalcode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#timeperiod">timeperiod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="incubator.html#time">time</a></li>
 </ul>
 </li>
 </ul>
@@ -997,6 +1001,8 @@ delimiter between date components.</p>
 <li><tt class="docutils literal"><span class="pre">BankStatement</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">Contract</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">Invoice</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Payroll</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">Receipt</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">Reminder</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">RemittanceSlip</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">TravelExpenseReport</span></tt></li>
@@ -1486,7 +1492,7 @@ are replaced with the German word &#8220;Straße&#8221;.</p>
 <div class="section" id="taxnumber">
 <span id="extraction-entity-taxnumber"></span><span id="index-21"></span><h2>taxnumber<a class="headerlink" href="#taxnumber" title="Permalink to this headline">¶</a></h2>
 <p>Describes a Geman tax number in the format
-<tt class="docutils literal"><span class="pre">&lt;3</span> <span class="pre">digits&gt;/&lt;3</span> <span class="pre">digits&gt;/&lt;4</span> <span class="pre">digits&gt;/&lt;1</span> <span class="pre">digit&gt;</span></tt> with &#8220;/&#8221; as delimiter
+<tt class="docutils literal"><span class="pre">&lt;3-5</span> <span class="pre">digits&gt;/&lt;3</span> <span class="pre">digits&gt;/&lt;4</span> <span class="pre">digits&gt;/&lt;1</span> <span class="pre">digit&gt;</span></tt> with &#8220;/&#8221; as delimiter
 between components.</p>
 <div class="section" id="id41">
 <h3>Format<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h3>
@@ -1535,12 +1541,62 @@ between components.</p>
 </div>
 </div>
 </div>
-<div class="section" id="url">
-<span id="extraction-entity-url"></span><span id="index-22"></span><h2>url<a class="headerlink" href="#url" title="Permalink to this headline">¶</a></h2>
-<p>Describes the host part of an URI as defined in
-<span class="target" id="index-23"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc3986.html"><strong>RFC 3986</strong></a>. <tt class="docutils literal"><span class="pre">http://</span></tt> is implicitly assumed as URI scheme.</p>
+<div class="section" id="text">
+<span id="extraction-entity-text"></span><span id="index-22"></span><h2>text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h2>
+<p>Describes a plain text entity.</p>
 <div class="section" id="id43">
 <h3>Format<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="19%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">entity</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td><strong>Must</strong> be <tt class="docutils literal"><span class="pre">text</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">value</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
+<td>Plain text</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">box</span></tt></td>
+<td><a class="reference internal" href="document_extractions.html#bounding-box"><em>Bounding Box</em></a></td>
+<td>Bounding box of the occurrence including the page number</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id44">
+<h3>Example<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;Aktenzeichen: K19218331&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;box&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;page&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;left&quot;</span><span class="p">:</span> <span class="mf">535.0</span><span class="p">,</span>
+        <span class="nt">&quot;top&quot;</span><span class="p">:</span> <span class="mf">395.0</span><span class="p">,</span>
+        <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mf">25.0</span><span class="p">,</span>
+        <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mf">10.0</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="url">
+<span id="extraction-entity-url"></span><span id="index-23"></span><h2>url<a class="headerlink" href="#url" title="Permalink to this headline">¶</a></h2>
+<p>Describes the host part of an URI as defined in
+<span class="target" id="index-24"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc3986.html"><strong>RFC 3986</strong></a>. <tt class="docutils literal"><span class="pre">http://</span></tt> is implicitly assumed as URI scheme.</p>
+<div class="section" id="id45">
+<h3>Format<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -1569,8 +1625,8 @@ between components.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id44">
-<h3>Example<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id46">
+<h3>Example<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;url&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;www.m-net.de&quot;</span><span class="p">,</span>
@@ -1587,10 +1643,10 @@ between components.</p>
 </div>
 </div>
 <div class="section" id="vat">
-<span id="extraction-entity-vat"></span><span id="index-24"></span><h2>vat<a class="headerlink" href="#vat" title="Permalink to this headline">¶</a></h2>
+<span id="extraction-entity-vat"></span><span id="index-25"></span><h2>vat<a class="headerlink" href="#vat" title="Permalink to this headline">¶</a></h2>
 <p>Describes a German VAT number.</p>
-<div class="section" id="id45">
-<h3>Format<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id47">
+<h3>Format<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="11%" />
@@ -1619,8 +1675,8 @@ between components.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id46">
-<h3>Example<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id48">
+<h3>Example<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;vat&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;DE188796931&quot;</span><span class="p">,</span>
@@ -1637,10 +1693,10 @@ between components.</p>
 </div>
 </div>
 <div class="section" id="zipcode">
-<span id="extraction-entity-zipcode"></span><span id="index-25"></span><h2>zipcode<a class="headerlink" href="#zipcode" title="Permalink to this headline">¶</a></h2>
+<span id="extraction-entity-zipcode"></span><span id="index-26"></span><h2>zipcode<a class="headerlink" href="#zipcode" title="Permalink to this headline">¶</a></h2>
 <p>Describes a ZIP code.</p>
-<div class="section" id="id47">
-<h3>Format<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id49">
+<h3>Format<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="15%" />
@@ -1669,8 +1725,8 @@ between components.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id48">
-<h3>Example<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id50">
+<h3>Example<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;zipCode&quot;</span><span class="p">,</span>
     <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;18337&quot;</span><span class="p">,</span>

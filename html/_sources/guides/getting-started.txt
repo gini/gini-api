@@ -1,0 +1,348 @@
+.. _guide-getting-started:
+
+===============
+Getting started
+===============
+
+Welcome! To process your first document with the Gini API, follow these easy
+steps:
+
+#. :ref:`Register your application <guide-getting-started-app-registration>`
+#. :ref:`guide-getting-started-create-user`
+#. :ref:`guide-getting-started-upload`
+#. :ref:`guide-getting-started-document-retrieval`
+#. :ref:`guide-getting-started-extractions`
+#. :ref:`guide-getting-started-feedback`
+
+If you just want to have a quick glance at the numerous extractions which the
+Gini API provides or what the Gini API is able to extract from your document,
+you might be interested in `Gini Docs <https://app.gini.net/>`_.
+
+For general information about the Gini API, see :doc:`../overview`.
+
+.. note::
+
+   All example requests show the usage of `cURL`_, a command-line
+   tool to perform HTTP requests.
+
+.. _cURL: http://curl.haxx.se/
+
+
+.. _guide-getting-started-app-registration:
+
+First of all: Register your application with Gini
+=================================================
+
+Before you can use the Gini API within your application, you first have to
+register your application with Gini. To register your app with Gini, write an
+email to hello-partners@gini.net containing the following information:
+
+* Name of your application
+* A (short) description of your application (will not be exposed to end users)
+
+You will then receive a client ID and a client secret from Gini.
+
+.. warning::
+
+   Your client secret *must* be kept confidential. Do **not** share it with
+   others (e. g. in a public repository).
+
+
+.. _guide-getting-started-create-user:
+
+Create a user and obtain an access token
+========================================
+
+All requests to the Gini API are made on behalf of a user, authorized by an
+access token. Your application will likely use anonymous accounts (i.e. your
+application's user does not know the credentials of the Gini account). For
+details how to create and use such anonymous accounts, see :doc:`anonymous-users`.
+
+For now, it's assumed that you already have a Gini account. If not, go to `the
+Gini User Center <https://user.gini.net/register>`_ and create a new account
+before continuing.
+
+To get an access token for a Gini account, use the following command (replace
+*client-id* with your client ID and *client-secret* with your client secret as
+well as *random@example.org* with your username and *geheim* with your
+password):
+
+.. code:: console
+
+   curl -v -X POST -d 'username=random@example.org' -d 'password=geheim'  -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: application/json' -u 'client-id:client-secret' 'https://user.gini.net/oauth/token?grant_type=password'
+
+The response will look similar to this:
+
+.. code:: json
+
+   {"access_token":"6c470ffa-abf1-41aa-b866-cd3be0ee84f4","token_type":"bearer","expires_in":3599}
+
+`6c470ffa-abf1-41aa-b866-cd3be0ee84f4` is the access token which can be used
+for API requests.
+
+.. seealso:: User Center API: :ref:`authenticating_on_behalf_of_a_user`
+
+
+.. _guide-getting-started-upload:
+
+Upload a document
+=================
+
+Now that you have an access token, you can upload your first document. The Gini
+API is versionized via a custom media type, hence all requests to the API must
+state against which version of the API they are made.
+
+For our first document, we will use Gini API V1. The following command uploads
+the document:
+
+.. code:: console
+
+   curl -v -X POST --data-binary '@/path/to/your/document.pdf' -H 'Accept: application/vnd.gini.v1+json' -H 'Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f' 'https://api.gini.net/documents'
+
+If the file was accepted by the Gini API (i.e. it is in one of the supported
+file formats), Gini automatically starts to process the document. The response
+will have HTTP status code `201` and the response's `Location` header points to
+the created document:
+
+.. code:: http
+
+   HTTP/1.1 201 Created
+   X-Request-Id: 7b5a7f79-ae7c-4040-b6cf-25cde58ad937
+   Location: https://api.gini.net/documents/b4bd3e80-7bd1-11e4-95ab-000000000000
+   Content-Type: application/vnd.gini.v1+json
+   
+
+.. seealso::
+
+   * :ref:`Overview about the Gini API: Versions <overview-versions>`
+   * :ref:`submitting-documents`
+
+.. todo:: Add list of HTTP status codes; add link in seealso
+	     
+
+
+.. _guide-getting-started-document-retrieval:
+
+Wait for the document processing to complete
+============================================
+
+The next step is now to wait until the processing of the document has been
+completed. To check the current status of the document, you can issue a `GET`
+request on the URL which you received in the API response when the document was
+submitted:
+
+.. code:: console
+
+   curl -v -H 'Accept: application/vnd.gini.v1+json' -H 'Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f' 'https://api.gini.net/documents/b4bd3e80-7bd1-11e4-95ab-000000000000'
+
+The response body will look similar to this:	
+
+.. code:: json
+
+   {
+     "_links": {
+       "processed": "https:\/\/api.gini.net\/documents\/b4bd3e80-7bd1-11e4-95ab-000000000000\/processed",
+       "layout": "https:\/\/api.gini.net\/documents\/b4bd3e80-7bd1-11e4-95ab-000000000000\/layout",
+       "extractions": "https:\/\/api.gini.net\/documents\/b4bd3e80-7bd1-11e4-95ab-000000000000\/extractions",
+       "document": "https:\/\/api.gini.net\/documents\/b4bd3e80-7bd1-11e4-95ab-000000000000"
+     },
+     "sourceClassification": "NATIVE",
+     "origin": "UPLOAD",
+     "progress": "PENDING",
+     "creationDate": 1417710133864,
+     "pages": [
+       {
+         "images": {
+           "1280x1810": "https:\/\/api.gini.net\/documents\/b4bd3e80-7bd1-11e4-95ab-000000000000\/pages\/1\/1280x1810",
+           "750x900": "https:\/\/api.gini.net\/documents\/b4bd3e80-7bd1-11e4-95ab-000000000000\/pages\/1\/750x900"
+         },
+         "pageNumber": 1
+       }
+     ],
+     "pageCount": 1,
+     "name": "Document",
+     "id": "b4bd3e80-7bd1lll-11e4-95ab-000000000000"
+   }
+
+When the value of `progress` changes to `COMPLETED`, processing of the document
+is completed and you can proceed with the next step. There are two different
+ways how your application can wait for the transition from `PENDING` to
+`COMPLETED`: It either has to periodically poll the document status or it can
+use :doc:`the Gini API's server-sent events <../notifications>` (*SSE*).
+
+   .. seealso:: :doc:`../notifications`
+
+
+
+.. _guide-getting-started-extractions:
+
+Retrieve the extractions
+========================
+
+The Gini API returns the information it has extracted from the document in
+so-called *extractions*. To receive all extractions, execute the following
+request:
+
+.. code:: console
+   
+   curl -v -H 'Accept: application/vnd.gini.v1+json' -H 'Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f' 'https://api-dev.gini.net/documents/b4bd3e80-7bd1-11e4-95ab-000000000000/extractions'
+
+The returned object contains *specific extractions* (a value with some
+specific semantic property) as well as *candidates* (a list of values for
+some semantic property):
+
+.. code:: json
+
+   {
+     "extractions": {
+       "docType": {
+         "value": "Invoice",
+         "entity": "doctype"
+       },
+       "amountToPay": {
+         "candidates": "amounts",
+         "box": {
+           "page": 1,
+           "height": 9.0,
+           "width": 30.870000000000005,
+           "left": 524.13,
+           "top": 357.89
+         },
+         "value": "12.00:EUR",
+         "entity": "amount"
+       },
+       "customerId": {
+         "candidates": "customerIds",
+         "box": {
+           "page": 1,
+           "height": 7.0,
+           "width": 31.139999999999986,
+           "left": 470.0,
+           "top": 152.89
+         },
+         "value": "20980000",
+         "entity": "customerid"
+       },
+       "invoiceId": {
+         "candidates": "invoiceIds",
+         "box": {
+           "page": 1,
+           "height": 7.0,
+           "width": 38.920000000000016,
+           "left": 470.0,
+           "top": 143.89
+         },
+         "value": "3113805926",
+         "entity": "invoiceid"
+       },
+       "senderName": {
+         "candidates": "senderNames",
+         "box": {
+           "page": 1,
+           "height": 7.0,
+           "width": 52.56000000000001,
+           "left": 41.87,
+           "top": 88.84
+         },
+         "value": "Deutsche Post AG",
+         "entity": "companyname"
+       },
+     },
+     "candidates": {
+       "amounts": [
+         {
+           "box": {
+             "page": 1,
+             "height": 9.0,
+             "width": 30.870000000000005,
+             "left": 524.13,
+             "top": 357.89
+           },
+           "value": "12.00:EUR",
+           "entity": "amount"
+         },
+         {
+           "box": {
+             "page": 1,
+             "height": 12.0,
+             "width": 40.89999999999998,
+             "left": 138.02,
+             "top": 413.09
+           },
+           "value": "12.00:EUR",
+           "entity": "amount"
+         },
+      ],
+       "senderNames": [
+         {
+           "box": {
+             "page": 1,
+             "height": 7.0,
+             "width": 52.56000000000001,
+             "left": 41.87,
+             "top": 88.84
+           },
+           "value": "Deutsche Post AG",
+           "entity": "companyname"
+         }
+       ],
+       "customerIds": [
+         {
+           "box": {
+             "page": 1,
+             "height": 7.0,
+             "width": 31.139999999999986,
+             "left": 470.0,
+             "top": 152.89
+           },
+           "value": "20980000",
+           "entity": "customerid"
+         }
+       ],
+       "invoiceIds": [
+         {
+           "box": {
+             "page": 1,
+             "height": 7.0,
+             "width": 38.920000000000016,
+             "left": 470.0,
+             "top": 143.89
+           },
+           "value": "3113805926",
+           "entity": "invoiceid"
+         }
+       ]
+     }
+   }
+
+
+In this (shortened) example, the processed document was an *invoice* (see
+``docType``) issued by *Deutsche Post AG* with invoice number *3113805926* (see
+``invoiceId``). The receiver of the invoice has to pay 12€ (see
+``amountToPay``).
+
+.. seealso:: :doc:`../document_extractions`
+
+
+
+.. _guide-getting-started-feedback:
+
+Send feedback and get even better extractions next time
+=======================================================
+
+.. XXX user-visible extractions, corrected and original values
+
+To improve the result of future extractions, your application should always
+give some feedback about the correctness of a document's extractions. To tell
+Gini that an extraction was correct, send back the same value in the feedback
+request. In the unlikely case that the Gini API returned a wrong extraction
+value, you can send back a corrected value. Gini will then learn from that
+mistake.
+
+.. seealso:: :ref:`sending-feedback`
+
+
+What next?
+==========
+
+Make your life easier by using :doc:`one of our SDKs <../client_libs>`.

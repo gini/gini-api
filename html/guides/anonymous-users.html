@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Authorization Implementation Guide &mdash; Gini API v1 documentation</title>
+  <title>Managing anonymous Gini accounts &mdash; Gini API v1 documentation</title>
   
 
   
@@ -52,7 +52,9 @@
   
 
   
-    <link rel="top" title="Gini API v1 documentation" href="../index.html"/> 
+    <link rel="top" title="Gini API v1 documentation" href="../index.html"/>
+        <link rel="next" title="Documents" href="../documents.html"/>
+        <link rel="prev" title="Overview about the Gini API" href="../overview.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -78,7 +80,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#first-of-all-register-your-application-with-gini">First of all: Register your application with Gini</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting-started.html#create-a-user-and-obtain-an-access-token">Create a user and obtain an access token</a></li>
@@ -105,7 +107,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="anonymous-users.html">Managing anonymous Gini accounts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Managing anonymous Gini accounts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documents.html">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../documents.html#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../documents.html#supported-file-formats">Supported file formats</a></li>
@@ -421,7 +423,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Authorization Implementation Guide</li>
+    <li>Managing anonymous Gini accounts</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -430,405 +432,75 @@
 </div>
           <div role="main">
             
-  <div class="section" id="authorization-implementation-guide">
-<span id="guide-oauth2"></span><h1>Authorization Implementation Guide<a class="headerlink" href="#authorization-implementation-guide" title="Permalink to this headline">¶</a></h1>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">While the information in this guide is not wrong, Gini highly
-recommends the use of anonymous accounts for now. See
-<a class="reference internal" href="anonymous-users.html"><em>Managing anonymous Gini accounts</em></a> for information how to create and use
-anonymous accounts.</p>
-</div>
-<p>All API requests require an authenticated Gini user. You can authorize
-against the API using <a class="reference external" href="http://tools.ietf.org/html/rfc6749.html">OAuth 2.0</a>.</p>
-<div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<dl class="last docutils">
-<dt><span class="target" id="index-0"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6749.html"><strong>RFC 6749</strong></a></dt>
-<dd>The OAuth 2.0 Authorization Framework</dd>
-<dt><span class="target" id="index-1"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6750.html"><strong>RFC 6750</strong></a></dt>
-<dd>The OAuth 2.0 Authorization Framework: Bearer Token Usage</dd>
-</dl>
-</div>
-<div class="section" id="the-redirect-uri">
-<span id="guide-oauth2-redirect-uri"></span><h2>The redirect URI<a class="headerlink" href="#the-redirect-uri" title="Permalink to this headline">¶</a></h2>
-<p>In short, the redirect URI is your application&#8217;s starting point. After
-the Gini Authorization Server finished the authorization interaction
-with your application&#8217;s user, it will redirect them back to your
-application at the given redirect URI.</p>
-<p>Requirements for a redirect URI:</p>
-<blockquote>
-<div><ul class="simple">
-<li>Must be an absolute URI</li>
-<li>Must <em>not</em> include a fragment component (see <span class="target" id="index-2"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc3986.html#section-3.5"><strong>RFC 3986</strong></a>)</li>
-<li>May include a query component (see <span class="target" id="index-3"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc3986.html#section-3.4"><strong>RFC 3986</strong></a>)
-(<tt class="docutils literal"><span class="pre">application/x-www-form-urlencoded</span></tt> formatted)</li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="implement-an-authentication-flow">
-<h2>Implement an authentication flow<a class="headerlink" href="#implement-an-authentication-flow" title="Permalink to this headline">¶</a></h2>
-<p>Gini currently supports two OAuth 2.0 authentication flows:</p>
-<ul class="simple">
-<li><a class="reference internal" href="#guide-oauth2-server-side-flow"><em>Server-Side Flow</em></a> (called <em>Authorization Code
-Grant</em> in <span class="target" id="index-4"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6749.html#section-4.1"><strong>RFC 6749</strong></a>): Should be used when you make calls to the
-Gini API from a (web application) server.</li>
-<li><a class="reference internal" href="#guide-oauth2-client-side-flow"><em>Client-Side Flow</em></a> (called <em>Implicit Grant</em> in
-<span class="target" id="index-5"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6749.html#section-4.2"><strong>RFC 6749</strong></a>): Should be used when you make calls to the Gini API
-from a client, such as a browser application or a native mobile
-application.</li>
-</ul>
-<div class="section" id="server-side-flow">
-<span id="guide-oauth2-server-side-flow"></span><h3>Server-Side Flow<a class="headerlink" href="#server-side-flow" title="Permalink to this headline">¶</a></h3>
-<p>The authentication flow begins with your application redirecting
-the user to the Gini Authorization Server:</p>
-<div class="highlight-python"><div class="highlight"><pre>https://user.gini.net/oauth/authorize?response_type=code&amp;client_id={clientId}&amp;redirect_uri={redirectUri}&amp;state={state}
+  <div class="section" id="managing-anonymous-gini-accounts">
+<h1>Managing anonymous Gini accounts<a class="headerlink" href="#managing-anonymous-gini-accounts" title="Permalink to this headline">¶</a></h1>
+<p>Gini offers the <a class="reference internal" href="../user_center_api.html#user-center-api"><em>User Center API</em></a> to work with Gini users. This
+step-by-step guide outlines how to create and use a new (anonymous)
+Gini account. See the links to the corresponding sections of the
+<a class="reference internal" href="../user_center_api.html#user-center-api"><em>User Center API</em></a> for details about every single step.</p>
+<ol class="arabic">
+<li><p class="first"><a class="reference internal" href="../user_center_api.html#client-authentication"><em>Obtain a client token</em></a></p>
+<p>Before you are able to use the <a class="reference internal" href="../user_center_api.html#user-center-api"><em>User Center API</em></a>, you need to
+obtain a client access token. This client access tokes authorizes
+your client (i.e. your application) against the
+<a class="reference internal" href="../user_center_api.html#user-center-api"><em>User Center API</em></a>.</p>
+<p>It is assumed that you have a client ID <tt class="docutils literal"><span class="pre">client-id</span></tt> and a client
+secret <tt class="docutils literal"><span class="pre">client-secret</span></tt>. Authorized by those (with HTTP Basic
+Authentication), your client can optain a client access token using
+the following request:</p>
+<div class="code console highlight-python"><div class="highlight"><pre>curl -v -H &#39;Accept: application/json&#39; -u &#39;client-id:client-secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=client_credentials&#39;
 </pre></div>
 </div>
-<p>The URI takes the following parameters:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="24%" />
-<col width="76%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>client_id</td>
-<td>The client ID you received from Gini.</td>
-</tr>
-<tr class="row-odd"><td>redirect_uri</td>
-<td>Where to redirect after the user completed the authorization.
-Must be one of the values that you provided when you
-<a class="reference internal" href="getting-started.html#guide-getting-started-app-registration"><em>registered your application</em></a>.</td>
-</tr>
-<tr class="row-even"><td>state <em>(optional)</em></td>
-<td>Some random string (should be unguessable) to protect against
-cross-site request forgery attacks.</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="example-request">
-<h4>Example request<a class="headerlink" href="#example-request" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/oauth/authorize?response_type=code&amp;client_id=example-clientid&amp;state=uiaeo&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2F</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
-<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
-</pre></div>
-</div>
-<p>After the Gini user successfully finished the authorization process,
-the Gini Authorization Server will redirect them back to your
-application using <tt class="docutils literal"><span class="pre">redirect_uri</span></tt>. The following query parameters are added
-to <tt class="docutils literal"><span class="pre">redirect_uri</span></tt>:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="10%" />
-<col width="90%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>code</td>
-<td>A temporary authorization code</td>
-</tr>
-<tr class="row-odd"><td>state</td>
-<td>The state your application provided in the previous step.</td>
-</tr>
-</tbody>
-</table>
-<p>If the value of <tt class="docutils literal"><span class="pre">state</span></tt> doesn&#8217;t match with the value that your application
-has provided in the previous step, the request has been created by
-some third party application, hence the authentication process should be
-aborted.</p>
-</div>
-<div class="section" id="example-response">
-<h4>Example response<a class="headerlink" href="#example-response" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">303</span> <span class="ne">See Other</span>
-<span class="na">Location</span><span class="o">:</span> <span class="l">http://example.com/?code=117587e6-4ea5-49ce-a90b-a66d232dfa26&amp;state=uiaeo</span>
-</pre></div>
-</div>
-<p>Your application then exchanges the received authorization code for an
+<p>In case of success, the response will have HTTP status <tt class="docutils literal"><span class="pre">200</span></tt> and
+<tt class="docutils literal"><span class="pre">1eb7ca49-d99f-40cb-b86d-8dd689ca2345</span></tt> is returned as client
 access token:</p>
-<div class="highlight-python"><div class="highlight"><pre>POST https://user.gini.net/oauth/token
+<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;access_token&quot;</span><span class="p">:</span><span class="s">&quot;1eb7ca49-d99f-40cb-b86d-8dd689ca2345&quot;</span><span class="p">,</span><span class="s">&quot;token_type&quot;</span><span class="p">:</span><span class="s">&quot;bearer&quot;</span><span class="p">,</span><span class="s">&quot;expires_in&quot;</span><span class="p">:</span><span class="mi">43199</span><span class="p">,</span><span class="s">&quot;scope&quot;</span><span class="p">:</span><span class="s">&quot;read&quot;</span><span class="p">}</span>
 </pre></div>
 </div>
-<p>The request takes the following parameters, encoded using the
-<tt class="docutils literal"><span class="pre">application/x-www-form-urlencoded</span></tt> format:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="23%" />
-<col width="77%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>grant_type</td>
-<td>Must be set to <tt class="docutils literal"><span class="pre">authorization_code</span></tt>.</td>
-</tr>
-<tr class="row-odd"><td>code</td>
-<td>The authorization code received from the Gini Authorization
-Server.</td>
-</tr>
-<tr class="row-even"><td>redirect_uri</td>
-<td>Only required if the <tt class="docutils literal"><span class="pre">redirect_uri</span></tt> parameter was included in
-the authorization request (and then the values <strong>must</strong> be
-identical).</td>
-</tr>
-</tbody>
-</table>
-<p>The request must contain a HTTP basic access authorization header,
-with the client ID as username and the client secret as password.</p>
-</div>
-<div class="section" id="id1">
-<h4>Example request<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/oauth/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
-<span class="na">Authorization</span><span class="o">:</span> <span class="l">Basic ZXhhbXBsZS1jbGllbnRpZDpzZWNyZXQ=</span>
-<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
-<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
-
-code=117587e6-4ea5-49ce-a90b-a66d232dfa26&amp;grant_type=authorization_code&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2F
+</li>
+<li><p class="first"><a class="reference internal" href="../user_center_api.html#creating-a-new-user"><em>Create a new user</em></a></p>
+<p>Your client is now allowed to create a new user, authorized by the
+client access token.</p>
+<p>Two values are required for a new user: A username and a
+password. The username must be a syntactically correct email
+address whose domain part is easily linkable to your
+application. For example, if your company is called <em>Example Inc.</em>,
+then <em>app.example.org</em> would be a good domain to use for your app&#8217;s
+user accounts.</p>
+<div class="code console highlight-python"><div class="highlight"><pre>curl -v -X POST --data &#39;{&quot;email&quot;:&quot;random@example.org&quot;, &quot;password&quot;:&quot;geheim&quot;}&#39; -H &#39;Content-Type: application/json&#39; -H &#39;Accept: application/json&#39; -H &#39;Authorization: BEARER 1eb7ca49-d99f-40cb-b86d-8dd689ca2345&#39; &#39;https://user.gini.net/api/users&#39;
 </pre></div>
 </div>
-</div>
-<div class="section" id="token-response">
-<span id="guide-oauth2-token-response"></span><h4>Token response<a class="headerlink" href="#token-response" title="Permalink to this headline">¶</a></h4>
-<p>If the access token request is valid and authorized, the response will
-be a JSON-encoded object with the following fields:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="17%" />
-<col width="10%" />
-<col width="73%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>access_token</td>
-<td>string</td>
-<td>The access token that can be used for API requests.</td>
-</tr>
-<tr class="row-odd"><td>token_type</td>
-<td>string</td>
-<td>The type of the access token. Will be <tt class="docutils literal"><span class="pre">bearer</span></tt>.</td>
-</tr>
-<tr class="row-even"><td>expires_in</td>
-<td>integer</td>
-<td>How long the access token is valid (in seconds). Defaults to
-<strong>300</strong>.</td>
-</tr>
-<tr class="row-odd"><td>refresh_token</td>
-<td>string</td>
-<td>Refresh token that can be used to get a new access token.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="example-token-response">
-<h4>Example token response<a class="headerlink" href="#example-token-response" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="s2">&quot;760822cb-2dec-4275-8da8-fa8f5680e8d4&quot;</span><span class="p">,</span><span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="s2">&quot;bearer&quot;</span><span class="p">,</span><span class="nt">&quot;expires_in&quot;</span><span class="p">:</span><span class="mi">300</span><span class="p">,</span><span class="nt">&quot;refresh_token&quot;</span><span class="p">:</span><span class="s2">&quot;46463dd6-cdbb-440d-88fc-b10a34f68b26&quot;</span><span class="p">}</span>
+<p>This will create a new user <em>random&#64;example.org</em> with password
+<em>geheim</em>. If the creation is successful, the response will have
+HTTP status <tt class="docutils literal"><span class="pre">201</span></tt> and the response contains a <strong>Location</strong> header
+that points to the new user.</p>
+</li>
+<li><p class="first"><a class="reference internal" href="../user_center_api.html#authenticating-on-behalf-of-a-user"><em>Log in as that user</em></a></p>
+<div class="code console highlight-python"><div class="highlight"><pre>curl -v -X POST -d &#39;username=random@example.org&#39; -d &#39;password=geheim&#39;  -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -H &#39;Accept: application/json&#39; -u &#39;client-id:client-secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=password&#39;
 </pre></div>
 </div>
-</div>
-<div class="section" id="error-response">
-<h4>Error response<a class="headerlink" href="#error-response" title="Permalink to this headline">¶</a></h4>
-<p>In case there was a problem when verifying the token request
-(e.g. invalid authorization code), the authorization server responds
-with an HTTP 400 (Bad Request) status code and returns a JSON-encoded
-object with the following fields:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="23%" />
-<col width="11%" />
-<col width="67%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>error</td>
-<td>string</td>
-<td>An error code. See <span class="target" id="index-6"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc6749.html#section-5.2"><strong>RFC 6749</strong></a> for a list.</td>
-</tr>
-<tr class="row-odd"><td>error_description</td>
-<td>string</td>
-<td>Human-readable error description.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="refreshing-an-access-token">
-<h4>Refreshing an access token<a class="headerlink" href="#refreshing-an-access-token" title="Permalink to this headline">¶</a></h4>
-<p>Once an access token has expired (see the <tt class="docutils literal"><span class="pre">expires_in</span></tt> field of a
-<a class="reference internal" href="#guide-oauth2-token-response"><em>token response</em></a>), your application
-can request a new access token using the refresh token:</p>
-<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/oauth/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
-<span class="na">Authorization</span><span class="o">:</span> <span class="l">Basic ZXhhbXBsZS1jbGllbnRpZDpzZWNyZXQ=</span>
-<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
-<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
-
-grant_type=refresh_token&amp;refresh_token=46463dd6-cdbb-440d-88fc-b10a34f68b26
-</pre></div>
-</div>
-<p>The request takes the following parameters:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="25%" />
-<col width="75%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>grant_type</td>
-<td>Must be <tt class="docutils literal"><span class="pre">refresh_token</span></tt>.</td>
-</tr>
-<tr class="row-odd"><td>refresh_token</td>
-<td>The refresh token.</td>
-</tr>
-</tbody>
-</table>
-<p>The request must contain a HTTP basic access authorization header,
-with the client ID as username and the client secret as password.</p>
-<p>The response is a new token. See <a class="reference internal" href="#guide-oauth2-token-response"><em>Token response</em></a> for details.</p>
-</div>
-</div>
-<div class="section" id="client-side-flow">
-<span id="guide-oauth2-client-side-flow"></span><h3>Client-Side Flow<a class="headerlink" href="#client-side-flow" title="Permalink to this headline">¶</a></h3>
-<p>Like the <a class="reference internal" href="#guide-oauth2-server-side-flow"><em>Server-Side Flow</em></a>, the authentication flow
-begins with your application redirecting the user to the Gini
-Authorization Server:</p>
-<div class="highlight-python"><div class="highlight"><pre>https://user.gini.net/oauth/authorize?response_type=token&amp;client_id={clientId}&amp;redirect_uri={redirectUri}&amp;state={state}
-</pre></div>
-</div>
-<p>The URI takes the following parameters:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="24%" />
-<col width="76%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>client_id</td>
-<td>The client ID you received from Gini.</td>
-</tr>
-<tr class="row-odd"><td>redirect_uri</td>
-<td>Where to redirect after the user completed the authorization.
-Must be one of the values that you provided when you
-<a class="reference internal" href="getting-started.html#guide-getting-started-app-registration"><em>registered your application</em></a>.</td>
-</tr>
-<tr class="row-even"><td>state <em>(optional)</em></td>
-<td>Some random string (should be unguessable) to protect against
-cross-site request forgery attacks.</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="id2">
-<h4>Example request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/oauth/authorize?response_type=token&amp;client_id=example-clientid&amp;redirect_uri=https%3A%2F%2Fapp.example.com%2F&amp;state=uiaeo</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
-<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
-</pre></div>
-</div>
-<p>After the Gini user successfully finished the authorization process,
-the Gini Authorization Server will redirect them to your application
-(using the redirection URI you provided when you registered your
-application). The following parameters are passed in the fragment
-component of the redirection URI, encoded using the
-<tt class="docutils literal"><span class="pre">application/x-www-form-urlencoded</span></tt> format:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="17%" />
-<col width="10%" />
-<col width="73%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>access_token</td>
-<td>string</td>
-<td>The access token that can be used for API requests.</td>
-</tr>
-<tr class="row-odd"><td>token_type</td>
-<td>string</td>
-<td>The type of the access token. Will be <tt class="docutils literal"><span class="pre">bearer</span></tt>.</td>
-</tr>
-<tr class="row-even"><td>expires_in</td>
-<td>integer</td>
-<td>Unix timestamp (in milliseconds) when the token will expire.</td>
-</tr>
-<tr class="row-odd"><td>state</td>
-<td>string</td>
-<td>The state your application provided in the previous step.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id3">
-<h4>Example response<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-http"><div class="highlight"><pre><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">303</span> <span class="ne">See Other</span>
-<span class="na">Location</span><span class="o">:</span> <span class="l">http://example.com/#access_token=760822cb-2dec-4275-8da8-fa8f5680e8d4&amp;token_type=bearer&amp;expires_in=1391519957867&amp;scope=read,write&amp;state=uiaeo</span>
-</pre></div>
-</div>
-<p>If the value of <tt class="docutils literal"><span class="pre">state</span></tt> doesn&#8217;t match with the value that your
-application has provided in the previous step, the request has been
-created by some third party application. Your application should not
-use the received access token to make any API requests.</p>
-</div>
-</div>
-</div>
-<div class="section" id="making-api-requests">
-<span id="guide-oauth2-making-api-requests"></span><h2>Making API requests<a class="headerlink" href="#making-api-requests" title="Permalink to this headline">¶</a></h2>
-<p>Use the access token you obtained to make requests to the API, by
-sending the access token as a bearer token in the <tt class="docutils literal"><span class="pre">Authorization</span></tt>
-request header:</p>
-<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/documents</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">api.gini.net</span>
-<span class="na">Authorization</span><span class="o">:</span> <span class="l">BEARER 760822cb-2dec-4275-8da8-fa8f5680e8d4</span>
-<span class="na">Accept</span><span class="o">:</span> <span class="l">application/vnd.gini.v1+json</span>
-<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
-</pre></div>
-</div>
-<p>There is also the possibility to pass the authorization token via the
-query parameter <tt class="docutils literal"><span class="pre">token</span></tt>:</p>
-<div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/documents?token=760822cb-2dec-4275-8da8-fa8f5680e8d4</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="o">:</span> <span class="l">api.gini.net</span>
-<span class="na">Accept</span><span class="o">:</span> <span class="l">application/vnd.gini.v1+json</span>
-<span class="na">Connection</span><span class="o">:</span> <span class="l">close</span>
-</pre></div>
-</div>
-</div>
+<p>Note that this request requires HTTP Basic Authentication again,
+with the client ID as username and the client secret as
+password. It <strong>does not</strong> require a client access token.</p>
+<p>The result is an access token that can be used to make API requests
+on behalf of the user. See <a class="reference internal" href="oauth2.html#guide-oauth2-making-api-requests"><em>Making API requests</em></a>
+for details.</p>
+</li>
+</ol>
 </div>
 
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../documents.html" class="btn btn-neutral float-right" title="Documents">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../overview.html" class="btn btn-neutral" title="Overview about the Gini API"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
