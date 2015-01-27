@@ -14,9 +14,9 @@ steps:
 #. :ref:`guide-getting-started-extractions`
 #. :ref:`guide-getting-started-feedback`
 
-If you just want to have a quick glance at the numerous extractions which the
-Gini API provides or what the Gini API is able to extract from your document,
-you might be interested in `Gini Docs <https://app.gini.net/>`_.
+For a quick overview of what kinds of information the Gini API is able
+to extract from your documents, go ahead and check out `Gini Docs
+<https://app.gini.net/>`_.
 
 For general information about the Gini API, see :doc:`../overview`.
 
@@ -33,7 +33,7 @@ For general information about the Gini API, see :doc:`../overview`.
 First of all: Register your application with Gini
 =================================================
 
-Before you can use the Gini API within your application, you first have to
+Before you can use the Gini API within your application, you have to
 register your application with Gini. To register your app with Gini, write an
 email to hello-partners@gini.net containing the following information:
 

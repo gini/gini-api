@@ -10,7 +10,7 @@ Managing anonymous Gini accounts
 Gini offers the :ref:`user_center_api` to work with Gini users. This
 step-by-step guide outlines how to create and use a new (anonymous)
 Gini account. See the links to the corresponding sections of the
-:ref:`user_center_api` for details about every single step.
+:ref:`user_center_api` for details about each step.
 
 
 #. :ref:`Obtain a client token <client_authentication>`
