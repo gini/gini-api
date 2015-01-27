@@ -13,6 +13,10 @@ Gini accounts and to make API requests on behalf of a created user.
    Access to the User Center API is restricted to selected clients
    only.
 
+
+.. seealso:: :ref:`guide-anonymous-accounts`
+
+
 .. _client_authentication:
 
 Client Authentication
@@ -38,6 +42,10 @@ as username and the client secret as password.
 
 Example
 ^^^^^^^
+
+.. code-block:: console
+
+   curl -v -H 'Accept: application/json' -u 'client-id:secret' 'https://user.gini.net/oauth/token?grant_type=client_credentials'
 
 .. code-block:: http
 
@@ -97,6 +105,10 @@ authentication with its ID as username and its secret as password.
 Example
 ^^^^^^^
 
+.. code-block:: console
+
+   curl -v -X POST -d 'username=some_user@example.com' -d 'password=supersecret' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: application/json' -u 'client-id:secret' 'https://user.gini.net/oauth/token?grant_type=password'
+
 .. code-block:: http
 
    POST /oauth/token?grant_type=password HTTP/1.1
@@ -141,6 +153,10 @@ Request
 
 Example request
 ^^^^^^^^^^^^^^^
+
+.. code-block:: curl
+
+   curl -v -X POST --data '{"email":"some_user@example.com", "password":"supersecret"}' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6' 'https://user.gini.net/api/users'
 
 .. code-block:: http
 

@@ -918,7 +918,7 @@ provide this when contacting the support.</td>
 </div>
 </div>
 <span id="document-guides/anonymous-users"></span><div class="section" id="managing-anonymous-gini-accounts">
-<h3>Managing anonymous Gini accounts<a class="headerlink" href="#managing-anonymous-gini-accounts" title="Permalink to this headline">¶</a></h3>
+<span id="guide-anonymous-accounts"></span><h3>Managing anonymous Gini accounts<a class="headerlink" href="#managing-anonymous-gini-accounts" title="Permalink to this headline">¶</a></h3>
 <p>Gini offers the <a class="reference internal" href="index.html#user-center-api"><em>User Center API</em></a> to work with Gini users. This
 step-by-step guide outlines how to create and use a new (anonymous)
 Gini account. See the links to the corresponding sections of the
@@ -5909,6 +5909,10 @@ Gini accounts and to make API requests on behalf of a created user.</p>
 <p class="last">Access to the User Center API is restricted to selected clients
 only.</p>
 </div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="index.html#guide-anonymous-accounts"><em>Managing anonymous Gini accounts</em></a></p>
+</div>
 <div class="section" id="client-authentication">
 <span id="id2"></span><h4>Client Authentication<a class="headerlink" href="#client-authentication" title="Permalink to this headline">¶</a></h4>
 <p>All access to the User Center API requires client authentication. A
@@ -5930,6 +5934,9 @@ contain a HTTP basic access authorization header, with the client ID
 as username and the client secret as password.</p>
 <div class="section" id="example">
 <h6>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h6>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">curl -v -H &#39;Accept: application/json&#39; -u &#39;client-id:secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=client_credentials&#39;</span>
+</pre></div>
+</div>
 <div class="highlight-http"><div class="highlight"><pre><span class="nf">GET</span> <span class="nn">/oauth/token?grant_type=client_credentials</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Authorization</span><span class="o">:</span> <span class="l">Basic Y2xpZW50LWlkOnNlY3JldA==</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
@@ -5992,6 +5999,9 @@ API on behalf of the user.</p>
 authentication with its ID as username and its secret as password.</p>
 <div class="section" id="id5">
 <h6>Example<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h6>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">curl -v -X POST -d &#39;username=some_user@example.com&#39; -d &#39;password=supersecret&#39; -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -H &#39;Accept: application/json&#39; -u &#39;client-id:secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=password&#39;</span>
+</pre></div>
+</div>
 <div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/oauth/token?grant_type=password</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Authorization</span><span class="o">:</span> <span class="l">Basic Y2xpZW50LWlkOnNlY3JldA==</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
@@ -6039,6 +6049,9 @@ for details.</p>
 </table>
 <div class="section" id="example-request">
 <h6>Example request<a class="headerlink" href="#example-request" title="Permalink to this headline">¶</a></h6>
+<div class="highlight-curl"><div class="highlight"><pre>curl -v -X POST --data &#39;{&quot;email&quot;:&quot;some_user@example.com&quot;, &quot;password&quot;:&quot;supersecret&quot;}&#39; -H &#39;Content-Type: application/json&#39; -H &#39;Accept: application/json&#39; -H &#39;Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6&#39; &#39;https://user.gini.net/api/users&#39;
+</pre></div>
+</div>
 <div class="highlight-http"><div class="highlight"><pre>POST /api/users HTTP/1.1
 Host: user.gini.net
 Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6

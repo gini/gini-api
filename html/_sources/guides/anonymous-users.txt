@@ -1,3 +1,5 @@
+.. _guide-anonymous-accounts:
+
 ================================
 Managing anonymous Gini accounts
 ================================
