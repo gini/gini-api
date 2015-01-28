@@ -472,6 +472,18 @@ Describes a document type as one of the following values:
 - ``TravelExpenseReport``
 - ``Other``
 
+.. note::
+
+   This table reflects the current state of document types in the Gini
+   API. New document types can be added in the future without
+   necessarily changing the API's version number.
+
+
+There are also some other document types that are part of the
+incubator API. :ref:`See the documentation about the incubator API for
+more details. <incubator>`
+
+
 Format
 ~~~~~~
 
