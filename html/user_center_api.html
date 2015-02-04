@@ -530,7 +530,7 @@ API on behalf of the user.</p>
 authentication with its ID as username and its secret as password.</p>
 <div class="section" id="id5">
 <h4>Example<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">curl -v -X POST -d &#39;username=some_user@example.com&#39; -d &#39;password=supersecret&#39; -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -H &#39;Accept: application/json&#39; -u &#39;client-id:secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=password&#39;</span>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">curl -v -X POST --data-urlencode &#39;username=some_user@example.com&#39; --data-urlencode &#39;password=supersecret&#39; -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -H &#39;Accept: application/json&#39; -u &#39;client-id:secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=password&#39;</span>
 </pre></div>
 </div>
 <div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/oauth/token?grant_type=password</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>

@@ -64,7 +64,7 @@ Gini account. See the links to the corresponding sections of the
 
    .. code:: console
 
-      curl -v -X POST -d 'username=random@example.org' -d 'password=geheim'  -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: application/json' -u 'client-id:client-secret' 'https://user.gini.net/oauth/token?grant_type=password'
+      curl -v -X POST --data-urlencode 'username=random@example.org' --data-urlencode 'password=geheim'  -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: application/json' -u 'client-id:client-secret' 'https://user.gini.net/oauth/token?grant_type=password'
 
    Note that this request requires HTTP Basic Authentication again,
    with the client ID as username and the client secret as

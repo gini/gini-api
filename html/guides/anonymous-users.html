@@ -476,7 +476,7 @@ HTTP status <tt class="docutils literal"><span class="pre">201</span></tt> and t
 that points to the new user.</p>
 </li>
 <li><p class="first"><a class="reference internal" href="../user_center_api.html#authenticating-on-behalf-of-a-user"><em>Log in as that user</em></a></p>
-<div class="code console highlight-python"><div class="highlight"><pre>curl -v -X POST -d &#39;username=random@example.org&#39; -d &#39;password=geheim&#39;  -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -H &#39;Accept: application/json&#39; -u &#39;client-id:client-secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=password&#39;
+<div class="code console highlight-python"><div class="highlight"><pre>curl -v -X POST --data-urlencode &#39;username=random@example.org&#39; --data-urlencode &#39;password=geheim&#39;  -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -H &#39;Accept: application/json&#39; -u &#39;client-id:client-secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=password&#39;
 </pre></div>
 </div>
 <p>Note that this request requires HTTP Basic Authentication again,

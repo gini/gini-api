@@ -495,7 +495,7 @@ how to create and use such anonymous accounts, see
 <em>client-id</em> with your client ID and <em>client-secret</em> with your client secret as
 well as <em>random&#64;example.org</em> with your username and <em>geheim</em> with your
 password):</p>
-<div class="code console highlight-python"><div class="highlight"><pre>curl -v -X POST -d &#39;username=random@example.org&#39; -d &#39;password=geheim&#39;  -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -H &#39;Accept: application/json&#39; -u &#39;client-id:client-secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=password&#39;
+<div class="code console highlight-python"><div class="highlight"><pre>curl -v -X POST --data-urlencode &#39;username=random@example.org&#39; --data-urlencode &#39;password=geheim&#39;  -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -H &#39;Accept: application/json&#39; -u &#39;client-id:client-secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=password&#39;
 </pre></div>
 </div>
 <p>The response will look similar to this:</p>
