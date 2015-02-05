@@ -201,7 +201,7 @@ request:
 
 .. code:: console
    
-   curl -v -H 'Accept: application/vnd.gini.v1+json' -H 'Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f' 'https://api-dev.gini.net/documents/b4bd3e80-7bd1-11e4-95ab-000000000000/extractions'
+   curl -v -H 'Accept: application/vnd.gini.v1+json' -H 'Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f' 'https://api.gini.net/documents/b4bd3e80-7bd1-11e4-95ab-000000000000/extractions'
 
 The returned object contains *specific extractions* (a value with some
 specific semantic property) as well as *candidates* (a list of values for
