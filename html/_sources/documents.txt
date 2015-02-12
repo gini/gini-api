@@ -48,18 +48,21 @@ Supported file formats
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Gini currently supports input files in the formats PDF, GIF
-(non-animated), PNG, JPEG, and TIFF. You can use native documents (PDF
-only) as well as scanned document (all formats). Note that there are
-certain limitations on a document that the Gini API accepts:
+(non-animated), PNG, JPEG, TIFF and plain text files. You can use
+native documents (PDF only) as well as scanned document (all
+formats). Note that there are certain limitations on a document that
+the Gini API accepts:
 
   * Document file size must be less than 10 MiB.
   * PDF files **must not** have any security restrictions such as
     password protection.
   * Scanned documents should have a resolution of at least
     300dpi in order for the OCR to return optimal results.
+  * Plain text documents have to be encoded in UTF-8.
   * Only the first 10 pages of a document are processed.
   * Only contents of documents in German language are sufficiently well
     recognized.
+
 
 Document Type Hints
 ~~~~~~~~~~~~~~~~~~~
@@ -243,7 +246,7 @@ Body (application/vnd.gini.v1+json)
 +--------------------------+-------------------+-------------+---------------------------------------------------------------------------------------------------+
 | ``progress``             |                   | ``string``  | Processing status of the document, either ``PENDING``, ``COMPLETED``, or  ``ERROR``               |
 +--------------------------+-------------------+-------------+---------------------------------------------------------------------------------------------------+
-| ``sourceClassification`` |                   | ``string``  | Classification of the source file, either ``SCANNED`` or ``NATIVE``                               |
+| ``sourceClassification`` |                   | ``string``  | Classification of the source file, either ``SCANNED``, ``NATIVE`` or ``TEXT``.                    |
 +--------------------------+-------------------+-------------+---------------------------------------------------------------------------------------------------+
 | ``pages``                |                   | ``array``   | List of page objects                                                                              |
 +--------------------------+-------------------+-------------+---------------------------------------------------------------------------------------------------+

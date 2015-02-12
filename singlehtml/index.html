@@ -1005,9 +1005,10 @@ of the <tt class="docutils literal"><span class="pre">Content-Type</span></tt> o
 <div class="section" id="supported-file-formats">
 <h5>Supported file formats<a class="headerlink" href="#supported-file-formats" title="Permalink to this headline">¶</a></h5>
 <p>Gini currently supports input files in the formats PDF, GIF
-(non-animated), PNG, JPEG, and TIFF. You can use native documents (PDF
-only) as well as scanned document (all formats). Note that there are
-certain limitations on a document that the Gini API accepts:</p>
+(non-animated), PNG, JPEG, TIFF and plain text files. You can use
+native documents (PDF only) as well as scanned document (all
+formats). Note that there are certain limitations on a document that
+the Gini API accepts:</p>
 <blockquote>
 <div><ul class="simple">
 <li>Document file size must be less than 10 MiB.</li>
@@ -1015,6 +1016,7 @@ certain limitations on a document that the Gini API accepts:</p>
 password protection.</li>
 <li>Scanned documents should have a resolution of at least
 300dpi in order for the OCR to return optimal results.</li>
+<li>Plain text documents have to be encoded in UTF-8.</li>
 <li>Only the first 10 pages of a document are processed.</li>
 <li>Only contents of documents in German language are sufficiently well
 recognized.</li>
@@ -1315,7 +1317,7 @@ document URI.</p>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">sourceClassification</span></tt></td>
 <td>&nbsp;</td>
 <td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td>Classification of the source file, either <tt class="docutils literal"><span class="pre">SCANNED</span></tt> or <tt class="docutils literal"><span class="pre">NATIVE</span></tt></td>
+<td>Classification of the source file, either <tt class="docutils literal"><span class="pre">SCANNED</span></tt>, <tt class="docutils literal"><span class="pre">NATIVE</span></tt> or <tt class="docutils literal"><span class="pre">TEXT</span></tt>.</td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">pages</span></tt></td>
 <td>&nbsp;</td>
