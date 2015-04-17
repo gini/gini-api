@@ -465,8 +465,6 @@ Describes a document type as one of the following values:
 - ``BankStatement``
 - ``Contract``
 - ``Invoice``
-- ``Payroll``
-- ``Receipt``
 - ``Reminder``
 - ``RemittanceSlip``
 - ``TravelExpenseReport``
