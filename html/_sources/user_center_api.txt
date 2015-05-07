@@ -223,7 +223,7 @@ Example
 Changing a user's password
 ==========================
 
-A user's password can be changed with a ``POST`` request to
+A user's password can be changed with a ``PUT`` request to
 ``/api/users/{userId}``. To update a user's password, the current
 password must be provided.
 
@@ -244,7 +244,7 @@ Example request
 
 .. code-block:: http
 
-   POST /api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e HTTP/1.1
+   PUT /api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e HTTP/1.1
    Host: user.gini.net
    Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6
    Content-Type: application/json

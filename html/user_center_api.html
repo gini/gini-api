@@ -667,7 +667,7 @@ exists, the API responds with <tt class="docutils literal"><span class="pre">400
 </div>
 <div class="section" id="changing-a-user-s-password">
 <h2>Changing a user&#8217;s password<a class="headerlink" href="#changing-a-user-s-password" title="Permalink to this headline">¶</a></h2>
-<p>A user&#8217;s password can be changed with a <tt class="docutils literal"><span class="pre">POST</span></tt> request to
+<p>A user&#8217;s password can be changed with a <tt class="docutils literal"><span class="pre">PUT</span></tt> request to
 <tt class="docutils literal"><span class="pre">/api/users/{userId}</span></tt>. To update a user&#8217;s password, the current
 password must be provided.</p>
 <div class="section" id="id12">
@@ -693,7 +693,7 @@ password must be provided.</p>
 </table>
 <div class="section" id="id13">
 <h4>Example request<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-http"><div class="highlight"><pre>POST /api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e HTTP/1.1
+<div class="highlight-http"><div class="highlight"><pre>PUT /api/users/c1e60c6b-a0a4-4d80-81eb-c1c6de729a0e HTTP/1.1
 Host: user.gini.net
 Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6
 Content-Type: application/json
