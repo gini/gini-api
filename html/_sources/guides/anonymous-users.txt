@@ -14,8 +14,8 @@ individual users for various reasons:
 
 Gini offers various ways to perform requests on behalf of individual
 users, without requiring physical user interaction. Depending on your
-use case and the architecture of your product that integrates the Gini
-API, the following ways to authenticate are possible:
+use case and the architecture of your product, the following ways to
+authenticate to the Gini API are possible:
 
 * :ref:`guide-anonymous-accounts-untrusted`
 
