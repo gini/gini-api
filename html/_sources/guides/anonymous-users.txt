@@ -42,15 +42,15 @@ Communication to the Gini API via a backend/gateway
 ===================================================
 
 This authentication scheme is based on HTTP Basic Authentication. Your
-application uses HTTP Basic Authentication to authenticated itself
+application uses HTTP Basic Authentication to authenticate itself
 against the Gini API. In addition to the ``Authorization`` header,
 another header called ``X-User-Identifier`` is sent per request. This
 header is used by the Gini API to distinguish individual users. Your
 application is free to choose whatever value it wants for the header,
-as long as following constraints are considered:
+as long as the following constraints are met:
 
 * Each user's identifier has to be unique
-* Once determined for a user, the identifier has to stay the same
+* Once determined for a user, the identifier must remain the same
 
 For example, to get the list of ``user1``\ 's documents, use the
 following request:
@@ -63,7 +63,7 @@ following request:
 .. warning::
 
    Keep your client credentials secret at all times! Otherwise third
-   parties might have access to sensible data if they are able to
+   parties might have access to sensitive data if they are able to
    guess how your application generates user identifiers.
 
 .. seealso::

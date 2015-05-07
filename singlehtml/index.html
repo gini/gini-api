@@ -966,15 +966,15 @@ application. No account management is required.</p>
 <div class="section" id="communication-to-the-gini-api-via-a-backend-gateway">
 <span id="guide-anonymous-accounts-trusted"></span><h4>Communication to the Gini API via a backend/gateway<a class="headerlink" href="#communication-to-the-gini-api-via-a-backend-gateway" title="Permalink to this headline">¶</a></h4>
 <p>This authentication scheme is based on HTTP Basic Authentication. Your
-application uses HTTP Basic Authentication to authenticated itself
+application uses HTTP Basic Authentication to authenticate itself
 against the Gini API. In addition to the <tt class="docutils literal"><span class="pre">Authorization</span></tt> header,
 another header called <tt class="docutils literal"><span class="pre">X-User-Identifier</span></tt> is sent per request. This
 header is used by the Gini API to distinguish individual users. Your
 application is free to choose whatever value it wants for the header,
-as long as following constraints are considered:</p>
+as long as the following constraints are met:</p>
 <ul class="simple">
 <li>Each user&#8217;s identifier has to be unique</li>
-<li>Once determined for a user, the identifier has to stay the same</li>
+<li>Once determined for a user, the identifier must remain the same</li>
 </ul>
 <p>For example, to get the list of <tt class="docutils literal"><span class="pre">user1</span></tt>&#8216;s documents, use the
 following request:</p>
@@ -984,7 +984,7 @@ following request:</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Keep your client credentials secret at all times! Otherwise third
-parties might have access to sensible data if they are able to
+parties might have access to sensitive data if they are able to
 guess how your application generates user identifiers.</p>
 </div>
 <div class="admonition seealso">
