@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Managing anonymous Gini accounts &mdash; Gini API v1 documentation</title>
+  <title>CMS Encryption / Decryption Guide &mdash; Gini API v1 documentation</title>
   
 
   
@@ -53,8 +53,7 @@
 
   
     <link rel="top" title="Gini API v1 documentation" href="../index.html"/>
-        <link rel="next" title="Documents" href="../documents.html"/>
-        <link rel="prev" title="Overview about the Gini API" href="../overview.html"/> 
+        <link rel="prev" title="User Center API" href="../user_center_api.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -107,9 +106,9 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Managing anonymous Gini accounts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#communication-to-the-gini-api-via-a-backend-gateway">Communication to the Gini API via a backend/gateway</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#direct-communication-from-client-devices-to-the-gini-api">Direct communication from client devices to the Gini API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anonymous-users.html">Managing anonymous Gini accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="anonymous-users.html#communication-to-the-gini-api-via-a-backend-gateway">Communication to the Gini API via a backend/gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="anonymous-users.html#direct-communication-from-client-devices-to-the-gini-api">Direct communication from client devices to the Gini API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../documents.html">Documents</a><ul>
@@ -404,17 +403,17 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cms-encryption.html">CMS Encryption / Decryption Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cms-encryption.html#usage-of-mediatypes">Usage of Mediatypes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cms-encryption.html#cms-walkthrough">CMS Walkthrough</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cms-encryption.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cms-encryption.html#encrypting-files">Encrypting Files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cms-encryption.html#send-encrypted-documents-to-the-gini-api">Send encrypted Documents to the Gini API</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cms-encryption.html#retrieving-encrypted-data-from-the-gini-api">Retrieving encrypted Data from the Gini API</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cms-encryption.html#decrypting-gini-api-responses">Decrypting Gini API Responses</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">CMS Encryption / Decryption Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage-of-mediatypes">Usage of Mediatypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cms-walkthrough">CMS Walkthrough</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encrypting-files">Encrypting Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#send-encrypted-documents-to-the-gini-api">Send encrypted Documents to the Gini API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#retrieving-encrypted-data-from-the-gini-api">Retrieving encrypted Data from the Gini API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decrypting-gini-api-responses">Decrypting Gini API Responses</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="cms-encryption.html#see-also">See Also</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
 </ul>
 </li>
 </ul>
@@ -440,7 +439,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Managing anonymous Gini accounts</li>
+    <li>CMS Encryption / Decryption Guide</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -449,120 +448,343 @@
 </div>
           <div role="main">
             
-  <div class="section" id="managing-anonymous-gini-accounts">
-<span id="guide-anonymous-accounts"></span><h1>Managing anonymous Gini accounts<a class="headerlink" href="#managing-anonymous-gini-accounts" title="Permalink to this headline">¶</a></h1>
-<p>For best results, the Gini API must be able to track requests down to
-individual users for various reasons:</p>
-<ul class="simple">
-<li>Users might have individual opinions on the type of documents or the
-correctness of certain values</li>
-<li>To evaluate the correctness of feedback: the more users that submit
-the same value, the more correct it likely is.</li>
-</ul>
-<p>Gini offers various ways to perform requests on behalf of individual
-users, without requiring physical user interaction. Depending on your
-use case and the architecture of your product that integrates the Gini
-API, the following ways to authenticate are possible:</p>
-<ul>
-<li><p class="first"><a class="reference internal" href="#guide-anonymous-accounts-untrusted"><em>Direct communication from client devices to the Gini API</em></a></p>
-<p>On first usage of the Gini API, your application creates an anomyous
-Gini user in the background and uses those account credentials for
-subsequent requests. This works best for (mobile) applications where
-the app communicates directly with the Gini API on an untrusted
-device.</p>
-<p>This method is built-in into most of the <a class="reference internal" href="../client_libs.html#client-libraries"><em>Gini API SDKs</em></a>.</p>
-</li>
-<li><p class="first"><a class="reference internal" href="#guide-anonymous-accounts-trusted"><em>Communication to the Gini API via a backend/gateway</em></a></p>
-<p>Your application communicates with the Gini API via a common backend
-that runs on a trusted device. Each request states for which user a
-request is made using a user identifier devised by your
-application. No account management is required.</p>
-</li>
-</ul>
-<div class="section" id="communication-to-the-gini-api-via-a-backend-gateway">
-<span id="guide-anonymous-accounts-trusted"></span><h2>Communication to the Gini API via a backend/gateway<a class="headerlink" href="#communication-to-the-gini-api-via-a-backend-gateway" title="Permalink to this headline">¶</a></h2>
-<p>This authentication scheme is based on HTTP Basic Authentication. Your
-application uses HTTP Basic Authentication to authenticated itself
-against the Gini API. In addition to the <tt class="docutils literal"><span class="pre">Authorization</span></tt> header,
-another header called <tt class="docutils literal"><span class="pre">X-User-Identifier</span></tt> is sent per request. This
-header is used by the Gini API to distinguish individual users. Your
-application is free to choose whatever value it wants for the header,
-as long as following constraints are considered:</p>
-<ul class="simple">
-<li>Each user&#8217;s identifier has to be unique</li>
-<li>Once determined for a user, the identifier has to stay the same</li>
-</ul>
-<p>For example, to get the list of <tt class="docutils literal"><span class="pre">user1</span></tt>&#8216;s documents, use the
-following request:</p>
-<div class="code console highlight-python"><div class="highlight"><pre>curl -v -H &#39;Accept: application/vnd.gini.v1+json&#39; -u &#39;client-id:client-secret&#39; -H &#39;X-User-Identifier: user1&#39; https://api.gini.net/documents
+  <div class="section" id="cms-encryption-decryption-guide">
+<span id="cms-encryption"></span><h1>CMS Encryption / Decryption Guide<a class="headerlink" href="#cms-encryption-decryption-guide" title="Permalink to this headline">¶</a></h1>
+<p>The Gini API offers CMS (Cryptographic Message Syntax) content encryption / decryption as a supplementary security option. The CMS is defined in <span class="target" id="index-0"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc5652.html"><strong>RFC 5652</strong></a> and is part of the PKCS (Public Key Cryptographic Standards) as number 7. The CMS describes an encapsulation syntax for data protection. It supports digital signatures and encryption. The syntax allows multiple encapsulations; one encapsulation envelope can be nested inside another. CMS for the hypertext transfer protocol can be realized by packaging request and response bodies into encrypted S/MIME messages.</p>
+<div class="section" id="usage-of-mediatypes">
+<h2>Usage of Mediatypes<a class="headerlink" href="#usage-of-mediatypes" title="Permalink to this headline">¶</a></h2>
+<p>The Gini API uses custom mediatypes (See <a class="reference internal" href="../overview.html#overview-mediatypes"><em>Media Types</em></a>) to address different data formats or API versions. Since CMS envelopes are embedded in HTTP request and response bodies the content types of requests and responses are affected. Therefore the media type <tt class="docutils literal"><span class="pre">application/pkcs7-mime</span></tt> must be used as content type for encrypted requests and as <em>Accept</em> header if encrypted responses are expected. In order to keep the ability to address different data formats and API versions, the PKCS7 <em>Accept</em> header must <strong>lead</strong> the list of <em>Accept</em> headers.</p>
+</div>
+<div class="section" id="cms-walkthrough">
+<h2>CMS Walkthrough<a class="headerlink" href="#cms-walkthrough" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how to apply CMS with basic command line tools like <a class="reference external" href="http://www.openssl.org">OpenSSL</a> and <a class="reference external" href="http://curl.haxx.se">cURL</a>.</p>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>The encryption / decryption process incorporates two cryptographic key pairs. The messages which are sent to the Gini API must be encrypted with the Gini public key, whereas the responses must be decrypted with your private key. For this guide your private key and the Gini certificate must be encoded in a OpenSSL compatible format (currently PEM, DER, or PKCS#12). Before you can take a ride through CMS encryption / decryption you have to exchange public keys with Gini. Please contact <a class="reference external" href="mailto:technical-support&#37;&#52;&#48;gini&#46;net">technical-support<span>&#64;</span>gini<span>&#46;</span>net</a> for it. For the rest of this guide we are assuming that we have a private key file <tt class="docutils literal"><span class="pre">client.pem</span></tt> and the gini certificate as <tt class="docutils literal"><span class="pre">gini.pem</span></tt> file.
+The <tt class="docutils literal"><span class="pre">client.pem</span></tt> file should start like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Keep your client credentials secret at all times! Otherwise third
-parties might have access to sensible data if they are able to
-guess how your application generates user identifiers.</p>
-</div>
-<div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><span class="target" id="index-0"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc2617.html"><strong>RFC 2617</strong></a></p>
-</div>
-</div>
-<div class="section" id="direct-communication-from-client-devices-to-the-gini-api">
-<span id="guide-anonymous-accounts-untrusted"></span><h2>Direct communication from client devices to the Gini API<a class="headerlink" href="#direct-communication-from-client-devices-to-the-gini-api" title="Permalink to this headline">¶</a></h2>
-<p>Gini offers the <a class="reference internal" href="../user_center_api.html#user-center-api"><em>User Center API</em></a> to work with Gini users. This
-step-by-step guide outlines how to create and use a new (anonymous)
-Gini account. See the links to the corresponding sections of the
-<a class="reference internal" href="../user_center_api.html#user-center-api"><em>User Center API</em></a> for details about each step.</p>
-<ol class="arabic">
-<li><p class="first"><a class="reference internal" href="../user_center_api.html#client-authentication"><em>Obtain a client token</em></a></p>
-<p>Before you are able to use the <a class="reference internal" href="../user_center_api.html#user-center-api"><em>User Center API</em></a>, you need to
-obtain a client access token. This client access tokes authorizes
-your client (i.e. your application) against the
-<a class="reference internal" href="../user_center_api.html#user-center-api"><em>User Center API</em></a>.</p>
-<p>It is assumed that you have a client ID <tt class="docutils literal"><span class="pre">client-id</span></tt> and a client
-secret <tt class="docutils literal"><span class="pre">client-secret</span></tt>. Authorized by those (with HTTP Basic
-Authentication), your client can optain a client access token using
-the following request:</p>
-<div class="code console highlight-python"><div class="highlight"><pre>curl -v -H &#39;Accept: application/json&#39; -u &#39;client-id:client-secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=client_credentials&#39;
+<p>Whereas the <tt class="docutils literal"><span class="pre">gini.pem</span></tt> file should start like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>-----BEGIN CERTIFICATE-----
 </pre></div>
 </div>
-<p>In case of success, the response will have HTTP status <tt class="docutils literal"><span class="pre">200</span></tt> and
-<tt class="docutils literal"><span class="pre">1eb7ca49-d99f-40cb-b86d-8dd689ca2345</span></tt> is returned as client
-access token:</p>
-<div class="code json highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;access_token&quot;</span><span class="p">:</span><span class="s">&quot;1eb7ca49-d99f-40cb-b86d-8dd689ca2345&quot;</span><span class="p">,</span><span class="s">&quot;token_type&quot;</span><span class="p">:</span><span class="s">&quot;bearer&quot;</span><span class="p">,</span><span class="s">&quot;expires_in&quot;</span><span class="p">:</span><span class="mi">43199</span><span class="p">,</span><span class="s">&quot;scope&quot;</span><span class="p">:</span><span class="s">&quot;read&quot;</span><span class="p">}</span>
+<p>The following examples have been verified with these versions of OpenSSL and cURL:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ openssl version
+OpenSSL 1.0.1f 6 Jan 2014
+$ curl -version
+curl 7.35.0 (x86_64-pc-linux-gnu) libcurl/7.35.0 OpenSSL/1.0.1f zlib/1.2.8 libidn/1.28 librtmp/2.3
+Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtmp rtsp smtp smtps telnet tftp
+Features: AsynchDNS GSS-Negotiate IDN IPv6 Largefile NTLM NTLM_WB SSL libz TLS-SRP
 </pre></div>
 </div>
-</li>
-<li><p class="first"><a class="reference internal" href="../user_center_api.html#creating-a-new-user"><em>Create a new user</em></a></p>
-<p>Your client is now allowed to create a new user, authorized by the
-client access token.</p>
-<p>Two values are required for a new user: A username and a
-password. The username must be a syntactically correct email
-address whose domain part is easily linkable to your
-application. For example, if your company is called <em>Example Inc.</em>,
-then <em>app.example.org</em> would be a good domain to use for your app&#8217;s
-user accounts.</p>
-<div class="code console highlight-python"><div class="highlight"><pre>curl -v -X POST --data &#39;{&quot;email&quot;:&quot;random@example.org&quot;, &quot;password&quot;:&quot;geheim&quot;}&#39; -H &#39;Content-Type: application/json&#39; -H &#39;Accept: application/json&#39; -H &#39;Authorization: BEARER 1eb7ca49-d99f-40cb-b86d-8dd689ca2345&#39; &#39;https://user.gini.net/api/users&#39;
+</div>
+<div class="section" id="encrypting-files">
+<h3>Encrypting Files<a class="headerlink" href="#encrypting-files" title="Permalink to this headline">¶</a></h3>
+<p>We are assuming that we have a PDF file <tt class="docutils literal"><span class="pre">input.pdf</span></tt> that we want to encrypt before we send it to the Gini API for processing. In the following example we utilize the <tt class="docutils literal"><span class="pre">file</span></tt> utility to examine the file type before and after encryption:</p>
+<div class="highlight-python"><div class="highlight"><pre># file input.pdf
+input.pdf: PDF document, version 1.5
+# openssl cms -encrypt -binary -aes256 -in input.pdf -outform SMIME -out encrypted.p7 gini.pem
+# file encrypted.p7
+encrypted.p7: MIME entity, ASCII text
 </pre></div>
 </div>
-<p>This will create a new user <em>random&#64;example.org</em> with password
-<em>geheim</em>. If the creation is successful, the response will have
-HTTP status <tt class="docutils literal"><span class="pre">201</span></tt> and the response contains a <strong>Location</strong> header
-that points to the new user.</p>
-</li>
-<li><p class="first"><a class="reference internal" href="../user_center_api.html#authenticating-on-behalf-of-a-user"><em>Log in as that user</em></a></p>
-<div class="code console highlight-python"><div class="highlight"><pre>curl -v -X POST --data-urlencode &#39;username=random@example.org&#39; --data-urlencode &#39;password=geheim&#39;  -H &#39;Content-Type: application/x-www-form-urlencoded&#39; -H &#39;Accept: application/json&#39; -u &#39;client-id:client-secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=password&#39;
+<p>In this example the parameters of the CMS utility are as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-encrypt</td>
+<td>Encrypt the input data.</td>
+</tr>
+<tr class="row-odd"><td>-binary</td>
+<td>Normally the input message is converted to &#8220;canonical&#8221; format
+which is effectively using CR and LF as end of line: as
+required by the S/MIME specification. When this option is
+present no translation occurs. This is useful when handling
+binary data which may not be in MIME format.</td>
+</tr>
+<tr class="row-even"><td>-aes256</td>
+<td>The encryption algorithm to use.</td>
+</tr>
+<tr class="row-odd"><td>-in input.pdf</td>
+<td>The input data to be encrypted.</td>
+</tr>
+<tr class="row-even"><td>-outform SMIME</td>
+<td>This specifies the output format for the CMS structure. The
+default is SMIME which writes an S/MIME format message.</td>
+</tr>
+<tr class="row-odd"><td>-out encrypted.p7</td>
+<td>The input data that has been encrypted.</td>
+</tr>
+<tr class="row-even"><td>gini.pem</td>
+<td>The PEM file containing the X.509 certificate used to encrypt
+the input data.</td>
+</tr>
+</tbody>
+</table>
+<p>The encrypted contents in the file encrypted.p7 will look as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre>MIME-Version: 1.0
+Content-Disposition: attachment; filename=&quot;smime.p7m&quot;
+Content-Type: application/pkcs7-mime; smime-type=enveloped-data; name=&quot;smime.p7m&quot;
+Content-Transfer-Encoding: base64
+
+MIMBAf4GCSqGSIb3DQEHA6CDAQHuMIMBAekCAQAxggGeMIIBmgIBADCBgTB5MQsw
+CQYDVQQGEwJERTEQMA4GA1UECBMHQmF2YXJpYTEPMA0GA1UEBxMGTXVuaWNoMRIw
+EAYDVQQKEwlHaW5pIEdtYkgxFDASBgNVBAsTC3NtYW50aXggQVBJMR0wGwYDVQQD
+[----STRIPPED----]
+yS11wuUEso1XkecME86t6BXHKRDDdmNR0pqhriWN0TumokJvo7RHqQbe07TFgEop
+47ID
 </pre></div>
 </div>
-<p>Note that this request requires HTTP Basic Authentication again,
-with the client ID as username and the client secret as
-password. It <strong>does not</strong> require a client access token.</p>
-<p>The result is an access token that can be used to make API requests
-on behalf of the user. See <a class="reference internal" href="oauth2.html#guide-oauth2-making-api-requests"><em>Making API requests</em></a>
-for details.</p>
-</li>
-</ol>
+</div>
+<div class="section" id="send-encrypted-documents-to-the-gini-api">
+<h3>Send encrypted Documents to the Gini API<a class="headerlink" href="#send-encrypted-documents-to-the-gini-api" title="Permalink to this headline">¶</a></h3>
+<p>The OpenSSL CMS utility creates complete S/MIME messages but since cURL only requires the message body to create a valid HTTP/1.1 POST request, the MIME headers need to be stripped from the generated file <tt class="docutils literal"><span class="pre">encrypted.p7</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ tail -n +6 encrypted.p7 &gt; application-pkcs7.txt
+$ file application-pkcs7.txt
+application-pkcs7.txt: ASCII text
+$ diff -u encrypted.p7 application-pkcs7.txt
+--- encrypted.p7        2013-10-23 17:16:29.479598714 +0200
++++ application-pkcs7.txt       2013-10-23 17:19:32.801205771 +0200
+@@ -1,8 +1,3 @@
+-MIME-Version: 1.0
+-Content-Disposition: attachment; filename=&quot;smime.p7m&quot;
+-Content-Type: application/pkcs7-mime; smime-type=enveloped-data; name=&quot;smime.p7m&quot;
+-Content-Transfer-Encoding: base64
+-
+ MIMBAf4GCSqGSIb3DQEHA6CDAQHuMIMBAekCAQAxggGeMIIBmgIBADCBgTB5MQsw
+ CQYDVQQGEwJERTEQMA4GA1UECBMHQmF2YXJpYTEPMA0GA1UEBxMGTXVuaWNoMRIw
+ EAYDVQQKEwlHaW5pIEdtYkgxFDASBgNVBAsTC3NtYW50aXggQVBJMR0wGwYDVQQD
+</pre></div>
+</div>
+<p>After we&#8217;ve created the message body we are ready to send the encrypted file to the Gini API using cURL. We are assuming that we are authenticated and have a valid bearer token.:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ curl -v -H &#39;Accept: application/vnd.gini.v1+json&#39; -H &#39;Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f&#39; -H &#39;Connection: close&#39; -F &quot;file=@application-pkcs7.txt;type=application/pkcs7-mime&quot; &#39;https://api.gini.net/documents&#39;
+[----STRIPPED----]
+* Connected to api.gini.net (46.245.182.125) port 443 (#0)
+[----STRIPPED----]
+&gt; POST /documents/ HTTP/1.1
+&gt; User-Agent: curl/7.35.0
+Accept: application/vnd.gini.v1+json
+&gt; Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f
+&gt; Host: api.gini.net
+&gt; Connection: close
+&gt; Content-Length: 89657
+&gt; Expect: 100-continue
+&gt; Content-Type: multipart/form-data; boundary=------------------------890f8332581c57a3
+&gt;
+&lt; HTTP/1.1 100 Continue
+&lt; HTTP/1.1 201 Created
+* Server nginx is not blacklisted
+&lt; Server: nginx
+&lt; Date: Wed, 08 Apr 2015 16:39:04 GMT
+&lt; X-Request-Id: 9e278f05-fb94-4ad5-af45-4e0b85a9eac5
+&lt; Content-Type: application/pkcs7-mime
+&lt; Content-Length: 0
+&lt; Connection: close
+&lt; Access-Control-Allow-Origin: *
+&lt; Access-Control-Allow-Headers: Origin,Accept,Authorization,Content-Type,X-Requested-With
+&lt; Access-Control-Max-Age: 1800
+&lt; Access-Control-Allow-Methods: POST
+&lt; Location: https://api.gini.net/documents/e5d1c390-3bf6-11e3-9445-000000000000
+</pre></div>
+</div>
+<p>The parameters for cURL are as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="54%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-v</td>
+<td>Makes  the  fetching  more verbose/talkative. Mostly
+useful for debugging. A line starting with &#8216;&gt;&#8217; means
+&#8220;header data&#8221; sent by curl, &#8216;&lt;&#8217; means &#8220;header data&#8221;
+received by curl that is hidden in normal cases, and a
+line starting with &#8216;*&#8217; means additional info provided by
+cURL.</td>
+</tr>
+<tr class="row-odd"><td>-H &#8216;Accept: application/vnd.gini.v1+json&#8217;</td>
+<td>Tells the Gini API which version should be used
+(optional).</td>
+</tr>
+<tr class="row-even"><td>-H &#8216;Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f&#8217;</td>
+<td>The bearer header with the access token see
+<a class="reference internal" href="getting-started.html#guide-getting-started-create-user"><em>Create a user and obtain an access token</em></a>.</td>
+</tr>
+<tr class="row-odd"><td>-H &#8216;Connection: close&#8217;</td>
+<td>The HTTP/1.1 Connection header.</td>
+</tr>
+<tr class="row-even"><td>-F &#8220;file=&#64;application-pkcs7.txt;type=application/pkcs7-mime&#8221;</td>
+<td>This  lets curl emulate a filled-in form in which a user
+has pressed the submit button. This causes curl to
+POST data using the Content-Type multipart/form-data
+according to RFC 2388. This enables uploading of
+binary files etc. To force the &#8216;content&#8217; part to be a
+file, prefix the file name with an &#64; sign. To just get
+the content part from a file, prefix the file name with
+the symbol &lt;. The difference between &#64; and &lt; is then that
+&#64; makes a file get attached in the post as a file upload,
+while the &lt; makes a text field and just get the contents
+for that text field from a file.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="retrieving-encrypted-data-from-the-gini-api">
+<h3>Retrieving encrypted Data from the Gini API<a class="headerlink" href="#retrieving-encrypted-data-from-the-gini-api" title="Permalink to this headline">¶</a></h3>
+<p>Documents which have been uploaded encrypted can only be retrieved in the same way. When trying to retrieve an encrypted document without the proper <em>Accept</em> header leads to a &#8220;Not Found&#8221; (HTTP status 404) response.:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ curl -v -H &#39;Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f&#39; -H &#39;Connection: close&#39; &#39;https://api.gini.net/documents/e5d1c390-3bf6-11e3-9445-000000000000&#39;
+HTTP/1.1 404 Not Found
+Server: nginx
+Date: Wed, 08 Apr 2015 16:59:54 GMT
+Content-Type: text/html;charset=ISO-8859-1
+Content-Length: 1367
+Connection: close
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Origin,Accept,Authorization,Content-Type,X-Requested-With
+Access-Control-Max-Age: 1800
+Access-Control-Allow-Methods: GET
+Cache-Control: must-revalidate,no-cache,no-store
+Content-Type: application/vnd.gini.v1+json
+Transfer-Encoding: chunked
+
+{&quot;message&quot;:&quot;Document &#39;e5d1c390-3bf6-11e3-9445-000000000000&#39; does not exist&quot;}
+</pre></div>
+</div>
+<p>The next example sets the correct <em>Accept</em> header and thus it&#8217;s possible to retrieve the encrypted document from the Gini API. For debugging purposes and to see the actual HTTP/1.1 request and response cycle, the -v (&#8211;verbose) parameter has been added to cURL.:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ curl -i -H &quot;Authorization: BEARER 422aa7ed-38be-4320-8c34-6327c96a411a&quot;  -H &#39;Accept: application/pkcs7-mime&#39; &#39;https://api.gini.net/documents/e5d1c390-3bf6-11e3-9445-000000000000&#39;
+HTTP/1.1 200 OK
+Date: Wed, 08 Apr 2015 16:59:24 GMT
+X-Request-Id: 3025dcef-2557-40e0-b82c-af4713f48587
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Origin,Accept,Authorization,Content-Type,X-Requested-With,Content-Disposition
+Access-Control-Max-Age: 1800
+Access-Control-Expose-Headers: Location
+Access-Control-Allow-Methods: GET
+Content-Type: application/pkcs7-mime; smime-type=enveloped-data; name=&quot;smime.p7m&quot;
+Content-Disposition: attachment; filename=&quot;smime.p7m&quot;
+Content-Transfer-Encoding: base64
+Content-Length: 3323
+
+MIAGCSqGSIb3DQEHA6CAMIACAQAxggGUMIIBkAIBADB4MHAxCzAJBgNVBAYTAkRFMRAwDgYDVQQI
+[----STRIPPED----]
+AAAAAAAAAAA=
+</pre></div>
+</div>
+</div>
+<div class="section" id="decrypting-gini-api-responses">
+<h3>Decrypting Gini API Responses<a class="headerlink" href="#decrypting-gini-api-responses" title="Permalink to this headline">¶</a></h3>
+<p>First of all we have to store the encrypted payload into a file <tt class="docutils literal"><span class="pre">smime.p7m</span></tt>.:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ curl -i -H &quot;Authorization: BEARER 422aa7ed-38be-4320-8c34-6327c96a411a&quot;  -H &#39;Accept: application/pkcs7-mime&#39; &#39;https://api.gini.net/documents/e5d1c390-3bf6-11e3-9445-000000000000&#39; &gt; smime.p7m
+$ file smime.p7m
+smime.p7m: ASCII text, with CRLF, LF line terminators
+$ cat smime.p7m
+HTTP/1.1 200 OK
+Server: nginx
+Date: Wed, 08 Apr 2015 17:59:54 GMT
+Content-Type: application/pkcs7-mime; smime-type=enveloped-data; name=&quot;smime.p7m&quot;
+Content-Length: 2350
+Connection: close
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Origin,Accept,Authorization,Content-Type,X-Requested-With
+Access-Control-Max-Age: 1800
+Access-Control-Allow-Methods: GET
+Content-Disposition: attachment; filename=&quot;smime.p7m&quot;
+Content-Transfer-Encoding: base64
+
+MIAGCSqGSIb3DQEHA6CAMIACAQAxggGeMIIBmgIBADCBgTB5MQswCQYDVQQGEwJERTEQMA4GA1UE
+CBMHQmF2YXJpYTEPMA0GA1UEBxMGTXVuaWNoMRIwEAYDVQQKEwlHaW5pIEdtYkgxFDASBgNVBAsT
+[----STRIPPED----]
+</pre></div>
+</div>
+<p>At last we decrypt the created file with OpenSSL using our own private key <tt class="docutils literal"><span class="pre">client.pem</span></tt>.:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ openssl cms -decrypt -binary -aes256 -in smime.p7m -inform SMIME -out document.json -inkey client.pem
+$ cat document.json
+Content-Type: application/vnd.gini.v1+json
+
+{&quot;id&quot;:&quot;e5d1c390-3bf6-11e3-9445-000000000000&quot;,&quot;name&quot;:&quot;application-pkcs7.txt&quot;,&quot;pageCount&quot;:6,&quot;pages&quot;..
+[----STRIPPED----]
+</pre></div>
+</div>
+<p>Whereas the parameters of the OpenSSL CMS utility are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Parameter</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-decrypt</td>
+<td>Decrypt the input data.</td>
+</tr>
+<tr class="row-odd"><td>-binary</td>
+<td>Normally the input message is converted to &#8220;canonical&#8221; format
+which is effectively using CR and LF as end of line:
+as required by the S/MIME specification. When this option is
+present no translation occurs. This is useful when
+handling binary data which may not be in MIME format.</td>
+</tr>
+<tr class="row-even"><td>-aes256</td>
+<td>The decryption algorithm to use.</td>
+</tr>
+<tr class="row-odd"><td>-in smime.p7m</td>
+<td>The input data to be decrypted (S/MIME format including MIME
+headers).</td>
+</tr>
+<tr class="row-even"><td>-inform SMIME</td>
+<td>This specifies the input format for the CMS structure.
+The default is <strong>SMIME</strong> which reads an S/MIME format message.</td>
+</tr>
+<tr class="row-odd"><td>-out document.json</td>
+<td>The input data that has been decrypted.</td>
+</tr>
+<tr class="row-even"><td>-inkey client.pem</td>
+<td>Your private key file. This key is used for decryption.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p>This sections collects some useful ressources around CMS.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Link</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><span class="target" id="index-1"></span><a class="rfc reference external" href="http://tools.ietf.org/html/rfc5652.html"><strong>RFC 5652</strong></a></td>
+<td>The RFC where CMS is defined.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external" href="https://github.com/joschi/jersey-smime">Jersey S/MIME</a></td>
+<td>Jersey S/MIME allows to use S/MIME in Jersey applications.</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -572,10 +794,8 @@ for details.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../documents.html" class="btn btn-neutral float-right" title="Documents">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="../overview.html" class="btn btn-neutral" title="Overview about the Gini API"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../user_center_api.html" class="btn btn-neutral" title="User Center API"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

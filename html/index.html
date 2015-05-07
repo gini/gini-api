@@ -106,7 +106,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/anonymous-users.html#communication-to-the-gini-api-via-a-backend-gateway">Communication to the Gini API via a backend/gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/anonymous-users.html#direct-communication-from-client-devices-to-the-gini-api">Direct communication from client devices to the Gini API</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="documents.html">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#supported-file-formats">Supported file formats</a></li>
@@ -369,7 +373,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="client_libs.html#ios">iOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="client_libs.html#upcoming-clients">Upcoming clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client_libs.html#android">Android</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="user_center_api.html">User Center API</a><ul>
@@ -397,6 +401,19 @@
 <li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id12">Request</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guides/cms-encryption.html">CMS Encryption / Decryption Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#usage-of-mediatypes">Usage of Mediatypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#cms-walkthrough">CMS Walkthrough</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#encrypting-files">Encrypting Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#send-encrypted-documents-to-the-gini-api">Send encrypted Documents to the Gini API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#retrieving-encrypted-data-from-the-gini-api">Retrieving encrypted Data from the Gini API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#decrypting-gini-api-responses">Decrypting Gini API Responses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#see-also">See Also</a></li>
 </ul>
 </li>
 </ul>
@@ -482,7 +499,11 @@ please contact us via <a class="reference external" href="mailto:api&#37;&#52;&#
 <li class="toctree-l2"><a class="reference internal" href="overview.html#client-errors">Client Errors</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/anonymous-users.html#communication-to-the-gini-api-via-a-backend-gateway">Communication to the Gini API via a backend/gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/anonymous-users.html#direct-communication-from-client-devices-to-the-gini-api">Direct communication from client devices to the Gini API</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="documents.html">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-files">Submitting files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#checking-processing-status-and-getting-document-information">Checking processing status and getting document information</a></li>
@@ -548,7 +569,7 @@ please contact us via <a class="reference external" href="mailto:api&#37;&#52;&#
 <li class="toctree-l1"><a class="reference internal" href="client_libs.html">Client Libraries</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="client_libs.html#ruby">Ruby</a></li>
 <li class="toctree-l2"><a class="reference internal" href="client_libs.html#ios">iOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="client_libs.html#upcoming-clients">Upcoming clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client_libs.html#android">Android</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="user_center_api.html">User Center API</a><ul>
@@ -557,6 +578,12 @@ please contact us via <a class="reference external" href="mailto:api&#37;&#52;&#
 <li class="toctree-l2"><a class="reference internal" href="user_center_api.html#creating-a-new-user">Creating a new user</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_center_api.html#retrieving-user-information">Retrieving user information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_center_api.html#changing-a-user-s-password">Changing a user&#8217;s password</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guides/cms-encryption.html">CMS Encryption / Decryption Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#usage-of-mediatypes">Usage of Mediatypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#cms-walkthrough">CMS Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#see-also">See Also</a></li>
 </ul>
 </li>
 </ul>

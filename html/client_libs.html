@@ -107,7 +107,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/anonymous-users.html#communication-to-the-gini-api-via-a-backend-gateway">Communication to the Gini API via a backend/gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/anonymous-users.html#direct-communication-from-client-devices-to-the-gini-api">Direct communication from client devices to the Gini API</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="documents.html">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#supported-file-formats">Supported file formats</a></li>
@@ -370,7 +374,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#ios">iOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#upcoming-clients">Upcoming clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#android">Android</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="user_center_api.html">User Center API</a><ul>
@@ -398,6 +402,19 @@
 <li class="toctree-l3"><a class="reference internal" href="user_center_api.html#id12">Request</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guides/cms-encryption.html">CMS Encryption / Decryption Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#usage-of-mediatypes">Usage of Mediatypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#cms-walkthrough">CMS Walkthrough</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#encrypting-files">Encrypting Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#send-encrypted-documents-to-the-gini-api">Send encrypted Documents to the Gini API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#retrieving-encrypted-data-from-the-gini-api">Retrieving encrypted Data from the Gini API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#decrypting-gini-api-responses">Decrypting Gini API Responses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#see-also">See Also</a></li>
 </ul>
 </li>
 </ul>
@@ -433,23 +450,23 @@
           <div role="main">
             
   <div class="section" id="client-libraries">
-<h1>Client Libraries<a class="headerlink" href="#client-libraries" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Client Libraries<a class="headerlink" href="#client-libraries" title="Permalink to this headline">¶</a></h1>
 <p>All official clients are released under the <a class="reference external" href="http://choosealicense.com/licenses/mit/">MIT License (Expat)</a>. As part of the open-source community we highly appreciate
 pull requests, forks, feature requests and bug reports.</p>
-<p>Gini offers SDKs for the following languages:</p>
+<p>Gini offers SDKs for the following languages and platforms:</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#ruby" id="id2">Ruby</a><ul>
-<li><a class="reference internal" href="#installation" id="id3">Installation</a></li>
-<li><a class="reference internal" href="#resources" id="id4">Resources</a></li>
+<li><a class="reference internal" href="#ruby" id="id4">Ruby</a><ul>
+<li><a class="reference internal" href="#installation" id="id5">Installation</a></li>
+<li><a class="reference internal" href="#resources" id="id6">Resources</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#ios" id="id5">iOS</a></li>
-<li><a class="reference internal" href="#upcoming-clients" id="id6">Upcoming clients</a></li>
+<li><a class="reference internal" href="#ios" id="id7">iOS</a></li>
+<li><a class="reference internal" href="#android" id="id8">Android</a></li>
 </ul>
 </div>
 <div class="section" id="ruby">
-<h2><a class="toc-backref" href="#id2">Ruby</a><a class="headerlink" href="#ruby" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Ruby</a><a class="headerlink" href="#ruby" title="Permalink to this headline">¶</a></h2>
 <p>Ruby is the first official client that supports all of the API&#8217;s capabilities. Features include:</p>
 <ul class="simple">
 <li>upload</li>
@@ -462,7 +479,7 @@ pull requests, forks, feature requests and bug reports.</p>
 </ul>
 <p>Please refer to the <a class="reference external" href="http://rubydoc.info/gems/gini-api/frames/file/README.md">documentation</a> for additional information.</p>
 <div class="section" id="installation">
-<h3><a class="toc-backref" href="#id3">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h3>
 <p>You can either use the source directly or install the gem from rubygems.org:</p>
 <div class="highlight-bash"><div class="highlight"><pre>⌘ &gt; gem install gini-api
 Fetching: gini-api-0.9.5.gem <span class="o">(</span>100%<span class="o">)</span>
@@ -472,7 +489,7 @@ Successfully installed gini-api-0.9.5
 </div>
 </div>
 <div class="section" id="resources">
-<h3><a class="toc-backref" href="#id4">Resources</a><a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Resources</a><a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="22%" />
@@ -501,18 +518,14 @@ It&#8217;s intended to help you to get started quickly.</p>
 </div>
 </div>
 <div class="section" id="ios">
-<h2><a class="toc-backref" href="#id5">iOS</a><a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h2>
-<p>The iOS SDK is hosted on <a class="reference external" href="https://github.com/gini/gini-sdk-ios">Github</a></p>
+<h2><a class="toc-backref" href="#id7">iOS</a><a class="headerlink" href="#ios" title="Permalink to this headline">¶</a></h2>
+<p>The iOS SDK is hosted on <a class="reference external" href="https://github.com/gini/gini-sdk-ios">Github</a>.</p>
 <p>Check out the <a class="reference external" href="http://developer.gini.net/gini-sdk-ios">documentation</a> that includes a tutorial on how to include Gini Technology in your own app.</p>
 </div>
-<div class="section" id="upcoming-clients">
-<h2><a class="toc-backref" href="#id6">Upcoming clients</a><a class="headerlink" href="#upcoming-clients" title="Permalink to this headline">¶</a></h2>
-<p>We are currently working on additional client libraries including:</p>
-<ul class="simple">
-<li>JavaScript</li>
-<li>Python</li>
-<li>Java</li>
-</ul>
+<div class="section" id="android">
+<h2><a class="toc-backref" href="#id8">Android</a><a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h2>
+<p>The Android SDK is hosted on <a class="reference external" href="https://github.com/gini/gini-sdk-android">Github</a>.</p>
+<p>Make sure to read <a class="reference external" href="https://github.com/gini/gini-sdk-android/wiki/Integration-Guide">the integration guide, also hosted on Github</a>.</p>
 </div>
 </div>
 

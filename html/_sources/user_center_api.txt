@@ -154,7 +154,7 @@ Request
 Example request
 ^^^^^^^^^^^^^^^
 
-.. code-block:: curl
+.. code-block:: console
 
    curl -v -X POST --data '{"email":"some_user@example.com", "password":"supersecret"}' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6' 'https://user.gini.net/api/users'
 

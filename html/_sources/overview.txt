@@ -6,6 +6,7 @@ step-by-step guide how to upload your first document and retrieve its semantic
 content, have a look at the :ref:`getting started guide
 <guide-getting-started>`.
 
+.. _overview-mediatypes:
 
 Media Types
 -----------

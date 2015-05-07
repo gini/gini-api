@@ -53,6 +53,7 @@
 
   
     <link rel="top" title="Gini API v1 documentation" href="index.html"/>
+        <link rel="next" title="CMS Encryption / Decryption Guide" href="guides/cms-encryption.html"/>
         <link rel="prev" title="Client Libraries" href="client_libs.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -106,7 +107,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/anonymous-users.html#communication-to-the-gini-api-via-a-backend-gateway">Communication to the Gini API via a backend/gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/anonymous-users.html#direct-communication-from-client-devices-to-the-gini-api">Direct communication from client devices to the Gini API</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="documents.html">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documents.html#supported-file-formats">Supported file formats</a></li>
@@ -369,7 +374,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="client_libs.html#ios">iOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="client_libs.html#upcoming-clients">Upcoming clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client_libs.html#android">Android</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">User Center API</a><ul>
@@ -397,6 +402,19 @@
 <li class="toctree-l3"><a class="reference internal" href="#id12">Request</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guides/cms-encryption.html">CMS Encryption / Decryption Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#usage-of-mediatypes">Usage of Mediatypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#cms-walkthrough">CMS Walkthrough</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#encrypting-files">Encrypting Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#send-encrypted-documents-to-the-gini-api">Send encrypted Documents to the Gini API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#retrieving-encrypted-data-from-the-gini-api">Retrieving encrypted Data from the Gini API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guides/cms-encryption.html#decrypting-gini-api-responses">Decrypting Gini API Responses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#see-also">See Also</a></li>
 </ul>
 </li>
 </ul>
@@ -580,7 +598,7 @@ for details.</p>
 </table>
 <div class="section" id="example-request">
 <h4>Example request<a class="headerlink" href="#example-request" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-curl"><div class="highlight"><pre>curl -v -X POST --data &#39;{&quot;email&quot;:&quot;some_user@example.com&quot;, &quot;password&quot;:&quot;supersecret&quot;}&#39; -H &#39;Content-Type: application/json&#39; -H &#39;Accept: application/json&#39; -H &#39;Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6&#39; &#39;https://user.gini.net/api/users&#39;
+<div class="highlight-console"><div class="highlight"><pre><span class="go">curl -v -X POST --data &#39;{&quot;email&quot;:&quot;some_user@example.com&quot;, &quot;password&quot;:&quot;supersecret&quot;}&#39; -H &#39;Content-Type: application/json&#39; -H &#39;Accept: application/json&#39; -H &#39;Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6&#39; &#39;https://user.gini.net/api/users&#39;</span>
 </pre></div>
 </div>
 <div class="highlight-http"><div class="highlight"><pre>POST /api/users HTTP/1.1
@@ -693,6 +711,8 @@ Content-Type: application/json
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="guides/cms-encryption.html" class="btn btn-neutral float-right" title="CMS Encryption / Decryption Guide">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="client_libs.html" class="btn btn-neutral" title="Client Libraries"><span class="fa fa-arrow-circle-left"></span> Previous</a>

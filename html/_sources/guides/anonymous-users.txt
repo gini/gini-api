@@ -4,8 +4,77 @@
 Managing anonymous Gini accounts
 ================================
 
-.. todo:: general discussion about acounts
+For best results, the Gini API must be able to track requests down to
+individual users for various reasons:
 
+* Users might have individual opinions on the type of documents or the
+  correctness of certain values
+* To evaluate the correctness of feedback: the more users that submit
+  the same value, the more correct it likely is.
+
+Gini offers various ways to perform requests on behalf of individual
+users, without requiring physical user interaction. Depending on your
+use case and the architecture of your product that integrates the Gini
+API, the following ways to authenticate are possible:
+
+* :ref:`guide-anonymous-accounts-untrusted`
+
+  On first usage of the Gini API, your application creates an anomyous
+  Gini user in the background and uses those account credentials for
+  subsequent requests. This works best for (mobile) applications where
+  the app communicates directly with the Gini API on an untrusted
+  device.
+
+  This method is built-in into most of the :ref:`Gini API SDKs
+  <client-libraries>`.
+
+* :ref:`guide-anonymous-accounts-trusted`
+
+  Your application communicates with the Gini API via a common backend
+  that runs on a trusted device. Each request states for which user a
+  request is made using a user identifier devised by your
+  application. No account management is required.
+
+
+.. _guide-anonymous-accounts-trusted:
+
+Communication to the Gini API via a backend/gateway
+===================================================
+
+This authentication scheme is based on HTTP Basic Authentication. Your
+application uses HTTP Basic Authentication to authenticated itself
+against the Gini API. In addition to the ``Authorization`` header,
+another header called ``X-User-Identifier`` is sent per request. This
+header is used by the Gini API to distinguish individual users. Your
+application is free to choose whatever value it wants for the header,
+as long as following constraints are considered:
+
+* Each user's identifier has to be unique
+* Once determined for a user, the identifier has to stay the same
+
+For example, to get the list of ``user1``\ 's documents, use the
+following request:
+
+.. code:: console
+
+   curl -v -H 'Accept: application/vnd.gini.v1+json' -u 'client-id:client-secret' -H 'X-User-Identifier: user1' https://api.gini.net/documents
+
+
+.. warning::
+
+   Keep your client credentials secret at all times! Otherwise third
+   parties might have access to sensible data if they are able to
+   guess how your application generates user identifiers.
+
+.. seealso::
+
+   :rfc:`2617`
+
+
+.. _guide-anonymous-accounts-untrusted:
+
+Direct communication from client devices to the Gini API
+========================================================
 
 Gini offers the :ref:`user_center_api` to work with Gini users. This
 step-by-step guide outlines how to create and use a new (anonymous)

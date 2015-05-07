@@ -1,10 +1,12 @@
+.. _client-libraries:
+
 Client Libraries
 ================
 
 All official clients are released under the `MIT License (Expat) <http://choosealicense.com/licenses/mit/>`_. As part of the open-source community we highly appreciate
 pull requests, forks, feature requests and bug reports.
 
-Gini offers SDKs for the following languages:
+Gini offers SDKs for the following languages and platforms:
 
 .. contents::
    :local:
@@ -59,16 +61,15 @@ Resources
 iOS
 ---
 
-The iOS SDK is hosted on `Github <https://github.com/gini/gini-sdk-ios>`_
+The iOS SDK is hosted on `Github <https://github.com/gini/gini-sdk-ios>`_.
 
 Check out the `documentation <http://developer.gini.net/gini-sdk-ios>`_ that includes a tutorial on how to include Gini Technology in your own app.
 
 
-Upcoming clients
-----------------
+Android
+-------
 
-We are currently working on additional client libraries including:
+The Android SDK is hosted on `Github <https://github.com/gini/gini-sdk-android>`_.
 
-* JavaScript
-* Python
-* Java
+Make sure to read `the integration guide, also hosted on Github
+<https://github.com/gini/gini-sdk-android/wiki/Integration-Guide>`_.

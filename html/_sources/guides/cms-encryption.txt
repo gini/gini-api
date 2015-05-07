@@ -1,0 +1,290 @@
+.. _cms-encryption:
+
+CMS Encryption / Decryption Guide
+=================================
+
+The Gini API offers CMS (Cryptographic Message Syntax) content encryption / decryption as a supplementary security option. The CMS is defined in :rfc:`5652` and is part of the PKCS (Public Key Cryptographic Standards) as number 7. The CMS describes an encapsulation syntax for data protection. It supports digital signatures and encryption. The syntax allows multiple encapsulations; one encapsulation envelope can be nested inside another. CMS for the hypertext transfer protocol can be realized by packaging request and response bodies into encrypted S/MIME messages.
+
+Usage of Mediatypes
+-------------------
+
+The Gini API uses custom mediatypes (See :ref:`overview-mediatypes`) to address different data formats or API versions. Since CMS envelopes are embedded in HTTP request and response bodies the content types of requests and responses are affected. Therefore the media type ``application/pkcs7-mime`` must be used as content type for encrypted requests and as *Accept* header if encrypted responses are expected. In order to keep the ability to address different data formats and API versions, the PKCS7 *Accept* header must **lead** the list of *Accept* headers.
+
+CMS Walkthrough
+---------------
+
+This section describes how to apply CMS with basic command line tools like `OpenSSL <http://www.openssl.org>`_ and `cURL <http://curl.haxx.se>`_. 
+
+Prerequisites
+^^^^^^^^^^^^^
+
+The encryption / decryption process incorporates two cryptographic key pairs. The messages which are sent to the Gini API must be encrypted with the Gini public key, whereas the responses must be decrypted with your private key. For this guide your private key and the Gini certificate must be encoded in a OpenSSL compatible format (currently PEM, DER, or PKCS#12). Before you can take a ride through CMS encryption / decryption you have to exchange public keys with Gini. Please contact technical-support@gini.net for it. For the rest of this guide we are assuming that we have a private key file ``client.pem`` and the gini certificate as ``gini.pem`` file.
+The ``client.pem`` file should start like this::
+
+  -----BEGIN RSA PRIVATE KEY-----
+  Proc-Type: 4,ENCRYPTED
+
+Whereas the ``gini.pem`` file should start like this::
+
+  -----BEGIN CERTIFICATE-----
+
+The following examples have been verified with these versions of OpenSSL and cURL::
+
+  $ openssl version
+  OpenSSL 1.0.1f 6 Jan 2014
+  $ curl -version
+  curl 7.35.0 (x86_64-pc-linux-gnu) libcurl/7.35.0 OpenSSL/1.0.1f zlib/1.2.8 libidn/1.28 librtmp/2.3
+  Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtmp rtsp smtp smtps telnet tftp 
+  Features: AsynchDNS GSS-Negotiate IDN IPv6 Largefile NTLM NTLM_WB SSL libz TLS-SRP
+
+Encrypting Files
+^^^^^^^^^^^^^^^^
+
+We are assuming that we have a PDF file ``input.pdf`` that we want to encrypt before we send it to the Gini API for processing. In the following example we utilize the ``file`` utility to examine the file type before and after encryption::
+  
+  # file input.pdf
+  input.pdf: PDF document, version 1.5
+  # openssl cms -encrypt -binary -aes256 -in input.pdf -outform SMIME -out encrypted.p7 gini.pem
+  # file encrypted.p7
+  encrypted.p7: MIME entity, ASCII text
+
+In this example the parameters of the CMS utility are as follows:
+
++----------------------+---------------------------------------------------------------+
+| Parameter            | Description                                                   |
++======================+===============================================================+
+| -encrypt             | Encrypt the input data.                                       |
++----------------------+---------------------------------------------------------------+
+| -binary              | Normally the input message is converted to "canonical" format |
+|                      | which is effectively using CR and LF as end of line: as       | 
+|                      | required by the S/MIME specification. When this option is     |
+|                      | present no translation occurs. This is useful when handling   |
+|                      | binary data which may not be in MIME format.                  |
++----------------------+---------------------------------------------------------------+
+| -aes256              | The encryption algorithm to use.                              |
++----------------------+---------------------------------------------------------------+
+| -in input.pdf        | The input data to be encrypted.                               |
++----------------------+---------------------------------------------------------------+
+| -outform SMIME       | This specifies the output format for the CMS structure. The   |
+|                      | default is SMIME which writes an S/MIME format message.       |
++----------------------+---------------------------------------------------------------+
+| -out encrypted.p7    | The input data that has been encrypted.                       |
++----------------------+---------------------------------------------------------------+
+| gini.pem             | The PEM file containing the X.509 certificate used to encrypt |
+|                      | the input data.                                               |
++----------------------+---------------------------------------------------------------+
+
+The encrypted contents in the file encrypted.p7 will look as follows::
+
+  MIME-Version: 1.0
+  Content-Disposition: attachment; filename="smime.p7m"
+  Content-Type: application/pkcs7-mime; smime-type=enveloped-data; name="smime.p7m"
+  Content-Transfer-Encoding: base64
+   
+  MIMBAf4GCSqGSIb3DQEHA6CDAQHuMIMBAekCAQAxggGeMIIBmgIBADCBgTB5MQsw
+  CQYDVQQGEwJERTEQMA4GA1UECBMHQmF2YXJpYTEPMA0GA1UEBxMGTXVuaWNoMRIw
+  EAYDVQQKEwlHaW5pIEdtYkgxFDASBgNVBAsTC3NtYW50aXggQVBJMR0wGwYDVQQD
+  [----STRIPPED----]
+  yS11wuUEso1XkecME86t6BXHKRDDdmNR0pqhriWN0TumokJvo7RHqQbe07TFgEop
+  47ID
+
+Send encrypted Documents to the Gini API
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The OpenSSL CMS utility creates complete S/MIME messages but since cURL only requires the message body to create a valid HTTP/1.1 POST request, the MIME headers need to be stripped from the generated file ``encrypted.p7``::
+
+  $ tail -n +6 encrypted.p7 > application-pkcs7.txt
+  $ file application-pkcs7.txt
+  application-pkcs7.txt: ASCII text
+  $ diff -u encrypted.p7 application-pkcs7.txt
+  --- encrypted.p7        2013-10-23 17:16:29.479598714 +0200
+  +++ application-pkcs7.txt       2013-10-23 17:19:32.801205771 +0200
+  @@ -1,8 +1,3 @@
+  -MIME-Version: 1.0
+  -Content-Disposition: attachment; filename="smime.p7m"
+  -Content-Type: application/pkcs7-mime; smime-type=enveloped-data; name="smime.p7m"
+  -Content-Transfer-Encoding: base64
+  -
+   MIMBAf4GCSqGSIb3DQEHA6CDAQHuMIMBAekCAQAxggGeMIIBmgIBADCBgTB5MQsw
+   CQYDVQQGEwJERTEQMA4GA1UECBMHQmF2YXJpYTEPMA0GA1UEBxMGTXVuaWNoMRIw
+   EAYDVQQKEwlHaW5pIEdtYkgxFDASBgNVBAsTC3NtYW50aXggQVBJMR0wGwYDVQQD
+
+After we've created the message body we are ready to send the encrypted file to the Gini API using cURL. We are assuming that we are authenticated and have a valid bearer token.:: 
+
+  $ curl -v -H 'Accept: application/vnd.gini.v1+json' -H 'Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f' -H 'Connection: close' -F "file=@application-pkcs7.txt;type=application/pkcs7-mime" 'https://api.gini.net/documents' 
+  [----STRIPPED----]
+  * Connected to api.gini.net (46.245.182.125) port 443 (#0)
+  [----STRIPPED----]
+  > POST /documents/ HTTP/1.1
+  > User-Agent: curl/7.35.0
+  Accept: application/vnd.gini.v1+json
+  > Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f
+  > Host: api.gini.net
+  > Connection: close
+  > Content-Length: 89657
+  > Expect: 100-continue
+  > Content-Type: multipart/form-data; boundary=------------------------890f8332581c57a3
+  >
+  < HTTP/1.1 100 Continue
+  < HTTP/1.1 201 Created
+  * Server nginx is not blacklisted
+  < Server: nginx
+  < Date: Wed, 08 Apr 2015 16:39:04 GMT
+  < X-Request-Id: 9e278f05-fb94-4ad5-af45-4e0b85a9eac5
+  < Content-Type: application/pkcs7-mime
+  < Content-Length: 0
+  < Connection: close
+  < Access-Control-Allow-Origin: *
+  < Access-Control-Allow-Headers: Origin,Accept,Authorization,Content-Type,X-Requested-With
+  < Access-Control-Max-Age: 1800
+  < Access-Control-Allow-Methods: POST
+  < Location: https://api.gini.net/documents/e5d1c390-3bf6-11e3-9445-000000000000
+
+The parameters for cURL are as follows:
+
++--------------------------------------------------------------------+----------------------------------------------------------+
+| Parameter                                                          | Description                                              |
++====================================================================+==========================================================+
+| -v                                                                 | Makes  the  fetching  more verbose/talkative. Mostly     |
+|                                                                    | useful for debugging. A line starting with '>' means     |
+|                                                                    | "header data" sent by curl, '<' means "header data"      |
+|                                                                    | received by curl that is hidden in normal cases, and a   |
+|                                                                    | line starting with '*' means additional info provided by |
+|                                                                    | cURL.                                                    |
++--------------------------------------------------------------------+----------------------------------------------------------+
+| -H 'Accept: application/vnd.gini.v1+json'                          | Tells the Gini API which version should be used          |
+|                                                                    | (optional).                                              |
++--------------------------------------------------------------------+----------------------------------------------------------+
+| -H 'Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f'    | The bearer header with the access token see              | 
+|                                                                    | :ref:`guide-getting-started-create-user`.                |
++--------------------------------------------------------------------+----------------------------------------------------------+
+| -H 'Connection: close'                                             | The HTTP/1.1 Connection header.                          |
++--------------------------------------------------------------------+----------------------------------------------------------+
+| -F "file=\@application-pkcs7.txt;type=application/pkcs7-mime"      | This  lets curl emulate a filled-in form in which a user |
+|                                                                    | has pressed the submit button. This causes curl to       |
+|                                                                    | POST data using the Content-Type multipart/form-data     |
+|                                                                    | according to RFC 2388. This enables uploading of         |
+|                                                                    | binary files etc. To force the 'content' part to be a    |
+|                                                                    | file, prefix the file name with an @ sign. To just get   |
+|                                                                    | the content part from a file, prefix the file name with  |
+|                                                                    | the symbol <. The difference between @ and < is then that|
+|                                                                    | @ makes a file get attached in the post as a file upload,|
+|                                                                    | while the < makes a text field and just get the contents |
+|                                                                    | for that text field from a file.                         |
++--------------------------------------------------------------------+----------------------------------------------------------+
+
+Retrieving encrypted Data from the Gini API
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Documents which have been uploaded encrypted can only be retrieved in the same way. When trying to retrieve an encrypted document without the proper *Accept* header leads to a "Not Found" (HTTP status 404) response.::
+
+  $ curl -v -H 'Authorization: BEARER b6c470ffa-abf1-41aa-b866-cd3be0ee84f' -H 'Connection: close' 'https://api.gini.net/documents/e5d1c390-3bf6-11e3-9445-000000000000' 
+  HTTP/1.1 404 Not Found
+  Server: nginx
+  Date: Wed, 08 Apr 2015 16:59:54 GMT
+  Content-Type: text/html;charset=ISO-8859-1
+  Content-Length: 1367
+  Connection: close
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Headers: Origin,Accept,Authorization,Content-Type,X-Requested-With
+  Access-Control-Max-Age: 1800
+  Access-Control-Allow-Methods: GET
+  Cache-Control: must-revalidate,no-cache,no-store
+  Content-Type: application/vnd.gini.v1+json
+  Transfer-Encoding: chunked
+  
+  {"message":"Document 'e5d1c390-3bf6-11e3-9445-000000000000' does not exist"}
+
+The next example sets the correct *Accept* header and thus it's possible to retrieve the encrypted document from the Gini API. For debugging purposes and to see the actual HTTP/1.1 request and response cycle, the -v (--verbose) parameter has been added to cURL.::
+
+  $ curl -i -H "Authorization: BEARER 422aa7ed-38be-4320-8c34-6327c96a411a"  -H 'Accept: application/pkcs7-mime' 'https://api.gini.net/documents/e5d1c390-3bf6-11e3-9445-000000000000'
+  HTTP/1.1 200 OK
+  Date: Wed, 08 Apr 2015 16:59:24 GMT
+  X-Request-Id: 3025dcef-2557-40e0-b82c-af4713f48587
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Headers: Origin,Accept,Authorization,Content-Type,X-Requested-With,Content-Disposition
+  Access-Control-Max-Age: 1800
+  Access-Control-Expose-Headers: Location
+  Access-Control-Allow-Methods: GET
+  Content-Type: application/pkcs7-mime; smime-type=enveloped-data; name="smime.p7m"
+  Content-Disposition: attachment; filename="smime.p7m"
+  Content-Transfer-Encoding: base64
+  Content-Length: 3323
+
+  MIAGCSqGSIb3DQEHA6CAMIACAQAxggGUMIIBkAIBADB4MHAxCzAJBgNVBAYTAkRFMRAwDgYDVQQI
+  [----STRIPPED----]
+  AAAAAAAAAAA=
+
+Decrypting Gini API Responses
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+First of all we have to store the encrypted payload into a file ``smime.p7m``.::
+
+   $ curl -i -H "Authorization: BEARER 422aa7ed-38be-4320-8c34-6327c96a411a"  -H 'Accept: application/pkcs7-mime' 'https://api.gini.net/documents/e5d1c390-3bf6-11e3-9445-000000000000' > smime.p7m
+   $ file smime.p7m
+   smime.p7m: ASCII text, with CRLF, LF line terminators
+   $ cat smime.p7m
+   HTTP/1.1 200 OK
+   Server: nginx
+   Date: Wed, 08 Apr 2015 17:59:54 GMT
+   Content-Type: application/pkcs7-mime; smime-type=enveloped-data; name="smime.p7m"
+   Content-Length: 2350
+   Connection: close
+   Access-Control-Allow-Origin: *
+   Access-Control-Allow-Headers: Origin,Accept,Authorization,Content-Type,X-Requested-With
+   Access-Control-Max-Age: 1800
+   Access-Control-Allow-Methods: GET
+   Content-Disposition: attachment; filename="smime.p7m"
+   Content-Transfer-Encoding: base64
+    
+   MIAGCSqGSIb3DQEHA6CAMIACAQAxggGeMIIBmgIBADCBgTB5MQswCQYDVQQGEwJERTEQMA4GA1UE
+   CBMHQmF2YXJpYTEPMA0GA1UEBxMGTXVuaWNoMRIwEAYDVQQKEwlHaW5pIEdtYkgxFDASBgNVBAsT
+   [----STRIPPED----]
+
+At last we decrypt the created file with OpenSSL using our own private key ``client.pem``.::
+
+  $ openssl cms -decrypt -binary -aes256 -in smime.p7m -inform SMIME -out document.json -inkey client.pem
+  $ cat document.json 
+  Content-Type: application/vnd.gini.v1+json
+
+  {"id":"e5d1c390-3bf6-11e3-9445-000000000000","name":"application-pkcs7.txt","pageCount":6,"pages"..
+  [----STRIPPED----]
+
+Whereas the parameters of the OpenSSL CMS utility are:
+
++----------------------------------------+-----------------------------------------------------------------+
+| Parameter                              | Description                                                     |
++========================================+=================================================================+
+| -decrypt                               | Decrypt the input data.                                         |
++----------------------------------------+-----------------------------------------------------------------+
+| -binary                                | Normally the input message is converted to "canonical" format   |
+|                                        | which is effectively using CR and LF as end of line:            |
+|                                        | as required by the S/MIME specification. When this option is    |
+|                                        | present no translation occurs. This is useful when              |
+|                                        | handling binary data which may not be in MIME format.           |
++----------------------------------------+-----------------------------------------------------------------+
+| -aes256                                | The decryption algorithm to use.                                |
++----------------------------------------+-----------------------------------------------------------------+
+| -in smime.p7m                          | The input data to be decrypted (S/MIME format including MIME    |
+|                                        | headers).                                                       |
++----------------------------------------+-----------------------------------------------------------------+
+| -inform SMIME                          | This specifies the input format for the CMS structure.          |
+|                                        | The default is **SMIME** which reads an S/MIME format message.  |
++----------------------------------------+-----------------------------------------------------------------+
+| -out document.json                     | The input data that has been decrypted.                         |
++----------------------------------------+-----------------------------------------------------------------+
+| -inkey client.pem                      | Your private key file. This key is used for decryption.         |
++----------------------------------------+-----------------------------------------------------------------+
+  
+See Also
+--------
+
+This sections collects some useful ressources around CMS.
+
++------------------------------------------------------------+-----------------------------------------------------------------+
+| Link                                                       | Description                                                     |
++============================================================+=================================================================+
+| :rfc:`5652`                                                | The RFC where CMS is defined.                                   |
++------------------------------------------------------------+-----------------------------------------------------------------+
+| `Jersey S/MIME <https://github.com/joschi/jersey-smime>`_  | Jersey S/MIME allows to use S/MIME in Jersey applications.      |
++------------------------------------------------------------+-----------------------------------------------------------------+
