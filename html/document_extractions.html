@@ -630,67 +630,72 @@ extraction. It also has an additional field <tt class="docutils literal"><span c
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-date"><em>date</em></a></td>
 <td><tt class="docutils literal"><span class="pre">dates</span></tt></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">paymentReference</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">paymentRecipient</span></tt></td>
+<td>The payment recipient, benefitter of a money transfer activity</td>
+<td><a class="reference internal" href="entity_reference.html#extraction-entity-companyname"><em>companyname</em></a></td>
+<td><tt class="docutils literal"><span class="pre">senderNames</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">paymentReference</span></tt></td>
 <td>The payment reference.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-reference"><em>reference</em></a></td>
 <td>n/a</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">paymentState</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">paymentState</span></tt></td>
 <td>If a document has yet to be paid or is paid already.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-paymentstate"><em>paymentstate</em></a></td>
 <td>n/a</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">phoneNumber</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">phoneNumber</span></tt></td>
 <td>The first found phoneNumber in a given document.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-phonenumber"><em>phonenumber</em></a></td>
 <td><tt class="docutils literal"><span class="pre">phoneNumbers</span></tt></td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">referenceId</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">referenceId</span></tt></td>
 <td>The first found reference id in a given document.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-text"><em>text</em></a></td>
 <td><tt class="docutils literal"><span class="pre">referenceIds</span></tt></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderCity</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderCity</span></tt></td>
 <td>The sender city.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-city"><em>city</em></a></td>
 <td>n/a</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderName</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderName</span></tt></td>
 <td>The sender name.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-companyname"><em>companyname</em></a></td>
 <td><tt class="docutils literal"><span class="pre">senderNames</span></tt></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderNameAddition</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderNameAddition</span></tt></td>
 <td>The sender name addition.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-companynameaddition"><em>companynameaddition</em></a></td>
 <td>n/a</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderPoBox</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderPoBox</span></tt></td>
 <td>The sender post-office box.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-poboxnumber"><em>poboxnumber</em></a></td>
 <td>n/a</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderPostalCode</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderPostalCode</span></tt></td>
 <td>The sender&#8217;s postal code.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-zipcode"><em>zipcode</em></a></td>
 <td>n/a</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">senderStreet</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">senderStreet</span></tt></td>
 <td>The sender&#8217;s street with house number.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-street"><em>street</em></a></td>
 <td>n/a</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">taxNumber</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">taxNumber</span></tt></td>
 <td>The tax number of a document sender.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-taxnumber"><em>taxnumber</em></a></td>
 <td><tt class="docutils literal"><span class="pre">taxnumbers</span></tt></td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">vatRegNumber</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">vatRegNumber</span></tt></td>
 <td>The VAT number of a document sender.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-vat"><em>vat</em></a></td>
 <td><tt class="docutils literal"><span class="pre">vatRegNumbers</span></tt></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">website</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">website</span></tt></td>
 <td>The most probable web address of a sender.</td>
 <td><a class="reference internal" href="entity_reference.html#extraction-entity-url"><em>url</em></a></td>
 <td><tt class="docutils literal"><span class="pre">websites</span></tt></td>
