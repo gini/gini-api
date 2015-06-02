@@ -250,3 +250,23 @@ Example request
    Content-Type: application/json
    
    {"oldPassword":"supersecret","password:"anothersecret"}
+
+
+
+Deleting a user
+===============
+
+An existing user can be deleted with a ``DELETE`` request to 
+``/api/users/{userId}``. 
+This also deletes all data associated with that user (e.g. access tokens, documents and extractions).
+
+
+Example request
+---------------
+
+.. code-block:: http
+
+   DELETE /api/users/16aecc72-8032-4df6-9686-eaf4ec9532b8 HTTP/1.1
+   Host: user.gini.net
+   Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6
+   Content-Type: application/json

@@ -402,6 +402,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#id12">Request</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#deleting-a-user">Deleting a user</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Example request</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="guides/cms-encryption.html">CMS Encryption / Decryption Guide</a><ul>
@@ -701,6 +705,21 @@ Content-Type: application/json
 {&quot;oldPassword&quot;:&quot;supersecret&quot;,&quot;password:&quot;anothersecret&quot;}
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="section" id="deleting-a-user">
+<h2>Deleting a user<a class="headerlink" href="#deleting-a-user" title="Permalink to this headline">¶</a></h2>
+<p>An existing user can be deleted with a <tt class="docutils literal"><span class="pre">DELETE</span></tt> request to
+<tt class="docutils literal"><span class="pre">/api/users/{userId}</span></tt>.
+This also deletes all data associated with that user (e.g. access tokens, documents and extractions).</p>
+<div class="section" id="id14">
+<h3>Example request<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">DELETE</span> <span class="nn">/api/users/16aecc72-8032-4df6-9686-eaf4ec9532b8</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">user.gini.net</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
 </div>
 </div>
 </div>
