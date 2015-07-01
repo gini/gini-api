@@ -66,6 +66,11 @@ following request:
    parties might have access to sensitive data if they are able to
    guess how your application generates user identifiers.
 
+.. note::
+
+   This authentication scheme has to be enabled for your client by
+   Gini. Please contact us if you intend to use this feature.
+
 .. seealso::
 
    :rfc:`2617`

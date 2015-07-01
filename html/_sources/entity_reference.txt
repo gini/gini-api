@@ -797,7 +797,7 @@ Format
 +==============+=====================+=========================================================================+
 | ``entity``   | ``string``          | **Must** be ``reference``                                               |
 +--------------+---------------------+-------------------------------------------------------------------------+
-| ``value``    | ``string``          | The payment reference with "\\n" as a delimiter between reference lines |
+| ``value``    | ``string``          | The payment reference with ", " as delimiter between reference parts    |
 +--------------+---------------------+-------------------------------------------------------------------------+
 | ``box``      | :ref:`bounding-box` | Bounding box of the occurrence including the page number                |
 +--------------+---------------------+-------------------------------------------------------------------------+
