@@ -30,17 +30,12 @@ For general information about the Gini API, see :doc:`../overview`.
 
 .. _guide-getting-started-app-registration:
 
-First of all: Register your application with Gini
-=================================================
+Prerequisites
+=============
 
-Before you can use the Gini API within your application, you have to
-register your application with Gini. To register your app with Gini, write an
-email to hello-partners@gini.net containing the following information:
-
-* Name of your application
-* A (short) description of your application (will not be exposed to end users)
-
-You will then receive a client ID and a client secret from Gini.
+Before you can use the Gini API within your application, you need a valid client
+ID and client secret. If you don't have a client ID and client secret already,
+please contact your sales representative.
 
 .. warning::
 
