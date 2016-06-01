@@ -6,6 +6,24 @@ step-by-step guide how to upload your first document and retrieve its semantic
 content, have a look at the :ref:`getting started guide
 <guide-getting-started>`.
 
+.. _ipv6-compatibility:
+
+IPv6 compatibility
+------------------
+
+Gini API and User Center are accessible from legacy IPv4 and IPv6 networks. The protocol
+precedence depends on your operating system and configuration if both protocols are enabled.
+
+::
+
+    ❯ host api.gini.net                                                                                                                                    [15:32:11]
+    api.gini.net has address 46.245.182.125
+    api.gini.net has IPv6 address 2a00:14e0:600:1500:d0c5::1
+
+    ❯ host user.gini.net                                                                                                                                   [15:32:22]
+    user.gini.net has address 46.245.182.124
+    user.gini.net has IPv6 address 2a00:14e0:600:1500:d0c5::2
+
 .. _overview-mediatypes:
 
 Media Types
@@ -58,7 +76,7 @@ using the HTTP/1.1 ``Accept`` header:
 incubator
 ~~~~~~~~~
 
-Gini API incubator is unstable and can change at any time. We will provide new and immature 
+Gini API incubator is unstable and can change at any time. We will provide new and immature
 features (e.g. extractions) exclusively under this Gini API version. We encourage developers to test these
 features and to give us feedback under api@gini.net. The incubating features are accessible by
 using the HTTP/1.1 ``Accept`` header:
@@ -118,7 +136,7 @@ successful, and if not, whether it should be retried.
 Error entity
 ~~~~~~~~~~~~
 
-The Gini API always returns a JSON object further describing the error which 
+The Gini API always returns a JSON object further describing the error which
 occurred. The JSON object consists of the following properties:
 
 +-----------+---------+--------------------------------------------------+

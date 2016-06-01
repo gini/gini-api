@@ -90,6 +90,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-overview">Overview about the Gini API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-overview#ipv6-compatibility">IPv6 compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-overview#media-types">Media Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-overview#versions">Versions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-overview#v1">v1</a></li>
@@ -819,6 +820,20 @@ mistake.</p>
 <p>This section provides general information about the Gini API. If you want a
 step-by-step guide how to upload your first document and retrieve its semantic
 content, have a look at the <a class="reference internal" href="index.html#guide-getting-started"><em>getting started guide</em></a>.</p>
+<div class="section" id="ipv6-compatibility">
+<span id="id1"></span><h4>IPv6 compatibility<a class="headerlink" href="#ipv6-compatibility" title="Permalink to this headline">¶</a></h4>
+<p>Gini API and User Center are accessible from legacy IPv4 and IPv6 networks. The protocol
+precedence depends on your operating system and configuration if both protocols are enabled.</p>
+<div class="highlight-python"><div class="highlight"><pre>❯ host api.gini.net                                                                                                                                    [15:32:11]
+api.gini.net has address 46.245.182.125
+api.gini.net has IPv6 address 2a00:14e0:600:1500:d0c5::1
+
+❯ host user.gini.net                                                                                                                                   [15:32:22]
+user.gini.net has address 46.245.182.124
+user.gini.net has IPv6 address 2a00:14e0:600:1500:d0c5::2
+</pre></div>
+</div>
+</div>
 <div class="section" id="media-types">
 <span id="overview-mediatypes"></span><h4>Media Types<a class="headerlink" href="#media-types" title="Permalink to this headline">¶</a></h4>
 <p>Custom media types are used in the API to let consumers choose the
