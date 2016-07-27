@@ -306,6 +306,394 @@ Errors
 +-------------------+-----------------------------------------------------------------+
 
 
+Retrieving extractions
+----------------------
+
+After a document has been processed, the extractions from the document
+analysis can be retrieved. See :ref:`document_extractions` for
+details about extractions.
+
+Request
+~~~~~~~
+
+Extractions can be retrieved by doing a ``GET`` request on the
+extractions URI:
+
+::
+
+    GET /documents/{id}/extractions
+
+Headers
+^^^^^^^
+
++--------------+----------------------------------+
+| Header       | Value                            |
++==============+==================================+
+| ``Accept``   | ``application/vnd.gini.v1+json`` |
++--------------+----------------------------------+
+
+Example
+^^^^^^^
+
+.. code-block:: bash
+
+    curl -H 'Authorization: BEARER <token>' -X GET -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/extractions
+
+Response
+~~~~~~~~
+
+Headers
+^^^^^^^
+
++-------------+-------------+
+| Status Code | Description |
++=============+=============+
+| 200 (OK)    | Success     |
++-------------+-------------+
+
++--------------------+----------------------------------+
+| Header             | Value                            |
++====================+==================================+
+| ``Content-Type``   | ``application/vnd.gini.v1+json`` |
++--------------------+----------------------------------+
+
+Body (application/vnd.gini.v1+json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A detailed explanation of the response format can be found in
+:ref:`document_extractions`.
+
++-----------------+------------+---------------------------------------------------------------+
+| Name            | Type       | Description                                                   |
++=================+============+===============================================================+
+| ``extractions`` | ``object`` | A mapping of labels to :ref:`extractions` (i.e.               |
+|                 |            | :ref:`specific-extractions`)                                  |
++-----------------+------------+---------------------------------------------------------------+
+| ``candidates``  | ``object`` | A mapping of labels to a list of :ref:`extraction-candidates` |
++-----------------+------------+---------------------------------------------------------------+
+
+
+Example
+^^^^^^^
+
+.. code-block:: json
+
+     {
+        "extractions": {
+            "amountToPay": {
+                "box": {
+                    "height": 9.0,
+                    "left": 516.0,
+                    "page": 1,
+                    "top": 588.0,
+                    "width": 42.0
+                },
+                "entity": "amount",
+                "value": "24.99:EUR",
+                "candidates": "amounts"
+            }
+          },
+          "candidates": {
+            "amounts": [
+              {
+                  "box": {
+                      "height": 9.0,
+                      "left": 516.0,
+                      "page": 1,
+                      "top": 588.0,
+                      "width": 42.0
+                  },
+                  "entity": "amount",
+                  "value": "24.99:EUR"
+              },
+              {
+                  "box": {
+                      "height": 9.0,
+                      "left": 241.0,
+                      "page": 1,
+                      "top": 588.0,
+                      "width": 42.0
+                  },
+                  "entity": "amount",
+                  "value": "21.0:EUR"
+              }
+            ]
+            ...
+        }
+    }
+
+Errors
+^^^^^^
+
++---------------------+-------------------------------------------------------------+
+| Status Code         | Description                                                 |
++=====================+=============================================================+
+| 404 (Not Found)     | Response status if the requested entity couldn't be found   |
++---------------------+-------------------------------------------------------------+
+
+
+.. _sending-feedback:
+
+Submitting feedback on extractions
+----------------------------------
+
+Depending on your use case, you should always submit feedback on extractions in order to help 
+to improve the recognition rate of the Gini API. 
+
+.. note::
+   Feedback should only be sent if real users can see, approve, correct and complement extractions based data.
+
+
+Feedback should only be sent if your use case fullfills these constraints. Gini uses several techniques to learn from feedback on 
+extractions automatically. Thereby it is equally important for Gini to receive both feedback 
+on correct and on incorrect extractions. 
+There are currently two ways to submit feedback. The first and most common one is to submit the complete feedback in one request.
+This is the most obvious way if your frontend (app) shows the extractions on one screen in an editable form. The user can 
+edit the extractions before she confirms that the approvement/correction is complete with a click on a button. 
+The second way covers quite rare use cases where the final approvement signal - e.g. the click on a button - is not possible.
+Therefore you can send the feedback for one label per request.
+
+There are three different types of feedback:
+ * *positive feedback:* The happy path - the extraction was correct and confirmed by the user
+ * *complementary feedback:* The Gini API extracted nothing, the given label is not in the response and the user entered the correct value
+ * *negative feedback:* The extraction was incomplete / erroneous and corrected by the user 
+
+Please see the full example for further details.
+
+Submitting feedback on multiple extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Gini API allows to submit feedback on multiple extractions for a 
+single document with a single request. It is strongly recommended for two reasons 
+that you submit your feedback in this way. On the one hand,
+the total number of roundtrips is reduced to one and the feedback is handled
+internally as a batch. Thus, the update is more efficient for multiple extractions
+compared to submitting each feedback with a separate request 
+(See :ref:`singlefeedback`). On the other hand, Gini's 
+training techniques can benefit from the feedback on multiple extractions, as Gini
+can be aware of the fact that the single parts of the submitted feedback belong together.
+
+.. note::
+  You should send feedback only for labels which the user has seen. Unseen labels should
+  be filtered out.
+
+Request
+^^^^^^^
+
+Give feedback and correct or verify multiple specific labeled extraction
+patterns with a single ``PUT`` request to the documents extractions URI:
+
+::
+
+    PUT /documents/{id}/extractions
+
+The labels must correspond to the names of the extraction types (e. g.
+``amountToPay``. See :ref:`available-specific-extractions` for a list
+of names).
+
+Headers
+'''''''
+
++--------------------+----------------------------------+
+| Header             | Value                            |
++====================+==================================+
+| ``Content-Type``   | ``application/vnd.gini.v1+json`` |
++--------------------+----------------------------------+
+
+Body
+''''
+
++--------------+------------+-------------------------------------------------------------+
+| Key          | Type       | Description                                                 |
++==============+============+=============================================================+
+| ``feedback`` | ``object`` | A mapping of labels to :ref:`extractions` (i.e.             |
+|              |            | :ref:`specific-extractions`)                                |
++--------------+------------+-------------------------------------------------------------+
+
+.. note::
+  The boxes are optional. Boxes should only be sent if your use case visualize the document
+  with the locations of the extractions. Thus, the user can confirm the correct location of
+  a extraction.
+
+Example
+'''''''
+
+We show a more elaborated example here in order to explain the different types of feedback.
+The example scenario is as follows: The user uploads a document where the labels *amountToPay*,
+*paymentReference*, *iban* were extracted. Unfortunately the label *paymentRecipient* could not
+be extracted. The response for the extractions request is as follows:
+
+.. code-block:: json
+  
+    {
+        "candidates": {
+        },
+        "extractions": {
+            "amountToPay": {
+                "box": {
+                    "height": 8.0,
+                    "left": 545.0,
+                    "page": 1,
+                    "top": 586.0,
+                    "width": 17.0
+                },
+                "candidates": "amounts",
+                "entity": "amount",
+                "value": "5.60:EUR"
+            },
+            "iban": {
+                "box": {
+                    "height": 7.0,
+                    "left": 447.0,
+                    "page": 1,
+                    "top": 746.0,
+                    "width": 100.0
+                },
+                "candidates": "ibans",
+                "entity": "iban",
+                "value": "DE68130300000017850360"
+            },
+            "paymentReference": {
+                "entity": "reference",
+                "value": "ReNr 123, KdNr 32"
+            }
+        }
+    }
+
+The user adds the missed *paymentRecipient* value (complementary feedback) and corrects the *paymentReference* to "ReNr 1735, KdNr 37" (negative feedback). 
+The *iban* and *amountToPay* were correct (positive feedback). The document is not shown, so we can leave out the boxes. The resulting
+feedback request is then as follows:
+
+.. code-block:: json
+
+    {	
+       "feedback": {
+           "amountToPay": {
+               "value": "5.60:EUR"
+           },
+           "iban": {
+               "value": "DE68130300000017850360",
+           },
+           "paymentReference": {
+               "value": "ReNr 1735, KdNr 37"
+           },
+           "paymentRecipient": {
+               "value": "Zalando SE"
+           }
+       }
+    }    
+
+Response
+^^^^^^^^
+
++-------------------------------+-----------------------------------------------+
+| Status Code                   | Description                                   |
++===============================+===============================================+
+| 204 (No Content)              | The feedback was successfully processed       |
++-------------------------------+-----------------------------------------------+
+| 404 (Not Found)               | The document or label could not be found      |
++-------------------------------+-----------------------------------------------+
+| 422 (Unprocessable Entity)    | At least one value was not valid regarding to |
+|                               | the labels entity validation rules            |
++-------------------------------+-----------------------------------------------+
+
+
+.. _singlefeedback:
+
+Submitting feedback on single extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Request
+^^^^^^^
+
+Give feedback and correct, verify or add a specific labeled extraction
+pattern with a ``PUT`` request to the documents extractions URI. Please be aware 
+that single extraction feedback should be avoided - its only suitable for
+very rare use cases.
+
+::
+
+    PUT /documents/{id}/extractions/{label}
+
+The label must correspond to the name of the extraction type (e. g.
+``amountToPay``. See :ref:`available-specific-extractions` for a list
+of names).
+
+Headers
+'''''''
+
++--------------------+----------------------------------+
+| Header             | Value                            |
++====================+==================================+
+| ``Content-Type``   | ``application/vnd.gini.v1+json`` |
++--------------------+----------------------------------+
+
+Body
+''''
+
++--------------+------------+-------------------------------------------------------------+
+| Key          | Type       | Description                                                 |
++==============+============+=============================================================+
+| ``value``    | ``string`` | New value of extraction                                     |
++--------------+------------+-------------------------------------------------------------+
+| ``box``      | ``object`` | *(Optional)* Bounding box where the extraction can be found |
++--------------+------------+-------------------------------------------------------------+
+
+Example
+'''''''
+
+.. code-block:: json
+
+    {
+        "box": {
+            "height": 14,
+            "left": 405,
+            "page": 1,
+            "top": 421,
+            "width": 36
+        },
+        "value": "new value"
+    }
+
+Response
+^^^^^^^^
+
++-------------------------------+-----------------------------------------------+
+| Status Code                   | Description                                   |
++===============================+===============================================+
+| 204 (No Content)              | The feedback was successfully processed       |
++-------------------------------+-----------------------------------------------+
+| 404 (Not Found)               | The document or label could not be found      |
++-------------------------------+-----------------------------------------------+
+| 422 (Unprocessable Entity)    | At least one value was not valid regarding to |
+|                               | the labels entity validation rules            |
++-------------------------------+-----------------------------------------------+
+
+
+Submitting feedback for invalid extractions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Request
+^^^^^^^
+
+In case an extraction was found erroneously (i.e. is not present in
+the source document), you can delete it by issuing a ``DELETE``
+request to the extraction URI::
+
+    DELETE /documents/{id}/extractions/{label}
+
+Response
+^^^^^^^^
+
++--------------------+--------------------------------------------------------+
+| Status Code        | Description                                            |
++====================+========================================================+
+| 204 (No Content)   | Removal of the label was successful                    |
++--------------------+--------------------------------------------------------+
+| 404 (Not Found)    | Returned when the document or label can not be found   |
++--------------------+--------------------------------------------------------+
+
+
 Retrieving a document's pages
 -----------------------------
 
@@ -730,320 +1118,6 @@ Errors
 +-------------------+----------------------------------------+
 
 
-Retrieving extractions
-----------------------
-
-After a document has been processed, the extractions from the document
-analysis can be retrieved. See :ref:`document_extractions` for
-details about extractions.
-
-Request
-~~~~~~~
-
-Extractions can be retrieved by doing a ``GET`` request on the
-extractions URI:
-
-::
-
-    GET /documents/{id}/extractions
-
-Headers
-^^^^^^^
-
-+--------------+----------------------------------+
-| Header       | Value                            |
-+==============+==================================+
-| ``Accept``   | ``application/vnd.gini.v1+json`` |
-+--------------+----------------------------------+
-
-Example
-^^^^^^^
-
-.. code-block:: bash
-
-    curl -H 'Authorization: BEARER <token>' -X GET -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/extractions
-
-Response
-~~~~~~~~
-
-Headers
-^^^^^^^
-
-+-------------+-------------+
-| Status Code | Description |
-+=============+=============+
-| 200 (OK)    | Success     |
-+-------------+-------------+
-
-+--------------------+----------------------------------+
-| Header             | Value                            |
-+====================+==================================+
-| ``Content-Type``   | ``application/vnd.gini.v1+json`` |
-+--------------------+----------------------------------+
-
-Body (application/vnd.gini.v1+json)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-A detailed explanation of the response format can be found in
-:ref:`document_extractions`.
-
-+-----------------+------------+---------------------------------------------------------------+
-| Name            | Type       | Description                                                   |
-+=================+============+===============================================================+
-| ``extractions`` | ``object`` | A mapping of labels to :ref:`extractions` (i.e.               |
-|                 |            | :ref:`specific-extractions`)                                  |
-+-----------------+------------+---------------------------------------------------------------+
-| ``candidates``  | ``object`` | A mapping of labels to a list of :ref:`extraction-candidates` |
-+-----------------+------------+---------------------------------------------------------------+
-
-
-Example
-^^^^^^^
-
-.. code-block:: json
-
-     {
-        "extractions": {
-            "amountToPay": {
-                "box": {
-                    "height": 9.0,
-                    "left": 516.0,
-                    "page": 1,
-                    "top": 588.0,
-                    "width": 42.0
-                },
-                "entity": "amount",
-                "value": "24.99:EUR",
-                "candidates": "amounts"
-            }
-          },
-          "candidates": {
-            "amounts": [
-              {
-                  "box": {
-                      "height": 9.0,
-                      "left": 516.0,
-                      "page": 1,
-                      "top": 588.0,
-                      "width": 42.0
-                  },
-                  "entity": "amount",
-                  "value": "24.99:EUR"
-              },
-              {
-                  "box": {
-                      "height": 9.0,
-                      "left": 241.0,
-                      "page": 1,
-                      "top": 588.0,
-                      "width": 42.0
-                  },
-                  "entity": "amount",
-                  "value": "21.0:EUR"
-              }
-            ]
-            ...
-        }
-    }
-
-Errors
-^^^^^^
-
-+---------------------+-------------------------------------------------------------+
-| Status Code         | Description                                                 |
-+=====================+=============================================================+
-| 404 (Not Found)     | Response status if the requested entity couldn't be found   |
-+---------------------+-------------------------------------------------------------+
-
-
-.. _sending-feedback:
-
-Submitting feedback on extractions
-----------------------------------
-
-You can submit feedback on extractions, in order to help to improve the recognition 
-rate of the Gini API. Gini uses several techniques to learn from feedback on 
-extractions automatically. Thereby, it is equally important for Gini to receive both, feedback 
-on correct and on incorrect extractions. 
-
-.. _singlefeedback:
-
-Submitting feedback on single extractions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Request
-^^^^^^^
-
-Give feedback and correct or verify a specific labeled extraction
-pattern with a ``PUT`` request to the documents extractions URI:
-
-::
-
-    PUT /documents/{id}/extractions/{label}
-
-The label must correspond to the name of the extraction type (e. g.
-``amountToPay``. See :ref:`available-specific-extractions` for a list
-of names).
-
-Headers
-'''''''
-
-+--------------------+----------------------------------+
-| Header             | Value                            |
-+====================+==================================+
-| ``Content-Type``   | ``application/vnd.gini.v1+json`` |
-+--------------------+----------------------------------+
-
-Body
-''''
-
-+--------------+------------+-------------------------------------------------------------+
-| Key          | Type       | Description                                                 |
-+==============+============+=============================================================+
-| ``value``    | ``string`` | New value of extraction                                     |
-+--------------+------------+-------------------------------------------------------------+
-| ``box``      | ``object`` | *(Optional)* Bounding box where the extraction can be found |
-+--------------+------------+-------------------------------------------------------------+
-
-Example
-'''''''
-
-.. code-block:: json
-
-    {
-        "box": {
-            "height": 14,
-            "left": 405,
-            "page": 1,
-            "top": 421,
-            "width": 36
-        },
-        "value": "new value"
-    }
-
-Response
-^^^^^^^^
-
-+--------------------+-----------------------------------------------+
-| Status Code        | Description                                   |
-+====================+===============================================+
-| 204 (No Content)   | The feedback was successfully processed       |
-+--------------------+-----------------------------------------------+
-| 404 (Not Found)    | The document or label could not be found      |
-+--------------------+-----------------------------------------------+
-
-
-Submitting feedback on multiple extractions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The Gini API also allows to submit feedback on multiple extractions for a 
-single document with a single request. It is strongly recommended for two reasons 
-that you submit your feedback on this way. On the one hand,
-the total number of roundtrips is reduced to one and the feedback is handled
-internally as a batch. Thus, the update is more efficient for multiple extractions
-compared to submitting each feedback with a separate request 
-(See :ref:`singlefeedback`). On the other hand, Gini's 
-training techniques can benefit from the feedback on multiple extractions, as Gini
-can be aware of the fact that the single parts of the submitted feedback belong together.
-
-Request
-^^^^^^^
-
-Give feedback and correct or verify multiple specific labeled extraction
-patterns with a single ``PUT`` request to the documents extractions URI:
-
-::
-
-    PUT /documents/{id}/extractions
-
-The labels must correspond to the names of the extraction types (e. g.
-``amountToPay``. See :ref:`available-specific-extractions` for a list
-of names).
-
-Headers
-'''''''
-
-+--------------------+----------------------------------+
-| Header             | Value                            |
-+====================+==================================+
-| ``Content-Type``   | ``application/vnd.gini.v1+json`` |
-+--------------------+----------------------------------+
-
-Body
-''''
-
-+--------------+------------+-------------------------------------------------------------+
-| Key          | Type       | Description                                                 |
-+==============+============+=============================================================+
-| ``feedback`` | ``object`` | A mapping of labels to :ref:`extractions` (i.e.             |
-|              |            | :ref:`specific-extractions`)                                |
-+--------------+------------+-------------------------------------------------------------+
-
-Example
-'''''''
-
-.. code-block:: json
-
-    {	
-	"feedback": {
-	    "amountToPay": {
-		"box": {
-            	   "height": 14,
-            	   "left": 405,
-            	   "page": 1,
-            	   "top": 421,
-            	   "width": 36
-        	},
-        	"value": "new value"
-	    },
-	    "bic": {
-		"box": {
-		    "height": 14,
-		    "left": 100,
-		    "page": 1,
-		    "top": 609,
-		    "width": 40
-		},
-		"value": "new value",
-		"entity": "bic"
-	    },
-	    ...
-    	}
-    }
-
-Response
-^^^^^^^^
-
-+--------------------+-----------------------------------------------+
-| Status Code        | Description                                   |
-+====================+===============================================+
-| 204 (No Content)   | The feedback was successfully processed       |
-+--------------------+-----------------------------------------------+
-| 404 (Not Found)    | The document or label could not be found      |
-+--------------------+-----------------------------------------------+
-
-Submitting feedback for invalid extractions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Request
-^^^^^^^
-
-In case an extraction was found erroneously (i.e. is not present in
-the source document), you can delete it by issuing a ``DELETE``
-request to the extraction URI::
-
-    DELETE /documents/{id}/extractions/{label}
-
-Response
-^^^^^^^^
-
-+--------------------+--------------------------------------------------------+
-| Status Code        | Description                                            |
-+====================+========================================================+
-| 204 (No Content)   | Removal of the label was successful                    |
-+--------------------+--------------------------------------------------------+
-| 404 (Not Found)    | Returned when the document or label can not be found   |
-+--------------------+--------------------------------------------------------+
 
 Create an Error Report for a Document
 -------------------------------------
