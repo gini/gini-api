@@ -91,7 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#what-next">What next?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview about the Gini API</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview of the Gini API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#ipv6-compatibility">IPv6 compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a><ul>
@@ -1098,7 +1098,7 @@ to improve the recognition rate of the Gini API.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">Feedback should only be sent if real users can see, approve, correct and complement extractions based data.</p>
 </div>
-<p>Feedback should only be sent if your use case fullfills these constraints. Gini uses several techniques to learn from feedback on
+<p>Feedback should only be sent if your use case fulfills these constraints. Gini uses several techniques to learn from feedback on
 extractions automatically. Thereby it is equally important for Gini to receive both feedback
 on correct and on incorrect extractions.
 There are currently two ways to submit feedback. The first and most common one is to submit the complete feedback in one request.
@@ -1121,7 +1121,7 @@ Therefore you can send the feedback for one label per request.</p>
 <p>The Gini API allows to submit feedback on multiple extractions for a
 single document with a single request. It is strongly recommended for two reasons
 that you submit your feedback in this way. On the one hand,
-the total number of roundtrips is reduced to one and the feedback is handled
+the total number of round trips is reduced to one and the feedback is handled
 internally as a batch. Thus, the update is more efficient for multiple extractions
 compared to submitting each feedback with a separate request
 (See <a class="reference internal" href="#singlefeedback"><em>Submitting feedback on single extractions</em></a>). On the other hand, Gini&#8217;s
@@ -2032,7 +2032,7 @@ layout URI:</p>
 <span id="id44"></span><h2>Retrieving the processed document<a class="headerlink" href="#retrieving-the-processed-document" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id45">
 <h3>Request<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h3>
-<p>Before Gini tries to extract information it preprocesses the document,
+<p>Before Gini tries to extract information, it preprocesses the document,
 e.g. to deskew pages. The processed document can be retrieved by a
 <tt class="docutils literal"><span class="pre">GET</span></tt> request:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">processed</span>

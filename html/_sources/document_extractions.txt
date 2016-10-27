@@ -183,10 +183,10 @@ Available Extraction Candidates
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``bics``                 | All bics of a given document.                                                              | :ref:`extraction-entity-bic`                |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``companyRegisterIds``   | All alphanumeric strings (of a similiar structure as a German company register id) of a    | :ref:`extraction-entity-companyregisterid`  |
+| ``companyRegisterIds``   | All alphanumeric strings (of a similar structure as a German company register id) of a     | :ref:`extraction-entity-companyregisterid`  |
 |                          | given document.                                                                            |                                             |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``customerIds``          | All alphanumeric strings (of a similiar structure as an identifier) of a given document.   | :ref:`extraction-entity-customerid`         |
+| ``customerIds``          | All alphanumeric strings (of a similar structure as an identifier) of a given document.    | :ref:`extraction-entity-customerid`         |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``dates``                | All dates of a given document.                                                             | :ref:`extraction-entity-date`               |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
@@ -194,7 +194,7 @@ Available Extraction Candidates
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``ibans``                | All IBANs of a given document.                                                             | :ref:`extraction-entity-iban`               |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``invoiceIds``           | All alphanumeric strings (of similiar structure as an identifier) of a given document.     | :ref:`extraction-entity-invoiceid`          |
+| ``invoiceIds``           | All alphanumeric strings (of similar structure as an identifier) of a given document.      | :ref:`extraction-entity-invoiceid`          |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``phoneNumbers``         | All phone numbers of a given document.                                                     | :ref:`extraction-entity-phonenumber`        |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
@@ -202,10 +202,10 @@ Available Extraction Candidates
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``senderNames``          | All possible sender names of a given document.                                             | :ref:`extraction-entity-companyname`        |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``taxNumbers``           | All strings of digits (of a similiar structure as a German tax number) of a given          | :ref:`extraction-entity-taxnumber`          |
+| ``taxNumbers``           | All strings of digits (of a similar structure as a German tax number) of a given           | :ref:`extraction-entity-taxnumber`          |
 |                          | document.                                                                                  |                                             |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``vatRegNumbers``        | All alphanumeric strings (of a similiar structure as an identifier) of a given document.   | :ref:`extraction-entity-vat`                |
+| ``vatRegNumbers``        | All alphanumeric strings (of a similar structure as an identifier) of a given document.    | :ref:`extraction-entity-vat`                |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``websites``             | All links found in a given document.                                                       | :ref:`extraction-entity-url`                |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+

@@ -32,7 +32,7 @@ Receipt Extraction
 ^^^^^^^^^^^^^^^^^^
 
 Receipts are printed acknowledgements that a specified article or payment has been received. 
-They are often printed in stores with cash registers and include informations like price, tax,
+They are often printed in stores with cash registers and include information like price, tax,
 discount and the purchased items or services.
 
 Supported Specific Extractions
@@ -220,7 +220,7 @@ Supported Specific Extractions
 +--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
 | ``docType``              | The document type of a given document.       | :ref:`extraction-entity-doctype`             |  n/a                      | ``Energy``              |
 +--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
-| ``energyType``           | The type of energy beeing charged.           | :ref:`extraction-entity-energytype`          |  n/a                      | ``Electricity``,        |
+| ``energyType``           | The type of energy being charged.            | :ref:`extraction-entity-energytype`          |  n/a                      | ``Electricity``,        |
 |                          |                                              |                                              |                           | ``Gas``                 |
 +--------------------------+----------------------------------------------+----------------------------------------------+---------------------------+-------------------------+
 | ``paidAmount``           | The amount which was already paid.           | :ref:`extraction-entity-amount`              |  n/a                      | n/a                     |

@@ -3,13 +3,13 @@
 Notifications
 =============
 
-Sometimes it is not desirable or not convinient to actively poll for the processing status of documents. The notification API allows to retrieve status changes in a publish/subscribe fashion.
+Sometimes it is not desirable or not convenient to actively poll for the processing status of documents. The notification API allows to retrieve status changes in a publish/subscribe fashion.
 
 Retrieving Document Change Events for a Client
 ----------------------------------------------
 
-The status changes of documents which are proccessed for your application can be received by subscribing a SSE (server sent events) capable client with a valid client bearer token. See :ref:`client_authentication`.
-Since the browser implementations of `SSE eventsource <http://www.w3.org/TR/eventsource/>`_ lacks the capability to submit headers, the bearer header can be replaced with a query parameter. Unfortunately, the eventsource standard does not support authorization directly. That means that the subscription request returns *always* status code 200. If the authorization failes, a error message is returned in the response body.
+The status changes of documents which are processed for your application can be received by subscribing a SSE (server sent events) capable client with a valid client bearer token. See :ref:`client_authentication`.
+Since the browser implementations of `SSE eventsource <http://www.w3.org/TR/eventsource/>`_ lacks the capability to submit headers, the bearer header can be replaced with a query parameter. Unfortunately, the eventsource standard does not support authorization directly. That means that the subscription request returns *always* status code 200. If the authorization fails, a error message is returned in the response body.
 Once the connection is established, the document status changes are sent by the server as SSE event stream.
 
 Request
@@ -58,7 +58,7 @@ Headers
 Errors
 ^^^^^^
 
-Error messages are embeded in the response body of the subscription request. 
+Error messages are embedded in the response body of the subscription request.
 
 +---------------------+-------------------------------------------------------+
 | Message             | Description                                           |

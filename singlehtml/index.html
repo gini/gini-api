@@ -89,7 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-guides/getting-started#what-next">What next?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#document-overview">Overview about the Gini API</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-overview">Overview of the Gini API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-overview#ipv6-compatibility">IPv6 compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-overview#media-types">Media Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-overview#versions">Versions</a><ul>
@@ -520,7 +520,7 @@ steps:</p>
 </ol>
 <p>For a quick overview of what kinds of information the Gini API is able
 to extract from your documents, go ahead and check out <a class="reference external" href="https://app.gini.net/">Gini Docs</a>.</p>
-<p>For general information about the Gini API, see <a class="reference internal" href="index.html#document-overview"><em>Overview about the Gini API</em></a>.</p>
+<p>For general information about the Gini API, see <a class="reference internal" href="index.html#document-overview"><em>Overview of the Gini API</em></a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">All example requests show the usage of <a class="reference external" href="http://curl.haxx.se/">cURL</a>, a command-line
@@ -815,8 +815,8 @@ mistake.</p>
 <p>Make your life easier by using <a class="reference internal" href="index.html#document-client_libs"><em>one of our SDKs</em></a>.</p>
 </div>
 </div>
-<span id="document-overview"></span><div class="section" id="overview-about-the-gini-api">
-<h3>Overview about the Gini API<a class="headerlink" href="#overview-about-the-gini-api" title="Permalink to this headline">¶</a></h3>
+<span id="document-overview"></span><div class="section" id="overview-of-the-gini-api">
+<h3>Overview of the Gini API<a class="headerlink" href="#overview-of-the-gini-api" title="Permalink to this headline">¶</a></h3>
 <p>This section provides general information about the Gini API. If you want a
 step-by-step guide how to upload your first document and retrieve its semantic
 content, have a look at the <a class="reference internal" href="index.html#guide-getting-started"><em>getting started guide</em></a>.</p>
@@ -1712,7 +1712,7 @@ to improve the recognition rate of the Gini API.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">Feedback should only be sent if real users can see, approve, correct and complement extractions based data.</p>
 </div>
-<p>Feedback should only be sent if your use case fullfills these constraints. Gini uses several techniques to learn from feedback on
+<p>Feedback should only be sent if your use case fulfills these constraints. Gini uses several techniques to learn from feedback on
 extractions automatically. Thereby it is equally important for Gini to receive both feedback
 on correct and on incorrect extractions.
 There are currently two ways to submit feedback. The first and most common one is to submit the complete feedback in one request.
@@ -1735,7 +1735,7 @@ Therefore you can send the feedback for one label per request.</p>
 <p>The Gini API allows to submit feedback on multiple extractions for a
 single document with a single request. It is strongly recommended for two reasons
 that you submit your feedback in this way. On the one hand,
-the total number of roundtrips is reduced to one and the feedback is handled
+the total number of round trips is reduced to one and the feedback is handled
 internally as a batch. Thus, the update is more efficient for multiple extractions
 compared to submitting each feedback with a separate request
 (See <a class="reference internal" href="index.html#singlefeedback"><em>Submitting feedback on single extractions</em></a>). On the other hand, Gini&#8217;s
@@ -2646,7 +2646,7 @@ layout URI:</p>
 <span id="id44"></span><h4>Retrieving the processed document<a class="headerlink" href="#retrieving-the-processed-document" title="Permalink to this headline">¶</a></h4>
 <div class="section" id="id45">
 <h5>Request<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h5>
-<p>Before Gini tries to extract information it preprocesses the document,
+<p>Before Gini tries to extract information, it preprocesses the document,
 e.g. to deskew pages. The processed document can be retrieved by a
 <tt class="docutils literal"><span class="pre">GET</span></tt> request:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">processed</span>
@@ -3320,12 +3320,12 @@ extraction. It also has an additional field <tt class="docutils literal"><span c
 <td><a class="reference internal" href="index.html#extraction-entity-bic"><em>bic</em></a></td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">companyRegisterIds</span></tt></td>
-<td>All alphanumeric strings (of a similiar structure as a German company register id) of a
+<td>All alphanumeric strings (of a similar structure as a German company register id) of a
 given document.</td>
 <td><a class="reference internal" href="index.html#extraction-entity-companyregisterid"><em>companyregisterid</em></a></td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">customerIds</span></tt></td>
-<td>All alphanumeric strings (of a similiar structure as an identifier) of a given document.</td>
+<td>All alphanumeric strings (of a similar structure as an identifier) of a given document.</td>
 <td><a class="reference internal" href="index.html#extraction-entity-customerid"><em>customerid</em></a></td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">dates</span></tt></td>
@@ -3341,7 +3341,7 @@ given document.</td>
 <td><a class="reference internal" href="index.html#extraction-entity-iban"><em>iban</em></a></td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">invoiceIds</span></tt></td>
-<td>All alphanumeric strings (of similiar structure as an identifier) of a given document.</td>
+<td>All alphanumeric strings (of similar structure as an identifier) of a given document.</td>
 <td><a class="reference internal" href="index.html#extraction-entity-invoiceid"><em>invoiceid</em></a></td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">phoneNumbers</span></tt></td>
@@ -3357,12 +3357,12 @@ given document.</td>
 <td><a class="reference internal" href="index.html#extraction-entity-companyname"><em>companyname</em></a></td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">taxNumbers</span></tt></td>
-<td>All strings of digits (of a similiar structure as a German tax number) of a given
+<td>All strings of digits (of a similar structure as a German tax number) of a given
 document.</td>
 <td><a class="reference internal" href="index.html#extraction-entity-taxnumber"><em>taxnumber</em></a></td>
 </tr>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">vatRegNumbers</span></tt></td>
-<td>All alphanumeric strings (of a similiar structure as an identifier) of a given document.</td>
+<td>All alphanumeric strings (of a similar structure as an identifier) of a given document.</td>
 <td><a class="reference internal" href="index.html#extraction-entity-vat"><em>vat</em></a></td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">websites</span></tt></td>
@@ -4615,7 +4615,7 @@ delimiter between email components.</p>
 <div class="section" id="phonenumber">
 <span id="extraction-entity-phonenumber"></span><span id="index-17"></span><h4>phonenumber<a class="headerlink" href="#phonenumber" title="Permalink to this headline">¶</a></h4>
 <p>Describes a phone number in one of two formats
-<tt class="docutils literal"><span class="pre">&lt;CountryCode&gt;</span> <span class="pre">&lt;Number&gt;</span></tt> with &#8221; &#8221; as a delimiter and <tt class="docutils literal"><span class="pre">&lt;Number&gt;</span></tt> whithout a country code.
+<tt class="docutils literal"><span class="pre">&lt;CountryCode&gt;</span> <span class="pre">&lt;Number&gt;</span></tt> with &#8221; &#8221; as a delimiter and <tt class="docutils literal"><span class="pre">&lt;Number&gt;</span></tt> without a country code.
 All punctuation marks (e.g. &#8220;/&#8221;, &#8220;-&#8221;), spaces and &#8220;(0)&#8221; (e.g. +49(0)61957746361) are deleted.</p>
 <div class="section" id="id46">
 <h5>Format<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h5>
@@ -4906,7 +4906,7 @@ are replaced with the German word &#8220;Straße&#8221;.</p>
 </div>
 <div class="section" id="taxnumber">
 <span id="extraction-entity-taxnumber"></span><span id="index-21"></span><h4>taxnumber<a class="headerlink" href="#taxnumber" title="Permalink to this headline">¶</a></h4>
-<p>Describes a Geman tax number in the format
+<p>Describes a German tax number in the format
 <tt class="docutils literal"><span class="pre">&lt;3-5</span> <span class="pre">digits&gt;/&lt;3</span> <span class="pre">digits&gt;/&lt;4</span> <span class="pre">digits&gt;/&lt;1</span> <span class="pre">digit&gt;</span></tt> with &#8220;/&#8221; as delimiter
 between components.</p>
 <div class="section" id="id58">
@@ -5404,7 +5404,7 @@ See the example below:</p>
 <div class="section" id="receipt-extraction">
 <h5>Receipt Extraction<a class="headerlink" href="#receipt-extraction" title="Permalink to this headline">¶</a></h5>
 <p>Receipts are printed acknowledgements that a specified article or payment has been received.
-They are often printed in stores with cash registers and include informations like price, tax,
+They are often printed in stores with cash registers and include information like price, tax,
 discount and the purchased items or services.</p>
 <div class="section" id="supported-specific-extractions">
 <h6>Supported Specific Extractions<a class="headerlink" href="#supported-specific-extractions" title="Permalink to this headline">¶</a></h6>
@@ -5796,7 +5796,7 @@ consumption.</td>
 <td><tt class="docutils literal"><span class="pre">Energy</span></tt></td>
 </tr>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">energyType</span></tt></td>
-<td>The type of energy beeing charged.</td>
+<td>The type of energy being charged.</td>
 <td><a class="reference internal" href="index.html#extraction-entity-energytype"><em>energytype</em></a></td>
 <td>n/a</td>
 <td><tt class="docutils literal"><span class="pre">Electricity</span></tt>,
@@ -6344,11 +6344,11 @@ delimiter between time components.</p>
 </div>
 <span id="document-notifications"></span><div class="section" id="notifications">
 <span id="id1"></span><h3>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h3>
-<p>Sometimes it is not desirable or not convinient to actively poll for the processing status of documents. The notification API allows to retrieve status changes in a publish/subscribe fashion.</p>
+<p>Sometimes it is not desirable or not convenient to actively poll for the processing status of documents. The notification API allows to retrieve status changes in a publish/subscribe fashion.</p>
 <div class="section" id="retrieving-document-change-events-for-a-client">
 <h4>Retrieving Document Change Events for a Client<a class="headerlink" href="#retrieving-document-change-events-for-a-client" title="Permalink to this headline">¶</a></h4>
-<p>The status changes of documents which are proccessed for your application can be received by subscribing a SSE (server sent events) capable client with a valid client bearer token. See <a class="reference internal" href="index.html#client-authentication"><em>Client Authentication</em></a>.
-Since the browser implementations of <a class="reference external" href="http://www.w3.org/TR/eventsource/">SSE eventsource</a> lacks the capability to submit headers, the bearer header can be replaced with a query parameter. Unfortunately, the eventsource standard does not support authorization directly. That means that the subscription request returns <em>always</em> status code 200. If the authorization failes, a error message is returned in the response body.
+<p>The status changes of documents which are processed for your application can be received by subscribing a SSE (server sent events) capable client with a valid client bearer token. See <a class="reference internal" href="index.html#client-authentication"><em>Client Authentication</em></a>.
+Since the browser implementations of <a class="reference external" href="http://www.w3.org/TR/eventsource/">SSE eventsource</a> lacks the capability to submit headers, the bearer header can be replaced with a query parameter. Unfortunately, the eventsource standard does not support authorization directly. That means that the subscription request returns <em>always</em> status code 200. If the authorization fails, a error message is returned in the response body.
 Once the connection is established, the document status changes are sent by the server as SSE event stream.</p>
 <div class="section" id="request">
 <h5>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h5>
@@ -6409,7 +6409,7 @@ Once the connection is established, the document status changes are sent by the 
 </div>
 <div class="section" id="errors">
 <h6>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h6>
-<p>Error messages are embeded in the response body of the subscription request.</p>
+<p>Error messages are embedded in the response body of the subscription request.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="28%" />

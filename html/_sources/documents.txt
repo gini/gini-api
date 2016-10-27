@@ -444,7 +444,7 @@ to improve the recognition rate of the Gini API.
    Feedback should only be sent if real users can see, approve, correct and complement extractions based data.
 
 
-Feedback should only be sent if your use case fullfills these constraints. Gini uses several techniques to learn from feedback on 
+Feedback should only be sent if your use case fulfills these constraints. Gini uses several techniques to learn from feedback on
 extractions automatically. Thereby it is equally important for Gini to receive both feedback 
 on correct and on incorrect extractions. 
 There are currently two ways to submit feedback. The first and most common one is to submit the complete feedback in one request.
@@ -461,12 +461,12 @@ There are three different types of feedback:
 Please see the full example for further details.
 
 Submitting feedback on multiple extractions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Gini API allows to submit feedback on multiple extractions for a 
 single document with a single request. It is strongly recommended for two reasons 
 that you submit your feedback in this way. On the one hand,
-the total number of roundtrips is reduced to one and the feedback is handled
+the total number of round trips is reduced to one and the feedback is handled
 internally as a batch. Thus, the update is more efficient for multiple extractions
 compared to submitting each feedback with a separate request 
 (See :ref:`singlefeedback`). On the other hand, Gini's 
@@ -601,7 +601,7 @@ Response
 .. _singlefeedback:
 
 Submitting feedback on single extractions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Request
 ^^^^^^^
@@ -1070,7 +1070,7 @@ Retrieving the processed document
 Request
 ~~~~~~~
 
-Before Gini tries to extract information it preprocesses the document,
+Before Gini tries to extract information, it preprocesses the document,
 e.g. to deskew pages. The processed document can be retrieved by a
 ``GET`` request:
 

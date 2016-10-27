@@ -1,5 +1,5 @@
-Overview about the Gini API
-===========================
+Overview of the Gini API
+========================
 
 This section provides general information about the Gini API. If you want a
 step-by-step guide how to upload your first document and retrieve its semantic

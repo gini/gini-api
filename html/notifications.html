@@ -91,7 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#what-next">What next?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview about the Gini API</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview of the Gini API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#ipv6-compatibility">IPv6 compatibility</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a><ul>
@@ -478,11 +478,11 @@
             
   <div class="section" id="notifications">
 <span id="id1"></span><h1>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h1>
-<p>Sometimes it is not desirable or not convinient to actively poll for the processing status of documents. The notification API allows to retrieve status changes in a publish/subscribe fashion.</p>
+<p>Sometimes it is not desirable or not convenient to actively poll for the processing status of documents. The notification API allows to retrieve status changes in a publish/subscribe fashion.</p>
 <div class="section" id="retrieving-document-change-events-for-a-client">
 <h2>Retrieving Document Change Events for a Client<a class="headerlink" href="#retrieving-document-change-events-for-a-client" title="Permalink to this headline">¶</a></h2>
-<p>The status changes of documents which are proccessed for your application can be received by subscribing a SSE (server sent events) capable client with a valid client bearer token. See <a class="reference internal" href="user_center_api.html#client-authentication"><em>Client Authentication</em></a>.
-Since the browser implementations of <a class="reference external" href="http://www.w3.org/TR/eventsource/">SSE eventsource</a> lacks the capability to submit headers, the bearer header can be replaced with a query parameter. Unfortunately, the eventsource standard does not support authorization directly. That means that the subscription request returns <em>always</em> status code 200. If the authorization failes, a error message is returned in the response body.
+<p>The status changes of documents which are processed for your application can be received by subscribing a SSE (server sent events) capable client with a valid client bearer token. See <a class="reference internal" href="user_center_api.html#client-authentication"><em>Client Authentication</em></a>.
+Since the browser implementations of <a class="reference external" href="http://www.w3.org/TR/eventsource/">SSE eventsource</a> lacks the capability to submit headers, the bearer header can be replaced with a query parameter. Unfortunately, the eventsource standard does not support authorization directly. That means that the subscription request returns <em>always</em> status code 200. If the authorization fails, a error message is returned in the response body.
 Once the connection is established, the document status changes are sent by the server as SSE event stream.</p>
 <div class="section" id="request">
 <h3>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h3>
@@ -543,7 +543,7 @@ Once the connection is established, the document status changes are sent by the 
 </div>
 <div class="section" id="errors">
 <h4>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h4>
-<p>Error messages are embeded in the response body of the subscription request.</p>
+<p>Error messages are embedded in the response body of the subscription request.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="28%" />

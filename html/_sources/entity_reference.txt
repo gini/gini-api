@@ -859,7 +859,7 @@ phonenumber
 -----------
 
 Describes a phone number in one of two formats 
-``<CountryCode> <Number>`` with " " as a delimiter and ``<Number>`` whithout a country code. 
+``<CountryCode> <Number>`` with " " as a delimiter and ``<Number>`` without a country code.
 All punctuation marks (e.g. "/", "-"), spaces and "(0)" (e.g. +49(0)61957746361) are deleted. 
 
 
@@ -1070,7 +1070,7 @@ Valid Feedback
 taxnumber
 ---------
 
-Describes a Geman tax number in the format
+Describes a German tax number in the format
 ``<3-5 digits>/<3 digits>/<4 digits>/<1 digit>`` with "/" as delimiter
 between components.
 
