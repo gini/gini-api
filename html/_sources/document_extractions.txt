@@ -118,6 +118,8 @@ Available Specific Extractions
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``paymentDueDate``       | The calculated payment due date (e.g. of an invoice).                          | :ref:`extraction-entity-date`                | ``dates``                |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
+| ``paymentPurpose``       | The extra payment purpose text when the payment reference is not available     | :ref:`extraction-entity-text`                | n/a                      |
++--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``paymentRecipient``     | The payment recipient, benefitter of a money transfer activity                 | :ref:`extraction-entity-companyname`         | ``senderNames``          |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``paymentReference``     | The payment reference.                                                         | :ref:`extraction-entity-reference`           | n/a                      |
