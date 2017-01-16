@@ -63,7 +63,7 @@ iOS
 
 The iOS SDK is hosted on `Github <https://github.com/gini/gini-sdk-ios>`_.
 
-Check out the `documentation <http://developer.gini.net/gini-sdk-ios>`_ that includes a tutorial on how to include Gini Technology in your own app.
+Check out the `documentation <http://developer.gini.net/gini-sdk-ios/docs/>`_ that includes a tutorial on how to include Gini Technology in your own app.
 
 
 Android
