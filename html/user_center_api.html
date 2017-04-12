@@ -421,7 +421,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#response">Response</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#changing-a-user-s-password">Changing a user&#8217;s password</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#changing-a-user-s-password-and-or-email">Changing a user&#8217;s password and/or email</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id12">Request</a></li>
 </ul>
 </li>
@@ -692,11 +692,11 @@ exists, the API responds with <tt class="docutils literal"><span class="pre">400
 </div>
 </div>
 </div>
-<div class="section" id="changing-a-user-s-password">
-<h2>Changing a user&#8217;s password<a class="headerlink" href="#changing-a-user-s-password" title="Permalink to this headline">¶</a></h2>
-<p>A user&#8217;s password can be changed with a <tt class="docutils literal"><span class="pre">PUT</span></tt> request to
-<tt class="docutils literal"><span class="pre">/api/users/{userId}</span></tt>. To update a user&#8217;s password, the current
-password must be provided.</p>
+<div class="section" id="changing-a-user-s-password-and-or-email">
+<h2>Changing a user&#8217;s password and/or email<a class="headerlink" href="#changing-a-user-s-password-and-or-email" title="Permalink to this headline">¶</a></h2>
+<p>A user&#8217;s password and/or email can be changed with a <tt class="docutils literal"><span class="pre">PUT</span></tt> request to
+<tt class="docutils literal"><span class="pre">/api/users/{userId}</span></tt>. To update a user&#8217;s password and/or email, the current
+password/email must be provided.</p>
 <div class="section" id="id12">
 <h3>Request<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
@@ -716,6 +716,12 @@ password must be provided.</p>
 <tr class="row-odd"><td><tt class="docutils literal"><span class="pre">password</span></tt></td>
 <td>The password to which the user&#8217;s password should be changed to.</td>
 </tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">oldEmail</span></tt></td>
+<td>The user&#8217;s current email.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">email</span></tt></td>
+<td>The email to which the user&#8217;s email should be changed to.</td>
+</tr>
 </tbody>
 </table>
 <div class="section" id="id13">
@@ -726,6 +732,14 @@ Authorization: BEARER 74c1e7fe-e464-451f-a6eb-8f0998c46ff6
 Content-Type: application/json
 
 {&quot;oldPassword&quot;:&quot;supersecret&quot;,&quot;password:&quot;anothersecret&quot;}
+
+or
+
+{&quot;oldEmail&quot;:&quot;old@email.com&quot;,&quot;email:&quot;my.new@email.com&quot;}
+
+or
+
+{&quot;oldPassword&quot;:&quot;supersecret&quot;,&quot;password:&quot;anothersecret&quot;,&quot;oldEmail&quot;:&quot;old@email.com&quot;,&quot;email:&quot;my.new@email.com&quot;}
 </pre></div>
 </div>
 </div>

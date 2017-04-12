@@ -220,12 +220,12 @@ Example
 
 
 
-Changing a user's password
-==========================
+Changing a user's password and/or email
+=======================================
 
-A user's password can be changed with a ``PUT`` request to
-``/api/users/{userId}``. To update a user's password, the current
-password must be provided.
+A user's password and/or email can be changed with a ``PUT`` request to
+``/api/users/{userId}``. To update a user's password and/or email, the current
+password/email must be provided.
 
 Request
 -------
@@ -236,6 +236,10 @@ Request
 | ``oldPassword`` | The user's current password.                                    |
 +-----------------+-----------------------------------------------------------------+
 | ``password``    | The password to which the user's password should be changed to. |
++-----------------+-----------------------------------------------------------------+
+| ``oldEmail``    | The user's current email.                                       |
++-----------------+-----------------------------------------------------------------+
+| ``email``       | The email to which the user's email should be changed to.       |
 +-----------------+-----------------------------------------------------------------+
 
 
@@ -251,6 +255,13 @@ Example request
    
    {"oldPassword":"supersecret","password:"anothersecret"}
 
+   or
+
+   {"oldEmail":"old@email.com","email:"my.new@email.com"}
+
+   or
+
+   {"oldPassword":"supersecret","password:"anothersecret","oldEmail":"old@email.com","email:"my.new@email.com"}
 
 
 Deleting a user
