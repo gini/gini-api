@@ -54,5 +54,6 @@ Table of contents
    client_libs
    user_center_api
    guides/cms-encryption
+   troubleshooting
 
 .. todolist::

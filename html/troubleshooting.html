@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Gini API documentation &mdash; Gini API v1 documentation</title>
+  <title>Troubleshooting &mdash; Gini API v1 documentation</title>
   
 
   
@@ -52,8 +52,8 @@
   
 
   
-    <link rel="top" title="Gini API v1 documentation" href="#"/>
-        <link rel="next" title="Getting started" href="guides/getting-started.html"/> 
+    <link rel="top" title="Gini API v1 documentation" href="index.html"/>
+        <link rel="prev" title="CMS Encryption / Decryption Guide" href="guides/cms-encryption.html"/> 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -66,7 +66,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="#" id="gini-logo">gini API</a>
+        <a href="index.html" id="gini-logo">gini API</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,7 +79,7 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="guides/getting-started.html">Getting started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#create-a-user-and-obtain-an-access-token">Create a user and obtain an access token</a></li>
@@ -443,9 +443,9 @@
 <li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#see-also">See Also</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#x-request-id">X-Request-Id</a></li>
-<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#document-id">Document Id</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#x-request-id">X-Request-Id</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#document-id">Document Id</a></li>
 </ul>
 </li>
 </ul>
@@ -460,7 +460,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="#">Gini API</a>
+        <a href="index.html">Gini API</a>
       </nav>
 
 
@@ -469,9 +469,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="#">Docs</a> &raquo;</li>
+    <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Gini API documentation</li>
+    <li>Troubleshooting</li>
       <li class="wy-breadcrumbs-aside">
         
       </li>
@@ -480,153 +480,21 @@
 </div>
           <div role="main">
             
-  <div class="section" id="gini-api-documentation">
-<h1>Gini API documentation<a class="headerlink" href="#gini-api-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>Gini provides an information extraction system for analyzing documents
-(e. g. invoices or contracts), specifically information such as the
-document sender or the amount to pay in an invoice.</p>
-<p>The API supports documents in the formats <strong>PDF</strong>, <strong>GIF</strong>, <strong>JPEG</strong>, <strong>PNG</strong>,
-and <strong>TIFF</strong>.</p>
-<p>Furthermore there is the distinction between <strong>native PDF</strong> files (i. e. files
-digitally created from Microsoft Word documents and containing textual
-information) and <strong>scanned PDF</strong> files, created by scanning paper documents.</p>
-<p>After a file has been submitted and validated, Gini first extracts the textual
-contents of the document. Native PDF files already contain this information and
-are analyzed accordingly. Scanned documents (like the aforementioned) image files
-do not provide easily processable information directly, so Gini has to preprocess
-these files using Optical Character Recognition (OCR) and other methods to
-obtain their content.</p>
-<p>Once the layout and textual information is available for the uploaded document,
-Gini starts extracting semantic and meta information
-about the document, such as the document sender (e. g. name, address) or the
-document type (e. g. invoice, contract).</p>
-<p>In the unlikely case that Gini was unable to infer the information correctly, it is
-possible to correct the extractions manually (e. g. by selecting the correct
-amount to pay on the document) and submit it back to the API. This also helps
-to improve the learning extraction system over time.</p>
-<p>If you have any questions about the Gini API and the functionality it provides,
-please contact us via <a class="reference external" href="mailto:api&#37;&#52;&#48;gini&#46;net">api<span>&#64;</span>gini<span>&#46;</span>net</a>.</p>
+  <div class="section" id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
+<p>If you have trouble using the Gini API and you need to contact the support, there are some information
+you should always provide in order to help you quickly and efficiently.</p>
+<div class="section" id="x-request-id">
+<h2>X-Request-Id<a class="headerlink" href="#x-request-id" title="Permalink to this headline">¶</a></h2>
+<p>The request id is generated for every request against the Gini API and tracked through the whole system. It is
+included in every response you receive from the Gini API as the HTTP header <tt class="docutils literal"><span class="pre">X-Request-Id</span></tt>. Please refer to it when you
+contact our support.</p>
 </div>
-<div class="section" id="table-of-contents">
-<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="guides/getting-started.html">Getting started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#prerequisites">Prerequisites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#create-a-user-and-obtain-an-access-token">Create a user and obtain an access token</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#upload-a-document">Upload a document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#wait-for-the-document-processing-to-complete">Wait for the document processing to complete</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#retrieve-the-extractions">Retrieve the extractions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#send-feedback-and-get-even-better-extractions-next-time">Send feedback and get even better extractions next time</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/getting-started.html#what-next">What next?</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview of the Gini API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#ipv6-compatibility">IPv6 compatibility</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#media-types">Media Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#versions">Versions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#authentication">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#security">Security</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#client-errors">Client Errors</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="guides/anonymous-users.html">Managing anonymous Gini accounts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guides/anonymous-users.html#communication-to-the-gini-api-via-a-backend-gateway">Communication to the Gini API via a backend/gateway</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/anonymous-users.html#direct-communication-from-client-devices-to-the-gini-api">Direct communication from client devices to the Gini API</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="documents.html">Documents</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-files">Submitting files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#checking-processing-status-and-getting-document-information">Checking processing status and getting document information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-extractions">Retrieving extractions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#submitting-feedback-on-extractions">Submitting feedback on extractions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-a-document-s-pages">Retrieving a document&#8217;s pages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-the-layout-of-a-document">Retrieving the layout of a document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#retrieving-the-processed-document">Retrieving the processed document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#create-an-error-report-for-a-document">Create an Error Report for a Document</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#deleting-documents">Deleting documents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documents.html#getting-a-list-of-all-documents">Getting a list of all documents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="document_extractions.html">Document Extractions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="document_extractions.html#extractions">Extractions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="document_extractions.html#extraction-candidates">Extraction Candidates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="document_extractions.html#extraction-entities">Extraction Entities</a></li>
-<li class="toctree-l2"><a class="reference internal" href="document_extractions.html#bounding-box">Bounding Box</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="entity_reference.html">Entity reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#amount">amount</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#bankaccount">bankaccount</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#banknumber">banknumber</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#bic">bic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#city">city</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#companyname">companyname</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#companynameaddition">companynameaddition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#companyregisterid">companyregisterid</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#currency">currency</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#customerid">customerid</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#date">date</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#doctype">doctype</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#documentdomain">documentdomain</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#email">email</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#iban">iban</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#invoiceid">invoiceid</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#paymentstate">paymentstate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#phonenumber">phonenumber</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#poboxnumber">poboxnumber</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#reference">reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#street">street</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#taxnumber">taxnumber</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#text">text</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#url">url</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#vat">vat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="entity_reference.html#zipcode">zipcode</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="document_search.html">Search</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="document_search.html#basic-search">Basic search</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="incubator.html">Incubator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="incubator.html#incubating-extractions">Incubating Extractions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="incubator.html#incubating-entities">Incubating Entities</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="notifications.html">Notifications</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notifications.html#retrieving-document-change-events-for-a-client">Retrieving Document Change Events for a Client</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="client_libs.html">Client Libraries</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="client_libs.html#ruby">Ruby</a></li>
-<li class="toctree-l2"><a class="reference internal" href="client_libs.html#ios">iOS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="client_libs.html#android">Android</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="user_center_api.html">User Center API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="user_center_api.html#client-authentication">Client Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_center_api.html#authenticating-on-behalf-of-a-user">Authenticating on behalf of a user</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_center_api.html#creating-a-new-user">Creating a new user</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_center_api.html#retrieving-user-information">Retrieving user information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_center_api.html#changing-a-user-s-password-and-or-email">Changing a user&#8217;s password and/or email</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_center_api.html#deleting-a-user">Deleting a user</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="guides/cms-encryption.html">CMS Encryption / Decryption Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#usage-of-mediatypes">Usage of Mediatypes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#cms-walkthrough">CMS Walkthrough</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/cms-encryption.html#see-also">See Also</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#x-request-id">X-Request-Id</a></li>
-<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#document-id">Document Id</a></li>
-</ul>
-</li>
-</ul>
-</div>
+<div class="section" id="document-id">
+<h2>Document Id<a class="headerlink" href="#document-id" title="Permalink to this headline">¶</a></h2>
+<p>The document id is generated for every  accepted upload. It is included in the <tt class="docutils literal"><span class="pre">Location</span></tt> HTTP header
+which is part of the response for a successful upload. Please refer to the document id if you have questions
+related to a specific document upload.</p>
 </div>
 </div>
 
@@ -636,8 +504,8 @@ please contact us via <a class="reference external" href="mailto:api&#37;&#52;&#
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="guides/getting-started.html" class="btn btn-neutral float-right" title="Getting started">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+        <a href="guides/cms-encryption.html" class="btn btn-neutral" title="CMS Encryption / Decryption Guide"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

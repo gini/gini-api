@@ -442,6 +442,11 @@
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-guides/cms-encryption#see-also">See Also</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-troubleshooting#x-request-id">X-Request-Id</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#document-troubleshooting#document-id">Document Id</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -7184,6 +7189,23 @@ The default is <strong>SMIME</strong> which reads an S/MIME format message.</td>
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<span id="document-troubleshooting"></span><div class="section" id="troubleshooting">
+<h3>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h3>
+<p>If you have trouble using the Gini API and you need to contact the support, there are some information
+you should always provide in order to help you quickly and efficiently.</p>
+<div class="section" id="x-request-id">
+<h4>X-Request-Id<a class="headerlink" href="#x-request-id" title="Permalink to this headline">¶</a></h4>
+<p>The request id is generated for every request against the Gini API and tracked through the whole system. It is
+included in every response you receive from the Gini API as the HTTP header <tt class="docutils literal"><span class="pre">X-Request-Id</span></tt>. Please refer to it when you
+contact our support.</p>
+</div>
+<div class="section" id="document-id">
+<h4>Document Id<a class="headerlink" href="#document-id" title="Permalink to this headline">¶</a></h4>
+<p>The document id is generated for every  accepted upload. It is included in the <tt class="docutils literal"><span class="pre">Location</span></tt> HTTP header
+which is part of the response for a successful upload. Please refer to the document id if you have questions
+related to a specific document upload.</p>
 </div>
 </div>
 </div>

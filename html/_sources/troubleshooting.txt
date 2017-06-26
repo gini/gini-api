@@ -1,0 +1,19 @@
+Troubleshooting
+===============
+
+If you have trouble using the Gini API and you need to contact the support, there are some information
+you should always provide in order to help you quickly and efficiently.
+
+X-Request-Id
+------------
+
+The request id is generated for every request against the Gini API and tracked through the whole system. It is
+included in every response you receive from the Gini API as the HTTP header ``X-Request-Id``. Please refer to it when you
+contact our support.
+
+Document Id
+-----------
+
+The document id is generated for every  accepted upload. It is included in the ``Location`` HTTP header
+which is part of the response for a successful upload. Please refer to the document id if you have questions
+related to a specific document upload.
