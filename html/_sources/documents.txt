@@ -481,11 +481,17 @@ Request
 ^^^^^^^
 
 Give feedback and correct or verify multiple specific labeled extraction
-patterns with a single ``PUT`` request to the documents extractions URI:
+patterns with a single ``PUT`` or ``POST`` request to the documents extractions URI:
 
 ::
 
     PUT /documents/{id}/extractions
+
+or
+
+::
+
+    POST /documents/{id}/extractions
 
 The labels must correspond to the names of the extraction types (e. g.
 ``amountToPay``. See :ref:`available-specific-extractions` for a list

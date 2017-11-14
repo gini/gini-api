@@ -1754,8 +1754,12 @@ be filtered out.</p>
 <div class="section" id="id17">
 <h6>Request<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h6>
 <p>Give feedback and correct or verify multiple specific labeled extraction
-patterns with a single <tt class="docutils literal"><span class="pre">PUT</span></tt> request to the documents extractions URI:</p>
+patterns with a single <tt class="docutils literal"><span class="pre">PUT</span></tt> or <tt class="docutils literal"><span class="pre">POST</span></tt> request to the documents extractions URI:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">PUT</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">extractions</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">extractions</span>
 </pre></div>
 </div>
 <p>The labels must correspond to the names of the extraction types (e. g.
