@@ -347,15 +347,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="document_search.html">Search</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="document_search.html#basic-search">Basic search</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="document_search.html#request">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="document_search.html#response">Response</a></li>
-<li class="toctree-l3"><a class="reference internal" href="document_search.html#example">Example:</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="incubator.html">Incubator</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="incubator.html#incubating-extractions">Incubating Extractions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#accessing-incubating-extractions">Accessing Incubating Extractions</a></li>
@@ -531,7 +522,7 @@ contact us via <a class="reference external" href="mailto:api&#37;&#52;&#48;gini
 <p>By default all requests receive data in version 1 of the API. Developers are
 strongly encouraged to explicitly specify the required version of the Gini API
 using the HTTP/1.1 <tt class="docutils literal"><span class="pre">Accept</span></tt> header:</p>
-<div class="highlight-python"><div class="highlight"><pre>Accept: application/vnd.gini.v1+json
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Accept</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">gini</span><span class="o">.</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span>
 </pre></div>
 </div>
 </div>
@@ -541,7 +532,7 @@ using the HTTP/1.1 <tt class="docutils literal"><span class="pre">Accept</span><
 features (e.g. extractions) exclusively under this Gini API version. We encourage developers to test these
 features and to give us feedback under <a class="reference external" href="mailto:api&#37;&#52;&#48;gini&#46;net">api<span>&#64;</span>gini<span>&#46;</span>net</a>. The incubating features are accessible by
 using the HTTP/1.1 <tt class="docutils literal"><span class="pre">Accept</span></tt> header:</p>
-<div class="highlight-python"><div class="highlight"><pre>Accept: application/vnd.gini.incubator+json
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Accept</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">gini</span><span class="o">.</span><span class="n">incubator</span><span class="o">+</span><span class="n">json</span>
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="incubator.html#incubator"><em>Incubator</em></a> for further informations.</p>

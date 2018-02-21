@@ -345,15 +345,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#document-document_search">Search</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="index.html#document-document_search#basic-search">Basic search</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-document_search#request">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-document_search#response">Response</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-document_search#example">Example:</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-incubator">Incubator</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-incubator#incubating-extractions">Incubating Extractions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-incubator#accessing-incubating-extractions">Accessing Incubating Extractions</a></li>
@@ -870,7 +861,7 @@ contact us via <a class="reference external" href="mailto:api&#37;&#52;&#48;gini
 <p>By default all requests receive data in version 1 of the API. Developers are
 strongly encouraged to explicitly specify the required version of the Gini API
 using the HTTP/1.1 <tt class="docutils literal"><span class="pre">Accept</span></tt> header:</p>
-<div class="highlight-python"><div class="highlight"><pre>Accept: application/vnd.gini.v1+json
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Accept</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">gini</span><span class="o">.</span><span class="n">v1</span><span class="o">+</span><span class="n">json</span>
 </pre></div>
 </div>
 </div>
@@ -880,7 +871,7 @@ using the HTTP/1.1 <tt class="docutils literal"><span class="pre">Accept</span><
 features (e.g. extractions) exclusively under this Gini API version. We encourage developers to test these
 features and to give us feedback under <a class="reference external" href="mailto:api&#37;&#52;&#48;gini&#46;net">api<span>&#64;</span>gini<span>&#46;</span>net</a>. The incubating features are accessible by
 using the HTTP/1.1 <tt class="docutils literal"><span class="pre">Accept</span></tt> header:</p>
-<div class="highlight-python"><div class="highlight"><pre>Accept: application/vnd.gini.incubator+json
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Accept</span><span class="p">:</span> <span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">gini</span><span class="o">.</span><span class="n">incubator</span><span class="o">+</span><span class="n">json</span>
 </pre></div>
 </div>
 <p>See <a class="reference internal" href="index.html#incubator"><em>Incubator</em></a> for further informations.</p>
@@ -5247,155 +5238,6 @@ between components.</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</div>
-<span id="document-document_search"></span><div class="section" id="search">
-<h3>Search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h3>
-<p>The Gini API provides fulltext search over a user&#8217;s documents.</p>
-<div class="section" id="basic-search">
-<h4>Basic search<a class="headerlink" href="#basic-search" title="Permalink to this headline">¶</a></h4>
-<p>Searches for documents containing the given words. The search results
-are paginated.</p>
-<div class="section" id="request">
-<h5>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h5>
-<div class="highlight-python"><div class="highlight"><pre>GET /search?q={searchTerm}
-</pre></div>
-</div>
-<div class="section" id="headers">
-<h6>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="29%" />
-<col width="71%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Header</th>
-<th class="head">Value</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="query-parameters">
-<h6>Query parameters<a class="headerlink" href="#query-parameters" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="15%" />
-<col width="14%" />
-<col width="71%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">q</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td>The search term(s), separated by space. Multiple terms are
-combined using an <em>AND</em> operator.</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">limit</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
-<td><em>(Optional)</em> Number of results per page. <strong>Must</strong> be between
-<em>1</em> and <em>250</em>. Defaults to <em>20</em>.</td>
-</tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">offset</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
-<td><em>(Optional)</em> Start offset. Defaults to <em>0</em>.</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">docType</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td><em>(Optional)</em> Only include documents with the given doctype
-in search results. See <a class="reference internal" href="index.html#extraction-entity-doctype"><em>doctype</em></a> for
-a list of possible values.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="section" id="response">
-<h5>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h5>
-<div class="section" id="id1">
-<h6>Headers<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Status Code</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>200 (OK)</td>
-<td>Success</td>
-</tr>
-</tbody>
-</table>
-<table border="1" class="docutils">
-<colgroup>
-<col width="36%" />
-<col width="64%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Header</th>
-<th class="head">Value</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="body">
-<h6>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="21%" />
-<col width="16%" />
-<col width="63%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">documents</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">object</span></tt></td>
-<td>List of documents matching the query.</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">totalCount</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
-<td>Total number of documents matching the query.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="section" id="example">
-<h5>Example:<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h5>
-<div class="highlight-json"><div class="highlight"><pre>{
-  &quot;documents&quot;: [
-    {...},
-    {...},
-    {...}
-  ],
-  &quot;totalCount&quot;: 3
-}
-</pre></div>
-</div>
 </div>
 </div>
 </div>
