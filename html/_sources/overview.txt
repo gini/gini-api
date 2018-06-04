@@ -16,11 +16,11 @@ precedence depends on your operating system and configuration if both protocols 
 
 ::
 
-    ❯ host api.gini.net
+    $ host api.gini.net
     api.gini.net has address 46.245.182.125
     api.gini.net has IPv6 address 2a00:14e0:600:1500:d0c5::1
 
-    ❯ host user.gini.net
+    $ host user.gini.net
     user.gini.net has address 46.245.182.124
     user.gini.net has IPv6 address 2a00:14e0:600:1500:d0c5::2
 

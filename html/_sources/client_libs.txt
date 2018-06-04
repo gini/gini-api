@@ -34,7 +34,7 @@ You can either use the source directly or install the gem from rubygems.org:
 
 .. code-block:: bash
 
-    ⌘ > gem install gini-api
+    $ gem install gini-api
     Fetching: gini-api-0.9.5.gem (100%)
     Successfully installed gini-api-0.9.5
     1 gem installed
