@@ -535,27 +535,10 @@ others (e. g. in a public repository).</p>
 </div>
 <div class="section" id="create-a-user-and-obtain-an-access-token">
 <span id="guide-getting-started-create-user"></span><h4>Create a user and obtain an access token<a class="headerlink" href="#create-a-user-and-obtain-an-access-token" title="Permalink to this headline">¶</a></h4>
-<p>All requests to the Gini API are made on behalf of a user, authorized
-by an access token. For now, it&#8217;s assumed that you already have a Gini
-account. If not, go to <a class="reference external" href="https://user.gini.net/register">the Gini User Center</a> and create a new account before
-continuing.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>There are two types of accounts within the Gini API:</p>
-<ul class="simple">
-<li><em>Gini accounts</em> require users to create an account with Gini
-which is then used to store all documents and share it with every
-application developed for the Gini API</li>
-<li><em>Anonymous accounts</em> allow to use the Gini API without the need of
-a user creating an account or providing account credentials</li>
-</ul>
-<p>From an API usage view, the only difference between regular and
-anonymous accounts is the obtaining of a so-called <em>access
-token</em>. The requests to the API itself look the same.</p>
-<p class="last">Your application will likely use anonymous accounts. For details
-how to create and use such anonymous accounts, see
-<a class="reference internal" href="index.html#document-guides/anonymous-users"><em>Managing anonymous Gini accounts</em></a>.</p>
-</div>
+<p>All requests to the Gini API are made on behalf of a user, authorized by an
+access token. For now, it&#8217;s assumed that you already created an anonymous user
+and obtained an access token for it. For details on how to do so, please read
+<a class="reference internal" href="index.html#guide-anonymous-accounts"><em>Managing anonymous Gini accounts</em></a>.</p>
 <p>To get an access token for a Gini account, use the following command (replace
 <em>client-id</em> with your client ID and <em>client-secret</em> with your client secret as
 well as <em>random&#64;example.org</em> with your username and <em>geheim</em> with your
@@ -1043,7 +1026,7 @@ your client (i.e. your application) against the
 <a class="reference internal" href="index.html#user-center-api"><em>User Center API</em></a>.</p>
 <p>It is assumed that you have a client ID <tt class="docutils literal"><span class="pre">client-id</span></tt> and a client
 secret <tt class="docutils literal"><span class="pre">client-secret</span></tt>. Authorized by those (with HTTP Basic
-Authentication), your client can optain a client access token using
+Authentication), your client can obtain a client access token using
 the following request:</p>
 <div class="code console highlight-python"><div class="highlight"><pre>curl -v -H &#39;Accept: application/json&#39; -u &#39;client-id:client-secret&#39; &#39;https://user.gini.net/oauth/token?grant_type=client_credentials&#39;
 </pre></div>

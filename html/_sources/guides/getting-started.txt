@@ -48,30 +48,10 @@ please contact your sales representative.
 Create a user and obtain an access token
 ========================================
 
-All requests to the Gini API are made on behalf of a user, authorized
-by an access token. For now, it's assumed that you already have a Gini
-account. If not, go to `the Gini User Center
-<https://user.gini.net/register>`_ and create a new account before
-continuing.
-
-.. note::
-
-   There are two types of accounts within the Gini API:
-
-   * *Gini accounts* require users to create an account with Gini
-     which is then used to store all documents and share it with every
-     application developed for the Gini API
-
-   * *Anonymous accounts* allow to use the Gini API without the need of
-     a user creating an account or providing account credentials
-
-   From an API usage view, the only difference between regular and
-   anonymous accounts is the obtaining of a so-called *access
-   token*. The requests to the API itself look the same.
-
-   Your application will likely use anonymous accounts. For details
-   how to create and use such anonymous accounts, see
-   :doc:`anonymous-users`.
+All requests to the Gini API are made on behalf of a user, authorized by an
+access token. For now, it's assumed that you already created an anonymous user
+and obtained an access token for it. For details on how to do so, please read
+:ref:`guide-anonymous-accounts`.
 
 To get an access token for a Gini account, use the following command (replace
 *client-id* with your client ID and *client-secret* with your client secret as

@@ -96,7 +96,7 @@ Gini account. See the links to the corresponding sections of the
 
    It is assumed that you have a client ID ``client-id`` and a client
    secret ``client-secret``. Authorized by those (with HTTP Basic
-   Authentication), your client can optain a client access token using
+   Authentication), your client can obtain a client access token using
    the following request:
 
    .. code:: console
