@@ -154,20 +154,15 @@
 <li class="toctree-l3"><a class="reference internal" href="#id47">Response</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#create-an-error-report-for-a-document">Create an Error Report for a Document</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id51">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id56">Response</a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="#deleting-documents">Deleting documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id60">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id62">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id51">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id53">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id65">Request query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id56">Request query parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example-request">Example request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id66">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id57">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -369,14 +364,6 @@
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#postalcode">postalcode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#timeperiod">timeperiod</a></li>
 <li class="toctree-l3"><a class="reference internal" href="incubator.html#time">time</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="notifications.html">Notifications</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notifications.html#retrieving-document-change-events-for-a-client">Retrieving Document Change Events for a Client</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="notifications.html#request">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="notifications.html#response">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -697,7 +684,7 @@ processing status of a single document by examining the document
 information. It can be retrieved by a <tt class="docutils literal"><span class="pre">GET</span></tt> request to the document
 URI. When the document has been processed you can retrieve the extractions
 from it and additional information such as the document layout.
-Alternatively, SSE (server sent events) based <a class="reference internal" href="notifications.html#notifications"><em>Notifications</em></a> can be used.</p>
+Alternatively, SSE (server sent events) based <em class="xref std std-ref">notifications</em> can be used.</p>
 <div class="section" id="id2">
 <h3>Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Document information can be retrieved by doing a <tt class="docutils literal"><span class="pre">GET</span></tt> request on the
@@ -2107,160 +2094,29 @@ the original document file.</p>
 </div>
 </div>
 </div>
-<div class="section" id="create-an-error-report-for-a-document">
-<h2>Create an Error Report for a Document<a class="headerlink" href="#create-an-error-report-for-a-document" title="Permalink to this headline">¶</a></h2>
-<p>If the processing result for a document was not satisfactory (e.g. extractions where empty or incorrect), you can
-create an error report for a document. This allows Gini to analyze and correct the problem that was found. The owner of this
-document must agree that Gini can use this document for debugging and error analysis. The returned <tt class="docutils literal"><span class="pre">errorId</span></tt> can
-be used to refer to the reported error towards the Gini support.</p>
-<div class="section" id="id51">
-<h3>Request<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h3>
-<p>Create a error report with a <tt class="docutils literal"><span class="pre">POST</span></tt> request to the document URI:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">errorreport</span>
-</pre></div>
-</div>
-<div class="section" id="id52">
-<h4>Headers<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
-<table border="1" class="docutils">
-<colgroup>
-<col width="37%" />
-<col width="63%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Header</th>
-<th class="head">Value</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id53">
-<h4>Request query parameters<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h4>
-<table border="1" class="docutils">
-<colgroup>
-<col width="28%" />
-<col width="13%" />
-<col width="58%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">summary</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td><em>(Optional)</em> Short summary of the error found</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">description</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td><em>(Optional)</em> More detailed description of the
-error found</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id54">
-<h4>Body<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
-<p>Empty.</p>
-</div>
-<div class="section" id="id55">
-<h4>Example<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X POST -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/errorreport?summary<span class="o">=</span>Extractions%20Empty<span class="p">&amp;</span><span class="nv">description</span><span class="o">=</span>Despite%20the%20submitted%20remittance%20slip%20has%20a%20good%20image%20quality%2C%20the%20iban%20was%20not%20found.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="id56">
-<h3>Response<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id57">
-<h4>Headers<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h4>
-<table border="1" class="docutils">
-<colgroup>
-<col width="30%" />
-<col width="70%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Status Code</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>200 (OK)</td>
-<td>The error report was successfully submitted</td>
-</tr>
-<tr class="row-odd"><td>404 (Not Found)</td>
-<td>The document couldn&#8217;t be found</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id58">
-<h4>Body<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
-<table border="1" class="docutils">
-<colgroup>
-<col width="26%" />
-<col width="26%" />
-<col width="47%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Key</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>message</td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td>Short feedback message</td>
-</tr>
-<tr class="row-odd"><td>errorId</td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td>The unique errorId. Can be used to
-refer to this error.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id59">
-<h4>Example<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-  <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;error was reported, please refer to the given error id&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;errorId&quot;</span><span class="p">:</span> <span class="s2">&quot;436626a0-749f-11e2-bfd6-00000000000&quot;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="section" id="deleting-documents">
 <h2>Deleting documents<a class="headerlink" href="#deleting-documents" title="Permalink to this headline">¶</a></h2>
 <p>If you want to delete a document you can do this by doing a
 DELETE request on the document URI. When the document is deleted all
 associated resources (extractions, layout) will also be deleted.</p>
-<div class="section" id="id60">
-<h3>Request<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id51">
+<h3>Request<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h3>
 <p>Documents can be deleted by doing a <tt class="docutils literal"><span class="pre">DELETE</span></tt> request on the document
 URI.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">DELETE</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="id61">
-<h4>Example<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id52">
+<h4>Example<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; -X DELETE -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id62">
-<h3>Response<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id63">
-<h4>Headers<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id53">
+<h3>Response<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id54">
+<h4>Headers<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="47%" />
@@ -2278,8 +2134,8 @@ URI.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id64">
-<h4>Errors<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id55">
+<h4>Errors<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -2307,8 +2163,8 @@ documents.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span>
 </pre></div>
 </div>
-<div class="section" id="id65">
-<h3>Request query parameters<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id56">
+<h3>Request query parameters<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
 <col width="29%" />
@@ -2340,11 +2196,11 @@ return. Defaults to <em>20</em>.</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id66">
-<h3>Response<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id57">
+<h3>Response<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h3>
 <p>The response is a paginated list of documents.</p>
-<div class="section" id="id67">
-<h4>Headers<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id58">
+<h4>Headers<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="50%" />
@@ -2362,8 +2218,8 @@ return. Defaults to <em>20</em>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id68">
-<h4>Body<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id59">
+<h4>Body<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h4>
 <p>The response entity has the following fields:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -2389,8 +2245,8 @@ return. Defaults to <em>20</em>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id69">
-<h4>Example<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id60">
+<h4>Example<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-json"><div class="highlight"><pre>{
   &quot;totalCount&quot;: 118,
   &quot;documents&quot;: [

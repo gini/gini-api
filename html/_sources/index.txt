@@ -49,7 +49,6 @@ Table of contents
    document_extractions
    entity_reference
    incubator
-   notifications
    client_libs
    user_center_api
    guides/cms-encryption

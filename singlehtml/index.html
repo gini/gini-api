@@ -152,20 +152,15 @@
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id47">Response</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#create-an-error-report-for-a-document">Create an Error Report for a Document</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id51">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id56">Response</a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#deleting-documents">Deleting documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id60">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id62">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id51">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id53">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id65">Request query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id56">Request query parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#example-request">Example request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id66">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id57">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -371,14 +366,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="index.html#document-notifications">Notifications</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="index.html#document-notifications#retrieving-document-change-events-for-a-client">Retrieving Document Change Events for a Client</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-notifications#request">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-notifications#response">Response</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="index.html#document-client_libs">Client Libraries</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-client_libs#ruby">Ruby</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-client_libs#installation">Installation</a></li>
@@ -514,8 +501,6 @@ steps:</p>
 <li><a class="reference internal" href="index.html#guide-getting-started-extractions"><em>Retrieve the extractions</em></a></li>
 <li><a class="reference internal" href="index.html#guide-getting-started-feedback"><em>Send feedback and get even better extractions next time</em></a></li>
 </ol>
-<p>For a quick overview of what kinds of information the Gini API is able
-to extract from your documents, go ahead and check out <a class="reference external" href="https://app.gini.net/">Gini Docs</a>.</p>
 <p>For general information about the Gini API, see <a class="reference internal" href="index.html#document-overview"><em>Overview of the Gini API</em></a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -622,16 +607,9 @@ submitted:</p>
 </pre></div>
 </div>
 <p>When the value of <cite>progress</cite> changes to <cite>COMPLETED</cite>, processing of the document
-is completed and you can proceed with the next step. There are two different
-ways how your application can wait for the transition from <cite>PENDING</cite> to
-<cite>COMPLETED</cite>: It either has to periodically poll the document status or it can
-use <a class="reference internal" href="index.html#document-notifications"><em>the Gini API&#8217;s server-sent events</em></a> (<em>SSE</em>).</p>
-<blockquote>
-<div><div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="index.html#document-notifications"><em>Notifications</em></a></p>
-</div>
-</div></blockquote>
+is completed and you can proceed with the next step. To notice the transition
+from <cite>PENDING</cite> to <cite>COMPLETED</cite>, your application needs to periodically poll the
+document status.</p>
 </div>
 <div class="section" id="retrieve-the-extractions">
 <span id="guide-getting-started-extractions"></span><h4>Retrieve the extractions<a class="headerlink" href="#retrieve-the-extractions" title="Permalink to this headline">¶</a></h4>
@@ -1294,7 +1272,7 @@ processing status of a single document by examining the document
 information. It can be retrieved by a <tt class="docutils literal"><span class="pre">GET</span></tt> request to the document
 URI. When the document has been processed you can retrieve the extractions
 from it and additional information such as the document layout.
-Alternatively, SSE (server sent events) based <a class="reference internal" href="index.html#notifications"><em>Notifications</em></a> can be used.</p>
+Alternatively, SSE (server sent events) based <em class="xref std std-ref">notifications</em> can be used.</p>
 <div class="section" id="id2">
 <h5>Request<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
 <p>Document information can be retrieved by doing a <tt class="docutils literal"><span class="pre">GET</span></tt> request on the
@@ -2704,160 +2682,29 @@ the original document file.</p>
 </div>
 </div>
 </div>
-<div class="section" id="create-an-error-report-for-a-document">
-<h4>Create an Error Report for a Document<a class="headerlink" href="#create-an-error-report-for-a-document" title="Permalink to this headline">¶</a></h4>
-<p>If the processing result for a document was not satisfactory (e.g. extractions where empty or incorrect), you can
-create an error report for a document. This allows Gini to analyze and correct the problem that was found. The owner of this
-document must agree that Gini can use this document for debugging and error analysis. The returned <tt class="docutils literal"><span class="pre">errorId</span></tt> can
-be used to refer to the reported error towards the Gini support.</p>
-<div class="section" id="id51">
-<h5>Request<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h5>
-<p>Create a error report with a <tt class="docutils literal"><span class="pre">POST</span></tt> request to the document URI:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">errorreport</span>
-</pre></div>
-</div>
-<div class="section" id="id52">
-<h6>Headers<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="37%" />
-<col width="63%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Header</th>
-<th class="head">Value</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Content-Type</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id53">
-<h6>Request query parameters<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="28%" />
-<col width="13%" />
-<col width="58%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">summary</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td><em>(Optional)</em> Short summary of the error found</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">description</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td><em>(Optional)</em> More detailed description of the
-error found</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id54">
-<h6>Body<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h6>
-<p>Empty.</p>
-</div>
-<div class="section" id="id55">
-<h6>Example<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h6>
-<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X POST -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/errorreport?summary<span class="o">=</span>Extractions%20Empty<span class="p">&amp;</span><span class="nv">description</span><span class="o">=</span>Despite%20the%20submitted%20remittance%20slip%20has%20a%20good%20image%20quality%2C%20the%20iban%20was%20not%20found.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="id56">
-<h5>Response<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h5>
-<div class="section" id="id57">
-<h6>Headers<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="30%" />
-<col width="70%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Status Code</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>200 (OK)</td>
-<td>The error report was successfully submitted</td>
-</tr>
-<tr class="row-odd"><td>404 (Not Found)</td>
-<td>The document couldn&#8217;t be found</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id58">
-<h6>Body<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="26%" />
-<col width="26%" />
-<col width="47%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Key</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>message</td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td>Short feedback message</td>
-</tr>
-<tr class="row-odd"><td>errorId</td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td>The unique errorId. Can be used to
-refer to this error.</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id59">
-<h6>Example<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h6>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-  <span class="nt">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;error was reported, please refer to the given error id&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;errorId&quot;</span><span class="p">:</span> <span class="s2">&quot;436626a0-749f-11e2-bfd6-00000000000&quot;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="section" id="deleting-documents">
 <h4>Deleting documents<a class="headerlink" href="#deleting-documents" title="Permalink to this headline">¶</a></h4>
 <p>If you want to delete a document you can do this by doing a
 DELETE request on the document URI. When the document is deleted all
 associated resources (extractions, layout) will also be deleted.</p>
-<div class="section" id="id60">
-<h5>Request<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id51">
+<h5>Request<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h5>
 <p>Documents can be deleted by doing a <tt class="docutils literal"><span class="pre">DELETE</span></tt> request on the document
 URI.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">DELETE</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="id61">
-<h6>Example<a class="headerlink" href="#id61" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id52">
+<h6>Example<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; -X DELETE -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id62">
-<h5>Response<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h5>
-<div class="section" id="id63">
-<h6>Headers<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id53">
+<h5>Response<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id54">
+<h6>Headers<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="47%" />
@@ -2875,8 +2722,8 @@ URI.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id64">
-<h6>Errors<a class="headerlink" href="#id64" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id55">
+<h6>Errors<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -2904,8 +2751,8 @@ documents.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span>
 </pre></div>
 </div>
-<div class="section" id="id65">
-<h5>Request query parameters<a class="headerlink" href="#id65" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id56">
+<h5>Request query parameters<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="29%" />
@@ -2937,11 +2784,11 @@ return. Defaults to <em>20</em>.</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id66">
-<h5>Response<a class="headerlink" href="#id66" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id57">
+<h5>Response<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h5>
 <p>The response is a paginated list of documents.</p>
-<div class="section" id="id67">
-<h6>Headers<a class="headerlink" href="#id67" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id58">
+<h6>Headers<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="50%" />
@@ -2959,8 +2806,8 @@ return. Defaults to <em>20</em>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id68">
-<h6>Body<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id59">
+<h6>Body<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h6>
 <p>The response entity has the following fields:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -2986,8 +2833,8 @@ return. Defaults to <em>20</em>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id69">
-<h6>Example<a class="headerlink" href="#id69" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id60">
+<h6>Example<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-json"><div class="highlight"><pre>{
   &quot;totalCount&quot;: 118,
   &quot;documents&quot;: [
@@ -6175,142 +6022,6 @@ delimiter between time components.</p>
         <span class="nt">&quot;width&quot;</span><span class="p">:</span> <span class="mf">40.0</span><span class="p">,</span>
         <span class="nt">&quot;height&quot;</span><span class="p">:</span> <span class="mf">8.0</span>
     <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<span id="document-notifications"></span><div class="section" id="notifications">
-<span id="id1"></span><h3>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h3>
-<p>Sometimes it is not desirable or not convenient to actively poll for the processing status of documents. The notification API allows to retrieve status changes in a publish/subscribe fashion.</p>
-<div class="section" id="retrieving-document-change-events-for-a-client">
-<h4>Retrieving Document Change Events for a Client<a class="headerlink" href="#retrieving-document-change-events-for-a-client" title="Permalink to this headline">¶</a></h4>
-<p>The status changes of documents which are processed for your application can be received by subscribing a SSE (server sent events) capable client with a valid client bearer token. See <a class="reference internal" href="index.html#client-authentication"><em>Client Authentication</em></a>.
-Since the browser implementations of <a class="reference external" href="http://www.w3.org/TR/eventsource/">SSE eventsource</a> lacks the capability to submit headers, the bearer header can be replaced with a query parameter. Unfortunately, the eventsource standard does not support authorization directly. That means that the subscription request returns <em>always</em> status code 200. If the authorization fails, a error message is returned in the response body.
-Once the connection is established, the document status changes are sent by the server as SSE event stream.</p>
-<div class="section" id="request">
-<h5>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h5>
-<p>The subscription can be done by doing a <tt class="docutils literal"><span class="pre">GET</span></tt> with a valid authorization header on the following URI.</p>
-<div class="highlight-python"><div class="highlight"><pre>GET https://notifications.gini.net/events/client
-</pre></div>
-</div>
-<div class="section" id="headers">
-<h6>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="28%" />
-<col width="72%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Header</th>
-<th class="head">Value</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">text/event-stream</span></tt></td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">Authorization</span></tt></td>
-<td><a class="reference internal" href="index.html#client-authentication"><em>Client bearer token</em></a></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="example">
-<h6>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h6>
-<p>Variant for web applications running in a web browser:</p>
-<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -H <span class="s1">&#39;Accept: text/event-stream&#39;</span> https://notifications.gini.net/events/client
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="response">
-<h5>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h5>
-<div class="section" id="id2">
-<h6>Headers<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="23%" />
-<col width="77%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Status Code</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>200</td>
-<td>No meaning, error messages are embedded in body</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="errors">
-<h6>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h6>
-<p>Error messages are embedded in the response body of the subscription request.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="28%" />
-<col width="72%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Message</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>auth_required</td>
-<td>Unauthorized (401). Client must send a valid bearer
-authorization header</td>
-</tr>
-<tr class="row-odd"><td>auth_failed</td>
-<td>Authentification failed, e.g. token is not valid</td>
-</tr>
-<tr class="row-even"><td>not_accepted</td>
-<td>Wrong content type requested</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="body">
-<h6>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h6>
-<p>The server sends a stream of events encoded in json. The subscription request returns
-either some empty lines or a error message.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="20%" />
-<col width="15%" />
-<col width="65%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Key</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">documentId</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td>Unique identifier of document as UUID Version 1</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">status</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td><dl class="first last docutils">
-<dt>Processing status of a document. Possible Values:</dt>
-<dd><tt class="docutils literal"><span class="pre">PENDING</span></tt>, <tt class="docutils literal"><span class="pre">COMPLETED</span></tt>, <tt class="docutils literal"><span class="pre">ERROR</span></tt></dd>
-</dl>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id3">
-<h6>Example<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h6>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
- <span class="nt">&quot;documentId&quot;</span><span class="p">:</span> <span class="s2">&quot;626626a0-749f-11e2-bfd6-000000000000&quot;</span><span class="p">,</span>
- <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;COMPLETED&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>

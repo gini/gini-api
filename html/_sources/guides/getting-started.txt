@@ -14,10 +14,6 @@ steps:
 #. :ref:`guide-getting-started-extractions`
 #. :ref:`guide-getting-started-feedback`
 
-For a quick overview of what kinds of information the Gini API is able
-to extract from your documents, go ahead and check out `Gini Docs
-<https://app.gini.net/>`_.
-
 For general information about the Gini API, see :doc:`../overview`.
 
 .. note::
@@ -156,13 +152,9 @@ The response body will look similar to this:
    }
 
 When the value of `progress` changes to `COMPLETED`, processing of the document
-is completed and you can proceed with the next step. There are two different
-ways how your application can wait for the transition from `PENDING` to
-`COMPLETED`: It either has to periodically poll the document status or it can
-use :doc:`the Gini API's server-sent events <../notifications>` (*SSE*).
-
-   .. seealso:: :doc:`../notifications`
-
+is completed and you can proceed with the next step. To notice the transition
+from `PENDING` to `COMPLETED`, your application needs to periodically poll the
+document status.
 
 
 .. _guide-getting-started-extractions:

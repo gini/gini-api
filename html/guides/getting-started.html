@@ -154,20 +154,15 @@
 <li class="toctree-l3"><a class="reference internal" href="../documents.html#id47">Response</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../documents.html#create-an-error-report-for-a-document">Create an Error Report for a Document</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id51">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id56">Response</a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="../documents.html#deleting-documents">Deleting documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id60">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id62">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id51">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id53">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../documents.html#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id65">Request query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id56">Request query parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../documents.html#example-request">Example request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../documents.html#id66">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../documents.html#id57">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -373,14 +368,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../notifications.html">Notifications</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../notifications.html#retrieving-document-change-events-for-a-client">Retrieving Document Change Events for a Client</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../notifications.html#request">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../notifications.html#response">Response</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="../client_libs.html">Client Libraries</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../client_libs.html#ruby">Ruby</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../client_libs.html#installation">Installation</a></li>
@@ -484,8 +471,6 @@ steps:</p>
 <li><a class="reference internal" href="#guide-getting-started-extractions"><em>Retrieve the extractions</em></a></li>
 <li><a class="reference internal" href="#guide-getting-started-feedback"><em>Send feedback and get even better extractions next time</em></a></li>
 </ol>
-<p>For a quick overview of what kinds of information the Gini API is able
-to extract from your documents, go ahead and check out <a class="reference external" href="https://app.gini.net/">Gini Docs</a>.</p>
 <p>For general information about the Gini API, see <a class="reference internal" href="../overview.html"><em>Overview of the Gini API</em></a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -592,16 +577,9 @@ submitted:</p>
 </pre></div>
 </div>
 <p>When the value of <cite>progress</cite> changes to <cite>COMPLETED</cite>, processing of the document
-is completed and you can proceed with the next step. There are two different
-ways how your application can wait for the transition from <cite>PENDING</cite> to
-<cite>COMPLETED</cite>: It either has to periodically poll the document status or it can
-use <a class="reference internal" href="../notifications.html"><em>the Gini API&#8217;s server-sent events</em></a> (<em>SSE</em>).</p>
-<blockquote>
-<div><div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="../notifications.html"><em>Notifications</em></a></p>
-</div>
-</div></blockquote>
+is completed and you can proceed with the next step. To notice the transition
+from <cite>PENDING</cite> to <cite>COMPLETED</cite>, your application needs to periodically poll the
+document status.</p>
 </div>
 <div class="section" id="retrieve-the-extractions">
 <span id="guide-getting-started-extractions"></span><h2>Retrieve the extractions<a class="headerlink" href="#retrieve-the-extractions" title="Permalink to this headline">¶</a></h2>
