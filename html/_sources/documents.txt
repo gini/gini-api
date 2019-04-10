@@ -183,7 +183,6 @@ processing status of a single document by examining the document
 information. It can be retrieved by a ``GET`` request to the document
 URI. When the document has been processed you can retrieve the extractions
 from it and additional information such as the document layout.
-Alternatively, SSE (server sent events) based :ref:`notifications` can be used.
 
 Request
 ~~~~~~~
