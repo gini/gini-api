@@ -135,32 +135,26 @@
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#submitting-feedback-for-invalid-extractions">Submitting feedback for invalid extractions</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#retrieving-a-document-s-pages">Retrieving a document&#8217;s pages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id29">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id32">Response</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id34">Body</a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#retrieving-the-layout-of-a-document">Retrieving the layout of a document</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#coordinate-system">Coordinate system</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id36">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id39">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id29">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id32">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#retrieving-the-processed-document">Retrieving the processed document</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id45">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id47">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id38">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id39">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#deleting-documents">Deleting documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id51">Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id53">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id43">Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id45">Response</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#document-documents#getting-a-list-of-all-documents">Getting a list of all documents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id56">Request query parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id48">Request query parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#example-request">Example request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id57">Response</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-documents#id49">Response</a></li>
 </ul>
 </li>
 </ul>
@@ -1394,42 +1388,27 @@ document URI.</p>
 <td><tt class="docutils literal"><span class="pre">string</span></tt></td>
 <td>Classification of the source file, either <tt class="docutils literal"><span class="pre">SCANNED</span></tt>, <tt class="docutils literal"><span class="pre">SANDWICH</span></tt>,  <tt class="docutils literal"><span class="pre">NATIVE</span></tt> or <tt class="docutils literal"><span class="pre">TEXT</span></tt>.</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">pages</span></tt></td>
-<td>&nbsp;</td>
-<td><tt class="docutils literal"><span class="pre">array</span></tt></td>
-<td>List of page objects</td>
-</tr>
-<tr class="row-even"><td>&nbsp;</td>
-<td><tt class="docutils literal"><span class="pre">pageNumber</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
-<td>Page number in the document</td>
-</tr>
-<tr class="row-odd"><td>&nbsp;</td>
-<td><tt class="docutils literal"><span class="pre">images</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">object</span></tt></td>
-<td>URIs to pre-rendered page images</td>
-</tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">_links</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">_links</span></tt></td>
 <td>&nbsp;</td>
 <td><tt class="docutils literal"><span class="pre">array</span></tt></td>
 <td>List of related resources, e. g. the found extractions or the document layout</td>
 </tr>
-<tr class="row-odd"><td>&nbsp;</td>
+<tr class="row-even"><td>&nbsp;</td>
 <td><tt class="docutils literal"><span class="pre">extractions</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">string</span></tt></td>
 <td>URI to extractions of the document (extractions URI)</td>
 </tr>
-<tr class="row-even"><td>&nbsp;</td>
+<tr class="row-odd"><td>&nbsp;</td>
 <td><tt class="docutils literal"><span class="pre">layout</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">string</span></tt></td>
 <td>URI to the layout of the document (layout URI)</td>
 </tr>
-<tr class="row-odd"><td>&nbsp;</td>
+<tr class="row-even"><td>&nbsp;</td>
 <td><tt class="docutils literal"><span class="pre">processed</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">string</span></tt></td>
 <td>URI to the processed document</td>
 </tr>
-<tr class="row-even"><td>&nbsp;</td>
+<tr class="row-odd"><td>&nbsp;</td>
 <td><tt class="docutils literal"><span class="pre">document</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">string</span></tt></td>
 <td>URI to the document, meaning the current resource (document URI)</td>
@@ -1447,15 +1426,6 @@ document URI.</p>
   <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;UPLOAD&quot;</span><span class="p">,</span>
   <span class="nt">&quot;sourceClassification&quot;</span><span class="p">:</span> <span class="s2">&quot;SCANNED&quot;</span><span class="p">,</span>
   <span class="nt">&quot;pageCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nt">&quot;pages&quot;</span> <span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="nt">&quot;images&quot;</span> <span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;750x900&quot;</span> <span class="p">:</span> <span class="s2">&quot;http://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/pages/1/750x900&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;1280x1810&quot;</span> <span class="p">:</span> <span class="s2">&quot;http://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/pages/1/1280x1810&quot;</span>
-      <span class="p">},</span>
-      <span class="nt">&quot;pageNumber&quot;</span> <span class="p">:</span> <span class="mi">1</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
   <span class="nt">&quot;_links&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;extractions&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/extractions&quot;</span><span class="p">,</span>
     <span class="nt">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/layout&quot;</span><span class="p">,</span>
@@ -1993,189 +1963,6 @@ request to the extraction URI:</p>
 </div>
 </div>
 </div>
-<div class="section" id="retrieving-a-document-s-pages">
-<h4>Retrieving a document&#8217;s pages<a class="headerlink" href="#retrieving-a-document-s-pages" title="Permalink to this headline">¶</a></h4>
-<p>The Gini API renders preview images of a document&#8217;s pages. To retrieve
-the list of pages for a document, issue a <tt class="docutils literal"><span class="pre">GET</span></tt> request to the
-<tt class="docutils literal"><span class="pre">pages</span></tt> sub-resource of a document:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">pages</span>
-</pre></div>
-</div>
-<p>The response is a list of pages.</p>
-<div class="section" id="id29">
-<h5>Request<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h5>
-<div class="section" id="path-parameters">
-<h6>Path parameters<a class="headerlink" href="#path-parameters" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="40%" />
-<col width="60%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Value</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">id</span></tt></td>
-<td>Document ID</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id30">
-<h6>Headers<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="27%" />
-<col width="73%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Header</th>
-<th class="head">Value</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="id31">
-<h6>Example<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h6>
-<div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X GET -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="id32">
-<h5>Response<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h5>
-<div class="section" id="id33">
-<h6>Headers<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h6>
-<table border="1" class="docutils">
-<colgroup>
-<col width="32%" />
-<col width="68%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Status Code</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>200 (OK)</td>
-<td>The request was successful.</td>
-</tr>
-<tr class="row-odd"><td>404 (Not Found)</td>
-<td>The requested document does not exist.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="section" id="id34">
-<h5>Body<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h5>
-<table border="1" class="docutils">
-<colgroup>
-<col width="19%" />
-<col width="14%" />
-<col width="67%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">pages</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">array</span></tt></td>
-<td>All <a class="reference internal" href="index.html#entity-page"><em>pages</em></a> in the current result page</td>
-</tr>
-</tbody>
-</table>
-<p>A page is an entity with the following fields:</p>
-<table border="1" class="docutils" id="entity-page">
-<colgroup>
-<col width="14%" />
-<col width="25%" />
-<col width="10%" />
-<col width="51%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Key</th>
-<th class="head">Child key</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">documentId</span></tt></td>
-<td>&nbsp;</td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td>UUID of the document to which page belongs</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">pagenum</span></tt></td>
-<td>&nbsp;</td>
-<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
-<td>Page number</td>
-</tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">_links</span></tt></td>
-<td>&nbsp;</td>
-<td><tt class="docutils literal"><span class="pre">object</span></tt></td>
-<td>Links to related resources</td>
-</tr>
-<tr class="row-odd"><td>&nbsp;</td>
-<td><tt class="docutils literal"><span class="pre">document</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td>Link to the document to which the page belongs</td>
-</tr>
-<tr class="row-even"><td>&nbsp;</td>
-<td><tt class="docutils literal"><span class="pre">pages</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td>Link to the pages of the document</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">_images</span></tt></td>
-<td>&nbsp;</td>
-<td><tt class="docutils literal"><span class="pre">object</span></tt></td>
-<td>Links to pre-rendered page images in different resolutions</td>
-</tr>
-<tr class="row-even"><td>&nbsp;</td>
-<td><em>image resolution in pixels</em></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td>Link to a pre-rendered image of the page</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Image downloads require a corresponding <tt class="docutils literal"><span class="pre">Accept</span></tt> header such as
-<tt class="docutils literal"><span class="pre">image/jpeg</span></tt> or <tt class="docutils literal"><span class="pre">image/*</span></tt>.</p>
-</div>
-<div class="section" id="id35">
-<h6>Example<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h6>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">[</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;images&quot;</span> <span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;1280x1810&quot;</span> <span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/1280x1810&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;750x900&quot;</span> <span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/750x900&quot;</span>
-    <span class="p">},</span>
-    <span class="nt">&quot;pageNumber&quot;</span> <span class="p">:</span> <span class="mi">1</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="nt">&quot;pageNumber&quot;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="nt">&quot;images&quot;</span> <span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;1280x1810&quot;</span> <span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/2/1280x1810&quot;</span><span class="p">,</span>
-      <span class="nt">&quot;750x900&quot;</span> <span class="p">:</span> <span class="s2">&quot;https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/2/750x900&quot;</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="section" id="retrieving-the-layout-of-a-document">
 <h4>Retrieving the layout of a document<a class="headerlink" href="#retrieving-the-layout-of-a-document" title="Permalink to this headline">¶</a></h4>
 <p>The layout of the document describes the textual content of a document
@@ -2186,15 +1973,15 @@ with positional information, based on <a class="reference internal" href="index.
 of the page. The coordinate system uses the DTP point as unit: 1 pt = 1
 inch / 72 = 25.4 mm / 72 = 0.3528 mm</p>
 </div>
-<div class="section" id="id36">
-<h5>Request<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id29">
+<h5>Request<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h5>
 <p>The layout of a document can be retrieved by a <tt class="docutils literal"><span class="pre">GET</span></tt> request to the
 layout URI:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">layout</span>
 </pre></div>
 </div>
-<div class="section" id="id37">
-<h6>Headers<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id30">
+<h6>Headers<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="29%" />
@@ -2212,17 +1999,17 @@ layout URI:</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id38">
-<h6>Example<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id31">
+<h6>Example<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-bash"><div class="highlight"><pre>curl -H <span class="s1">&#39;Authorization: BEARER &lt;token&gt;&#39;</span> -X GET -H <span class="s1">&#39;Accept: application/vnd.gini.v1+json&#39;</span> -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/layout
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id39">
-<h5>Response<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h5>
-<div class="section" id="id40">
-<h6>Headers<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id32">
+<h5>Response<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id33">
+<h6>Headers<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="50%" />
@@ -2256,8 +2043,8 @@ layout URI:</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id41">
-<h6>Body (application/vnd.gini.v1+json)<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id34">
+<h6>Body (application/vnd.gini.v1+json)<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="25%" />
@@ -2502,8 +2289,8 @@ layout URI:</p>
 </table>
 </div>
 </div>
-<div class="section" id="id42">
-<h6>Example<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id35">
+<h6>Example<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-json"><div class="highlight"><pre>{
   &quot;pages&quot;: [
     {
@@ -2581,8 +2368,8 @@ layout URI:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id43">
-<h6>Errors<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id36">
+<h6>Errors<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="28%" />
@@ -2603,17 +2390,17 @@ layout URI:</p>
 </div>
 </div>
 <div class="section" id="retrieving-the-processed-document">
-<span id="id44"></span><h4>Retrieving the processed document<a class="headerlink" href="#retrieving-the-processed-document" title="Permalink to this headline">¶</a></h4>
-<div class="section" id="id45">
-<h5>Request<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h5>
+<span id="id37"></span><h4>Retrieving the processed document<a class="headerlink" href="#retrieving-the-processed-document" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id38">
+<h5>Request<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h5>
 <p>Before Gini tries to extract information, it preprocesses the document,
 e.g. to deskew pages. The processed document can be retrieved by a
 <tt class="docutils literal"><span class="pre">GET</span></tt> request:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span><span class="o">/</span><span class="n">processed</span>
 </pre></div>
 </div>
-<div class="section" id="id46">
-<h6>Path parameters<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="path-parameters">
+<h6>Path parameters<a class="headerlink" href="#path-parameters" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="40%" />
@@ -2632,10 +2419,10 @@ e.g. to deskew pages. The processed document can be retrieved by a
 </table>
 </div>
 </div>
-<div class="section" id="id47">
-<h5>Response<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h5>
-<div class="section" id="id48">
-<h6>Headers<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id39">
+<h5>Response<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id40">
+<h6>Headers<a class="headerlink" href="#id40" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="50%" />
@@ -2653,15 +2440,15 @@ e.g. to deskew pages. The processed document can be retrieved by a
 </tbody>
 </table>
 </div>
-<div class="section" id="id49">
-<h6>Body<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id41">
+<h6>Body<a class="headerlink" href="#id41" title="Permalink to this headline">¶</a></h6>
 <p>The version of the uploaded document file after preprocessing
 (i.e. color corrected, deskewed) which has been used for all layout
 and semantic extractions. In case of native PDF documents identical to
 the original document file.</p>
 </div>
-<div class="section" id="id50">
-<h6>Errors<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id42">
+<h6>Errors<a class="headerlink" href="#id42" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="32%" />
@@ -2686,24 +2473,24 @@ the original document file.</p>
 <p>If you want to delete a document you can do this by doing a
 DELETE request on the document URI. When the document is deleted all
 associated resources (extractions, layout) will also be deleted.</p>
-<div class="section" id="id51">
-<h5>Request<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id43">
+<h5>Request<a class="headerlink" href="#id43" title="Permalink to this headline">¶</a></h5>
 <p>Documents can be deleted by doing a <tt class="docutils literal"><span class="pre">DELETE</span></tt> request on the document
 URI.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">DELETE</span> <span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="p">{</span><span class="nb">id</span><span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="id52">
-<h6>Example<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id44">
+<h6>Example<a class="headerlink" href="#id44" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-python"><div class="highlight"><pre>curl -H &#39;Authorization: BEARER &lt;token&gt;&#39; -X DELETE -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="id53">
-<h5>Response<a class="headerlink" href="#id53" title="Permalink to this headline">¶</a></h5>
-<div class="section" id="id54">
-<h6>Headers<a class="headerlink" href="#id54" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id45">
+<h5>Response<a class="headerlink" href="#id45" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id46">
+<h6>Headers<a class="headerlink" href="#id46" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="47%" />
@@ -2721,8 +2508,8 @@ URI.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="id55">
-<h6>Errors<a class="headerlink" href="#id55" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id47">
+<h6>Errors<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -2750,8 +2537,8 @@ documents.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">documents</span>
 </pre></div>
 </div>
-<div class="section" id="id56">
-<h5>Request query parameters<a class="headerlink" href="#id56" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id48">
+<h5>Request query parameters<a class="headerlink" href="#id48" title="Permalink to this headline">¶</a></h5>
 <table border="1" class="docutils">
 <colgroup>
 <col width="29%" />
@@ -2783,11 +2570,11 @@ return. Defaults to <em>20</em>.</td>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id57">
-<h5>Response<a class="headerlink" href="#id57" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id49">
+<h5>Response<a class="headerlink" href="#id49" title="Permalink to this headline">¶</a></h5>
 <p>The response is a paginated list of documents.</p>
-<div class="section" id="id58">
-<h6>Headers<a class="headerlink" href="#id58" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id50">
+<h6>Headers<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h6>
 <table border="1" class="docutils">
 <colgroup>
 <col width="50%" />
@@ -2805,8 +2592,8 @@ return. Defaults to <em>20</em>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id59">
-<h6>Body<a class="headerlink" href="#id59" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id51">
+<h6>Body<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h6>
 <p>The response entity has the following fields:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -2832,8 +2619,8 @@ return. Defaults to <em>20</em>.</td>
 </tbody>
 </table>
 </div>
-<div class="section" id="id60">
-<h6>Example<a class="headerlink" href="#id60" title="Permalink to this headline">¶</a></h6>
+<div class="section" id="id52">
+<h6>Example<a class="headerlink" href="#id52" title="Permalink to this headline">¶</a></h6>
 <div class="highlight-json"><div class="highlight"><pre>{
   &quot;totalCount&quot;: 118,
   &quot;documents&quot;: [

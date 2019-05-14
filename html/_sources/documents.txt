@@ -248,12 +248,6 @@ Body (application/vnd.gini.v1+json)
 +--------------------------+-------------------+-------------+---------------------------------------------------------------------------------------------------+
 | ``sourceClassification`` |                   | ``string``  | Classification of the source file, either ``SCANNED``, ``SANDWICH``,  ``NATIVE`` or ``TEXT``.     |
 +--------------------------+-------------------+-------------+---------------------------------------------------------------------------------------------------+
-| ``pages``                |                   | ``array``   | List of page objects                                                                              |
-+--------------------------+-------------------+-------------+---------------------------------------------------------------------------------------------------+
-|                          | ``pageNumber``    | ``number``  | Page number in the document                                                                       |
-+--------------------------+-------------------+-------------+---------------------------------------------------------------------------------------------------+
-|                          | ``images``        | ``object``  | URIs to pre-rendered page images                                                                  |
-+--------------------------+-------------------+-------------+---------------------------------------------------------------------------------------------------+
 | ``_links``               |                   | ``array``   | List of related resources, e. g. the found extractions or the document layout                     |
 +--------------------------+-------------------+-------------+---------------------------------------------------------------------------------------------------+
 |                          | ``extractions``   | ``string``  | URI to extractions of the document (extractions URI)                                              |
@@ -278,15 +272,6 @@ Example
       "origin": "UPLOAD",
       "sourceClassification": "SCANNED",
       "pageCount": 1,
-      "pages" : [
-        {
-          "images" : {
-            "750x900" : "http://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/pages/1/750x900",
-            "1280x1810" : "http://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/pages/1/1280x1810"
-          },
-          "pageNumber" : 1
-        }
-      ],
       "_links": {
         "extractions": "https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/extractions",
         "layout": "https://api.gini.net/documents/626626a0-749f-11e2-bfd6-000000000000/layout",
@@ -698,117 +683,6 @@ Response
 | 404 (Not Found)    | Returned when the document or label can not be found   |
 +--------------------+--------------------------------------------------------+
 
-
-Retrieving a document's pages
------------------------------
-
-The Gini API renders preview images of a document's pages. To retrieve
-the list of pages for a document, issue a ``GET`` request to the
-``pages`` sub-resource of a document::
-
-  GET /documents/{id}/pages
-
-The response is a list of pages.
-
-Request
-~~~~~~~
-
-Path parameters
-^^^^^^^^^^^^^^^
-
-+--------------------+------------------------------+
-| Name               | Value                        |
-+====================+==============================+
-| ``id``             | Document ID                  |
-+--------------------+------------------------------+
-
-Headers
-^^^^^^^
-
-+--------------+-------------------------------------+
-| Header       | Value                               |
-+==============+=====================================+
-| ``Accept``   | ``application/vnd.gini.v1+json``    |
-+--------------+-------------------------------------+
-
-Example
-^^^^^^^
-
-.. code-block:: bash
-
-    curl -H 'Authorization: BEARER <token>' -X GET -H 'Accept: application/vnd.gini.v1+json' -i https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages
-
-Response
-~~~~~~~~
-
-Headers
-^^^^^^^
-
-+-------------------+----------------------------------------+
-| Status Code       | Description                            |
-+===================+========================================+
-| 200 (OK)          | The request was successful.            |
-+-------------------+----------------------------------------+
-| 404 (Not Found)   | The requested document does not exist. |
-+-------------------+----------------------------------------+
-
-Body
-~~~~
-
-+----------------+------------+----------------------------------------------------------+
-| Name           | Type       | Description                                              |
-+================+============+==========================================================+
-| ``pages``      | ``array``  | All :ref:`pages<entity-page>` in the current result page |
-+----------------+------------+----------------------------------------------------------+
-
-A page is an entity with the following fields:
-
-.. _entity-page:
-
-+----------------+------------------------------+------------+------------------------------------------------------------+
-| Key            | Child key                    | Type       | Description                                                |
-+================+==============================+============+============================================================+
-| ``documentId`` |                              | ``string`` | UUID of the document to which page belongs                 |
-+----------------+------------------------------+------------+------------------------------------------------------------+
-| ``pagenum``    |                              | ``number`` | Page number                                                |
-+----------------+------------------------------+------------+------------------------------------------------------------+
-| ``_links``     |                              | ``object`` | Links to related resources                                 |
-+----------------+------------------------------+------------+------------------------------------------------------------+
-|                | ``document``                 | ``string`` | Link to the document to which the page belongs             |
-+----------------+------------------------------+------------+------------------------------------------------------------+
-|                | ``pages``                    | ``string`` | Link to the pages of the document                          |
-+----------------+------------------------------+------------+------------------------------------------------------------+
-| ``_images``    |                              | ``object`` | Links to pre-rendered page images in different resolutions |
-+----------------+------------------------------+------------+------------------------------------------------------------+
-|                | *image resolution in pixels* | ``string`` | Link to a pre-rendered image of the page                   |
-+----------------+------------------------------+------------+------------------------------------------------------------+
-
-.. note::
-
-   Image downloads require a corresponding ``Accept`` header such as
-   ``image/jpeg`` or ``image/*``.
-
-Example
-^^^^^^^
-
-.. code-block:: json
-
-    [
-      {
-        "images" : {
-          "1280x1810" : "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/1280x1810",
-          "750x900" : "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/1/750x900"
-        },
-        "pageNumber" : 1
-      },
-      {
-        "pageNumber" : 2,
-        "images" : {
-          "1280x1810" : "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/2/1280x1810",
-          "750x900" : "https://api.gini.net/documents/c292af40-d06a-11e2-9a2f-000000000000/pages/2/750x900"
-        }
-      }
-    ]
 
 Retrieving the layout of a document
 -----------------------------------
