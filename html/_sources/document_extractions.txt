@@ -100,21 +100,9 @@ Available Specific Extractions
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``bic``                  | The bic of a payment recipient.                                                | :ref:`extraction-entity-bic`                 | ``bics``                 |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``companyRegisterId``    | The Commercial Registry number of a document sender.                           | :ref:`extraction-entity-companyregisterid`   | ``companyRegisterIds``   |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``customerId``           | The customer Id of a document recipient.                                       | :ref:`extraction-entity-customerid`          | ``customerIds``          |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``docType``              | The document type of a given document.                                         | :ref:`extraction-entity-doctype`             | n/a                      |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``documentDate``         | The document date.                                                             | :ref:`extraction-entity-date`                | ``dates``                |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``documentDomain``       | The domain of a current document.                                              | :ref:`extraction-entity-documentdomain`      | n/a                      |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``email``                | The most probable email address of a sender                                    | :ref:`extraction-entity-email`               | ``emails``               | 
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``iban``                 | The IBAN of a document sender.                                                 | :ref:`extraction-entity-iban`                | ``ibans``                |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``invoiceId``            | The invoice Id of a given document.                                            | :ref:`extraction-entity-invoiceid`           | ``invoiceIds``           |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``paymentDueDate``       | The calculated payment due date (e.g. of an invoice).                          | :ref:`extraction-entity-date`                | ``dates``                |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
@@ -125,29 +113,7 @@ Available Specific Extractions
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``paymentReference``     | The payment reference.                                                         | :ref:`extraction-entity-reference`           | n/a                      |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``paymentState``         | If a document has yet to be paid or is paid already.                           | :ref:`extraction-entity-paymentstate`        | n/a                      |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``phoneNumber``          | The first found phoneNumber in a given document.                               | :ref:`extraction-entity-phonenumber`         | ``phoneNumbers``         |               
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``referenceId``          | The first found reference id in a given document.                              | :ref:`extraction-entity-text`                | ``referenceIds``         |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``senderCity``           | The sender city.                                                               | :ref:`extraction-entity-city`                | n/a                      |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 | ``senderName``           | The sender name.                                                               | :ref:`extraction-entity-companyname`         | ``senderNames``          |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``senderNameAddition``   | The sender name addition.                                                      | :ref:`extraction-entity-companynameaddition` | n/a                      |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``senderPoBox``          | The sender post-office box.                                                    | :ref:`extraction-entity-poboxnumber`         | n/a                      |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``senderPostalCode``     | The sender's postal code.                                                      | :ref:`extraction-entity-zipcode`             | n/a                      |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``senderStreet``         | The sender's street with house number.                                         | :ref:`extraction-entity-street`              | n/a                      |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``taxNumber``            | The tax number of a document sender.                                           | :ref:`extraction-entity-taxnumber`           | ``taxnumbers``           |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``vatRegNumber``         | The VAT number of a document sender.                                           | :ref:`extraction-entity-vat`                 | ``vatRegNumbers``        |
-+--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
-| ``website``              | The most probable web address of a sender.                                     | :ref:`extraction-entity-url`                 | ``websites``             |
 +--------------------------+--------------------------------------------------------------------------------+----------------------------------------------+--------------------------+
 
 
@@ -186,31 +152,9 @@ Available Extraction Candidates
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``bics``                 | All bics of a given document.                                                              | :ref:`extraction-entity-bic`                |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``companyRegisterIds``   | All alphanumeric strings (of a similar structure as a German company register id) of a     | :ref:`extraction-entity-companyregisterid`  |
-|                          | given document.                                                                            |                                             |
-+--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``customerIds``          | All alphanumeric strings (of a similar structure as an identifier) of a given document.    | :ref:`extraction-entity-customerid`         |
-+--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``dates``                | All dates of a given document.                                                             | :ref:`extraction-entity-date`               |
-+--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``emails``               | All emails of a given document.                                                            | :ref:`extraction-entity-email`              |
-+--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``ibans``                | All IBANs of a given document.                                                             | :ref:`extraction-entity-iban`               |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``invoiceIds``           | All alphanumeric strings (of similar structure as an identifier) of a given document.      | :ref:`extraction-entity-invoiceid`          |
-+--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``phoneNumbers``         | All phone numbers of a given document.                                                     | :ref:`extraction-entity-phonenumber`        |
-+--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``referenceIds``         | All potential reference id numbers of a given document.                                    | :ref:`extraction-entity-text`               |
-+--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 | ``senderNames``          | All possible sender names of a given document.                                             | :ref:`extraction-entity-companyname`        |
-+--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``taxNumbers``           | All strings of digits (of a similar structure as a German tax number) of a given           | :ref:`extraction-entity-taxnumber`          |
-|                          | document.                                                                                  |                                             |
-+--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``vatRegNumbers``        | All alphanumeric strings (of a similar structure as an identifier) of a given document.    | :ref:`extraction-entity-vat`                |
-+--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
-| ``websites``             | All links found in a given document.                                                       | :ref:`extraction-entity-url`                |
 +--------------------------+--------------------------------------------------------------------------------------------+---------------------------------------------+
 
 
@@ -226,28 +170,11 @@ description):
 * :ref:`extraction-entity-bankaccount`
 * :ref:`extraction-entity-banknumber`
 * :ref:`extraction-entity-bic`
-* :ref:`extraction-entity-city`
 * :ref:`extraction-entity-companyname`
-* :ref:`extraction-entity-companynameaddition`
-* :ref:`extraction-entity-companyregisterid`
-* :ref:`extraction-entity-currency`
-* :ref:`extraction-entity-customerid`
-* :ref:`extraction-entity-date`
 * :ref:`extraction-entity-doctype`
-* :ref:`extraction-entity-documentdomain`
-* :ref:`extraction-entity-email`
 * :ref:`extraction-entity-iban`
-* :ref:`extraction-entity-invoiceid`
-* :ref:`extraction-entity-paymentstate`
-* :ref:`extraction-entity-phonenumber`
-* :ref:`extraction-entity-poboxnumber`
 * :ref:`extraction-entity-reference`
-* :ref:`extraction-entity-street`
-* :ref:`extraction-entity-taxnumber`
 * :ref:`extraction-entity-text`
-* :ref:`extraction-entity-url`
-* :ref:`extraction-entity-vat`
-* :ref:`extraction-entity-zipcode`
 
 
 .. _bounding-box:
