@@ -65,14 +65,6 @@ the Gini API accepts:
     recognized.
 
 
-Document Type Hints
-~~~~~~~~~~~~~~~~~~~
-
-The type of a document is in many cases known to the client application. If you 
-provide the ``doctype`` parameter with a valid value from the :ref:`extraction-entity-doctype` entity , Gini can optimize
-the processing of the document in many ways. Furthermore, some incubating extractions may only 
-available if the document type is provided. 
-
 Request
 ~~~~~~~
 
@@ -86,15 +78,25 @@ Documents can be submitted by doing a ``POST`` request on the
 Headers
 ^^^^^^^
 
-+--------------------+---------------------------------------+
-| Header             | Value                                 |
-+====================+=======================================+
-| ``Content-Type``   | ``multipart/form-data; boundary=...`` |
-+--------------------+---------------------------------------+
-|                    | ``*/*``                               |
-+--------------------+---------------------------------------+
-| ``Accept``         | ``application/vnd.gini.v1+json``      |
-+--------------------+---------------------------------------+
++------------------------------------------+-----------------------------------------+
+| Header                                   | Value                                   |
++==========================================+=========================================+
+| ``Content-Type``                         | ``multipart/form-data; boundary=...``   |
++------------------------------------------+-----------------------------------------+
+|                                          | ``*/*``                                 |
++------------------------------------------+-----------------------------------------+
+| ``Accept``                               | ``application/vnd.gini.v1+json``        |
++------------------------------------------+-----------------------------------------+
+| ``x-document-metadata-branchid``         | ``some customer specific id``           |
++------------------------------------------+-----------------------------------------+
+| ``x-document-metadata-deviceclass``      | ``desktop_device`` or ``mobile_device`` |
++------------------------------------------+-----------------------------------------+
+
+
+The ``x-document-metadata-*`` headers can be used to add some meta information to the upload. This information is used in analytics and reporting.
+
+ * ``branchid`` is used to group uploads from a specific client (eg branches for banks)
+ * ``deviceclass`` specifies from which kind of device the upload comes from. Eg. if it was uploaded from a desktop computer or a smart phone.
 
 
 Request query parameters
@@ -107,10 +109,6 @@ provide a file name for the submitted document with a query parameter:
 | Name                    | Type       | Description                                        |
 +=========================+============+====================================================+
 | ``filename``            | ``string`` | *(Optional)* File name of the submitted document   |
-+-------------------------+------------+----------------------------------------------------+
-| ``doctype``             | ``string`` | *(Optional)* Type of the submitted document        |
-|                         |            | See :ref:`extraction-entity-doctype` for possible  | 
-|                         |            | values                                             |
 +-------------------------+------------+----------------------------------------------------+
 
 

@@ -116,7 +116,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Documents</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submitting-files">Submitting files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#supported-file-formats">Supported file formats</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#document-type-hints">Document Type Hints</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#request">Request</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#response">Response</a></li>
 </ul>
@@ -233,32 +232,6 @@
 <li class="toctree-l2"><a class="reference internal" href="entity_reference.html#text">text</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id22">Format</a></li>
 <li class="toctree-l3"><a class="reference internal" href="entity_reference.html#id23">Example</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="incubator.html">Incubator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="incubator.html#incubating-extractions">Incubating Extractions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#accessing-incubating-extractions">Accessing Incubating Extractions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#receipt-extraction">Receipt Extraction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#fuel-receipt-extraction">Fuel Receipt Extraction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#accounting-related-extractions">Accounting Related Extractions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#subject-extraction">Subject Extraction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#recipient-extraction">Recipient Extraction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#energy-statement-extractions">Energy Statement Extractions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="incubator.html#incubating-entities">Incubating Entities</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#volume">volume</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#fuelprice">fuelprice</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#subject">subject</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#recipient">recipient</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#counternumber">counternumber</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#energyconsumption">energyconsumption</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#energytype">energytype</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#postalcode">postalcode</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#timeperiod">timeperiod</a></li>
-<li class="toctree-l3"><a class="reference internal" href="incubator.html#time">time</a></li>
 </ul>
 </li>
 </ul>
@@ -406,13 +379,6 @@ recognized.</li>
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="document-type-hints">
-<h3>Document Type Hints<a class="headerlink" href="#document-type-hints" title="Permalink to this headline">¶</a></h3>
-<p>The type of a document is in many cases known to the client application. If you
-provide the <tt class="docutils literal"><span class="pre">doctype</span></tt> parameter with a valid value from the <a class="reference internal" href="entity_reference.html#extraction-entity-doctype"><em>doctype</em></a> entity , Gini can optimize
-the processing of the document in many ways. Furthermore, some incubating extractions may only
-available if the document type is provided.</p>
-</div>
 <div class="section" id="request">
 <h3>Request<a class="headerlink" href="#request" title="Permalink to this headline">¶</a></h3>
 <p>Documents can be submitted by doing a <tt class="docutils literal"><span class="pre">POST</span></tt> request on the
@@ -424,8 +390,8 @@ available if the document type is provided.</p>
 <h4>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
-<col width="34%" />
-<col width="66%" />
+<col width="51%" />
+<col width="49%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Header</th>
@@ -442,8 +408,21 @@ available if the document type is provided.</p>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">Accept</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">application/vnd.gini.v1+json</span></tt></td>
 </tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">x-document-metadata-branchid</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">some</span> <span class="pre">customer</span> <span class="pre">specific</span> <span class="pre">id</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">x-document-metadata-deviceclass</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">desktop_device</span></tt> or <tt class="docutils literal"><span class="pre">mobile_device</span></tt></td>
+</tr>
 </tbody>
 </table>
+<p>The <tt class="docutils literal"><span class="pre">x-document-metadata-*</span></tt> headers can be used to add some meta information to the upload. This information is used in analytics and reporting.</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">branchid</span></tt> is used to group uploads from a specific client (eg branches for banks)</li>
+<li><tt class="docutils literal"><span class="pre">deviceclass</span></tt> specifies from which kind of device the upload comes from. Eg. if it was uploaded from a desktop computer or a smart phone.</li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="request-query-parameters">
 <h4>Request query parameters<a class="headerlink" href="#request-query-parameters" title="Permalink to this headline">¶</a></h4>
@@ -465,12 +444,6 @@ provide a file name for the submitted document with a query parameter:</p>
 <tr class="row-even"><td><tt class="docutils literal"><span class="pre">filename</span></tt></td>
 <td><tt class="docutils literal"><span class="pre">string</span></tt></td>
 <td><em>(Optional)</em> File name of the submitted document</td>
-</tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">doctype</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">string</span></tt></td>
-<td><em>(Optional)</em> Type of the submitted document
-See <a class="reference internal" href="entity_reference.html#extraction-entity-doctype"><em>doctype</em></a> for possible
-values</td>
 </tr>
 </tbody>
 </table>
